@@ -1,28 +1,68 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+
+import toyApp from '../views/toy-app.vue'
+import homePage from '../views/home-page.vue'
+import toyEdit from '../views/toy-edit.vue'
+import toyDetails from '../views/toy-details.vue'
+import userProfile from '../views/user-profile.vue'
+import dashboard from '../views/dashboard.vue'
+import about from '../views/about.vue'
+import chat from '../views/chat.vue'
+import reviewApp from '../views/review-app.vue'
+import loginSignup from '../views/login-signup.vue'
+
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    component: homePage,
+  },
+  {
+    path: '/toy-app',
+    component: toyApp,
+  },
+  {
+    path: '/user/:userId',
+    component: userProfile,
   },
   {
     path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    component: about,
+
+  },
+  {
+    path: '/toy/edit/:toyId?',
+    component: toyEdit
+  },
+  {
+    path: '/toy/:toyId',
+    component: toyDetails,
+  },
+  {
+    path: '/dashboard',
+    component: dashboard,
+  },
+  {
+    path: '/review',
+    name: 'review',
+    component: reviewApp
+  },
+  {
+    path: '/chat',
+    name: 'chat',
+    component: chat
+  },
+  {
+    path: '/login',
+    name: 'loginSignup',
+    component: loginSignup
+  },
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
   routes
 })
 

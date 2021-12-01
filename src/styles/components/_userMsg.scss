@@ -1,0 +1,40 @@
+.user-greet {
+  font-size: 1.5rem;
+  color: #303c6c;
+}
+
+.alert {
+  height: 200px;
+  width: 300px;
+  background-color: #fbff00;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 15px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.user-msg {
+  background-color: white;
+  position: absolute;
+  padding: 10px;
+  top: 0;
+  right: 0;
+  min-width: 200px;
+}
+.user-msg button {
+  float: right;
+}
+
+.success {
+  background-color: rgb(30, 148, 207);
+}
+
+.error {
+  background-color: red;
+}
+
+.completed {
+  text-decoration: line-through;
+}

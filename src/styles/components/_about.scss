@@ -1,0 +1,18 @@
+.about{
+    display: flex;
+    flex-direction: column;
+    h1{
+        
+        text-align: center;
+        font-size: 2rem;
+    }
+    p{
+        max-width: 80ch;
+        text-align: center; 
+        margin: auto ;
+        line-height: 1.8rem;
+    }
+    img{
+        height: 15rem;
+    }
+}

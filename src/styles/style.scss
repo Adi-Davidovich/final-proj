@@ -1,0 +1,29 @@
+// SETUP
+@import 'setup/typography';
+@import 'setup/variables';
+@import 'setup/mixins';
+@import 'setup/functions';
+
+// BASICS
+@import 'basics/helpers';
+@import 'basics/base';
+@import 'basics/layout';
+
+// COMPONENTS
+
+@import './components/dataChart.scss';
+@import './components/filter';
+@import './components/footer.scss';
+@import './components/header.scss';
+@import './components/progressBar.scss';
+@import './components/toyApp.scss';
+@import './components/toyChart.scss';
+@import './components/toyDetails.scss';
+@import './components/toyEdit.scss';
+@import './components/toyList.scss';
+@import './components/toyPreview.scss';
+@import './components/userMsg.scss';
+@import './components/about.scss';
+@import './components/dashboard.scss';
+@import './components/reviewList.scss';
+
