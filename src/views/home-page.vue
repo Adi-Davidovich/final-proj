@@ -1,6 +1,6 @@
 <template>
   <section class="home app-main">
-    <img />
+    <h3>hi</h3>
   </section>
 </template>
 
