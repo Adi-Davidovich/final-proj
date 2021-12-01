@@ -10,54 +10,54 @@ const KEY = 'gigsDB'
 // const TOY_URL = 'http://localhost:3030/api/toy/'
 
 export const gigService = {
-    query,
-    getById,
-    remove,
-    save,
-    getEmptyGig,
+  query,
+  getById,
+  remove,
+  save,
+  getEmptyGig,
 }
 
 var gGigs = _createGigs()
 // console.log('gToys :>> ', gToys);
 
 async function query(filterBy) {
-    return await storageService.query(KEY)
-    // console.log('filterBy :>> ', filterBy);
-    // return axios.get(TOY_URL, { params: filterBy }).then(res => res.data)
-    //   return await httpService.get('gig', filterBy)
+  return await storageService.query(KEY)
+  // console.log('filterBy :>> ', filterBy);
+  // return axios.get(TOY_URL, { params: filterBy }).then(res => res.data)
+  //   return await httpService.get('gig', filterBy)
 }
 
 async function getById(id) {
-    return await storageService.get(KEY, id)
-    //   return axios.get(TOY_URL + id).then(res => res.data)
-    //   return await httpService.get(`gig/${id}`)
+  return await storageService.get(KEY, id)
+  //   return axios.get(TOY_URL + id).then(res => res.data)
+  //   return await httpService.get(`gig/${id}`)
 }
 
 async function remove(id) {
-    return await storageService.remove(KEY, id)
-    // return axios.delete(TOY_URL + id).then(res => res.data)
-    // return await httpService.delete(`gig/${id}`)
+  return await storageService.remove(KEY, id)
+  // return axios.delete(TOY_URL + id).then(res => res.data)
+  // return await httpService.delete(`gig/${id}`)
 }
 
 async function save(gig) {
-    const savedGig = gig._id
-      ? await storageService.put(KEY, gig)
-      : await storageService.post(KEY, gig)
-    return savedGig
+  const savedGig = gig._id
+    ? await storageService.put(KEY, gig)
+    : await storageService.post(KEY, gig)
+  return savedGig
 
-    // if (toy._id) {
-    //     return axios.put(TOY_URL + `${toy._id}`, toy).then(res => res.data)
-    // } else {
-    //     return axios.post(TOY_URL, toy).then(res => res.data)
-    // }
+  // if (toy._id) {
+  //     return axios.put(TOY_URL + `${toy._id}`, toy).then(res => res.data)
+  // } else {
+  //     return axios.post(TOY_URL, toy).then(res => res.data)
+  // }
 
 
-    // const savedGig = JSON.parse(JSON.stringify(gig))
-    // if (savedGig._id) {
-    //     return await httpService.put(`gig/${savedGig._id}`, savedGig);
-    // } else {
-    //     return await httpService.post('gig', savedGig);
-    // }
+  // const savedGig = JSON.parse(JSON.stringify(gig))
+  // if (savedGig._id) {
+  //     return await httpService.put(`gig/${savedGig._id}`, savedGig);
+  // } else {
+  //     return await httpService.post('gig', savedGig);
+  // }
 }
 
 
@@ -71,25 +71,25 @@ async function save(gig) {
 // }
 
 function getEmptyGig() {
-    return Promise.resolve({
-        _id: '',
-        title: '',
-        description: '',
-        price: null,
-        timeToDeliver: '',
-        imgUrl: '',
-        owner: {
-            _id: "u101",
-            fullname: "Dudu Da",
-            imgUrl: "https://cdn.pixabay.com/photo/2018/08/28/12/41/avatar-3637425_960_720.png",
-            rate: 4        
-          },
-          tags: [
-            "artisitic",
-            "proffesional",
-            "accessible"
-          ]
-    })
+  return Promise.resolve({
+    _id: '',
+    title: '',
+    description: '',
+    price: null,
+    timeToDeliver: '',
+    imgUrl: '',
+    owner: {
+      _id: "u101",
+      fullname: "Dudu Da",
+      imgUrl: "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/21760012/original/d4c0c142f91f012c9a8a9c9aeef3bac28036f15b/create-your-cartoon-style-flat-avatar-or-icon.jpg",
+      rate: 4
+    },
+    tags: [
+      "artisitic",
+      "proffesional",
+      "accessible"
+    ]
+  })
 }
 
 function _createGigs() {
@@ -114,18 +114,20 @@ function _createGig(title, price) {
     description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molest iasblanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molestias blanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molestias blanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam.",
     price,
     timeToDeliver: '3 Days',
-    imgUrl:"https://webfeb.in/wp-content/uploads/2016/11/logo-design-for-children-health.jpg",
+    imgUrl: ["https://fiverr-res.cloudinary.com/t_gig_cards_web_x2,q_auto,f_auto/gigs/22527722/original/f5994d4dd5384869d546512f2e160ba0b03f934b.jpg",
+      "https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/gigs/3171448/original/a41a38f3733bb97279a49d1449f7337dece50693.jpg",
+       "https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/attachments/delivery/asset/f57378f6a9ff6da2ee7e306bad7d8d64-1637824234/30143_JEXCITY%20Co_LOGO_FS_GR-Mockup.jpg"],
     owner: {
-        _id: "u101",
-        fullname: "Dudu Da",
-        imgUrl: "https://cdn.pixabay.com/photo/2018/08/28/12/41/avatar-3637425_960_720.png",
-        rate: 4        
-      },
-      tags: [
-        "artisitic",
-        "proffesional",
-        "accessible"
-      ]
+      _id: "u101",
+      username: "logoflow",
+      imgUrl: "https://cdn.pixabay.com/photo/2018/08/28/12/41/avatar-3637425_960_720.png",
+      rate: 4
+    },
+    tags: [
+      "artisitic",
+      "proffesional",
+      "accessible"
+    ]
   }
 }
 
