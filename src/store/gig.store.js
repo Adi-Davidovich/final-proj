@@ -1,10 +1,10 @@
-import { toyService } from "../services/toy.service.js";
+import { gigService } from "../services/gig.service.js";
 // import { showMsg } from "../js/services/event-bus.service.js";
 // import { userService } from "../js/services/user.service.js";
-export const toyStore = {
+export const gigStore = {
     state: {
         isLoading: false,
-        toys: [],
+        gigs: [],
         lastRemovedToy: null,
         currToy: null,
         pageIdx: 0,
