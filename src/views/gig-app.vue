@@ -1,7 +1,5 @@
 <template>
   <section class="gig-explore">
-    <!-- <toy-filter @filtered="setFilter" @sorted="setSort"></toy-filter> -->
-    <!-- <p v-if="isLoading">Loading...</p> -->
     <toy-list v-if="gigs" :gigs="gigs"  />
     <button @click="prePage">prev</button>
     <button @click="nextPage">next</button>
@@ -9,7 +7,6 @@
 </template>
 
 <script>
-// import { toyService } from "../services/toy.service.js";
 import gigList from "../components/gig-list.vue";
 
 export default {

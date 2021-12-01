@@ -1,13 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import toyApp from '../views/gig-app.vue'
+import gigApp from '../views/gig-app.vue'
 import homePage from '../views/home-page.vue'
 import toyEdit from '../views/toy-edit.vue'
 import toyDetails from '../views/toy-details.vue'
 import userProfile from '../views/user-profile.vue'
 import dashboard from '../views/dashboard.vue'
-import about from '../views/about.vue'
 import chat from '../views/chat.vue'
 import reviewApp from '../views/review-app.vue'
 import loginSignup from '../views/login-signup.vue'
@@ -21,17 +20,12 @@ const routes = [
     component: homePage,
   },
   {
-    path: '/toy-app',
-    component: toyApp,
+    path: '/explore',
+    component: gigApp,
   },
   {
     path: '/user/:userId',
     component: userProfile,
-  },
-  {
-    path: '/about',
-    component: about,
-
   },
   {
     path: '/toy/edit/:toyId?',

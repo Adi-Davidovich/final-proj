@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { toyStore } from './toy.store.js'
+import { gigStore } from './gig.store.js'
 import { userStore } from './user.store.js'
 import { reviewStore } from './review.store.js'
 
@@ -15,7 +15,7 @@ export const store = new Vuex.Store({
   mutations: {
   },
   modules: {
-      toyStore,
+      gigStore,
       userStore,
       reviewStore
   }
