@@ -1,9 +1,8 @@
 <template>
-  <section class="toy-app">
-    <toy-filter @filtered="setFilter" @sorted="setSort"></toy-filter>
-    <p v-if="isLoading">Loading...</p>
-    <toy-list v-else-if="toys" :toys="toys" @remove="removeToy" />
-    <router-link class="router-link-btn" to="/toy/edit">Add toy</router-link>
+  <section class="gig-explore">
+    <!-- <toy-filter @filtered="setFilter" @sorted="setSort"></toy-filter> -->
+    <!-- <p v-if="isLoading">Loading...</p> -->
+    <toy-list v-if="gigs" :gigs="gigs"  />
     <button @click="prePage">prev</button>
     <button @click="nextPage">next</button>
   </section>
@@ -11,19 +10,18 @@
 
 <script>
 // import { toyService } from "../services/toy.service.js";
-import toyFilter from "../components/toy-filter.vue";
-import toyList from "../components/toy-list.vue";
+import gigList from "../components/gig-list.vue";
 
 export default {
-  name: "toy-app",
+  name: "gig-explore",
   data() {
     return {
       
     };
   },
   computed: {
-    toys() {
-      return this.$store.getters.toysToShow;
+    gigs() {
+      return this.$store.getters.gigsToShow;
     },
     user() {
       return this.$store.getters.user;
@@ -33,7 +31,7 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch({ type: "loadToys" });
+    this.$store.dispatch({ type: "loadgigs" });
   },
   methods: {
     setFilter(filterBy) {
@@ -69,8 +67,8 @@ export default {
     },
   },
   components: {
-    toyFilter,
-    toyList,
+    // gigFilter,
+    gigList,
   },
 };
 </script>

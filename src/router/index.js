@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import toyApp from '../views/toy-app.vue'
+import toyApp from '../views/gig-app.vue'
 import homePage from '../views/home-page.vue'
 import toyEdit from '../views/toy-edit.vue'
 import toyDetails from '../views/toy-details.vue'
