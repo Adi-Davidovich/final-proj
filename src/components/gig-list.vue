@@ -1,5 +1,6 @@
 <template>
-  <div class="explore-container main-layout">
+  <div class="explore-container">
+    <p class="services-counter">{{gigs.length}} services available</p>
     <ul class="gig-list grid">
       <li v-for="gig in gigs" :key="gig._id">
          <gig-preview :gig="gig" />

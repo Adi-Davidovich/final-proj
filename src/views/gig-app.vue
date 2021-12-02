@@ -1,20 +1,18 @@
 <template>
   <section class="gig-explore">
-    <gig-list v-if="gigs" :gigs="gigs"  />
-    <button @click="prePage">prev</button>
-    <button @click="nextPage">next</button>
+    <gig-filter></gig-filter>
+    <gig-list v-if="gigs" :gigs="gigs" />
   </section>
 </template>
 
 <script>
 import gigList from "../components/gig-list.vue";
+import gigFilter from "../components/gig-filter.vue";
 
 export default {
   name: "gig-explore",
   data() {
-    return {
-      
-    };
+    return {};
   },
   computed: {
     gigs() {
@@ -32,10 +30,10 @@ export default {
   },
   methods: {
     setFilter(filterBy) {
-      console.log('filterBy :>> ', filterBy);
+      console.log("filterBy :>> ", filterBy);
       const copyFilter = JSON.parse(JSON.stringify(filterBy));
-      console.log('copy :>> ', copyFilter);
-      this.$store.dispatch({ type: "setFilter", filterBy:copyFilter });
+      console.log("copy :>> ", copyFilter);
+      this.$store.dispatch({ type: "setFilter", filterBy: copyFilter });
     },
     setSort(sortBy) {
       const copySort = JSON.parse(JSON.stringify(sortBy));
@@ -64,7 +62,7 @@ export default {
     },
   },
   components: {
-    // gigFilter,
+    gigFilter,
     gigList,
   },
 };
