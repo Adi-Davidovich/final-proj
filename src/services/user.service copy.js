@@ -1,8 +1,19 @@
 import { storageService } from './async-storage.service'
-import { httpService } from './http.service'
+// import { httpService } from './http.service'
 import { socketService, SOCKET_EVENT_USER_UPDATED } from './socket.service'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 var gWatchedUser = null;
+
+const user = {
+    _id: 'u101',
+    fullname: 'Puki Ben David',
+    imgUrl: "/img/img1.jpg",
+    username: "user1",
+    password: 1234,
+    details: "",
+    isAdmin: false
+}
+
 
 export const userService = {
     login,
@@ -54,7 +65,6 @@ async function login(userCred) {
     // if (user) return _saveLocalUser(user)
 }
 async function signup(userCred) {
-    userCred.score = 10000;
     const user = await storageService.post('user', userCred)
     // const user = await httpService.post('auth/signup', userCred)
     // socketService.emit('set-user-socket', user._id);
@@ -85,11 +95,20 @@ function getLoggedinUser() {
 }
 
 
-// (async ()=>{
-//     await userService.signup({fullname: 'Puki Norma', username: 'user1', password:'123',score: 10000, isAdmin: false})
-//     await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
-//     await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
-// })();
+(async () => {
+    if (localStorage.getItem('user')) return
+    console.log('hi')
+    await userService.signup({
+        fullname: 'Puki Norma', "imgUrl": "/img/img1.jpg",
+        isAdmin: false,
+        username: "Puki Norma",
+        password: "1234",
+        details: "",
+        isAdmin: false
+    })
+    // await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
+    // await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
+})();
 
 
 

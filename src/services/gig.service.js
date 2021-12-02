@@ -74,9 +74,9 @@ function _createGigs() {
   var gigs = JSON.parse(localStorage.getItem(KEY))
   if (!gigs || !gigs.length) {
     gigs = [
-      _createGig('I will do modern line art text or badge logo design', 50,),
-      _createGig('I will design 3 modern minimalist logo design in 24 hrs', 70,),
-      _createGig('I will do modern line art text or badge logo design', 80,),
+      _createGig('I will do modern line art text or badge logo design', 50,"ml6w0"),
+      _createGig('I will design 3 modern minimalist logo design in 24 hrs', 70,"ml6w0"),
+      _createGig('I will do modern line art text or badge logo design', 80,"ml6w0"),
       _createGig('I will do creative logo design for your business', 20,),
       _createGig('I will do 5 minimalist logo design for your business', 150,),
     ]
@@ -85,7 +85,7 @@ function _createGigs() {
   return gigs
 }
 
-function _createGig(title, price) {
+function _createGig(title, price,ownerId="u123") {
   return {
     _id: utilService.makeId(),
     title,
@@ -96,7 +96,7 @@ function _createGig(title, price) {
       "https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/gigs/3171448/original/a41a38f3733bb97279a49d1449f7337dece50693.jpg",
        "https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/attachments/delivery/asset/f57378f6a9ff6da2ee7e306bad7d8d64-1637824234/30143_JEXCITY%20Co_LOGO_FS_GR-Mockup.jpg"],
     owner: {
-      _id: "u101",
+      _id: ownerId,
       username: "logoflow",
       imgUrl: "https://cdn.pixabay.com/photo/2018/08/28/12/41/avatar-3637425_960_720.png",
       rate: 4
