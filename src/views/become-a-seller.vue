@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="main-layout main">
     <h1>Work Your Way</h1>
     <h3>You bring the skill. We'll make earning easy.</h3>
     <form @submit.prevent="save">

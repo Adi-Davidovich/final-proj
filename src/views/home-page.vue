@@ -1,7 +1,7 @@
 <template>
-  <section class="home app-main main-layout">
+  <section class="home app-main main-layout ">
     <app-header></app-header>
-    <div class="hero main-layout">
+    <div class="hero main-layout full hero-container">
       <img src="../assets/img/3.jpeg" />
     </div>
   </section>
