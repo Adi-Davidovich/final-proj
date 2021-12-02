@@ -1,5 +1,5 @@
 <template>
-  <section class="home app-main">
+  <section class="home app-main main-layout">
     <h3>hi</h3>
   </section>
 </template>
