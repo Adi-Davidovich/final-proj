@@ -4,20 +4,22 @@
         <!-- <div class="user-msg"></div> -->
         <div class="header">
           <header class="logged-out-homepage-header header-transparent">
-              <button>Toys</button>
+                <router-link active-class="active-link" to="/" exact>fiverr.</router-link> 
+              
               <!-- <div class="fiver-header-search-animated">
               <div class="search-bar-package search_bar-package">
                 <form class=""><button>Search</button></form>
               </div>
               </div> -->
               <nav>
-                <!-- <router-link active-class="active-link" to="/" exact>Home</router-link> | -->
                 <router-link to="/explore">Explore</router-link> |
-                <router-link to="/dashboard">Dashboard</router-link> |
+                <!-- <router-link to="/dashboard">Dashboard</router-link> |
                 <router-link to="/review">Reviews</router-link>|
-                <router-link to="/chat">Chat</router-link>|
-                <router-link to="/login">Login / Signup</router-link>|
-                <router-link to="/about">About</router-link>
+                <router-link to="/chat">Chat</router-link>| -->
+                <router-link to="/login">Become a Seller</router-link>|
+                <router-link to="/login">Sign In</router-link>
+                <!-- <router-link to="/about">About</router-link> -->
+                <button>Join</button>
               </nav>
           </header>
 
