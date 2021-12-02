@@ -10,7 +10,7 @@
 <script>
 // import { eventBusService, SHOW_MSG } from '../services/event-bus.service.js'
 // import {toyService} from '../services/toy.service.js'
-import {appHeader} from "../components/app-header.vue"
+import appHeader from "../components/app-header.vue"
 export default {
   name: "home-page",
   components:{
