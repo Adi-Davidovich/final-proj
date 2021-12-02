@@ -1,6 +1,7 @@
 <template>
   <section class="home app-main main-layout">
-    <h3>hi</h3>
+    <app-header></app-header>
+    <img src="../assets/img/7.jpg">
   </section>
 </template>
 
