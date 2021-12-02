@@ -2,7 +2,7 @@
   <section>
     <app-header></app-header>
       <user-msg />
-    <router-view></router-view>
+    <router-view class="main-layout"></router-view>
     <footer><p>Coffeerights 2021</p></footer>
   </section>
 </template>

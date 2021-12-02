@@ -91,7 +91,6 @@ function _createGig(title, price,ownerId="u123") {
     title,
     description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molest iasblanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molestias blanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molestias blanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam.",
     price,
-    timeToDeliver: '3 Days',
     imgUrl: ["https://fiverr-res.cloudinary.com/t_gig_cards_web_x2,q_auto,f_auto/gigs/22527722/original/f5994d4dd5384869d546512f2e160ba0b03f934b.jpg",
       "https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/gigs/3171448/original/a41a38f3733bb97279a49d1449f7337dece50693.jpg",
        "https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/attachments/delivery/asset/f57378f6a9ff6da2ee7e306bad7d8d64-1637824234/30143_JEXCITY%20Co_LOGO_FS_GR-Mockup.jpg"],
@@ -105,7 +104,14 @@ function _createGig(title, price,ownerId="u123") {
       "artisitic",
       "proffesional",
       "accessible"
-    ]
+    ],
+    package: {
+        title: "Basic Package",
+        description: "2 Modern Logo Concept with High Resolution JPEG and Transparent PNG",
+        timeToDeliver: "3 Days",
+        revisions: 5,
+        
+    }
   }
 }
 
