@@ -1,11 +1,20 @@
 <template>
   <section v-if="gig" class="gig-details app-main">
-    <h6>Details:</h6>
-    <p><span>Pruduct:</span>{{ gig.title }}</p>
-    <p><span>Price:</span>{{ gig.price }}</p>
-    <p><span>Description:</span>{{ gig.description }}</p>
-    <p>Tags:</p>
-    <span>{{ gig.tags }}</span>
+    <h3>{{ gig.title }}</h3>
+    <div class="owner-prev flex">
+      <avatar
+        :size="24"
+        :username="gig.owner.username"
+        :src="gig.owner.imgUrl"
+      ></avatar>
+      <h4 class="owner-name-level">{{ gig.owner.username }}</h4>
+      <h5>Level 2 seller</h5>
+      | <i class="fas fa-star"></i>{{ gig.owner.rate }}
+    </div>
+    <!-- <h3>What people loved about this seller</h3> -->
+    <h3>About This Gig</h3>
+
+    <p>{{ gig.description }}</p>
     <!-- <img :src="require(`@/img/${gig.name}.jpg`)" alt="" /> -->
     <br />
     <!-- <h6>Reviews:</h6>
@@ -30,6 +39,7 @@
 
 <script>
 import { gigService } from "../services/gig.service.js";
+import Avatar from "vue-avatar";
 
 export default {
   name: "gig-details",
@@ -43,8 +53,8 @@ export default {
       },
     };
   },
-  created() {
-    this.loadReviews();
+  created() { 
+    this.loadGig()   
   },
   computed: {
     reviews() {
@@ -55,19 +65,21 @@ export default {
     },
   },
   watch: {
-    "$route.params.gigId": {
-      async handler() {
-        const { gigId } = this.$route.params;
-        this.gig = await gigService.getById(gigId);
-      },
-      immediate: true,
+    "$route.params.gigId"(id) {
+      console.log("Changed to", id);
+      this.loadGig()
     },
+      immediate: true,
+    
   },
   methods: {
-    loadReviews() {
-      this.reviewToEdit.aboutGigId = this.gig._id;
-      console.log("this.reviewToEdit :>> ", this.reviewToEdit);
-      this.$store.dispatch({ type: "loadReviews", id: this.gig._id });
+    async loadGig() {
+      const id = this.$route.params.gigId;
+      this.gig = await gigService.getById(id);
+
+      // this.reviewToEdit.aboutGigId = this.gig._id;
+      // console.log("this.reviewToEdit :>> ", this.reviewToEdit);
+      // this.$store.dispatch({ type: "loadReviews", id: this.gig._id });
     },
     async addReview() {
       await this.$store.dispatch({
@@ -77,6 +89,8 @@ export default {
       this.reviewToEdit = { txt: "", aboutUserId: null };
     },
   },
-  components: {},
+  components: {
+    Avatar,
+  },
 };
 </script>

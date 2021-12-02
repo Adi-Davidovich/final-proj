@@ -2,7 +2,7 @@
   <div class="explore-container main-layout">
     <ul class="gig-list grid">
       <li v-for="gig in gigs" :key="gig._id">
-        <gig-preview :gig="gig" />
+         <gig-preview :gig="gig" />
       </li>
     </ul>
   </div>

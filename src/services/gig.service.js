@@ -98,7 +98,7 @@ function _createGig(title, price) {
     owner: {
       _id: "u101",
       username: "logoflow",
-      imgUrl: "https://cdn.pixabay.com/photo/2018/08/28/12/41/avatar-3637425_960_720.png",
+      imgUrl: "https://i.dlpng.com/static/png/7019966_preview.png",
       rate: 4
     },
     tags: [
