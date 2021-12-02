@@ -3,8 +3,8 @@ import VueRouter from 'vue-router'
 
 import gigApp from '../views/gig-app.vue'
 import homePage from '../views/home-page.vue'
-import toyEdit from '../views/toy-edit.vue'
-import toyDetails from '../views/toy-details.vue'
+import gigEdit from '../views/gig-edit.vue'
+import gigDetails from '../views/gig-details.vue'
 import userProfile from '../views/user-profile.vue'
 import dashboard from '../views/dashboard.vue'
 import chat from '../views/chat.vue'
@@ -33,12 +33,12 @@ const routes = [
     component: userProfile,
   },
   {
-    path: '/toy/edit/:toyId?',
-    component: toyEdit
+    path: '/gig/edit/:gigId?',
+    component: gigEdit
   },
   {
-    path: '/toy/:toyId',
-    component: toyDetails,
+    path: '/gig/:gigId',
+    component: gigDetails,
   },
   {
     path: '/dashboard',
