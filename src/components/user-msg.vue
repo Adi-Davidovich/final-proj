@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { eventBusService, SHOW_MSG } from "@/services/event-bus-service.js";
+import { eventBusService, SHOW_MSG } from "../services/event-bus-service.js";
 export default {
   name: "user-msg",
   created() {

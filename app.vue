@@ -9,7 +9,8 @@
 
 <script>
 import appHeader from "./src/components/app-header.vue";
-import userMsg from "@/components/user-msg.vue";
+import userMsg from "./src/components/user-msg.vue";
+
 export default {
   name: "app",
   components: {
