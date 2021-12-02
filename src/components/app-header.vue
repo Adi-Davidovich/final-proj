@@ -16,7 +16,7 @@
                 <!-- <router-link to="/dashboard">Dashboard</router-link> |
                 <router-link to="/review">Reviews</router-link>|
                 <router-link to="/chat">Chat</router-link>| -->
-                <router-link to="/login">Become a Seller</router-link>|
+                <router-link to="/start_selling">Become a Seller</router-link>|
                 <router-link to="/login">Sign In</router-link>
                 <!-- <router-link to="/about">About</router-link> -->
                 <button>Join</button>
