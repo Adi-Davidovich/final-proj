@@ -6,38 +6,39 @@ export const gigStore = {
         isLoading: false,
         gigs: [],
         currGig: null,
+        filterBy: {},
+        sortBy:null,
         pageIdx: 0,
         pageSize: 12,
-        sortBy:null
     },
     getters: {
-        toys({ toys }) {
-            return toys
+        gigs({ gigs }) {
+            return gigs
         },
         isLoading({ isLoading }) {
             return isLoading
         },
-        getCurrToy(state) {
-            return JSON.parse(JSON.stringify(state.currToy))
+        getCurrGig(state) {
+            return JSON.parse(JSON.stringify(state.currGig))
         },
         gigsToShow(state) {
             var gigs = JSON.parse(JSON.stringify(state.gigs))
 
-            // let filteredToys = []
+            // let filteredGigs = []
 
             // const regex = new RegExp(state.filterBy.name, 'i')
 
             // // filter by name
-            // filteredToys = toys.filter((toy) => regex.test(toy.name))
+            // filteredGigs = gigs.filter((gig) => regex.test(gig.name))
 
             // // filter by inStock
             // if (state.filterBy.inStock) {
-            //     filteredToys = filteredToys.filter((toy) => JSON.parse(toy.inStock) === JSON.parse(state.filterBy.inStock))
+            //     filteredGigs = filteredGigs.filter((gig) => JSON.parse(gig.inStock) === JSON.parse(state.filterBy.inStock))
             // }
 
             // // filter by lables
             // if (state.filterBy.lable) {
-            //     filteredToys = filteredToys.filter((toy) => toy.labels.includes(state.filterBy.lable))
+            //     filteredGigs = filteredGigs.filter((gig) => gig.labels.includes(state.filterBy.lable))
             // }
 
             // Sorting
@@ -59,24 +60,23 @@ export const gigStore = {
         setLoading(state, { isLoading }) {
             state.isLoading = isLoading
         },
-        addToy(state, payload) {
-            state.toys.push(payload.toy)
+        addGig(state, payload) {
+            state.gigs.push(payload.gig)
         },
-        updateToy(state, payload) {
-            const idx = state.toys.findIndex((toy) => toy._id === payload.toy._id)
-            state.toys.splice(idx, 1, payload.toy)
+        updateGig(state, payload) {
+            const idx = state.gigs.findIndex((gig) => gig._id === payload.gig._id)
+            state.gigs.splice(idx, 1, payload.gig)
         },
-        removeToy(state, payload) {
-            const idx = state.toys.findIndex((toy) => toy._id === payload.toyId)
-            state.lastRemovedToy = state.toys[idx]
-            state.toys.splice(idx, 1)
+        removeGig(state, payload) {
+            const idx = state.gigs.findIndex((gig) => gig._id === payload.gigId)
+            state.gigs.splice(idx, 1)
         },
-        undoRemoveToy(state) {
-            if (state.lastRemovedToy) {
-                state.toys.unshift(state.lastRemovedToy)
-                state.lastRemovedToy = null
-            }
-        },
+        // undoRemoveGigs(state) {
+        //     if (state.lastRemovedGig) {
+        //         state.gigs.unshift(state.lastRemovedGigs)
+        //         state.lastRemovedGig = null
+        //     }
+        // },
         setGigs(state, { gigs }) {
             state.gigs = gigs
         },
@@ -90,98 +90,101 @@ export const gigStore = {
         setPageIdx(state, { pageIdx }) {
             console.log('pageIdx :>> ', pageIdx);
             state.pageIdx = pageIdx
-            let maxPage = Math.ceil(state.toys.length / state.pageSize)
+            let maxPage = Math.ceil(state.gigs.length / state.pageSize)
 
             if (state.pageIdx >= maxPage) state.pageIdx = 0
             else if (state.pageIdx < 0) state.pageIdx = maxPage - 1
         },
-        setCurrToy(state, { toy }) {
-            console.log('currToy', state.currToy)
-            state.currToy = toy
-            console.log('currToy', state.currToy)
+        setCurrGig(state, { gig }) {
+            console.log('currGig', state.currGig)
+            state.currGig = gig
+            console.log('currGig', state.currGig)
         },
-        setNewToy(state, { toy }) {
-            state.currToy = toy
+        setNewGig(state, { gig }) {
+            state.currGig = gig
         },
-        saveToy(state, { toy }) {
-            state.toys.push(toy)
+        saveGig(state, { gig }) {
+            state.gigs.push(gig)
         },
     },
     actions: {
-        loadGigs({ commit, state }) {
-            var filterBy = state.filterBy ? state.filterBy : ''
-            console.log(state, 'FROM LOADTOYS')
+        async loadGigs({ commit, state }) {
+            const filterBy = state.filterBy ? state.filterBy : ''
+            console.log(state.filterBy, 'FROM LOADGIGS')
             commit({ type: 'setLoading', isLoading: true })
-            gigService
-                .query(filterBy)
-                .then((gigs) => {
-                    commit({ type: 'setGigs', gigs })
-                })
-                .finally(() => {
-                    commit({ type: 'setLoading', isLoading: false })
-                })
+            try {
+                const gigs = await gigService.query(filterBy);
+                commit({ type: 'setGigs', gigs });
+            } catch (err) {
+                console.log('Error in Query Gigs (Store):', err);
+                throw err;
+            } finally {
+                commit({ type: 'setLoading', isLoading: false });
+            }
         },
-        loadEdit({ commit }) {
-            commit({ type: 'setLoading', isLoading: true })
-            gigService
-                .query()
-                .then((toys) => {
-                    commit({ type: 'setToys', toys })
-                })
-                .finally(() => {
-                    commit({ type: 'setLoading', isLoading: false })
-                })
+        // loadEdit({ commit }) {
+        //     commit({ type: 'setLoading', isLoading: true })
+        //     gigService
+        //         .query()
+        //         .then((gigs) => {
+        //             commit({ type: 'setGigs', gigs })
+        //         })
+        //         .finally(() => {
+        //             commit({ type: 'setLoading', isLoading: false })
+        //         })
+        // },
+        async addGig({ commit }, { gig }) {
+            try {
+                const savedGig = await gigService.save(gig);
+                commit({ type: 'addGig', savedGig })
+                return savedGig;
+            } catch (err) {
+                console.log("Adding Error (Store):", err);
+                throw err;
+            }
         },
-        addToy({ commit }, { toy }) {
-            return gigService.save(toy).then((savedToy) => {
-                commit({ type: 'addToy', toy: savedToy })
-                return savedToy
-            })
+        async updateGig({ commit }, { gig }) {
+            try {
+                const savedGig = await gigService.save(gig);
+                commit({ type: 'updateGig', savedGig })
+                return savedGig;
+            } catch (err) {
+                console.log('Editing Error (Store):', err);
+                throw err;
+            }
         },
-        updateToy({ commit }, { toy }) {
-            return gigService.save(toy).then((savedToy) => {
-                commit({ type: 'updateToy', toy: savedToy })
-                return savedToy
-            })
+        async removeGig({ commit }, { gigId }) {
+            try {
+                await gigService.remove(gigId);
+                commit({ type: 'removeGig', gigId });
+                return gigId;
+            } catch (err) {
+                console.log('Removing Error (Store):', err);
+                throw err;
+            }
         },
         // Optimistic
-        removeToyOptimistic({ commit }, { toyId }) {
-            commit({ type: 'removeToy', toyId })
-            return gigService
-                .remove(toyId)
-                .then(() => { })
-                .catch((err) => {
-                    commit({ type: 'undoRemoveToy' })
-                    throw err
-                })
-        },
-        removeToy({ commit }, { toyId }) {
-            return gigService.remove(toyId).then(() => {
-                commit({ type: 'removeToy', toyId })
-            })
-        },
-        setCurrToy({ commit }, { toyId }) {
-            return gigService.getById(toyId).then((toy) => {
-                console.log(toy)
-                commit({ type: 'setCurrToy', toy })
-            })
-        },
-        setNewToy({ commit }) {
-            return gigService
-                .getEmptyToy()
-                .then((toy) => commit({ type: 'setNewToy', toy }))
-        },
-        saveToy({ commit }, { toy }) {
-            console.log(toy)
-            return gigService.save(toy).then((toy) => {
-                commit({ type: 'saveToy', toy })
-                return toy
-            })
+        // removeGigOptimistic({ commit }, { gigId: gigId }) {
+        //     commit({ type: 'removeGig',  gigId })
+        //     return gigService
+        //         .remove(gigId)
+        //         .then(() => { })
+        //         .catch((err) => {
+        //             commit({ type: 'undoRemoveGig' })
+        //             throw err
+        //         })
+        // },
+        async setCurrGig({ commit }, { gigId }) {
+            const gig = await gigService.getById(gigId)
+            console.log(gig)
+            commit({ type: 'setCurrGig', gig })
+            return gig
+
         },
         setFilter({ commit, dispatch }, { filterBy }) {
-            console.log('toystore :>> ', filterBy);
+            console.log('gigStore :>> ', filterBy);
             commit({ type: 'setFilter', filterBy })
-            dispatch({ type: 'loadToys' })
+            dispatch({ type: 'loadGigs' })
         },
     },
 }
