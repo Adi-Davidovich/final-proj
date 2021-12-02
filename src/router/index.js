@@ -10,6 +10,7 @@ import dashboard from '../views/dashboard.vue'
 import chat from '../views/chat.vue'
 import reviewApp from '../views/review-app.vue'
 import loginSignup from '../views/login-signup.vue'
+import becomeASeller from '../views/become-a-seller.vue'
 
 
 Vue.use(VueRouter)
@@ -22,6 +23,10 @@ const routes = [
   {
     path: '/explore',
     component: gigApp,
+  },
+  {
+    path: '/start_selling',
+    component: becomeASeller,
   },
   {
     path: '/user/:userId',
