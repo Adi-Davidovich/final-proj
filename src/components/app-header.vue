@@ -12,7 +12,7 @@
               </div> -->
               <nav>
                 <!-- <router-link active-class="active-link" to="/" exact>Home</router-link> | -->
-                <router-link to="/toy-app">Toys App</router-link> |
+                <router-link to="/explore">Explore</router-link> |
                 <router-link to="/dashboard">Dashboard</router-link> |
                 <router-link to="/review">Reviews</router-link>|
                 <router-link to="/chat">Chat</router-link>|
