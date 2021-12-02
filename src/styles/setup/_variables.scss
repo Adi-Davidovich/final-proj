@@ -4,7 +4,7 @@ $clr2: #7a7d85;
 $clr3: #62646a;
 $clr2: #504658;
 $clr4: #222325;
-$clr5: #fff;
+$clrbg: #fff;
 $clr6: #4a73e8;
 $clr7: #dadbdd;
 
@@ -12,9 +12,9 @@ $clr7: #dadbdd;
 $layoutPadding: 20px;
 
 // LAYOUT BREAKPOINTS
-$break-narrow: 460px;
-$break-normal: 640px;
-$break-wide: 960px;
+$break-narrow: 800px;
+$break-normal: 1000px;
+$break-wide: 1400px;
 
 $padded-break-narrow: $break-narrow + $layoutPadding * 2;
 $padded-break-normal: $break-normal + $layoutPadding * 2;

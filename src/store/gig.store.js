@@ -5,13 +5,10 @@ export const gigStore = {
     state: {
         isLoading: false,
         gigs: [],
-        lastRemovedToy: null,
-        currToy: null,
+        currGig: null,
         pageIdx: 0,
         pageSize: 12,
-        filterBy: { name: '', inStock: '', lable: '' },
-        sortBy: '',
-
+        sortBy:null
     },
     getters: {
         toys({ toys }) {
@@ -23,9 +20,9 @@ export const gigStore = {
         getCurrToy(state) {
             return JSON.parse(JSON.stringify(state.currToy))
         },
-        toysToShow(state) {
-            var toys = JSON.parse(JSON.stringify(state.toys))
-            console.log('toys :>> ', toys);
+        gigsToShow(state) {
+            var gigs = JSON.parse(JSON.stringify(state.gigs))
+
             // let filteredToys = []
 
             // const regex = new RegExp(state.filterBy.name, 'i')
@@ -45,17 +42,17 @@ export const gigStore = {
 
             // Sorting
             if (state.sortBy) {
-                if (state.sortBy === 'time') toys = toys.sort((t1, t2) => t1.createdAt - t2.createdAt)
-                else if (state.sortBy === 'price') toys = toys.sort((t1, t2) => t1.price - t2.price)
-                else if (state.sortBy === 'name') toys = toys.sort((t1, t2) => t1.name.toLowerCase() > t2.name.toLowerCase() ? 1 : -1)
+                if (state.sortBy === 'time') gigs = gigs.sort((t1, t2) => t1.createdAt - t2.createdAt)
+                else if (state.sortBy === 'price') gigs = gigs.sort((t1, t2) => t1.price - t2.price)
+                else if (state.sortBy === 'name') gigs = gigs.sort((t1, t2) => t1.name.toLowerCase() > t2.name.toLowerCase() ? 1 : -1)
             }
 
             // Paging
             if (typeof state.pageIdx === 'number' && state.pageIdx !== -1) {
                 const startIdx = state.pageIdx * state.pageSize
-                toys = toys.slice(startIdx, startIdx + state.pageSize)
+                gigs = gigs.slice(startIdx, startIdx + state.pageSize)
             }
-            return toys
+            return gigs
         },
     },
     mutations: {
@@ -80,8 +77,8 @@ export const gigStore = {
                 state.lastRemovedToy = null
             }
         },
-        setToys(state, { toys }) {
-            state.toys = toys
+        setGigs(state, { gigs }) {
+            state.gigs = gigs
         },
         setFilter(state, { filterBy }) {
             console.log(filterBy, 'SETFILTER MUTATION')
@@ -111,14 +108,14 @@ export const gigStore = {
         },
     },
     actions: {
-        loadToys({ commit, state }) {
+        loadGigs({ commit, state }) {
             var filterBy = state.filterBy ? state.filterBy : ''
             console.log(state, 'FROM LOADTOYS')
             commit({ type: 'setLoading', isLoading: true })
-            toyService
+            gigService
                 .query(filterBy)
-                .then((toys) => {
-                    commit({ type: 'setToys', toys })
+                .then((gigs) => {
+                    commit({ type: 'setGigs', gigs })
                 })
                 .finally(() => {
                     commit({ type: 'setLoading', isLoading: false })
@@ -126,7 +123,7 @@ export const gigStore = {
         },
         loadEdit({ commit }) {
             commit({ type: 'setLoading', isLoading: true })
-            toyService
+            gigService
                 .query()
                 .then((toys) => {
                     commit({ type: 'setToys', toys })
@@ -136,13 +133,13 @@ export const gigStore = {
                 })
         },
         addToy({ commit }, { toy }) {
-            return toyService.save(toy).then((savedToy) => {
+            return gigService.save(toy).then((savedToy) => {
                 commit({ type: 'addToy', toy: savedToy })
                 return savedToy
             })
         },
         updateToy({ commit }, { toy }) {
-            return toyService.save(toy).then((savedToy) => {
+            return gigService.save(toy).then((savedToy) => {
                 commit({ type: 'updateToy', toy: savedToy })
                 return savedToy
             })
@@ -150,7 +147,7 @@ export const gigStore = {
         // Optimistic
         removeToyOptimistic({ commit }, { toyId }) {
             commit({ type: 'removeToy', toyId })
-            return toyService
+            return gigService
                 .remove(toyId)
                 .then(() => { })
                 .catch((err) => {
@@ -159,24 +156,24 @@ export const gigStore = {
                 })
         },
         removeToy({ commit }, { toyId }) {
-            return toyService.remove(toyId).then(() => {
+            return gigService.remove(toyId).then(() => {
                 commit({ type: 'removeToy', toyId })
             })
         },
         setCurrToy({ commit }, { toyId }) {
-            return toyService.getById(toyId).then((toy) => {
+            return gigService.getById(toyId).then((toy) => {
                 console.log(toy)
                 commit({ type: 'setCurrToy', toy })
             })
         },
         setNewToy({ commit }) {
-            return toyService
+            return gigService
                 .getEmptyToy()
                 .then((toy) => commit({ type: 'setNewToy', toy }))
         },
         saveToy({ commit }, { toy }) {
             console.log(toy)
-            return toyService.save(toy).then((toy) => {
+            return gigService.save(toy).then((toy) => {
                 commit({ type: 'saveToy', toy })
                 return toy
             })
