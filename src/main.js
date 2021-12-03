@@ -5,7 +5,8 @@ import { store } from './store/store.js'
 // import '../src/style/main.css'
 import './styles/style.scss'
 import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+import '../src/assets/theme/index.css'
+
 Vue.config.productionTip = false
 // Styles
 import "./styles/style.scss"

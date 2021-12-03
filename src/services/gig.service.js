@@ -74,30 +74,35 @@ function _createGigs() {
   var gigs = JSON.parse(localStorage.getItem(KEY))
   if (!gigs || !gigs.length) {
     gigs = [
-      _createGig('I will do modern line art text or badge logo design', 50,"ml6w0"),
-      _createGig('I will design 3 modern minimalist logo design in 24 hrs', 70,"ml6w0"),
-      _createGig('I will do modern line art text or badge logo design', 80,"ml6w0"),
-      _createGig('I will do creative logo design for your business', 20,),
-      _createGig('I will do 5 minimalist logo design for your business', 150,),
+      _createGig('I will do modern line art text or badge logo design', 50, "ml6w0", ['cartoon-comic.png']),
+      _createGig('I will design 3 modern minimalist logo design in 24 hrs', 70, "ml6w0", ['logo-design3.jpg', 'logo-design1.png']),
+      _createGig('I will do modern line art text or badge logo design', 80, "ml6w0",['cartoon-comic3.jpg','cartoon-comic.png']),
+      _createGig('I will draw custom mascot cartoon avatar for nft', 20,['cartoon-comic2']),
+      _createGig('I will draw flowers for your commercial packaging', 30),
+      _createGig('I will turn your idea into a beautiful illustration', 75),
+      _createGig('I will draw coloring book pages for children', 50, ['cartoon-comic.png']),
+      _createGig('I will draw amazing cartoon characters and cartoon objects', 34,['cartoon-comic2.png']),
+      _createGig('I will do 5 minimalist logo design for your business', 150),
+      _createGig('I will do 5 minimalist logo design for your business', 150),
+      _createGig('I will do 5 minimalist logo design for your business', 360),
+      _createGig('I will do 5 minimalist logo design for your business', 70),
+      _createGig('I will do 5 minimalist logo design for your business', 18),
     ]
     localStorage.setItem(KEY, JSON.stringify(gigs))
   }
   return gigs
 }
-
-function _createGig(title, price,ownerId="u123") {
+function _createGig(title, price, ownerId = 'u123', imgUrl = ['logo-design.png', 'logo-design3.jpg']) {
   return {
     _id: utilService.makeId(),
     title,
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molest iasblanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molestias blanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molestias blanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam.",
+    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molest iasblanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molestias blanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molestias blanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam.',
     price,
-    imgUrl: ["https://fiverr-res.cloudinary.com/t_gig_cards_web_x2,q_auto,f_auto/gigs/22527722/original/f5994d4dd5384869d546512f2e160ba0b03f934b.jpg",
-      "https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/gigs/3171448/original/a41a38f3733bb97279a49d1449f7337dece50693.jpg",
-       "https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/attachments/delivery/asset/f57378f6a9ff6da2ee7e306bad7d8d64-1637824234/30143_JEXCITY%20Co_LOGO_FS_GR-Mockup.jpg"],
+    imgUrl,
     owner: {
       _id: ownerId,
       username: "logoflow",
-      imgUrl: "https://i.dlpng.com/static/png/7019966_preview.png",
+      imgUrl: 'https://i.dlpng.com/static/png/7019966_preview.png',
       rate: 4
     },
     tags: [
@@ -106,11 +111,11 @@ function _createGig(title, price,ownerId="u123") {
       "accessible"
     ],
     package: {
-        title: "Basic Package",
-        description: "2 Modern Logo Concept with High Resolution JPEG and Transparent PNG",
-        timeToDeliver: "3 Days",
-        revisions: 5,
-        
+      title: "Basic Package",
+      description: "2 Modern Logo Concept with High Resolution JPEG and Transparent PNG",
+      timeToDeliver: "3 Days",
+      revisions: 5,
+
     }
   }
 }
