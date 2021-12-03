@@ -12,10 +12,9 @@
 }
 
 .main-header {
-  
-  position: fixed;
   z-index: 2;
-  width: 100%;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
 
   .header-container{
     padding-inline: 1rem;
@@ -26,6 +25,12 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, 150px);
     }
+  }
+
+  .header-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 

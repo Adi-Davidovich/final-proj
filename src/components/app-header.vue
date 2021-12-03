@@ -1,15 +1,16 @@
 
 <template>
-
   <header class="main-header main-layout">
     <div class="header-container">
-    <router-link class="logo" to="/" exact>fiverr<span class="logo-dot">.</span></router-link>
-    <nav class="main-nav">
-      <router-link to="/explore" class="link">Explore</router-link>
-      <router-link to="/start_selling" class="link">Become a seller</router-link>
-      <router-link to="/login" class="link">Sign In</router-link>
-      <router-link to="/login" class="link link-join">Join</router-link>
-    </nav>
+      <div class="logo">Fiverr</div>
+      <nav class="main-nav">
+        <router-link to="/explore" class="link">Explore</router-link>
+        <router-link to="/start_selling" class="link"
+          >Become a seller</router-link
+        >
+        <router-link to="/login" class="link">Sign In</router-link>
+        <router-link to="/login" class="link link-join">Join</router-link>
+      </nav>
     </div>
   </header>
 
