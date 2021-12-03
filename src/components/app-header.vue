@@ -1,8 +1,8 @@
 
 <template>
-  <div class="main-header-sticky main-layout">
+  <div class="main-header-sticky">
     <!-- <div class="user-msg"></div> -->
-    <div class="header">
+    <div class="header main-layout">
       <header class="logged-out-homepage-header header-transparent">
         <router-link class="logo" to="/" exact
           >fiverr<span class="logo-dot">.</span></router-link
