@@ -33,6 +33,10 @@
       </div>
     </div>
       
+      <div class="homePage-info-container">
+        <div class="homePage-info"></div>
+        <div class="homePage-img"></div>
+      </div>
   </section>
 </template>
 
