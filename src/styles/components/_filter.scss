@@ -1,18 +1,18 @@
 .filter-explore {
   margin-top: 10px;
-  h6{
+  h6 {
     margin-bottom: 10px;
     font-size: 0.875rem;
   }
   .category-selection-container {
     ul {
-      grid-template-columns: repeat(6, minmax(140px,180px));
+      grid-template-columns: repeat(6, minmax(140px, 180px));
       grid-template-rows: 153px;
-      justify-content:left;
+      justify-content: left;
       gap: 20px;
       text-align: center;
 
-      p{
+      p {
         max-width: 150px;
       }
       .category-card {
@@ -42,5 +42,27 @@
   .select-filters {
     margin-top: 40px;
     margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h4 {
+      margin-right: 3px;
+    }
+    .el-dropdown {
+      font-size: 1rem;
+    }
+
+    .el-select {
+      font-size: 1rem;
+    }
+    .second {
+      margin-left: 8px;
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif !important;
+    }
+
+    .filter-right {
+      display: flex;
+      text-align: left;
+    }
   }
 }
