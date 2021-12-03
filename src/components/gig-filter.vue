@@ -15,51 +15,7 @@
       </ul>
     </div>
 
-    <div class="select-filters">
-      <el-select
-        v-model="value2"
-        multiple
-        collapse-tags
-        placeholder="Seller Details"
-      >
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        >
-        </el-option>
-      </el-select>
-      <el-select
-        multiple
-        collapse-tags
-        style="margin-left: 20px"
-        placeholder="Sort"
-      >
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        >
-        </el-option>
-      </el-select>
-      <el-select
-        v-model="value2"
-        multiple
-        collapse-tags
-        style="margin-left: 20px"
-        placeholder="Budget"
-      >
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        >
-        </el-option>
-      </el-select>
-    </div>
+    <div class="select-filters"></div>
   </section>
 </template>
 
@@ -67,10 +23,12 @@
 export default {
   data() {
     return {
+      sortOptions: ["Price"],
       filterBy: {
         badget: "",
         category: "",
         deliveyTime: "",
+        sort: "",
       },
       categories: [
         {
