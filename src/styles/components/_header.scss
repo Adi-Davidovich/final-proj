@@ -22,8 +22,9 @@
     grid-column: 2;
     justify-content: space-between;
     .main-nav {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, 150px);
+      display: flex;
+      width: 35%;
+      justify-content: space-between;
     }
   }
 
