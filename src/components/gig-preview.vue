@@ -1,8 +1,8 @@
 <template>
   <section class="gig-preview">
     <el-carousel :autoplay="false" trigger="click" height="150px">
-      <el-carousel-item v-for="item in gig.imgUrl" :key="item">
-        <img :src="item" alt="" class="gig-img" @click="gigDetails"/>
+      <el-carousel-item v-for="img in gig.imgUrl" :key="img">
+        <img :src="require(`@/assets/img/card-images/${img}`)" alt="" class="gig-img" @click="gigDetails"/>
       </el-carousel-item>
     </el-carousel>
 

@@ -1,0 +1,16 @@
+.explore-hero {
+    background-image: url("~@/assets/img/explore.jpg");
+    background-size: cover;
+    height: 50vh;
+    grid-column: span 3;
+    display: flex;
+    align-items: center;
+
+    h1 {
+        max-width: 75%;
+        font-size: 3.7rem;
+        color: #ffffff;
+        text-shadow: 0px 0px 12px rgba(120,120,120,0.7);
+        text-align: left;
+    }
+}

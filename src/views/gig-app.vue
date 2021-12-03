@@ -1,5 +1,8 @@
 <template>
   <section class="gig-explore">
+    <div class="explore-hero">
+      <h1>Work with verified, exceptional talent, hand-vetted for stellar quality and service.</h1>
+    </div>
     <gig-filter></gig-filter>
     <gig-list v-if="gigs" :gigs="gigs" />
   </section>

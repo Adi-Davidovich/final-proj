@@ -1,16 +1,20 @@
 .filter-explore {
-  margin-top: 80px;
+  margin-top: 10px;
   h6{
     margin-bottom: 10px;
     font-size: 0.875rem;
   }
   .category-selection-container {
     ul {
-      grid-template-columns: repeat(10, 120px);
-      grid-template-rows: 120px;
-      justify-content: space-between;
+      grid-template-columns: repeat(5, minmax(140px,180px));
+      grid-template-rows: 153px;
+      justify-content:left;
       gap: 20px;
       text-align: center;
+
+      p{
+        max-width: 150px;
+      }
       .category-card {
         list-style-type: none;
         flex-direction: column;

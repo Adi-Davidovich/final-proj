@@ -15,7 +15,12 @@
     </div>
 
     <div class="select-filters">
-      <el-select v-model="value2" multiple collapse-tags placeholder="Seller Details">
+      <el-select
+        v-model="value2"
+        multiple
+        collapse-tags
+        placeholder="Seller Details"
+      >
         <el-option
           v-for="item in options"
           :key="item.value"
@@ -63,12 +68,8 @@ export default {
     return {
       categories: [
         {
-          categoryName: "WordPress",
-          iconUrl: "newspaper.png",
-        },
-        {
-          categoryName: "Website Design",
-          iconUrl: "web-design.png",
+          categoryName: "Cartoons & Comics",
+          iconUrl: "comic-book.png",
         },
         {
           categoryName: "Logo Design",
@@ -83,24 +84,8 @@ export default {
           iconUrl: "SocialMediaMarketing.png",
         },
         {
-          categoryName: "Translation",
-          iconUrl: "translation.png",
-        },
-        {
           categoryName: "Visual Effects",
           iconUrl: "visual-effects.png",
-        },
-        {
-          categoryName: "Voice Over",
-          iconUrl: "dubbing.png",
-        },
-        {
-          categoryName: "Mobile Apps",
-          iconUrl: "mobile-app.png",
-        },
-        {
-          categoryName: "Podcast Editing",
-          iconUrl: "edit.png",
         },
       ],
     };
