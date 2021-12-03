@@ -7,7 +7,7 @@ export const gigStore = {
         gigs: [],
         currGig: null,
         filterBy: {},
-        sortBy:null,
+        sortBy: null,
         pageIdx: 0,
         pageSize: 12,
     },
@@ -23,7 +23,8 @@ export const gigStore = {
         },
         gigsToShow(state) {
             var gigs = JSON.parse(JSON.stringify(state.gigs))
-
+            console.log(gigs)
+            return gigs
             // let filteredGigs = []
 
             // const regex = new RegExp(state.filterBy.name, 'i')
@@ -42,18 +43,18 @@ export const gigStore = {
             // }
 
             // Sorting
-            if (state.sortBy) {
-                if (state.sortBy === 'time') gigs = gigs.sort((t1, t2) => t1.createdAt - t2.createdAt)
-                else if (state.sortBy === 'price') gigs = gigs.sort((t1, t2) => t1.price - t2.price)
-                else if (state.sortBy === 'name') gigs = gigs.sort((t1, t2) => t1.name.toLowerCase() > t2.name.toLowerCase() ? 1 : -1)
-            }
+            // if (state.sortBy) {
+            //     if (state.sortBy === 'time') gigs = gigs.sort((t1, t2) => t1.createdAt - t2.createdAt)
+            //     else if (state.sortBy === 'price') gigs = gigs.sort((t1, t2) => t1.price - t2.price)
+            //     else if (state.sortBy === 'name') gigs = gigs.sort((t1, t2) => t1.name.toLowerCase() > t2.name.toLowerCase() ? 1 : -1)
+            // }
 
-            // Paging
-            if (typeof state.pageIdx === 'number' && state.pageIdx !== -1) {
-                const startIdx = state.pageIdx * state.pageSize
-                gigs = gigs.slice(startIdx, startIdx + state.pageSize)
-            }
-            return gigs
+            // // Paging
+            // if (typeof state.pageIdx === 'number' && state.pageIdx !== -1) {
+            //     const startIdx = state.pageIdx * state.pageSize
+            //     gigs = gigs.slice(startIdx, startIdx + state.pageSize)
+            // }
+
         },
     },
     mutations: {
@@ -110,7 +111,6 @@ export const gigStore = {
     actions: {
         async loadGigs({ commit, state }) {
             const filterBy = state.filterBy ? state.filterBy : ''
-            console.log(state.filterBy, 'FROM LOADGIGS')
             commit({ type: 'setLoading', isLoading: true })
             try {
                 const gigs = await gigService.query(filterBy);
@@ -182,7 +182,6 @@ export const gigStore = {
 
         },
         setFilter({ commit, dispatch }, { filterBy }) {
-            console.log('gigStore :>> ', filterBy);
             commit({ type: 'setFilter', filterBy })
             dispatch({ type: 'loadGigs' })
         },

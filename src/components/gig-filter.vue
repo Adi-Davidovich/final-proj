@@ -7,6 +7,7 @@
           class="category-card flex"
           v-for="category in categories"
           :key="category.id"
+          @click="setFilter(category.value)"
         >
           <img :src="require(`@/assets/icons/${category.iconUrl}`)" />
           <p>{{ category.categoryName }}</p>
@@ -66,29 +67,53 @@
 export default {
   data() {
     return {
+      filterBy: {
+        badget: "",
+        category: "",
+        deliveyTime: "",
+      },
       categories: [
         {
+          categoryName: "All",
+          value: "",
+          iconUrl: "grid.png",
+        },
+        {
           categoryName: "Cartoons & Comics",
+          value: "cartoonAndComic",
           iconUrl: "comic-book.png",
         },
         {
           categoryName: "Logo Design",
+          value: "logoDesign",
           iconUrl: "logo-design.png",
         },
         {
           categoryName: "Illustration",
+          value: "Illustration",
           iconUrl: "illustration.png",
         },
         {
           categoryName: "Social Media Marketing",
+          value: "socialMediaMarketing",
           iconUrl: "SocialMediaMarketing.png",
         },
         {
           categoryName: "Visual Effects",
+          value: "visualEffct",
           iconUrl: "visual-effects.png",
         },
       ],
     };
+  },
+
+  methods: {
+    setFilter(category) {
+      if(category){
+        this.filterBy.category = category;
+      }
+      this.$emit("setFilter", this.filterBy);
+    },
   },
 };
 </script>

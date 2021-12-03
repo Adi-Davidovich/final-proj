@@ -3,7 +3,7 @@
     <div class="explore-hero main-layout">
       <h1>A whole world of freelance talent at your fingertips</h1>
     </div>
-    <gig-filter></gig-filter>
+    <gig-filter @setFilter="setFilter"></gig-filter>
     <gig-list v-if="gigs" :gigs="gigs" />
   </section>
 </template>
@@ -33,10 +33,10 @@ export default {
   },
   methods: {
     setFilter(filterBy) {
-      console.log("filterBy :>> ", filterBy);
       const copyFilter = JSON.parse(JSON.stringify(filterBy));
-      console.log("copy :>> ", copyFilter);
       this.$store.dispatch({ type: "setFilter", filterBy: copyFilter });
+      this.$store.dispatch({ type: "loadGigs"});
+
     },
     setSort(sortBy) {
       const copySort = JSON.parse(JSON.stringify(sortBy));

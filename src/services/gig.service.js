@@ -18,7 +18,18 @@ var gGigs = _createGigs()
 console.log('gGigs :>> ', gGigs);
 
 async function query(filterBy) {
-  return await storageService.query(KEY)
+  console.log(filterBy)
+  if (!filterBy.category) return await storageService.query(KEY)
+  else {
+    if (filterBy.category) {
+      let gigs = await storageService.query(KEY)
+      console.log(gigs)
+      let filterGigs = gigs.filter(gig => gig.category === filterBy.category)
+      console.log('adsa', filterGigs)
+      return filterGigs
+    }
+  }
+
   // console.log('filterBy :>> ', filterBy);
   //   return await httpService.get('gig', filterBy)
 }
@@ -74,33 +85,34 @@ function _createGigs() {
   var gigs = JSON.parse(localStorage.getItem(KEY))
   if (!gigs || !gigs.length) {
     gigs = [
-      _createGig('I will do modern line art text or badge logo design', 50, "ml6w0", ['cartoon-comic.png']),
-      _createGig('I will design 3 modern minimalist logo design in 24 hrs', 70, "ml6w0", ['logo-design3.jpg', 'logo-design1.png']),
-      _createGig('I will do modern line art text or badge logo design', 80, "ml6w0",['cartoon-comic3.jpg','cartoon-comic.png']),
-      _createGig('I will draw custom mascot cartoon avatar for nft', 20,['cartoon-comic2']),
-      _createGig('I will draw flowers for your commercial packaging', 30),
-      _createGig('I will turn your idea into a beautiful illustration', 75),
-      _createGig('I will draw coloring book pages for children', 50, ['cartoon-comic.png']),
-      _createGig('I will draw amazing cartoon characters and cartoon objects', 34,['cartoon-comic2.png']),
-      _createGig('I will do 5 minimalist logo design for your business', 150),
-      _createGig('I will do 5 minimalist logo design for your business', 150),
-      _createGig('I will do 5 minimalist logo design for your business', 360),
-      _createGig('I will do 5 minimalist logo design for your business', 70),
-      _createGig('I will do 5 minimalist logo design for your business', 18),
+      _createGig('I will do modern line art text or badge logo design', 50, ['cartoon-comic.png'], 'logoDesign'),
+      _createGig('I will design 3 modern minimalist logo design in 24 hrs', 70, ['logo-design3.jpg', 'logo-design1.png'], 'logoDesign'),
+      _createGig('I will do modern line art text or badge logo design', 80, ['cartoon-comic3.jpg', 'cartoon-comic.png'], 'logoDesign'),
+      _createGig('I will draw custom mascot cartoon avatar for nft', 20, ['cartoon-comic2.png'], 'cartoonAndComic'),
+      _createGig('I will draw flowers for your commercial packaging', 30, ['cartoon-comic.png'], 'logoDesign'),
+      _createGig('I will turn your idea into a beautiful illustration', 75, ['cartoon-comic.png'], 'cartoonAndComic'),
+      _createGig('I will draw coloring book pages for children', 50, ['cartoon-comic.png'], 'logoDesign'),
+      _createGig('I will draw amazing cartoon characters and cartoon objects', 34, ['cartoon-comic2.png'], 'logoDesign'),
+      _createGig('I will turn your idea into a beautiful illustration', 150, ['cartoon-comic.png'], 'Illustration'),
+      _createGig('I will do 5 minimalist logo design for your business', 150, ['cartoon-comic.png'], 'logoDesign'),
+      _createGig('I will draw custom mascot cartoon avatar for nft', 360, ['cartoon-comic.png'], 'cartoonAndComic'),
+      _createGig('I will do 5 minimalist logo design for your business', 70, ['cartoon-comic.png'], 'logoDesign'),
+      _createGig('I will draw custom mascot cartoon avatar for nft', 18, ['cartoon-comic.png'], 'cartoonAndComic'),
     ]
     localStorage.setItem(KEY, JSON.stringify(gigs))
   }
   return gigs
 }
-function _createGig(title, price, ownerId = 'u123', imgUrl = ['logo-design.png', 'logo-design3.jpg']) {
+function _createGig(title, price, imgUrl = ['logo-design.png', 'logo-design3.jpg'], category) {
   return {
     _id: utilService.makeId(),
     title,
     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molest iasblanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molestias blanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molestias blanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam.',
     price,
     imgUrl,
+    category,
     owner: {
-      _id: ownerId,
+      _id: "1hu2i",
       username: "logoflow",
       imgUrl: 'https://i.dlpng.com/static/png/7019966_preview.png',
       rate: 4
@@ -121,3 +133,30 @@ function _createGig(title, price, ownerId = 'u123', imgUrl = ['logo-design.png',
 }
 
 
+// categories: [
+//   {
+//     categoryName: "Cartoons & Comics",
+//     value: "cartoonAndComic",
+//     iconUrl: "comic-book.png",
+//   },
+//   {
+//     categoryName: "Logo Design",
+//     value: "logoDesign",
+//     iconUrl: "logo-design.png",
+//   },
+//   {
+//     categoryName: "Illustration",
+//     value: "Illustration",
+//     iconUrl: "illustration.png",
+//   },
+//   {
+//     categoryName: "Social Media Marketing",
+//     value: "socialMediaMarketing",
+//     iconUrl: "SocialMediaMarketing.png",
+//   },
+//   {
+//     categoryName: "Visual Effects",
+//     value: "visualEffct",
+//     iconUrl: "visual-effects.png",
+//   },
+// ],
