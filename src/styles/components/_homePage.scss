@@ -1,0 +1,30 @@
+.hero-container {
+  // height: 400px;
+}
+
+.cards-container {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  width: 100%;
+  .card-filter {
+    width: 245px;
+    // margin: 0 18px;
+    p {
+      position: absolute;
+      display: flex;
+      flex-wrap: wrap;
+      color: #fff;
+      top: 0;
+      left: 0;
+    }
+    img {
+      border-radius: 4px;
+      object-fit: cover;
+
+      height: 345px;
+    }
+  }
+}
