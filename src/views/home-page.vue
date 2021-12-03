@@ -5,12 +5,19 @@
     </div>
     <div class="cards-container">
       <div class="card-filter">
-        <p>Build your brand Logo Design</p>
+        <p>Build your brand <span class="filterTitle"> Logo Design</span></p>
+       
         <img src="../assets/img/logo-design.jpg" /></div>
-      <div class="card-filter"><img src="../assets/img/wordpress.jpg" /></div>
-      <div class="card-filter"><img src="../assets/img/voiceover.jpg" /></div>
+      <div class="card-filter">
+        <p>Customize your site <span class="filterTitle">WordPress</span></p>
+       
+        <img src="../assets/img/wordpress.jpg" /></div>
+      <div class="card-filter">
+        <p>Share your message <span class="filterTitle">Voice Over</span></p>
+      
+        <img src="../assets/img/voiceover.jpg" /></div>
       <div class="card-filter"><img src="../assets/img/animated-explainer.jpg" /></div>
-      <div class="card-filter"><img src="../assets/img/social.jpg" /></div>
+      <!-- <div class="card-filter"><img src="../assets/img/social.jpg" /></div> -->
     </div>
   </section>
 </template>
