@@ -3,6 +3,7 @@
     <div class="hero main-layout full hero-container">
       <img src="../assets/img/3.jpeg" />
     </div>
+    <h2 class="homePage-title">Popular professional services</h2>
     <div class="cards-container">
       <div class="card-filter">
         <p>Build your brand <span class="filterTitle"> Logo Design</span></p>

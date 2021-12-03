@@ -20,8 +20,15 @@
       color: #fff;
       top: 0;
       left: 0;
-      .filterTitle{
-        font-weight: 800;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 400;
+      padding: 16px;
+
+      .filterTitle {
+        font-size: 20px;
+        line-height: 140%;
+        font-weight: 700;
       }
     }
     img {
@@ -31,4 +38,9 @@
       height: 345px;
     }
   }
+}
+
+.homePage-title{
+  height: 38.4px;
+  padding-bottom: 20px;
 }
