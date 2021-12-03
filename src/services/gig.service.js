@@ -18,18 +18,27 @@ var gGigs = _createGigs()
 console.log('gGigs :>> ', gGigs);
 
 async function query(filterBy) {
+  let filterGigs
   console.log(filterBy)
-  if (!filterBy.category) return await storageService.query(KEY)
+  if (!filterBy.category) {
+    filterGigs = await storageService.query(KEY)
+
+  }
+
   else {
     if (filterBy.category) {
       let gigs = await storageService.query(KEY)
       console.log(gigs)
-      let filterGigs = gigs.filter(gig => gig.category === filterBy.category)
+      filterGigs = gigs.filter(gig => gig.category === filterBy.category)
       console.log('adsa', filterGigs)
-      return filterGigs
     }
   }
-
+  if (filterBy.sort === 'price') {
+    filterGigs = filterGigs.sort(function (a, b) {
+      return a.price - b.price;
+    })
+  }
+  return filterGigs
   // console.log('filterBy :>> ', filterBy);
   //   return await httpService.get('gig', filterBy)
 }
