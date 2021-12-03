@@ -16,9 +16,15 @@
   padding-inline: 1rem;
   padding-block: 0.5rem;
 
-  .main-nav {
-    display: flex;
-    gap: 1rem;
+  .header-container{
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    grid-column: 2;
+    justify-content: space-between;
+    .main-nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 150px);
+    }
   }
 
   .header-container{

@@ -18,8 +18,6 @@
   <!-- <div class="user-msg"></div> -->
   <!-- <div class="header">
       <header class="logged-out-homepage-header header-transparent">
-        <router-link class="logo" to="/" exact
-          >fiverr<span class="logo-dot">.</span></router-link
         > -->
 
   <!-- <div class="fiver-header-search-animated">

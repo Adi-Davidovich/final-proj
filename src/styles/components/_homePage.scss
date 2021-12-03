@@ -4,21 +4,25 @@
 
 .cards-container {
   display: flex;
-  position: relative;
   flex-direction: row;
   align-content: center;
   justify-content: space-between;
   width: 100%;
   .card-filter {
+    position: relative;
     width: 245px;
     // margin: 0 18px;
     p {
       position: absolute;
       display: flex;
       flex-wrap: wrap;
+      max-width: 70%;
       color: #fff;
       top: 0;
       left: 0;
+      .filterTitle{
+        font-weight: 800;
+      }
     }
     img {
       border-radius: 4px;
