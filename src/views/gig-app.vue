@@ -1,5 +1,5 @@
 <template>
-  <section class="gig-explore">
+  <section class="gig-explore main-layout">
     <div class="explore-hero main-layout">
       <h1>A whole world of freelance talent at your fingertips</h1>
     </div>
