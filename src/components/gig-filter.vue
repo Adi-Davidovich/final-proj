@@ -109,9 +109,7 @@ export default {
 
   methods: {
     setFilter(category) {
-      if(category){
-        this.filterBy.category = category;
-      }
+      this.filterBy.category = category;
       this.$emit("setFilter", this.filterBy);
     },
   },
