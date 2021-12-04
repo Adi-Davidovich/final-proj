@@ -2,8 +2,10 @@
   <div class="footer-main main-layout">
       <div class="app-footer">
           <div class="left">
-          <div class="logo">Fiverr</div>
-          <p>©  Fiverr International Ltd. 2021</p>
+          <div class="logo">fiverr 
+            <span class="register">Ⓡ</span>
+              </div>
+          <p>©  fiverr International Ltd. 2021</p>
       </div>
       <div class="right">
           <ul>
