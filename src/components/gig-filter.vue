@@ -7,7 +7,7 @@
           class="category-card flex"
           v-for="category in categories"
           :key="category.id"
-          @click="setFilter(category.value)"
+          @click="setCategory(category.value)"
         >
           <img :src="require(`@/assets/icons/${category.iconUrl}`)" />
           <p>{{ category.categoryName }}</p>
@@ -17,7 +17,7 @@
 
     <div class="select-filters">
       <div class="filter-left">
-        <el-select  v-model="filterBy.deliveyTime" placeholder="Delivery Time">
+        <el-select v-model="filterBy.deliveyTime" placeholder="Delivery Time">
           <el-option
             v-for="item in deliveyTimeLabels"
             :key="item.value"
@@ -26,7 +26,11 @@
           >
           </el-option>
         </el-select>
-        <el-select class="second" v-model="filterBy.sort" placeholder="Sort">
+        <el-select
+          class="second-select"
+          v-model="filterBy.sort"
+          placeholder="Sort"
+        >
           <el-option
             v-for="item in sortLabels"
             :key="item.value"
@@ -35,10 +39,21 @@
           >
           </el-option>
         </el-select>
+        <div class="price-slider">
+          <p>Budget:</p>
+          <el-slider
+            :step="5"
+            :max="1000"
+            :show-tooltip="false"
+            v-model="filterBy.price"
+            @change="setFilter"
+          ></el-slider>
+          <p>{{ priceRander }}</p>
+        </div>
       </div>
 
       <div class="filter-right">
-        <h4>Sort by:</h4>
+        <p>Sort by:</p>
         <el-dropdown>
           <span class="el-dropdown-link">
             {{ setSortLabel }}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -70,6 +85,10 @@ export default {
           value: "1",
         },
         {
+          label: "Up to 3 days",
+          value: "3",
+        },
+        {
           label: "Up to 7 days",
           value: "7",
         },
@@ -85,7 +104,7 @@ export default {
         },
       ],
       filterBy: {
-        badget: "",
+        price: "",
         category: "",
         deliveyTime: "",
         sort: "",
@@ -126,10 +145,13 @@ export default {
   },
 
   methods: {
-    setFilter(category) {
-      this.filterBy.category = category;
+    setFilter() {
       console.log(this.filterBy);
       this.$emit("setFilter", this.filterBy);
+    },
+    setCategory(category) {
+      this.filterBy.category = category;
+      this.setFilter();
     },
 
     sortBy(value) {
@@ -143,6 +165,11 @@ export default {
       if (this.filterBy.sort === "deliveryTime") return "Delivey Time";
       else if (this.filterBy.sort === "newest") return "Newest Arrivals";
       else if (this.filterBy.sort === "price") return "Price";
+    },
+
+    priceRander() {
+      if (this.filterBy.price === 0) return "Any";
+      else return `${this.filterBy.price}$`;
     },
   },
 };

@@ -44,6 +44,7 @@
                max-height: 195px;
                max-width: 326px;
                object-fit: cover;
+               cursor: pointer;
            }
 
            .owner-prev{
@@ -81,13 +82,13 @@
             align-items: center;
 
             h6{
-                font-family: bebas-regular;
-                font-size:0.7rem;
+                font-family: macan-regular;
+                font-size:0.625rem;
                 color: #7a7d85;
                 text-transform: uppercase;
                 span{
                     font-size: 1.125rem;
-                    font-family: macan-light;
+                    font-family: macan-regular;
                     color: #404145;
                     font-weight: 400;
                     line-height: 1.1;

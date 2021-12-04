@@ -1,8 +1,8 @@
 .filter-explore {
-  margin-top: 10px;
   h6 {
-    margin-bottom: 10px;
-    font-size: 0.875rem;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    font-size: 1.125rem;
   }
   .category-selection-container {
     ul {
@@ -45,24 +45,60 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    h4 {
-      margin-right: 3px;
-    }
-    .el-dropdown {
-      font-size: 1rem;
-    }
 
-    .el-select {
-      font-size: 1rem;
-    }
-    .second {
-      margin-left: 8px;
-      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif !important;
+    .filter-left {
+      display: flex;
+      justify-content: space-between;
+      .el-select {
+        font-size: 1rem;
+      }
+      .second-select {
+        margin-left: 10px;
+      }
+
+      .price-slider {
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .el-slider {
+          width: 150px;
+          margin-right: 10px;
+          margin-left: 10px;
+        }
+      }
     }
 
     .filter-right {
       display: flex;
       text-align: left;
+      p {
+        margin-right: 5px;
+        font-family: macan-light;
+      }
+      .el-dropdown {
+        font-size: 1rem;
+        span {
+          font-family: macan-bold;
+        }
+      }
     }
+  }
+
+  // Category Choose
+  .cartoonAndComic {
+    color: #1dbf73;
+  }
+  .logoDesign {
+    color: #1dbf73;
+  }
+  .Illustration {
+    color: #1dbf73;
+  }
+  .socialMediaMarketing {
+    color: #1dbf73;
+  }
+  .visualEffct {
+    color: #1dbf73;
   }
 }

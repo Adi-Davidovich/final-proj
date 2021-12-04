@@ -14,24 +14,19 @@ export const gigService = {
   getEmptyGig,
 }
 
-var gGigs = _createGigs()
-console.log('gGigs :>> ', gGigs);
 
 async function query(filterBy) {
-  let filterGigs
+  let filterGigs = await storageService.query(KEY)
   console.log(filterBy)
-  if (!filterBy.category) {
-    filterGigs = await storageService.query(KEY)
-
+  if (filterBy.category) {
+    console.log('category')
+    filterGigs = filterGigs.filter(gig => gig.category === filterBy.category)
   }
-
-  else {
-    if (filterBy.category) {
-      let gigs = await storageService.query(KEY)
-      console.log(gigs)
-      filterGigs = gigs.filter(gig => gig.category === filterBy.category)
-      console.log('adsa', filterGigs)
-    }
+  if (filterBy.price) {
+    filterGigs = filterGigs.filter(gig => {
+      console.log(gig.price, 'Hi')
+      return gig.price <= filterBy.price
+    })
   }
   if (filterBy.sort === 'price') {
     filterGigs = filterGigs.sort(function (a, b) {
