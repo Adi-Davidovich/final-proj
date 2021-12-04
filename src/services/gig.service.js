@@ -121,7 +121,7 @@ function _createGig(title, price, imgUrl, category) {
     owner: {
       _id: "1hu2i",
       username: "logoflow",
-      imgUrl: 'https://i.dlpng.com/static/png/7019966_preview.png',
+      imgUrl: 'avatar.png',
       rate: 4
     },
     tags: [

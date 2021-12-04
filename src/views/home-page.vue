@@ -1,8 +1,6 @@
 <template>
   <section class="home app-main main-layout">
-    <div class="hero main-layout full hero-container">
-      <img src="../assets/img/3.jpeg" />
-    </div>
+    <div class="hero main-layout full hero-container"></div>
 
     <h2 class="homePage-title">Popular professional services</h2>
 

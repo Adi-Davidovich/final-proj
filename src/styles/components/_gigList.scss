@@ -43,7 +43,7 @@
             .gig-img {
                 height: 195px;
                 max-width: 326px;
-                object-fit:cover;
+                object-fit: cover;
                 cursor: pointer;
             }
 
@@ -102,9 +102,13 @@
         }
     }
     .services-counter {
+        line-height: 2rem;
         font-family: macan-light;
         color: #404145;
-        margin-bottom: 10px;
         font-size: 0.875rem;
+        span {
+            font-family: macan-bold;
+            font-size: 2rem;
+        }
     }
 }

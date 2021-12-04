@@ -19,22 +19,14 @@
 
     <div class="select-filters">
       <div class="filter-left">
-        <el-select v-model="filterBy.deliveyTime" placeholder="Delivery Time">
-          <el-option
-            v-for="item in deliveyTimeLabels"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
-        </el-select>
         <el-select
-          class="second-select"
-          v-model="filterBy.sort"
-          placeholder="Sort"
+          v-model="filterBy.deliveyTime"
+          multiple
+          :multiple-limit="1"
+          placeholder="Delivery Time"
         >
           <el-option
-            v-for="item in sortLabels"
+            v-for="item in deliveyTimeLabels"
             :key="item.value"
             :label="item.label"
             :value="item.value"
@@ -84,19 +76,15 @@ export default {
       deliveyTimeLabels: [
         {
           label: "Express 24H",
-          value: "1",
+          value: 1,
         },
         {
           label: "Up to 3 days",
-          value: "3",
+          value: 3,
         },
         {
           label: "Up to 7 days",
-          value: "7",
-        },
-        {
-          label: "Anytime",
-          value: "",
+          value: 7,
         },
       ],
       sortLabels: [
@@ -110,6 +98,11 @@ export default {
         category: "",
         deliveyTime: "",
         sort: "",
+        sellerDetails: {
+          level: "",
+          rating: "",
+          languge: "",
+        },
       },
       categories: [
         {
@@ -177,5 +170,8 @@ export default {
 </script>
 
 <style scoped>
+.el-select{
+  color: black;
+}
 </style>
 
