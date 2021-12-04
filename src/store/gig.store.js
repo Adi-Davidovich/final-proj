@@ -23,7 +23,6 @@ export const gigStore = {
         },
         gigsToShow(state) {
             var gigs = JSON.parse(JSON.stringify(state.gigs))
-            console.log(gigs)
             return gigs
             // let filteredGigs = []
 
@@ -82,14 +81,12 @@ export const gigStore = {
             state.gigs = gigs
         },
         setFilter(state, { filterBy }) {
-            console.log(filterBy, 'SETFILTER MUTATION')
             state.filterBy = filterBy
         },
         setSort(state, { copySort }) {
             state.sortBy = copySort
         },
         setPageIdx(state, { pageIdx }) {
-            console.log('pageIdx :>> ', pageIdx);
             state.pageIdx = pageIdx
             let maxPage = Math.ceil(state.gigs.length / state.pageSize)
 
@@ -97,9 +94,7 @@ export const gigStore = {
             else if (state.pageIdx < 0) state.pageIdx = maxPage - 1
         },
         setCurrGig(state, { gig }) {
-            console.log('currGig', state.currGig)
             state.currGig = gig
-            console.log('currGig', state.currGig)
         },
         setNewGig(state, { gig }) {
             state.currGig = gig

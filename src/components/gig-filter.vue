@@ -9,7 +9,9 @@
           :key="category.id"
           @click="setCategory(category.value)"
         >
-          <img :src="require(`@/assets/icons/${category.iconUrl}`)" />
+          <img
+            :src="require(`@/assets/img/category-img/${category.iconUrl}`)"
+          />
           <p>{{ category.categoryName }}</p>
         </li>
       </ul>
@@ -43,7 +45,7 @@
           <p>Budget:</p>
           <el-slider
             :step="5"
-            :max="1000"
+            :max="300"
             :show-tooltip="false"
             v-model="filterBy.price"
             @change="setFilter"
@@ -104,7 +106,7 @@ export default {
         },
       ],
       filterBy: {
-        price: "",
+        price: 0,
         category: "",
         deliveyTime: "",
         sort: "",
@@ -116,9 +118,9 @@ export default {
           iconUrl: "grid.png",
         },
         {
-          categoryName: "Cartoons & Comics",
-          value: "cartoonAndComic",
-          iconUrl: "comic-book.png",
+          categoryName: "Illustration",
+          value: "illustration",
+          iconUrl: "illustration.png",
         },
         {
           categoryName: "Logo Design",
@@ -126,19 +128,19 @@ export default {
           iconUrl: "logo-design.png",
         },
         {
-          categoryName: "Illustration",
-          value: "Illustration",
-          iconUrl: "illustration.png",
+          categoryName: "Voice Over",
+          value: "voiceOver",
+          iconUrl: "voice-over.png",
         },
         {
           categoryName: "Social Media Marketing",
           value: "socialMediaMarketing",
-          iconUrl: "SocialMediaMarketing.png",
+          iconUrl: "social-media.png",
         },
         {
-          categoryName: "Visual Effects",
-          value: "visualEffct",
-          iconUrl: "visual-effects.png",
+          categoryName: "Video Explainer",
+          value: "videoExplainer",
+          iconUrl: "video-tutorial.png",
         },
       ],
     };
@@ -146,7 +148,6 @@ export default {
 
   methods: {
     setFilter() {
-      console.log(this.filterBy);
       this.$emit("setFilter", this.filterBy);
     },
     setCategory(category) {
