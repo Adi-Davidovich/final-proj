@@ -1,0 +1,120 @@
+.gig-details-wrapper {
+  h3 {
+    height: fit-content;
+    padding-block-end: rem(25px);
+    font-size: 1.3em;
+    line-height: rem(40px);
+    color: $clr5;
+    font-family: macan-bold;
+  }
+
+  .purchase-container {
+    border: 1px solid rgb(71, 71, 71);
+    height: fit-content;
+    position: sticky;
+    top: rem(150px);
+  }
+  .gig-details-nav {
+    position: fixed;
+    width: 100%;
+    top: 50px;
+    min-height: rem(55px);
+    background-color: #fff;
+    align-content: center;
+    z-index: 55;
+    .container {
+      list-style: none;
+      display: flex;
+
+      li {
+        padding-inline-end: rem(25px);
+      }
+    }
+  }
+  .headroom {
+    will-change: transform;
+    transition: transform 200ms linear;
+  }
+  .headroom--pinned {
+    transform: translateY(0%);
+  }
+  .headroom--unpinned {
+    transform: translateY(-100%);
+  }
+
+  .gig-details {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding: 32px;
+    position: relative;
+    top: 120px;
+    .purchase-container {
+      margin-inline-start: rem(105px);
+      grid-column: 2;
+      grid-row: 1/5;
+    }
+    .overview {
+      grid-column: 1;
+      grid-row: 1;
+      .title {
+        height: fit-content;
+        padding-block-end: rem(25px);
+        font-size: 1.7em;
+        line-height: rem(40px);
+        color: $clr5;
+        font-family: macan-bold;
+      }
+      .owner-prev {
+        padding-block-end: rem(25px);
+        align-content: center;
+        align-items: center;
+      }
+      .el-carousel {
+        margin-block-end: rem(64px);
+        border: 1px solid #cdcad1;
+      }
+      .el-carousel__button {
+        background-color: #cdcad1;
+      }
+      .el-carousel__indicator {
+        border: none;
+      }
+      .img-container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 100%;
+          max-width: 100%;
+          min-width: 140px;
+          object-fit: contain;
+        }
+      }
+    }
+
+    .description {
+      grid-column: 1;
+      grid-row: 2;
+      p {
+        white-space: pre-wrap;
+        font-family: macan-regular;
+        line-height: em(25px);
+        margin-block-end: rem(64px);
+      }
+    }
+
+    .seller-info {
+      grid-column: 1;
+      grid-row: 3;
+      .seller-name {
+        flex-direction: column;
+      }
+    }
+
+    .reviews-container {
+      grid-column: 1;
+      grid-row: 4;
+    }
+  }
+}

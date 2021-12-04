@@ -17,7 +17,7 @@
         <h5>Level 2 seller</h5>
       </div>
     </div>
-
+    
     <p @click="gigDetails">{{ gig.title }}</p>
 
     <div class="owner-rating">
