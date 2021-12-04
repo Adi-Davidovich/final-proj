@@ -35,12 +35,14 @@
         color: #62646a;
         text-decoration: none;
         font-family: macan-bold;
-        .active-link{
-          color: #1dbf73 ;
-        }
+        
+        
         &:hover{
           color: #1dbf73 ;
         }
+      }
+      .link.router-link-exact-active{
+        color: #1dbf73 ;
       }
       .link-join {
         background-color: transparent;
@@ -67,8 +69,8 @@
         width: 16px;
         height: 16px;
         position: absolute;
-        top: 9px;
-        left: 6px;
+        top: 6px;
+        left: 7px;
         color: #c5c6c9;
         font-size: 15px;
       }
@@ -112,6 +114,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  .logo{
+    cursor: pointer;
   }
 }
 

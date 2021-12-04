@@ -169,9 +169,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.el-select{
-  color: black;
-}
-</style>
-
