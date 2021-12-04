@@ -1,18 +1,18 @@
 .filter-explore {
-  margin-top: 10px;
-  h6{
-    margin-bottom: 10px;
-    font-size: 0.875rem;
+  h6 {
+    margin-bottom: 16px;
+    margin-top: 16px;
+    font-size: 1.125rem;
   }
   .category-selection-container {
     ul {
-      grid-template-columns: repeat(6, minmax(140px,180px));
+      grid-template-columns: repeat(6, minmax(140px, 180px));
       grid-template-rows: 153px;
-      justify-content:left;
+      justify-content: left;
       gap: 20px;
       text-align: center;
 
-      p{
+      p {
         max-width: 150px;
       }
       .category-card {
@@ -42,5 +42,63 @@
   .select-filters {
     margin-top: 40px;
     margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .filter-left {
+      display: flex;
+      justify-content: space-between;
+      .el-select {
+        font-size: 1rem;
+      }
+      .second-select {
+        margin-left: 10px;
+      }
+
+      .price-slider {
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .el-slider {
+          width: 150px;
+          margin-right: 10px;
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .filter-right {
+      display: flex;
+      text-align: left;
+      p {
+        margin-right: 5px;
+        font-family: macan-light;
+      }
+      .el-dropdown {
+        font-size: 1rem;
+        span {
+          font-family: macan-bold;
+        }
+      }
+    }
+  }
+
+  // Category Choose
+  .cartoonAndComic {
+    color: #1dbf73;
+  }
+  .logoDesign {
+    color: #1dbf73;
+  }
+  .Illustration {
+    color: #1dbf73;
+  }
+  .socialMediaMarketing {
+    color: #1dbf73;
+  }
+  .visualEffct {
+    color: #1dbf73;
   }
 }

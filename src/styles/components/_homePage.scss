@@ -1,30 +1,123 @@
 .hero-container {
-  // height: 400px;
+    background-image: url("~@/assets/img/2.jpeg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    height: 83vh;
+    align-items: center;
+    // width: 99%;
+    margin-bottom: 2.938rem;
+    grid-column: span 3;
+    justify-content: start;
+    align-content: center;
 }
 
 .cards-container {
   display: flex;
-  position: relative;
   flex-direction: row;
   align-content: center;
   justify-content: space-between;
   width: 100%;
+  margin-bottom: 5.938rem;
   .card-filter {
+    position: relative;
     width: 245px;
     // margin: 0 18px;
     p {
       position: absolute;
       display: flex;
       flex-wrap: wrap;
+      max-width: 94%;
       color: #fff;
       top: 0;
       left: 0;
-    }
-    img {
-      border-radius: 4px;
-      object-fit: cover;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 400;
+      padding: 16px;
 
-      height: 345px;
+      .filterTitle {
+        font-size: 20px;
+        line-height: 140%;
+        font-weight: 700;
+      }
     }
+
+  }
+}
+
+.homePage-title {
+  font-weight: 700;
+  height: 38.4px;
+  color: #404145;
+  font-size: 32px;
+  line-height: 120%;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin: 0;
+  margin-bottom: 24px;
+  font-family: macan-bold;
+  
+}
+
+.homePage-info-container {
+  grid-column: span 3;
+  padding-top: 64px;
+  padding-bottom: 64px;
+  flex: 0 1 auto;
+  flex-flow: row wrap;
+  margin-left: -8px;
+  margin-right: -8px;
+  background-color: #f1fdf7;
+
+  .homePage-info {
+    grid-column: 2;
+    padding-bottom: 0;
+    flex-basis: 46.66667%;
+    max-width: 46.66667%;
+    flex: 0 0 auto;
+    align-items: center;
+    flex-flow: row wrap;
+    padding-right: 7.29%;
+    li {
+      padding-bottom: 24px;
+      list-style: none;
+      list-style-image: none;
+      h6 {
+        display: flex;
+        padding-bottom: 8px;
+        align-items: flex-start;
+        font-size: 18px;
+        line-height: 140%;
+        font-weight: 700;
+        color: #404145;
+        margin-block-start: 2.33em;
+        margin-block-end: 2.33em;
+        margin: 0;
+        span{
+          fill: rgb(122, 125, 133);
+          margin-right: 10px;
+          min-width: 24px;
+        }
+      }
+      p {
+        font-size: 18px;
+        font-stretch: 100%;
+        font-weight: 400;
+        line-height: 26px;
+        text-align: left;
+      }
+      
+    }
+    h2 {
+      padding-bottom: 24px;
+      font-size: 32px;
+      line-height: 120%;
+      font-weight: 700;
+      color: #404145;
+      font-family: macan-bold;
+    }
+  }
+  .homePage-img {
+    // width: 100%;
   }
 }

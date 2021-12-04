@@ -7,58 +7,64 @@
           class="category-card flex"
           v-for="category in categories"
           :key="category.id"
-          @click="setFilter(category.value)"
+          @click="setCategory(category.value)"
         >
-          <img :src="require(`@/assets/icons/${category.iconUrl}`)" />
+          <img
+            :src="require(`@/assets/img/category-img/${category.iconUrl}`)"
+          />
           <p>{{ category.categoryName }}</p>
         </li>
       </ul>
     </div>
 
     <div class="select-filters">
-      <el-select
-        v-model="value2"
-        multiple
-        collapse-tags
-        placeholder="Seller Details"
-      >
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
+      <div class="filter-left">
+        <el-select
+          v-model="filterBy.deliveyTime"
+          multiple
+          :multiple-limit="1"
+          placeholder="Delivery Time"
         >
-        </el-option>
-      </el-select>
-      <el-select
-        multiple
-        collapse-tags
-        style="margin-left: 20px"
-        placeholder="Sort"
-      >
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        >
-        </el-option>
-      </el-select>
-      <el-select
-        v-model="value2"
-        multiple
-        collapse-tags
-        style="margin-left: 20px"
-        placeholder="Budget"
-      >
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        >
-        </el-option>
-      </el-select>
+          <el-option
+            v-for="item in deliveyTimeLabels"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+        <div class="price-slider">
+          <p>Budget:</p>
+          <el-slider
+            :step="5"
+            :max="300"
+            :show-tooltip="false"
+            v-model="filterBy.price"
+            @change="setFilter"
+          ></el-slider>
+          <p>{{ priceRander }}</p>
+        </div>
+      </div>
+
+      <div class="filter-right">
+        <p>Sort by:</p>
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            {{ setSortLabel }}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item @click.native="sortBy('price')"
+              >Price</el-dropdown-item
+            >
+            <el-dropdown-item @click.native="sortBy('deliveryTime')"
+              >delivey Time</el-dropdown-item
+            >
+            <el-dropdown-item @click.native="sortBy('newest')"
+              >Newest Arrivals</el-dropdown-item
+            >
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
     </div>
   </section>
 </template>
@@ -67,10 +73,36 @@
 export default {
   data() {
     return {
+      deliveyTimeLabels: [
+        {
+          label: "Express 24H",
+          value: 1,
+        },
+        {
+          label: "Up to 3 days",
+          value: 3,
+        },
+        {
+          label: "Up to 7 days",
+          value: 7,
+        },
+      ],
+      sortLabels: [
+        {
+          label: "Price",
+          value: "price",
+        },
+      ],
       filterBy: {
-        badget: "",
+        price: 0,
         category: "",
         deliveyTime: "",
+        sort: "",
+        sellerDetails: {
+          level: "",
+          rating: "",
+          languge: "",
+        },
       },
       categories: [
         {
@@ -79,9 +111,9 @@ export default {
           iconUrl: "grid.png",
         },
         {
-          categoryName: "Cartoons & Comics",
-          value: "cartoonAndComic",
-          iconUrl: "comic-book.png",
+          categoryName: "Illustration",
+          value: "illustration",
+          iconUrl: "illustration.png",
         },
         {
           categoryName: "Logo Design",
@@ -89,33 +121,57 @@ export default {
           iconUrl: "logo-design.png",
         },
         {
-          categoryName: "Illustration",
-          value: "Illustration",
-          iconUrl: "illustration.png",
+          categoryName: "Voice Over",
+          value: "voiceOver",
+          iconUrl: "voice-over.png",
         },
         {
           categoryName: "Social Media Marketing",
           value: "socialMediaMarketing",
-          iconUrl: "SocialMediaMarketing.png",
+          iconUrl: "social-media.png",
         },
         {
-          categoryName: "Visual Effects",
-          value: "visualEffct",
-          iconUrl: "visual-effects.png",
+          categoryName: "Video Explainer",
+          value: "videoExplainer",
+          iconUrl: "video-tutorial.png",
         },
       ],
     };
   },
 
   methods: {
-    setFilter(category) {
-      this.filterBy.category = category;
+    setFilter() {
       this.$emit("setFilter", this.filterBy);
+    },
+    setCategory(category) {
+      this.filterBy.category = category;
+      this.setFilter();
+    },
+
+    sortBy(value) {
+      this.filterBy.sort = value;
+      this.setFilter();
+    },
+  },
+
+  computed: {
+    setSortLabel() {
+      if (this.filterBy.sort === "deliveryTime") return "Delivey Time";
+      else if (this.filterBy.sort === "newest") return "Newest Arrivals";
+      else if (this.filterBy.sort === "price") return "Price";
+    },
+
+    priceRander() {
+      if (this.filterBy.price === 0) return "Any";
+      else return `${this.filterBy.price}$`;
     },
   },
 };
 </script>
 
 <style scoped>
+.el-select{
+  color: black;
+}
 </style>
 

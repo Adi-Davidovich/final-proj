@@ -14,22 +14,21 @@ export const gigService = {
   getEmptyGig,
 }
 
-var gGigs = _createGigs()
-console.log('gGigs :>> ', gGigs);
-
+_createGigs()
 async function query(filterBy) {
-  console.log(filterBy)
-  if (!filterBy.category) return await storageService.query(KEY)
-  else {
-    if (filterBy.category) {
-      let gigs = await storageService.query(KEY)
-      console.log(gigs)
-      let filterGigs = gigs.filter(gig => gig.category === filterBy.category)
-      console.log('adsa', filterGigs)
-      return filterGigs
-    }
+  let filterGigs = await storageService.query(KEY)
+  if (filterBy.category) {
+    filterGigs = filterGigs.filter(gig => gig.category === filterBy.category)
   }
-
+  if (filterBy.price) {
+    filterGigs = filterGigs.filter(gig => gig.price <= filterBy.price)
+  }
+  if (filterBy.sort === 'price') {
+    filterGigs = filterGigs.sort(function (a, b) {
+      return a.price - b.price;
+    })
+  }
+  return filterGigs
   // console.log('filterBy :>> ', filterBy);
   //   return await httpService.get('gig', filterBy)
 }
@@ -85,25 +84,33 @@ function _createGigs() {
   var gigs = JSON.parse(localStorage.getItem(KEY))
   if (!gigs || !gigs.length) {
     gigs = [
-      _createGig('I will do modern line art text or badge logo design', 50, ['cartoon-comic.png'], 'logoDesign'),
-      _createGig('I will design 3 modern minimalist logo design in 24 hrs', 70, ['logo-design3.jpg', 'logo-design1.png'], 'logoDesign'),
-      _createGig('I will do modern line art text or badge logo design', 80, ['cartoon-comic3.jpg', 'cartoon-comic.png'], 'logoDesign'),
-      _createGig('I will draw custom mascot cartoon avatar for nft', 20, ['cartoon-comic2.png'], 'cartoonAndComic'),
-      _createGig('I will draw flowers for your commercial packaging', 30, ['cartoon-comic.png'], 'logoDesign'),
-      _createGig('I will turn your idea into a beautiful illustration', 75, ['cartoon-comic.png'], 'cartoonAndComic'),
-      _createGig('I will draw coloring book pages for children', 50, ['cartoon-comic.png'], 'logoDesign'),
-      _createGig('I will draw amazing cartoon characters and cartoon objects', 34, ['cartoon-comic2.png'], 'logoDesign'),
-      _createGig('I will turn your idea into a beautiful illustration', 150, ['cartoon-comic.png'], 'Illustration'),
-      _createGig('I will do 5 minimalist logo design for your business', 150, ['cartoon-comic.png'], 'logoDesign'),
-      _createGig('I will draw custom mascot cartoon avatar for nft', 360, ['cartoon-comic.png'], 'cartoonAndComic'),
-      _createGig('I will do 5 minimalist logo design for your business', 70, ['cartoon-comic.png'], 'logoDesign'),
-      _createGig('I will draw custom mascot cartoon avatar for nft', 18, ['cartoon-comic.png'], 'cartoonAndComic'),
+      _createGig('I will do modern line art text or badge logo design', 50, ['logo-design/cartoon-comic.png', 'logo-design/cartoon-comic2.png'], 'logoDesign'),
+      _createGig('I will design 3 modern minimalist logo design in 24 hrs', 70, ['logo-design/cartoon-comic3.jpg', 'logo-design/cartoon-comic.png'], 'logoDesign'),
+      _createGig('I will draw flowers for your commercial packaging', 30, ['logo-design/logo-design0.png', 'logo-design/logo-design1.png'], 'logoDesign'),
+      _createGig('I will draw minimalist line art illustration', 40, ['illustration/illustration5.png', 'illustration/illustration3.jpg'], 'illustration'),
+      _createGig('I will do amazing monster character head illustration', 50, ['illustration/illustration3.jpg', 'illustration/illustration4.png'], 'illustration'),
+      _createGig('I will draw a premium illustration for your food or product catalogue', 20, ['illustration/illusration1.png', 'illustration/illustration2.jpg'], 'illustration'),
+      _createGig('I will chinese voice over 2000 words in 24 hours male', 10, ['voice-over/voice-over1.png', 'voice-over/voice-over2.png'], 'voiceOver'),
+      _createGig('I will record your classy pro australian voice over', 47, ['voice-over/voice-over3.png', 'voice-over/voice-over4.png'], 'voiceOver'),
+      _createGig('I will provide modern style animation with customized graphics', 99, ['video-explainer/video-explainer1.png', 'video-explainer/video-explainer2.png'], 'videoExplainer'),
+      _createGig('I will draw a premium illustration for your food or product catalogue', 35, ['illustration/illusration1.png', 'illustration/illustration2.jpg'], 'illustration'),
+      _createGig('I will record your professional norwegian voice over', 78, ['voice-over/voice-over1.png', 'voice-over/voice-over2.png'], 'voiceOver'),
+      _createGig('I will do organic twitter marketing promotion with real followers', 90, ['social-media/social-media1.jpg', 'social-media/social-media2.png'], 'socialMediaMarketing'),
+      _createGig('I will do finnish and english voice overs', 120, ['voice-over/voice-over5.png', 'voice-over/voice-over6.png'], 'voiceOver'),
+      _createGig('I will be your social media marketing manager and content creator', 55, ['social-media/social-media3.png', 'social-media/social-media4.jpg'], 'socialMediaMarketing'),
+      _createGig('I will provide modern style animation with customized graphics', 35, ['video-explainer/video-explainer1.png', 'video-explainer/video-explainer2.png'], 'videoExplainer'),
+      _createGig('I will do organic twitter marketing promotion with real followers', 40, ['social-media/social-media5.png', 'social-media/social-media2.png'], 'socialMediaMarketing'),
+      _createGig('I will be your social media marketing manager and content creator', 30, ['social-media/social-media1.jpg', 'social-media/social-media2.png'], 'socialMediaMarketing'),
+      _createGig('I will do modern line art text or badge logo design', 80, ['logo-design/logo-design3.jpg', 'logo-design/logo-design1.png'], 'logoDesign'),
+      _createGig('I will create a custom 2d animated explainer video animation', 48, ['video-explainer/video-explainer3.png', 'video-explainer/video-explainer4.png'], 'videoExplainer'),
+      _createGig('I will create an animated explainer or promo video for your business', 31, ['video-explainer/video-explainer5.png', 'video-explainer/video-explainer3.png'], 'videoExplainer'),
+
     ]
     localStorage.setItem(KEY, JSON.stringify(gigs))
   }
   return gigs
 }
-function _createGig(title, price, imgUrl = ['logo-design.png', 'logo-design3.jpg'], category) {
+function _createGig(title, price, imgUrl, category) {
   return {
     _id: utilService.makeId(),
     title,
