@@ -2,12 +2,16 @@
 <template>
   <header class="main-header main-layout">
     <div class="header-container">
-      <div class="logo">Fiverr</div>
+      <div class="logo">fiverr<span class="logo-dot">.</span>
+     <form class="search-container">
+      <span class="search-span"><i class="fas fa-search"></i></span>
+        <input type="search" class="search-input" autocomplete="off" placeholder="Find Services">
+        <button class="homePage-search">search</button>
+     </form>
+      </div>
       <nav class="main-nav">
         <router-link to="/explore" class="link">Explore</router-link>
-        <router-link to="/start_selling" class="link"
-          >Become a seller</router-link
-        >
+        <router-link to="/start_selling" class="link">Become a Seller</router-link>
         <router-link to="/login" class="link">Sign In</router-link>
         <router-link to="/login" class="link link-join">Join</router-link>
       </nav>
