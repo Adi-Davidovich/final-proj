@@ -1,5 +1,6 @@
 .hero-container {
   // height: 400px;
+  margin-bottom: 5.938rem;
 }
 
 .cards-container {
@@ -8,6 +9,7 @@
   align-content: center;
   justify-content: space-between;
   width: 100%;
+  margin-bottom: 5.938rem;
   .card-filter {
     position: relative;
     width: 245px;
@@ -58,11 +60,57 @@
   padding-bottom: 64px;
   flex: 0 1 auto;
   flex-flow: row wrap;
-  .homePage-info{
-    padding-right: 7%;
+  margin-left: -8px;
+  margin-right: -8px;
+  background-color: #f1fdf7;
+  .homePage-info {
     padding-bottom: 0;
+    padding: 0 16px;
+    flex-basis: 46.66667%;
+    max-width: 46.66667%;
+    flex: 0 0 auto;
+    align-items: center;
+    flex-flow: row wrap;
+    padding-right: 7.29%;
+    li {
+      padding-bottom: 24px;
+      list-style: none;
+      list-style-image: none;
+      h6 {
+        display: flex;
+        padding-bottom: 8px;
+        align-items: flex-start;
+        font-size: 18px;
+        line-height: 140%;
+        font-weight: 700;
+        color: #404145;
+        margin-block-start: 2.33em;
+        margin-block-end: 2.33em;
+        margin: 0;
+        span{
+          fill: rgb(122, 125, 133);
+          margin-right: 10px;
+          min-width: 24px;
+        }
+      }
+      p {
+        font-size: 18px;
+        font-stretch: 100%;
+        font-weight: 400;
+        line-height: 26px;
+        text-align: left;
+      }
+      
+    }
+    h2 {
+      padding-bottom: 24px;
+      font-size: 32px;
+      line-height: 120%;
+      font-weight: 700;
+      color: #404145;
+    }
   }
-  .homePage-img{
-    
+  .homePage-img {
+    // width: 100%;
   }
 }
