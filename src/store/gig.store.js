@@ -15,6 +15,10 @@ export const gigStore = {
         gigs({ gigs }) {
             return gigs
         },
+        categoryName(state) {
+            return state.filterBy.category
+        },
+
         isLoading({ isLoading }) {
             return isLoading
         },

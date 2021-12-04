@@ -15,7 +15,9 @@ import gigFilter from "../components/gig-filter.vue";
 export default {
   name: "gig-explore",
   data() {
-    return {};
+    return {
+
+    };
   },
   computed: {
     gigs() {
@@ -35,8 +37,7 @@ export default {
     setFilter(filterBy) {
       const copyFilter = JSON.parse(JSON.stringify(filterBy));
       this.$store.dispatch({ type: "setFilter", filterBy: copyFilter });
-      this.$store.dispatch({ type: "loadGigs"});
-
+      this.$store.dispatch({ type: "loadGigs" });
     },
     setSort(sortBy) {
       const copySort = JSON.parse(JSON.stringify(sortBy));
