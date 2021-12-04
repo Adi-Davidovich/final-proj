@@ -1,7 +1,7 @@
 <template>
   <section class="home app-main main-layout">
     <div class="hero main-layout full hero-container">
-      <!-- <img src="../assets/img/selling-proposition.png" /> -->
+      <img src="../assets/img/3.jpeg" />
     </div>
 
     <h2 class="homePage-title">Popular professional services</h2>
@@ -33,7 +33,7 @@
         <p>
           Reach more customers <span class="filterTitle">Social Media</span>
         </p>
-        <img src="../assets/img/selling-proposition.png" />
+        <img src="../assets/img/social.jpg" />
       </div>
     </div>
 
@@ -71,7 +71,7 @@
         </ul>
       </div>
       <div class="homePage-img">
-        <img src="../assets/img/social.jpg" alt="">
+        <img src="../assets/img/selling-proposition.png" alt="">
       </div>
     </div>
   </section>
