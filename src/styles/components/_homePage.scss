@@ -1,6 +1,11 @@
 .hero-container {
-  // height: 400px;
-  margin-bottom: 5.938rem;
+    background-image: url("~@/assets/img/2.jpeg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    height: 69vh;
+    grid-column: span 3;
+    justify-content: start;
+    align-content: center;
 }
 
 .cards-container {
@@ -33,12 +38,7 @@
         font-weight: 700;
       }
     }
-    img {
-      border-radius: 4px;
-      object-fit: cover;
 
-      height: 345px;
-    }
   }
 }
 
