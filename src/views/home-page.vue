@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <div class="homePage-info-container maim-layout">
+    <div class="homePage-info-container main-layout">
       <div class="homePage-info">
         <h2>A whole world of freelance talent at your fingertips</h2>
         <ul>

@@ -57,7 +57,7 @@
 }
 
 .homePage-info-container {
-  display: flex;
+  grid-column: span 3;
   padding-top: 64px;
   padding-bottom: 64px;
   flex: 0 1 auto;
@@ -66,8 +66,8 @@
   margin-right: -8px;
   background-color: #f1fdf7;
   .homePage-info {
+    grid-column: 2;
     padding-bottom: 0;
-    padding: 0 16px;
     flex-basis: 46.66667%;
     max-width: 46.66667%;
     flex: 0 0 auto;
