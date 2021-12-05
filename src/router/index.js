@@ -5,6 +5,7 @@ import gigApp from '../views/gig-app.vue'
 import homePage from '../views/home-page.vue'
 import gigEdit from '../views/gig-edit.vue'
 import gigDetails from '../views/gig-details.vue'
+import gigCheckout from '../views/gig-checkout.vue'
 import userProfile from '../views/user-profile.vue'
 import dashboard from '../views/dashboard.vue'
 import chat from '../views/chat.vue'
@@ -39,6 +40,10 @@ const routes = [
   {
     path: '/gig/:gigId',
     component: gigDetails,
+  },
+  {
+    path: '/checkout/:gigId',
+    component: gigCheckout,
   },
   {
     path: '/dashboard',
