@@ -10,7 +10,7 @@
       <avatar
         :size="24"
         :username="gig.owner.username"
-        :src="require(`@/assets/img/card-images/${gig.owner.imgUrl}`)"
+        :src="gig.owner.imgUrl"
       ></avatar>
       <div class="owner-name-level">
         <h4>{{ gig.owner.username }}</h4>

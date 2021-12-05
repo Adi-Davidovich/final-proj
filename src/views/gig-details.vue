@@ -14,11 +14,7 @@
       </ul>
     </nav>
     <section v-if="gig" class="gig-details">
-      <div class="purchase-container">
-        <div class="order-info">
-          <h5>Order Details</h5>
-        </div>
-      </div>
+      <order-preview class="purchase-container" :gig="gig" />
 
       <div class="overview">
         <h3 class="title">{{ gig.title }}</h3>
@@ -28,12 +24,26 @@
             :username="gig.owner.username"
             :src="gig.owner.imgUrl"
           ></avatar>
-          <h4 class="owner-name-level">{{ gig.owner.username }}</h4>
-          <h5>Level 2 seller</h5>
-          <span>|</span>
-          <span v-for="num in 5" :key="num" class="fa fa-star"></span>
-          {{ gig.owner.rate }} ({{ reviewsLength }})
-          <span>| 5 Orders in Queue</span>
+          <div class="owner-name-level">
+            <h4>{{ gig.owner.username }}</h4>
+            <span>Level 2 seller</span>
+          </div>
+          <span class="seperator">|</span>
+          <div class="stars">
+            <a href="#reviews"
+              ><span
+                v-for="num in 5"
+                :key="num"
+                class="fa fa-star"
+                :class="num <= gig.owner.rate ? 'fill' : 'empty'"
+              >
+              </span>
+            <span class="rate">{{ gig.owner.rate }}</span>
+            <span class="amount">({{ reviewsLength }})</span>
+            </a>
+          </div>
+          <span class="seperator">|</span>
+          <div class="orders">5 Orders in Queue</div>
         </div>
         <el-carousel :autoplay="false" trigger="click" height="430px">
           <el-carousel-item v-for="img in gig.imgUrl" :key="img">
@@ -64,17 +74,55 @@
           <div class="seller-name flex">
             <h4 class="owner-name-level">{{ gig.owner.username }}</h4>
             <h5>Level 2 seller</h5>
-            <div class="seller-rate">
-              <span v-for="num in 5" :key="num" class="fa fa-star"></span>
-              {{ gig.owner.rate }} ({{ reviewsLength }})
+            <div class="stars">
+              <span
+                v-for="num in 5"
+                :key="num"
+                class="fa fa-star"
+                :class="num <= gig.owner.rate ? 'fill' : 'empty'"
+              ></span>
+              <span class="rate">{{ gig.owner.rate }}</span>
+              <span class="amount">({{ reviewsLength }})</span>
             </div>
           </div>
+        </div>
+        <div class="table-info">
+          <section class="stats">
+            <div>
+              <h4>From</h4>
+              <h4>{{ gig.owner.country }}</h4>
+            </div>
+            <div>
+              <h4>Member since</h4>
+              <h4>Mar 2019</h4>
+            </div>
+            <div>
+              <h4>Avg. response time</h4>
+              <h4>1 hour</h4>
+            </div>
+            <div>
+              <h4>Last delivery</h4>
+              <h4>about 17 hours</h4>
+            </div>
+          </section>
+          <section class="description">
+            <p>{{ gig.owner.description }}</p>
+          </section>
         </div>
       </div>
 
       <div class="reviews-container">
         <a name="reviews"></a>
         <h3>{{ reviewsLength }} Reviews</h3>
+        <div class="stars">
+          <span
+            v-for="num in 5"
+            :key="num"
+            class="fa fa-star"
+            :class="num <= gig.owner.rate ? 'fill' : 'empty'"
+          ></span>
+          <span class="rate">{{ gig.owner.rate }}</span>
+        </div>
         <ul>
           <li v-for="(review, idx) in reviews" :key="idx">{{ review }}</li>
         </ul>
@@ -98,6 +146,7 @@
 
 <script>
 import { gigService } from "../services/gig.service.js";
+import orderPreview from "../components/order-preview.vue";
 import Avatar from "vue-avatar";
 
 export default {
@@ -105,7 +154,7 @@ export default {
 
   data() {
     return {
-      limitPosition: 500,
+      limitPosition: 120,
       scrolled: false,
       lastPosition: 0,
       gig: null,
@@ -164,12 +213,10 @@ export default {
         this.scrolled = true;
         // move up!
       }
-
       if (this.lastPosition > window.scrollY) {
         this.scrolled = false;
         // move down
       }
-
       this.lastPosition = window.scrollY;
       // this.scrolled = window.scrollY > 250;
     },
@@ -178,6 +225,7 @@ export default {
     window.removeEventListener("scroll", this.handleScroll);
   },
   components: {
+    orderPreview,
     Avatar,
   },
 };
