@@ -10,29 +10,29 @@
     <h2 class="homePage-title">Popular professional services</h2>
 
     <div class="cards-container">
-      <div class="card-filter" @click="setCategory('logoDesign')">
+      <div class="card-filter" @click="setCategory('Logo Design')">
         <p>Build your brand <span class="filterTitle"> Logo Design</span></p>
         <img src="../assets/img/logo-design.jpg" />
       </div>
 
-      <div class="card-filter" @click="setCategory('illustration')">
+      <div class="card-filter" @click="setCategory('Illustration')">
         <p>Color your dreams <span class="filterTitle">Illustration</span></p>
         <img src="../assets/img/illustration.jpg" />
       </div>
 
-      <div class="card-filter" @click="setCategory('voiceOver')">
+      <div class="card-filter" @click="setCategory('Voice Over')">
         <p>Share your message <span class="filterTitle">Voice Over</span></p>
         <img src="../assets/img/voiceover.jpg" />
       </div>
 
-      <div class="card-filter" @click="setCategory('videoExplainer')">
+      <div class="card-filter" @click="setCategory('Video Explainer')">
         <p>
           Engage your audience <span class="filterTitle">Video Explainer</span>
         </p>
         <img src="../assets/img/animated-explainer.jpg" />
       </div>
 
-      <div class="card-filter" @click="setCategory('socialMediaMarketing')">
+      <div class="card-filter" @click="setCategory('Social Media Marketing')">
         <p>
           Reach more customers <span class="filterTitle">Social Media</span>
         </p>
@@ -109,10 +109,12 @@
           <div class="popular">
             Popular:
             <ul>
-              <li @click="setCategory('socialMediaMarketing')">Social Media</li>
-              <li @click="setCategory('illustration')">illustration</li>
-              <li @click="setCategory('logoDesign')">Logo Design</li>
-              <li @click="setCategory('voiceOver')">Voice Over</li>
+              <li @click="setCategory('Social Media Marketing')">
+                Social Media
+              </li>
+              <li @click="setCategory('Illustration')">Illustration</li>
+              <li @click="setCategory('Logo Design')">Logo Design</li>
+              <li @click="setCategory('Voice Over')">Voice Over</li>
             </ul>
           </div>
         </div>
@@ -125,7 +127,7 @@
 // import { eventBusService, SHOW_MSG } from '../services/event-bus.service.js'
 // import {toyService} from '../services/toy.service.js'
 import appHeader from "../components/app-header.vue";
-import {utilService} from "../services/util.service.js";
+import { utilService } from "../services/util.service.js";
 export default {
   name: "home-page",
   components: {
@@ -141,7 +143,6 @@ export default {
       },
       imgs: [],
       mainImageSrc: require(`../assets/img/1.jpeg`),
-      
     };
   },
   created() {
@@ -153,12 +154,13 @@ export default {
     ];
     var interval = 0;
     if (interval === 2) {
-      console.log
+      console.log;
       interval = 0;
     }
     setInterval(function () {
       console.log("hi :>> ", interval);
-      self.mainImageSrc = self.images[utilService.getRandomIntInclusive(0,2)].image;
+      self.mainImageSrc =
+        self.images[utilService.getRandomIntInclusive(0, 2)].image;
       this.mainImageSrc = self.mainImageSrc;
       console.log("object :>> ", self.mainImageSrc);
       console.log("this.mainImageSrc :>> ", this.mainImageSrc);
