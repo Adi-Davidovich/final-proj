@@ -5,32 +5,30 @@
     <h2 class="homePage-title">Popular professional services</h2>
 
     <div class="cards-container">
-      <div class="card-filter">
+      <div class="card-filter" @click="setCategory('logoDesign')">
         <p>Build your brand <span class="filterTitle"> Logo Design</span></p>
         <img src="../assets/img/logo-design.jpg" />
       </div>
 
-      <div class="card-filter">
-        <p>Customize your site <span class="filterTitle">WordPress</span></p>
-        <img src="../assets/img/wordpress.jpg" />
+      <div class="card-filter" @click="setCategory('illustration')">
+        <p>Color your dreams <span class="filterTitle" >Illustration</span></p>
+        <img src="../assets/img/illustration.jpg" />
       </div>
 
-      <div class="card-filter">
+      <div class="card-filter" @click="setCategory('voiceOver')">
         <p>Share your message <span class="filterTitle">Voice Over</span></p>
         <img src="../assets/img/voiceover.jpg" />
       </div>
 
-      <div class="card-filter">
+      <div class="card-filter" @click="setCategory('videoExplainer')">
         <p>
-          Engage your audience <span class="filterTitle">Video Explainer</span>
+          Engage your audience <span class="filterTitle" >Video Explainer</span>
         </p>
         <img src="../assets/img/animated-explainer.jpg" />
       </div>
 
-      <div class="card-filter">
-        <p>
-          Reach more customers <span class="filterTitle">Social Media</span>
-        </p>
+      <div class="card-filter" @click="setCategory('socialMediaMarketing')">
+        <p>Reach more customers <span class="filterTitle">Social Media</span></p>
         <img src="../assets/img/social.jpg" />
       </div>
     </div>
@@ -99,6 +97,26 @@ export default {
   name: "home-page",
   components: {
     appHeader,
+  },
+  data() {
+    return {
+      filterBy: {
+        price: 0,
+        category: "",
+        deliveyTime: "",
+        sort: "",
+      },
+    };
+  },
+  methods: {
+    setCategory(category) {
+      this.filterBy.category = category;
+      var filterBy = this.filterBy;
+      const copyFilter = JSON.parse(JSON.stringify(filterBy));
+      this.$store.dispatch({ type: "setFilter", filterBy: copyFilter });
+      this.$store.dispatch({ type: "loadGigs" });
+      this.$router.push('/explore')
+    },
   },
 };
 </script>
