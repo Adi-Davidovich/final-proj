@@ -10,7 +10,7 @@
       display: flex;
       img {
         width: 180px;
-        object-fit: cover;
+        object-fit: contain;
         padding-inline-end: 15px;
       }
       .gig-info {
@@ -50,6 +50,7 @@
       p {
         padding-block-start: rem(8px);
         font-size: 14px;
+        font-family: macan-regular;
       }
       .fetures {
         padding-block-start: rem(20px);
@@ -58,5 +59,37 @@
   }
   .checkout-container {
     grid-column: 2;
+    border: 1px solid #dadbdd;
+    padding: 20px;
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-block: rem(15px);
+      color: #62646a;
+      font-size: 14px;
+      font-family: macan-regular;
+    }
+    header {
+      h3 {
+        padding-block-end: rem(15px);
+        color: $clr5;
+        font-family: macan-bold;
+      }
+      .service {
+        padding-block-end: rem(20px);
+      }
+    }
+    article {
+      .total {
+          padding-block-start: rem(20px);
+          padding-block-end: rem(10px);
+          font-family: macan-bold;
+          border-top: 1px solid #dadbdd;;
+      }
+      .delivery {
+        padding-block-end: rem(30px);
+      }
+    }
   }
 }

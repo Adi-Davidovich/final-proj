@@ -34,6 +34,27 @@
         </section>
       </div>
       <div class="checkout-container">
+        <header>
+          <h3>Price summary</h3>
+          <div class="subtotal summary-item">
+            <p>Subtotal</p>
+            <p>${{ gig.price }}</p>
+          </div>
+          <div class="service summary-item">
+            <p>Service Fee</p>
+            <p>${{ serviceFee }}</p>
+          </div>
+        </header>
+        <article>
+          <div class="total summary-item">
+            <p>Total</p>
+            <p>${{ finalPrice }}</p>
+          </div>
+          <div class="delivery summary-item">
+            <p>Delivery Time</p>
+            <p>{{ gig.package.timeToDeliver }}</p>
+          </div>
+        </article>
         <footer>
           <button class="btn-purchase" @click="purchase">Purchase</button>
         </footer>
@@ -126,7 +147,12 @@ export default {
           order,
         });
         console.log(savedOrder);
-        showMsg(`order added with id: ${savedOrder._id}`);
+        this.$message({
+          showClose: true,
+          message: "Thank you for your Order!",
+          type: "success",
+        });
+        // showMsg(`order added with id: ${savedOrder._id}`);
         // this.$router.push("/");
       } catch (err) {
         showMsg(`unable to add order: ${savedOrder} `, "danger");
