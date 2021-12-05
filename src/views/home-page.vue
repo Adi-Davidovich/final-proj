@@ -162,7 +162,7 @@ export default {
       this.mainImageSrc = self.mainImageSrc;
       console.log("object :>> ", self.mainImageSrc);
       console.log("this.mainImageSrc :>> ", this.mainImageSrc);
-    }, 1000);
+    }, 10000);
   },
   methods: {
     setCategory(category) {
