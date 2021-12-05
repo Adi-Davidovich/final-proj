@@ -1,7 +1,7 @@
 import { orderService } from "../services/order.service.js";
 // import { showMsg } from "../js/services/event-bus.service.js";
 // import { userService } from "../js/services/user.service.js";
-export const gigStore = {
+export const orderStore = {
     state: {
         isLoading: false,
         orders: [],
@@ -21,9 +21,6 @@ export const gigStore = {
 
         isLoading({ isLoading }) {
             return isLoading
-        },
-        getCurrGig(state) {
-            return JSON.parse(JSON.stringify(state.currGig))
         },
         ordersToShow(state) {
             var orders = JSON.parse(JSON.stringify(state.orders))

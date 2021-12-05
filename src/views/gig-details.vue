@@ -177,10 +177,7 @@ export default {
     },
     loggedInUser() {
       return this.$store.getters.loggedinUser;
-    },
-    gigImg() {
-      return this.gig.imgUrl[0];
-    },
+    }
   },
   watch: {
     "$route.params.gigId"(id) {

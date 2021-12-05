@@ -1,0 +1,62 @@
+.gig-details-summary {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding: 32px;
+  margin-block-start: rem(40px);
+  .order-info {
+    grid-column: 1;
+    margin-inline-end: rem(60px);
+    header {
+      display: flex;
+      img {
+        width: 180px;
+        object-fit: cover;
+        padding-inline-end: 15px;
+      }
+      .gig-info {
+        flex-grow: 1;
+        padding-inline-end: rem(15px);
+        max-width: 345px;
+        .title {
+          color: $clr5;
+          line-height: 20px;
+          font-family: macan-bold;
+          padding-block-end: rem(10px);
+        }
+        .stars {
+          .rate {
+            color: $clr5;
+            font-family: macan-bold;
+          }
+          .amount {
+            color: #95979d;
+          }
+        }
+      }
+      .price {
+        color: $clr5;
+        line-height: 20px;
+        font-family: macan-bold;
+      }
+    }
+    .package {
+      padding-block-start: rem(20px);
+      .text {
+        color: $clr5;
+        font-family: macan-bold;
+        font-size: 18px;
+        line-height: 140%;
+      }
+      p {
+        padding-block-start: rem(8px);
+        font-size: 14px;
+      }
+      .fetures {
+        padding-block-start: rem(20px);
+      }
+    }
+  }
+  .checkout-container {
+    grid-column: 2;
+  }
+}

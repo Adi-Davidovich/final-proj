@@ -48,9 +48,9 @@ async function remove(id) {
 async function save(order) {
   let savedOrder 
   if (order._id){
-    order.createdAt = Date.now()
     savedOrder = await storageService.put(KEY, order)
   } else {
+    order.createdAt = Date.now()
     savedOrder = await storageService.post(KEY, order)
   }
   return savedOrder
