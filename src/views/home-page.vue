@@ -84,6 +84,30 @@
         <div class="homePage-img">
           <img src="../assets/img/selling-proposition.png" alt="" />
         </div>
+
+        <div class="hero-title main-layout">
+          <p>Find the perfect <span>freelance</span> services for your business
+          </p>
+          <form class="search-container home-page-search-container">
+            <span class="search-span"><i class="fas fa-search"></i></span>
+               <input
+               type="search"
+              class="search-input"
+              autocomplete="off"
+             placeholder='Try "Video Explainer" '
+             />
+              <button class="homePage-search">search</button>
+          </form>
+          <div class="popular">
+            Popular: <ul>
+              <li @click="setCategory('socialMediaMarketing')">Social Media</li>
+              <li @click="setCategory('illustration')">illustration</li>
+              <li @click="setCategory('logoDesign')">Logo Design</li>
+              <li @click="setCategory('voiceOver')">Voice Over</li>
+            </ul>
+          </div>
+        </div>
+        
       </div>
     </div>
   </section>
