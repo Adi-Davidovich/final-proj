@@ -2,18 +2,36 @@
 <template>
   <header class="main-header main-layout">
     <div class="header-container">
-      <div class="logo">fiverr<span class="logo-dot">.</span>
-     <form class="search-container">
-      <span class="search-span"><i class="fas fa-search"></i></span>
-        <input type="search" class="search-input" autocomplete="off" placeholder="Find Services">
-        <button class="homePage-search">search</button>
-     </form>
+      <div class="logo" @click="routToHome">
+        fiverr<span class="logo-dot">.</span>
+        <form class="search-container">
+          <span class="search-span"><i class="fas fa-search"></i></span>
+          <input
+            type="search"
+            class="search-input"
+            autocomplete="off"
+            v-model="categoryShow"
+            :placeholder="categoryShow"
+          />
+          <button class="homePage-search">search</button>
+        </form>
       </div>
       <nav class="main-nav">
-        <router-link to="/explore" class="link">Explore</router-link>
-        <router-link to="/start_selling" class="link">Become a Seller</router-link>
-        <router-link to="/login" class="link">Sign In</router-link>
-        <router-link to="/login" class="link link-join">Join</router-link>
+        <router-link to="/explore" class="link" active-class="active-link"
+          >Explore</router-link
+        >
+        <router-link to="/start_selling" class="link"
+          >Become a Seller</router-link
+        >
+        <router-link to="/login" class="link" active-class="active-link"
+          >Sign In</router-link
+        >
+        <router-link
+          to="/login"
+          class="link link-join"
+          active-class="active-link"
+          >Join</router-link
+        >
       </nav>
     </div>
   </header>
@@ -50,7 +68,9 @@
 export default {
   name: "app-header",
   data() {
-    return {};
+    return {
+      categoryShow: (!this.$store.state.filterBy)? "Find Services":this.$store.state.filterBy.category
+    };
   },
   computed: {
     user() {
@@ -61,7 +81,34 @@ export default {
       return this.$store.getters.loggedinUser;
     },
   },
+  created() {
+    if (!this.$store.state.filterBy) {
+      this.categoryShow = "Find Services";
+    } else {
+      this.categoryShow === this.$store.state.filterBy.category;
+    }
+  },
+  watch: {
+    "$store.state.filterBy": {
+      showChange() {
+        deep: true, this.filterCategory();
+      },
+      immediate: true,
+    },
+  },
+  methods: {
+    routToHome() {
+      this.$router.push("/");
+    },
+    filterCategory() {
+      console.log("hi :>> ");
+      if (!this.$store.state.filterBy) {
+        this.categoryShow = "Find Services";
+      } else {
+        this.categoryShow === this.$store.state.filterBy.category;
+      }
+    },
+  },
   components: {},
-};
+}
 </script>
-

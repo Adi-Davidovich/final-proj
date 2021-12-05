@@ -13,6 +13,7 @@ export const gigStore = {
     },
     getters: {
         gigs({ gigs }) {
+            console.log(gigs);
             return gigs
         },
         categoryName(state) {

@@ -5,6 +5,7 @@ import gigApp from '../views/gig-app.vue'
 import homePage from '../views/home-page.vue'
 import gigEdit from '../views/gig-edit.vue'
 import gigDetails from '../views/gig-details.vue'
+import gigOrder from '../views/gig-order.vue'
 import userProfile from '../views/user-profile.vue'
 import dashboard from '../views/dashboard.vue'
 import chat from '../views/chat.vue'
@@ -41,6 +42,10 @@ const routes = [
     component: gigDetails,
   },
   {
+    path: '/checkout/:gigId',
+    component: gigOrder,
+  },
+  {
     path: '/dashboard',
     component: dashboard,
   },
@@ -62,7 +67,10 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })
 
 export default router

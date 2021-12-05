@@ -15,14 +15,14 @@
       <avatar
         :size="24"
         :username="gig.owner.username"
-        :src="require(`@/assets/img/card-images/${gig.owner.imgUrl}`)"
+        :src="gig.owner.imgUrl"
       ></avatar>
       <div class="owner-name-level">
         <h4>{{ gig.owner.username }}</h4>
         <h5>Level 2 seller</h5>
       </div>
     </div>
-
+    
     <p @click="gigDetails">{{ gig.title }}</p>
 
     <div class="owner-rating">

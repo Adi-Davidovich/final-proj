@@ -5,32 +5,30 @@
     <h2 class="homePage-title">Popular professional services</h2>
 
     <div class="cards-container">
-      <div class="card-filter">
+      <div class="card-filter" @click="setCategory('logoDesign')">
         <p>Build your brand <span class="filterTitle"> Logo Design</span></p>
         <img src="../assets/img/logo-design.jpg" />
       </div>
 
-      <div class="card-filter">
-        <p>Customize your site <span class="filterTitle">WordPress</span></p>
-        <img src="../assets/img/wordpress.jpg" />
+      <div class="card-filter" @click="setCategory('illustration')">
+        <p>Color your dreams <span class="filterTitle" >Illustration</span></p>
+        <img src="../assets/img/illustration.jpg" />
       </div>
 
-      <div class="card-filter">
+      <div class="card-filter" @click="setCategory('voiceOver')">
         <p>Share your message <span class="filterTitle">Voice Over</span></p>
         <img src="../assets/img/voiceover.jpg" />
       </div>
 
-      <div class="card-filter">
+      <div class="card-filter" @click="setCategory('videoExplainer')">
         <p>
-          Engage your audience <span class="filterTitle">Video Explainer</span>
+          Engage your audience <span class="filterTitle" >Video Explainer</span>
         </p>
         <img src="../assets/img/animated-explainer.jpg" />
       </div>
 
-      <div class="card-filter">
-        <p>
-          Reach more customers <span class="filterTitle">Social Media</span>
-        </p>
+      <div class="card-filter" @click="setCategory('socialMediaMarketing')">
+        <p>Reach more customers <span class="filterTitle">Social Media</span></p>
         <img src="../assets/img/social.jpg" />
       </div>
     </div>
@@ -86,6 +84,30 @@
         <div class="homePage-img">
           <img src="../assets/img/selling-proposition.png" alt="" />
         </div>
+
+        <div class="hero-title main-layout">
+          <p>Find the perfect <span>freelance</span> services for your business
+          </p>
+          <form class="search-container home-page-search-container">
+            <span class="search-span"><i class="fas fa-search"></i></span>
+               <input
+               type="search"
+              class="search-input"
+              autocomplete="off"
+             placeholder='Try "Video Explainer" '
+             />
+              <button class="homePage-search">search</button>
+          </form>
+          <div class="popular">
+            Popular: <ul>
+              <li @click="setCategory('socialMediaMarketing')">Social Media</li>
+              <li @click="setCategory('illustration')">illustration</li>
+              <li @click="setCategory('logoDesign')">Logo Design</li>
+              <li @click="setCategory('voiceOver')">Voice Over</li>
+            </ul>
+          </div>
+        </div>
+        
       </div>
     </div>
   </section>
@@ -99,6 +121,26 @@ export default {
   name: "home-page",
   components: {
     appHeader,
+  },
+  data() {
+    return {
+      filterBy: {
+        price: 0,
+        category: "",
+        deliveyTime: "",
+        sort: "",
+      },
+    };
+  },
+  methods: {
+    setCategory(category) {
+      this.filterBy.category = category;
+      var filterBy = this.filterBy;
+      const copyFilter = JSON.parse(JSON.stringify(filterBy));
+      this.$store.dispatch({ type: "setFilter", filterBy: copyFilter });
+      this.$store.dispatch({ type: "loadGigs" });
+      this.$router.push('/explore')
+    },
   },
 };
 </script>

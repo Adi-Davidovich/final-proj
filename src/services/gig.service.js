@@ -114,15 +114,17 @@ function _createGig(title, price, imgUrl, category) {
   return {
     _id: utilService.makeId(),
     title,
-    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molest iasblanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molestias blanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molestias blanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam.',
+    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. \n Nisi molest iasblanditiis aspernatur quidem quisquam omnis \ntenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, sapiente labore ratione sed ipsum totam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. \nNisi molestias blanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta quibusdam, \nsapiente labore ratione sed ipsum totam.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi molestias blanditiis aspernatur quidem quisquam omnis tenetur maxime necessitatibus aut numquam corrupti culpa dicta \nquibusdam, sapiente labore ratione sed ipsum totam.',
     price,
     imgUrl,
     category,
     owner: {
       _id: "1hu2i",
       username: "logoflow",
-      imgUrl: 'avatar.png',
-      rate: 4
+      imgUrl: 'https://i.dlpng.com/static/png/7019966_preview.png',
+      rate: 4,
+      country: 'United States',
+      description: "Hi, I'm a professional graphic designer. I'm an expert in designing logos, banners, book covers, business card designs, etc. I am very fast, creative, and very oriented on deadlines. I look forward to helping you with your graphic design needs !!"
     },
     tags: [
       "artisitic",
@@ -130,7 +132,6 @@ function _createGig(title, price, imgUrl, category) {
       "accessible"
     ],
     package: {
-      title: "Basic Package",
       description: "2 Modern Logo Concept with High Resolution JPEG and Transparent PNG",
       timeToDeliver: "3 Days",
       revisions: 5,

@@ -1,0 +1,64 @@
+.purchase-container {
+  border: 1px solid #dadbdd;
+  height: fit-content;
+  position: sticky;
+  top: rem(120px);
+  .order-info {
+    min-width: 415px;
+    padding: rem(20px) rem(24px) rem(24px);
+    header {
+      padding-block-end: rem(10px);
+      .title {
+        min-height: 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+        .text {
+          color: $clr5;
+          font-family: macan-bold;
+        }
+        .price {
+          font-size: 20px;
+          color: $clr5;
+          font-family: macan-bold;
+        }
+      }
+      p {
+        min-height: 63px;
+        margin-top: rem(10px);
+        font-size: 14px;
+        line-height: 140%;
+        word-break: break-word;
+      }
+    }
+    article {
+      .additional-info {
+        margin-block-end: rem(8px);
+        display: flex;
+        .delivery-wrapper {
+          display: flex;
+          align-items: center;
+          .delivery {
+            margin-inline-start: rem(8px);
+            font-family: macan-bold;
+            font-size: 14px;
+          }
+        }
+        .revisions-wrapper {
+          margin-inline-start: rem(16px);
+          display: flex;
+          align-items: center;
+          .revisions {
+            margin-inline-start: rem(8px);
+            font-family: macan-bold;
+            font-size: 14px;
+          }
+        }
+      }
+      .fetures {
+        margin-block-end: rem(20px);
+      }
+    }
+  }
+}
