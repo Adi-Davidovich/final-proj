@@ -1,6 +1,11 @@
 <template>
   <section class="home app-main main-layout">
-    <div class="hero main-layout full hero-container"></div>
+    <div class="main-layout full">
+      <div
+        class="hero hero-container"
+        :style="{ backgroundImage: `url(${mainImageSrc})` }"
+      ></div>
+    </div>
 
     <h2 class="homePage-title">Popular professional services</h2>
 
@@ -11,7 +16,7 @@
       </div>
 
       <div class="card-filter" @click="setCategory('illustration')">
-        <p>Color your dreams <span class="filterTitle" >Illustration</span></p>
+        <p>Color your dreams <span class="filterTitle">Illustration</span></p>
         <img src="../assets/img/illustration.jpg" />
       </div>
 
@@ -22,13 +27,15 @@
 
       <div class="card-filter" @click="setCategory('videoExplainer')">
         <p>
-          Engage your audience <span class="filterTitle" >Video Explainer</span>
+          Engage your audience <span class="filterTitle">Video Explainer</span>
         </p>
         <img src="../assets/img/animated-explainer.jpg" />
       </div>
 
       <div class="card-filter" @click="setCategory('socialMediaMarketing')">
-        <p>Reach more customers <span class="filterTitle">Social Media</span></p>
+        <p>
+          Reach more customers <span class="filterTitle">Social Media</span>
+        </p>
         <img src="../assets/img/social.jpg" />
       </div>
     </div>
@@ -86,20 +93,22 @@
         </div>
 
         <div class="hero-title main-layout">
-          <p>Find the perfect <span>freelance</span> services for your business
+          <p>
+            Find the perfect <span>freelance</span> services for your business
           </p>
           <form class="search-container home-page-search-container">
             <span class="search-span"><i class="fas fa-search"></i></span>
-               <input
-               type="search"
+            <input
+              type="search"
               class="search-input"
               autocomplete="off"
-             placeholder='Try "Video Explainer" '
-             />
-              <button class="homePage-search">search</button>
+              placeholder='Try "Video Explainer" '
+            />
+            <button class="homePage-search">search</button>
           </form>
           <div class="popular">
-            Popular: <ul>
+            Popular:
+            <ul>
               <li @click="setCategory('socialMediaMarketing')">Social Media</li>
               <li @click="setCategory('illustration')">illustration</li>
               <li @click="setCategory('logoDesign')">Logo Design</li>
@@ -107,7 +116,6 @@
             </ul>
           </div>
         </div>
-        
       </div>
     </div>
   </section>
@@ -117,6 +125,7 @@
 // import { eventBusService, SHOW_MSG } from '../services/event-bus.service.js'
 // import {toyService} from '../services/toy.service.js'
 import appHeader from "../components/app-header.vue";
+import {utilService} from "../services/util.service.js";
 export default {
   name: "home-page",
   components: {
@@ -130,7 +139,30 @@ export default {
         deliveyTime: "",
         sort: "",
       },
+      imgs: [],
+      mainImageSrc: require(`../assets/img/1.jpeg`),
+      
     };
+  },
+  created() {
+    let self = this;
+    this.images = [
+      { id: 1, image: require(`../assets/img/3.jpeg`) },
+      { id: 2, image: require(`../assets/img/2.jpeg`) },
+      { id: 3, image: require(`../assets/img/1.jpeg`) },
+    ];
+    var interval = 0;
+    if (interval === 2) {
+      console.log
+      interval = 0;
+    }
+    setInterval(function () {
+      console.log("hi :>> ", interval);
+      self.mainImageSrc = self.images[utilService.getRandomIntInclusive(0,2)].image;
+      this.mainImageSrc = self.mainImageSrc;
+      console.log("object :>> ", self.mainImageSrc);
+      console.log("this.mainImageSrc :>> ", this.mainImageSrc);
+    }, 1000);
   },
   methods: {
     setCategory(category) {
@@ -139,7 +171,7 @@ export default {
       const copyFilter = JSON.parse(JSON.stringify(filterBy));
       this.$store.dispatch({ type: "setFilter", filterBy: copyFilter });
       this.$store.dispatch({ type: "loadGigs" });
-      this.$router.push('/explore')
+      this.$router.push("/explore");
     },
   },
 };

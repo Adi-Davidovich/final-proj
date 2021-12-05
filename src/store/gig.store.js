@@ -86,6 +86,7 @@ export const gigStore = {
             state.gigs = gigs
         },
         setFilter(state, { filterBy }) {
+            console.log('filterBy :>> ', filterBy);
             state.filterBy = filterBy
         },
         setSort(state, { copySort }) {

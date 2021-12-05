@@ -1,10 +1,9 @@
 .hero-container {
-  background-image: url("~@/assets/img/2.jpeg");
+  // background-image: url("~@/assets/img/2.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 83vh;
   align-items: center;
-  // width: 99%;
   margin-bottom: 1.5rem;
   grid-column: span 3;
   justify-content: start;
@@ -127,7 +126,7 @@
     align-self: flex-start;
     position: absolute;
     top: 21%;
-    width: 51.3%;
+    width: 626px;
     margin: 0;
     padding: 0;
     p {
@@ -160,13 +159,13 @@
         top: 6px;
         left: 7px;
         color: #c5c6c9;
-        font-size: 15px;
+        font-size: 16px;
       }
       .search-input {
         border: 1px solid #c5c6c9;
         border-right: 0;
         border-radius: 3px 0 0 3px;
-        font-size: 15px;
+        font-size: 16px;
         padding-top: 8px;
         padding: 8px 7px 7px 28px;
         width: 100%;

@@ -4,16 +4,16 @@
     <div class="header-container">
       <div class="logo" @click="routToHome">
         fiverr<span class="logo-dot">.</span>
-        <form class="search-container">
+        <form class="search-container" @submit.prevent="setFilter">
           <span class="search-span"><i class="fas fa-search"></i></span>
           <input
             type="search"
             class="search-input"
             autocomplete="off"
-            v-model="categoryShow"
-            :placeholder="categoryShow"
+            v-model="filterBy.category"
+            :placeholder="getSearchTerm"
           />
-          <button class="homePage-search">search</button>
+          <button class="homePage-search" type="submit">search</button>
         </form>
       </div>
       <nav class="main-nav">
@@ -69,7 +69,17 @@ export default {
   name: "app-header",
   data() {
     return {
-      categoryShow: (!this.$store.state.filterBy)? "Find Services":this.$store.state.filterBy.category
+      filterBy: {
+        price: 0,
+        category: "",
+        deliveyTime: "",
+        sort: "",
+        sellerDetails: {
+          level: "",
+          rating: "",
+          languge: "",
+        },
+      },
     };
   },
   computed: {
@@ -80,6 +90,9 @@ export default {
       );
       return this.$store.getters.loggedinUser;
     },
+    getSearchTerm() {
+      return this.$store.getters.categoryName;
+    },
   },
   created() {
     if (!this.$store.state.filterBy) {
@@ -89,26 +102,33 @@ export default {
     }
   },
   watch: {
-    "$store.state.filterBy": {
-      showChange() {
-        deep: true, this.filterCategory();
-      },
-      immediate: true,
-    },
+    // "$store.state.filterBy": {
+    //   showChange() {
+    //     deep: true, this.filterCategory();
+    //   },
+    //   immediate: true,
+    // },
   },
   methods: {
     routToHome() {
       this.$router.push("/");
     },
     filterCategory() {
-      console.log("hi :>> ");
       if (!this.$store.state.filterBy) {
         this.categoryShow = "Find Services";
       } else {
         this.categoryShow === this.$store.state.filterBy.category;
       }
     },
+    setFilter() {
+      this.$store
+        .dispatch({ type: "setFilter", filterBy: this.filterBy })
+        .then(() => {
+          this.$router.push("/explore");
+          // this.filterBy.category = "";
+        });
+    },
   },
   components: {},
-}
+};
 </script>

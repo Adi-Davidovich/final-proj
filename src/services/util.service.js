@@ -6,7 +6,8 @@ export const utilService = {
     store,
     debounce,
     getRandomColor,
-    delay
+    delay,
+    getRandomIntInclusive
 }
 
 function saveToStorage(key, value) {
@@ -70,3 +71,9 @@ function delay(ms = 1500) {
         setTimeout(resolve, ms)
     })
 }
+
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+  }
