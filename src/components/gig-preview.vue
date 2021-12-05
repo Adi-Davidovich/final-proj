@@ -2,7 +2,12 @@
   <section class="gig-preview">
     <el-carousel :autoplay="false" trigger="click" height="197px">
       <el-carousel-item v-for="img in gig.imgUrl" :key="img">
-        <img :src="require(`@/assets/img/card-images/${img}`)" alt="" class="gig-img" @click="gigDetails"/>
+        <img
+          :src="require(`@/assets/img/card-images/${img}`)"
+          alt=""
+          class="gig-img"
+          @click="gigDetails"
+        />
       </el-carousel-item>
     </el-carousel>
 
@@ -24,7 +29,9 @@
       <i class="fas fa-star"></i>{{ gig.owner.rate }}
     </div>
     <div class="gig-footer flex">
-      <i class="fas fa-heart"></i>
+      <el-tooltip content="Add to favorite" placement="top">
+        <i class="fas fa-heart"></i>
+      </el-tooltip>
       <h6>
         starting at<span> US${{ gig.price }}</span>
       </h6>
@@ -41,10 +48,10 @@ export default {
     return {};
   },
 
-  methods:{
-    gigDetails(){
-      this.$router.push('/gig/'+this.gig._id)
-    }
+  methods: {
+    gigDetails() {
+      this.$router.push("/gig/" + this.gig._id);
+    },
   },
 
   components: {

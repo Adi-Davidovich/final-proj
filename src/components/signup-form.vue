@@ -1,36 +1,44 @@
 <template>
-   <section class="login-form main-app">
-        <h3>signup</h3>    
-        <form @submit.prevent="signup">
-        <input ref="nickname" v-model="nickname" type="text" placeholder="username">
-        <input v-model="password" type="password" placeholder="password">
-        <button type="submit">signup</button>
-        </form>
-    </section>
+  <section class="login-form main-app">
+    <h3>Join fiverr</h3>
+    <form @submit.prevent="signup">
+      <el-input
+        placeholder="Enter username"
+        v-model="user.username"
+        required
+      ></el-input>
+      <el-input
+        placeholder="Enter pssword"
+        v-model="user.password"
+        type="password"
+        required
+      ></el-input>
+      <button type="submit">Join</button>
+    </form>
+  </section>
 </template>
 
 <script>
-import {userService} from '../services/user.service.js'
+import { userService } from "../services/user.service.js";
 export default {
-data() {
-        return {
-            nickname: '',
-            password: ''
-        }
+  data() {
+    return {
+      user: {
+        username: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    signup() {
+      userService.signup(this.nickname).then((user) => {
+        this.user = user;
+        this.$router.push("/");
+      });
     },
-    methods:{
-        signup(){
-            userService.signup(this.nickname)
-            .then((user) => {
-                this.user = user
-                this.$router.push('/')
-            })
-        }
-    },
-    mounted(){
-        // console.log('mounted');
-        this.$refs.nickname.focus()
-    }
-}
+  },
+  mounted() {
+  },
+};
 </script>
 

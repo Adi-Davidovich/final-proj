@@ -96,15 +96,17 @@ function getLoggedinUser() {
 
 
 (async () => {
-    if (localStorage.getItem('user')) return
+    if (sessionStorage.getItem('user')) return
     console.log('hi')
     await userService.signup({
-        fullname: 'Puki Norma', "imgUrl": "/img/img1.jpg",
-        isAdmin: false,
+        fullname: 'Puki Norma', 
+        imgUrl: "/img/img1.jpg",
+        isSeller: false,
         username: "Puki Norma",
         password: "1234",
         details: "",
-        isAdmin: false
+        reviews: []
+        
     })
     // await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
     // await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})

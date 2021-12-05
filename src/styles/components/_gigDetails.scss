@@ -6,26 +6,7 @@
     line-height: rem(40px);
     color: $clr5;
     font-family: macan-bold;
-  }
-  .stars {
-    .fill {
-      color: #ffb33e;
-    }
-    .empty {
-      color: #fff;
-      text-shadow: -1px 0 #ffb33e, 0 1px #ffb33e, 1px 0 #ffb33e, 0 -1px #ffb33e;
-    }
-    .rate {
-      padding-inline-start: rem(4px);
-      color: #ffb33e;
-      font-family: macan-bold;
-    }
-    .amount {
-      padding-inline-start: rem(4px);
-      font-size: 0.9rem;
-    }
-  }
-  
+  } 
   .gig-details-nav {
     position: sticky;
     width: 100%;

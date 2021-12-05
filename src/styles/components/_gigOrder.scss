@@ -1,0 +1,95 @@
+.gig-details-summary {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding: 32px;
+  margin-block-start: rem(40px);
+  .order-info {
+    grid-column: 1;
+    margin-inline-end: rem(60px);
+    header {
+      display: flex;
+      img {
+        width: 180px;
+        object-fit: contain;
+        padding-inline-end: 15px;
+      }
+      .gig-info {
+        flex-grow: 1;
+        padding-inline-end: rem(15px);
+        max-width: 345px;
+        .title {
+          color: $clr5;
+          line-height: 20px;
+          font-family: macan-bold;
+          padding-block-end: rem(10px);
+        }
+        .stars {
+          .rate {
+            color: $clr5;
+            font-family: macan-bold;
+          }
+          .amount {
+            color: #95979d;
+          }
+        }
+      }
+      .price {
+        color: $clr5;
+        line-height: 20px;
+        font-family: macan-bold;
+      }
+    }
+    .package {
+      padding-block-start: rem(20px);
+      .text {
+        color: $clr5;
+        font-family: macan-bold;
+        font-size: 18px;
+        line-height: 140%;
+      }
+      p {
+        padding-block-start: rem(8px);
+        font-size: 14px;
+        font-family: macan-regular;
+      }
+      .fetures {
+        padding-block-start: rem(20px);
+      }
+    }
+  }
+  .checkout-container {
+    grid-column: 2;
+    border: 1px solid #dadbdd;
+    padding: 20px;
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-block: rem(15px);
+      color: #62646a;
+      font-size: 14px;
+      font-family: macan-regular;
+    }
+    header {
+      h3 {
+        padding-block-end: rem(15px);
+        color: $clr5;
+        font-family: macan-bold;
+      }
+      .service {
+        padding-block-end: rem(20px);
+      }
+    }
+    article {
+      .total {
+          padding-block-start: rem(20px);
+          padding-block-end: rem(10px);
+          font-family: macan-bold;
+          border-top: 1px solid #dadbdd;;
+      }
+      .delivery {
+        padding-block-end: rem(30px);
+      }
+    }
+  }
+}

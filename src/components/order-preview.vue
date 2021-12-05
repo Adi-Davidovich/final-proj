@@ -29,7 +29,7 @@
         </div>
       </article>
       <footer>
-        <button>Continue (${{ gig.price }})</button>
+        <button class="btn-purchase" @click="orderCheckout">Continue (${{ gig.price }})</button>
       </footer>
     </div>
   </div>
@@ -50,6 +50,11 @@ export default {
       ],
     };
   },
+  methods: {
+      orderCheckout() {
+          this.$router.push('/checkout/'+this.gig._id)
+      }
+  }
 };
 </script>
 

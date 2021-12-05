@@ -4,9 +4,9 @@
       <h6>Select Category</h6>
       <ul class="grid">
         <li
-          class="category-card flex"
           v-for="category in categories"
           :key="category.id"
+          class="category-card flex"
           @click="setCategory(category.value)"
         >
           <img
@@ -169,3 +169,12 @@ export default {
 };
 </script>
 
+<<<<<<< HEAD
+<style scoped>
+.el-select {
+  color: black;
+}
+</style>
+
+=======
+>>>>>>> dc71685d80ee494832f713d8a0f5380fed478bbe
