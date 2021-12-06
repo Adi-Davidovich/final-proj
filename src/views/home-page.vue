@@ -167,7 +167,6 @@ export default {
     ];
     var interval = 0;
     if (interval === 2) {
-      console.log;
       interval = 0;
     }
     setInterval(function () {

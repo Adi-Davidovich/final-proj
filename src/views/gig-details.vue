@@ -38,8 +38,8 @@
                 :class="num <= gig.owner.rate ? 'fill' : 'empty'"
               >
               </span>
-            <span class="rate">{{ gig.owner.rate }}</span>
-            <span class="amount">({{ reviewsLength }})</span>
+              <span class="rate">{{ gig.owner.rate }}</span>
+              <span class="amount">({{ reviewsLength }})</span>
             </a>
           </div>
           <span class="seperator">|</span>
@@ -111,21 +111,101 @@
         </div>
       </div>
 
-      <div class="reviews-container">
+      <div class="reviews-package">
         <a name="reviews"></a>
-        <h3>{{ reviewsLength }} Reviews</h3>
-        <div class="stars">
-          <span
-            v-for="num in 5"
-            :key="num"
-            class="fa fa-star"
-            :class="num <= gig.owner.rate ? 'fill' : 'empty'"
-          ></span>
-          <span class="rate">{{ gig.owner.rate }}</span>
+        <header>
+          <h3>{{ reviewsLength }} Reviews</h3>
+          <div class="stars">
+            <span
+              v-for="num in 5"
+              :key="num"
+              class="fa fa-star"
+              :class="num <= gig.owner.rate ? 'fill' : 'empty'"
+            ></span>
+            <span class="rate">{{ gig.owner.rate }}</span>
+          </div>
+        </header>
+        <div class="breakdown-container">
+          <div class="table-stars-container">
+            <table class="stars-table">
+              <tbody style="display: flex; flex-direction: column-reverse">
+                <tr v-for="(num, idx) in 5" :key="idx">
+                  <td class="star-filter">
+                    <button>{{ num }} Stars</button>
+                  </td>
+                  <td class="progress-bar-container">
+                    <div class="star-progress-bar">
+                      <div class="grey">
+                        <span
+                          class="progress"
+                          :style="{ width: `${progressBar(num)}%` }"
+                        ></span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="star-num">({{ starNum(num) }})</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="rating-breakdown">
+            <h5 class="title">Rating Breakdown</h5>
+            <ul>
+              <li>
+                Seller communication level<span
+                  >4.9<span class="fa fa-star"></span
+                ></span>
+              </li>
+              <li>
+                Recommend to a friend<span
+                  >4.1<span class="fa fa-star"></span
+                ></span>
+              </li>
+              <li>
+                Service as described<span
+                  >4.5<span class="fa fa-star"></span
+                ></span>
+              </li>
+            </ul>
+          </div>
         </div>
-        <ul>
-          <li v-for="(review, idx) in reviews" :key="idx">{{ review }}</li>
-        </ul>
+        <div class="reviews-container">
+          <ul class="review-list">
+            <li class="review-item" v-for="(review, idx) in reviews" :key="idx">
+              <div class="user-img">
+                <avatar
+                  :size="30"
+                  :username="review.username"
+                  :src="review.username"
+                ></avatar>
+              </div>
+              <div class="review-content">
+                <div class="reviewer-details">
+                  <h4>{{ review.username }}</h4>
+                  <div class="review-rating">
+                    <i class="fa fa-star" />
+                    {{ review.rate }}
+                  </div>
+                </div>
+                <div class="reviewer-sub-details">
+                  <div class="country">
+                    <img src="https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png" alt="flag" class="country-flag" />
+                    <span class="country-name">
+                      {{ review.country }}
+                    </span>
+                  </div>
+                </div>
+                <div class="review-description">
+                  <p>
+                    {{ review.txt }}
+                  </p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <!-- <form v-if="loggedInUser" @submit.prevent="addReview()">
@@ -170,14 +250,33 @@ export default {
   },
   computed: {
     reviews() {
-      return ["I loved the Logo", "Good Job!", "Thank you"];
+      return [
+        {
+          txt: "I loved the Logo",
+          rate: 5,
+          username: "Josh",
+          country: "United States",
+        },
+        {
+          txt: "Good Job!",
+          rate: 5,
+          username: "Josh",
+          country: "United States",
+        },
+        {
+          txt: "Thank you",
+          rate: 2,
+          username: "Josh",
+          country: "United States",
+        },
+      ];
     },
     reviewsLength() {
       return this.reviews.length;
     },
     loggedInUser() {
       return this.$store.getters.loggedinUser;
-    }
+    },
   },
   watch: {
     "$route.params.gigId"(id) {
@@ -194,6 +293,20 @@ export default {
       // this.reviewToEdit.aboutGigId = this.gig._id;
       // console.log("this.reviewToEdit :>> ", this.reviewToEdit);
       // this.$store.dispatch({ type: "loadReviews", id: this.gig._id });
+    },
+    progressBar(num) {
+      const amount = +this.reviews.reduce((acc, review) => {
+        if (review.rate === num) acc++;
+        return acc;
+      }, 0);
+      return (amount / this.reviews.length) * 100;
+    },
+    starNum(num) {
+      const amount = +this.reviews.reduce((acc, review) => {
+        if (review.rate === num) acc++;
+        return acc;
+      }, 0);
+      return amount;
     },
     async addReview() {
       await this.$store.dispatch({

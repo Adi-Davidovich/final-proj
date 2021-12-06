@@ -11,6 +11,7 @@
 
 // COMPONENTS
 
+<<<<<<< HEAD
 @import "./components/dataChart.scss";
 @import "./components/filter";
 @import "./components/footer.scss";
@@ -33,3 +34,25 @@
 @import "./components/becomeASeller.scss";
 @import "./components/profilePage.scss";
 @import "./components/editGig.scss";
+=======
+@import './components/dataChart.scss';
+@import './components/filter';
+@import './components/footer.scss';
+@import './components/header.scss';
+@import './components/logo.scss';
+@import './components/progressBar.scss';
+@import './components/gigApp.scss';
+@import './components/toyChart.scss';
+@import './components/gigDetails.scss';
+@import './components/orderPreview.scss';
+@import './components/gigOrder.scss';
+@import './components/toyEdit.scss';
+@import './components/gigList.scss';
+@import './components/toyPreview.scss';
+@import './components/userMsg.scss';
+@import './components/about.scss';
+@import './components/dashboard.scss';
+@import './components/homePage.scss';
+@import './components/becomeASeller.scss';
+
+>>>>>>> d401e1935ca38f8ca032c79a238a84d3567a5e0a

@@ -87,6 +87,7 @@ export default {
   },
   created() {
     this.loadGig();
+    this.$store.dispatch({type: 'loadUsers'})
   },
   computed: {
     loggedInUser() {
