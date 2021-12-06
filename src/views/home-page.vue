@@ -1,10 +1,14 @@
 <template>
   <section class="home app-main main-layout">
     <div class="main-layout full">
-      <div
-        class="hero hero-container"
-        :style="{ backgroundImage: `url(${mainImageSrc})` }"
-      ></div>
+      <div class="hero hero-container" :style="{ backgroundImage: `url(${mainImageSrc})` }">
+
+        <div class="below-hero main-layout">
+            <div class="rate-hero"><i class="fas fa-star"></i>{{stars}}</div>
+            <p class="txt-hero">{{hero}}</p>
+        </div>
+        
+      </div>
     </div>
 
     <h2 class="homePage-title">Popular professional services</h2>
@@ -136,6 +140,7 @@ export default {
   data() {
     return {
       filterBy: {
+        txt:'',
         price: 0,
         category: "",
         deliveyTime: "",
@@ -143,6 +148,8 @@ export default {
       },
       imgs: [],
       mainImageSrc: require(`../assets/img/1.jpeg`),
+      star: "",
+      hero: "",
     };
   },
   created() {
@@ -152,18 +159,28 @@ export default {
       { id: 2, image: require(`../assets/img/2.jpeg`) },
       { id: 3, image: require(`../assets/img/1.jpeg`) },
     ];
+    this.stars = [4, 5, 4];
+    this.heroText = [
+      "Andrea Marketing Expert",
+      "Monica Architecture Designer",
+      "Monica Architecture Designer",
+    ];
     var interval = 0;
     if (interval === 2) {
       console.log;
       interval = 0;
     }
     setInterval(function () {
-      console.log("hi :>> ", interval);
-      self.mainImageSrc =
-        self.images[utilService.getRandomIntInclusive(0, 2)].image;
+      // console.log("hi :>> ", interval);
+      var num = utilService.getRandomIntInclusive(0, 2);
+      self.mainImageSrc = self.images[num].image;
+      self.star = self.stars[num];
+      self.hero = self.heroText[num];
+      // console.log('star',self.stars[num])
+      // console.log('hero', self.heroText[num])
       this.mainImageSrc = self.mainImageSrc;
-      console.log("object :>> ", self.mainImageSrc);
-      console.log("this.mainImageSrc :>> ", this.mainImageSrc);
+      // console.log("object :>> ", self.mainImageSrc);
+      // console.log("this.mainImageSrc :>> ", this.mainImageSrc);
     }, 8000);
   },
   methods: {
