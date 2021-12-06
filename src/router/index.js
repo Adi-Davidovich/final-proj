@@ -3,10 +3,10 @@ import VueRouter from 'vue-router'
 
 import gigApp from '../views/gig-app.vue'
 import homePage from '../views/home-page.vue'
-import gigEdit from '../views/gig-edit.vue'
+import gigEdit from '../views/gig-edit-new.vue'
 import gigDetails from '../views/gig-details.vue'
 import gigOrder from '../views/gig-order.vue'
-import userProfile from '../views/user-profile.vue'
+import userProfile from '../views/profile-page.vue'
 import dashboard from '../views/dashboard.vue'
 import chat from '../views/chat.vue'
 import reviewApp from '../views/review-app.vue'
@@ -30,7 +30,7 @@ const routes = [
     component: becomeASeller,
   },
   {
-    path: '/user/:userId',
+    path: '/user',
     component: userProfile,
   },
   {

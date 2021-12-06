@@ -1,9 +1,9 @@
 <template>
   <section class="become-a-seller">
-      <div class="become-a-seller-hero">
-        <h1>Work Your Way</h1>
-        <p>You bring the skill. We'll make earning easy.</p>
-      </div>
+    <div class="become-a-seller-hero">
+      <h1>Work Your Way</h1>
+      <p>You bring the skill. We'll make earning easy.</p>
+    </div>
     <div class="personal-info-layout">
       <div class="personal-info-header">
         <h4>Personal Info</h4>
@@ -15,16 +15,8 @@
       <div class="grid-personal-info">
         <p>Full Name:</p>
         <div>
-          <el-input
-            placeholder="First Name"
-            v-model="sellerDetails.fullName.firstName"
-            required
-          ></el-input>
-          <el-input
-            placeholder="Last Name"
-            v-model="sellerDetails.fullName.lastName"
-            required
-          ></el-input>
+          <el-input placeholder="First Name" v-model="firstName"></el-input>
+          <el-input placeholder="Last Name" v-model="lastName"></el-input>
         </div>
       </div>
       <div class="grid-personal-info">
@@ -61,8 +53,8 @@
       </div>
 
       <div class="btn">
-        <button @click="saveSeller">Continue</button>
-        <button class="btn-skip">Skip</button>
+        <button @click="becomeASeller">Continue</button>
+        <button @click="becomeASeller" class="btn-skip">Skip</button>
       </div>
     </div>
   </section>
@@ -74,28 +66,18 @@ export default {
   name: "becomeASeller",
   data() {
     return {
+      user: this.$store.getters.loggedinUser,
       sellerDetails: {
-        fullName: {
-          firstName: "",
-          lastName: "",
-        },
+        fullName: "",
         imgUrl: "",
         description: "",
         languges: [],
+        reviwes: [],
+        gigs: [],
       },
 
-      categories: [
-        "WordPress",
-        "Website Design",
-        "Logo Design",
-        "Illustration",
-        "Social Media Marketing",
-        "Translation",
-        "Visual Effects",
-        "Voice Over",
-        "Podcast Editing",
-        "Mobile Apps",
-      ],
+      firstName: "",
+      lastName: "",
 
       Languges: [
         { label: "English", value: "english" },
@@ -109,8 +91,13 @@ export default {
   },
 
   methods: {
-    saveSeller() {
-      return;
+    becomeASeller() {
+      this.sellerDetails.fullName = this.firstName + " " + this.lastName;
+      this.user.sellerDetails = this.sellerDetails;
+      this.$store.dispatch({
+        type: "updateUser",
+        user: this.user,
+      });
     },
   },
 };

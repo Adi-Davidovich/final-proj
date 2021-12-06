@@ -94,6 +94,7 @@ export default {
         },
       ],
       filterBy: {
+        txt:"",
         price: 0,
         category: "",
         deliveyTime: "",

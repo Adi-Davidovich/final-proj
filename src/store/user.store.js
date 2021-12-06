@@ -23,7 +23,7 @@ export const userStore = {
         setWatchedUser(state, { user }) {
             state.watchedUser = user;
         },
-        setUsers(state, { users }) {
+        setUser(state, { users }) {
             state.users = users;
         },
         removeUser(state, { userId }) {
@@ -105,8 +105,9 @@ export const userStore = {
         },
         async updateUser({ commit }, { user }) {
             try {
-                user = await userService.update(user);
-                commit({ type: 'setUser', user })
+                let loggedinUser = userService.getLoggedinUser()
+                loggedinUser = await userService.update(user);
+                commit({ type: 'setLoggedinUser', user })
             } catch (err) {
                 console.log('userStore: Error in updateUser', err)
                 throw err
@@ -117,7 +118,7 @@ export const userStore = {
             try {
                 const updatedUser = await userService.updateUserPref(user)
                 console.log('updatedUser :>> ', updatedUser);
-                commit({ type: 'setUserPref'}, { updatedUser })
+                commit({ type: 'setUserPref' }, { updatedUser })
             } catch (err) {
                 console.log('userStore: Error in increaseScore', err)
                 throw err

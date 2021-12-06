@@ -11,7 +11,7 @@ const user = {
     username: "user1",
     password: 1234,
     details: "",
-    isAdmin: false
+    isSeller:false
 }
 
 
@@ -48,7 +48,7 @@ function remove(userId) {
 }
 
 async function update(user) {
-    await storageService.put('user', user)
+    // await storageService.put('user', user)
     // user = await httpService.put(`user/${user._id}`, user)
     // Handle case in which admin updates other user's details
     if (getLoggedinUser()._id === user._id) _saveLocalUser(user)
@@ -65,10 +65,10 @@ async function login(userCred) {
     // if (user) return _saveLocalUser(user)
 }
 async function signup(userCred) {
-    const user = await storageService.post('user', userCred)
+    // const user = await storageService.post('user', userCred)
     // const user = await httpService.post('auth/signup', userCred)
     // socketService.emit('set-user-socket', user._id);
-    return _saveLocalUser(user)
+    return _saveLocalUser(userCred)
 }
 async function logout() {
     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
@@ -96,17 +96,13 @@ function getLoggedinUser() {
 
 
 (async () => {
-    if (sessionStorage.getItem('user')) return
+    if (sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER)) return
     console.log('hi')
     await userService.signup({
-        fullname: 'Puki Norma', 
+        _id:'guest123',
         imgUrl: "/img/img1.jpg",
-        isSeller: false,
         username: "Puki Norma",
         password: "1234",
-        details: "",
-        reviews: []
-        
     })
     // await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
     // await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})

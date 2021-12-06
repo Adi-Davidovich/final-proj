@@ -64,6 +64,7 @@ export default {
   data() {
     return {
       filterBy: {
+        txt:'',
         name: "",
         lable: "",
         inStock: null,
