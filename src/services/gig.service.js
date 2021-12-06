@@ -1,4 +1,5 @@
 import { storageService } from '../services/async-storage.service.js'
+import { userService } from '../services/user.service copy.js'
 
 // import { httpService } from './http.service.js'
 
@@ -56,6 +57,14 @@ async function remove(id) {
 }
 
 async function save(gig) {
+  let loggedInUser = userService.getLoggedinUser()
+  if (!gig.owner) {
+    gig.owner = {
+      _id: loggedInUser._id,
+      username: loggedInUser.username,
+      imgUrl: loggedInUser.imgUrl
+    }
+  }
   const savedGig = gig._id
     ? await storageService.put(KEY, gig)
     : await storageService.post(KEY, gig)
@@ -72,12 +81,17 @@ async function save(gig) {
 
 function getEmptyGig() {
   return {
+    _id: '',
     title: '',
-    description: '',
     category: '',
     price: null,
-    timeToDeliver: '',
-    imgUrl: '',
+    imgUrl: ['logo-design/cartoon-comic.png'],
+    package: {
+      description: '',
+      timeToDeliver: '',
+      revisions: 5,
+    }
+
   }
 }
 
@@ -85,10 +99,10 @@ function _createGigs() {
   var gigs = JSON.parse(localStorage.getItem(KEY))
   if (!gigs || !gigs.length) {
     gigs = [
-      _createGig('I will do modern line art text or badge logo design', 50, ['logo-design/cartoon-comic.png', 'logo-design/cartoon-comic2.png'], 'Logo Design'),
-      _createGig('I will design 3 modern minimalist logo design in 24 hrs', 70, ['logo-design/cartoon-comic3.jpg', 'logo-design/cartoon-comic.png'], 'Logo Design'),
-      _createGig('I will draw flowers for your commercial packaging', 30, ['logo-design/logo-design0.png', 'logo-design/logo-design1.png'], 'Logo Design'),
-      _createGig('I will draw minimalist line art illustration', 40, ['illustration/illustration5.png', 'illustration/illustration3.jpg'], 'Illustration'),
+      _createGig('I will do modern line art text or badge logo design', 50, ['logo-design/cartoon-comic.png', 'logo-design/cartoon-comic2.png'], 'Logo Design', 'guest123'),
+      _createGig('I will design 3 modern minimalist logo design in 24 hrs', 70, ['logo-design/cartoon-comic3.jpg', 'logo-design/cartoon-comic.png'], 'Logo Design', 'guest123'),
+      _createGig('I will draw flowers for your commercial packaging', 30, ['logo-design/logo-design0.png', 'logo-design/logo-design1.png'], 'Logo Design', 'guest123'),
+      _createGig('I will draw minimalist line art illustration', 40, ['illustration/illustration5.png', 'illustration/illustration3.jpg'], 'Illustration', 'guest123'),
       _createGig('I will do amazing monster character head illustration', 50, ['illustration/illustration3.jpg', 'illustration/illustration4.png'], 'Illustration'),
       _createGig('I will draw a premium illustration for your food or product catalogue', 20, ['illustration/illusration1.png', 'illustration/illustration2.jpg'], 'Illustration'),
       _createGig('I will chinese voice over 2000 words in 24 hours male', 10, ['voice-over/voice-over1.png', 'voice-over/voice-over2.png'], 'Voice Over'),
@@ -134,7 +148,7 @@ function _createGig(title, price, imgUrl, category, id = "1hu2i") {
     ],
     package: {
       description: "2 Modern Logo Concept with High Resolution JPEG and Transparent PNG",
-      timeToDeliver: "3 Days",
+      timeToDeliver: 3,
       revisions: 5,
 
     }

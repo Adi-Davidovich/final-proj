@@ -18,13 +18,13 @@
           <section v-if="sellerMode" class="seller-profile">
             <div class="seller-header regular-btn">
               <p>Avctive Gigs</p>
-              <button>Create New Gig</button>
+              <router-link to="/gig/edit">Create New Gig</router-link>
             </div>
             <ul class="gig-list-user">
-              <li v-for="gig in gigs" :key="gig._id">
+              <li v-for="(gig,index) in gigs" :key="index">
                 <gig-preview :gig="gig" />
                 <div class="gig-tools regular-btn">
-                  <button>Edit</button>
+                  <button @click="editGig(gig._id)">Edit</button>
                   <button @click="removeGig(gig._id)">Delete</button>
                 </div>
               </li>
@@ -61,8 +61,6 @@ export default {
       return this.$store.getters.gigsToShow;
     },
     sellerMode() {
-      console.log(this.$store.getters.loggedinUser);
-      console.log(this.user.hasOwnProperty("sellerDetails"));
       if (this.user.hasOwnProperty("sellerDetails")) return true;
     },
   },
@@ -71,8 +69,11 @@ export default {
     removeGig(gigId) {
       this.$store.dispatch({ type: "removeGig", gigId });
     },
-  },
 
+    editGig(gigId) {
+      this.$router.push(`/gig/edit/${gigId}`);
+    },
+  },
 
   components: {
     Avatar,
