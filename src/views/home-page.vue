@@ -153,15 +153,11 @@ export default {
     ];
     var interval = 0;
     if (interval === 2) {
-      console.log
       interval = 0;
     }
     setInterval(function () {
-      console.log("hi :>> ", interval);
       self.mainImageSrc = self.images[utilService.getRandomIntInclusive(0,2)].image;
       this.mainImageSrc = self.mainImageSrc;
-      console.log("object :>> ", self.mainImageSrc);
-      console.log("this.mainImageSrc :>> ", this.mainImageSrc);
     }, 8000);
   },
   methods: {

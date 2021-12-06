@@ -17,6 +17,10 @@ export const gigService = {
 _createGigs()
 async function query(filterBy) {
   let filterGigs = await storageService.query(KEY)
+  if (filterBy.userId) {
+
+    filterGigs = filterGigs.filter(gig => gig.owner._id === filterBy.userId)
+  }
   if (filterBy.category) {
     filterGigs = filterGigs.filter(gig => gig.category === filterBy.category)
   }
@@ -28,6 +32,7 @@ async function query(filterBy) {
       return a.price - b.price;
     })
   }
+  console.log(filterGigs)
   return filterGigs
   // console.log('filterBy :>> ', filterBy);
   //   return await httpService.get('gig', filterBy)
@@ -59,33 +64,22 @@ async function save(gig) {
 }
 
 function getEmptyGig() {
-  return Promise.resolve({
-    _id: '',
+  return {
     title: '',
     description: '',
+    category: '',
     price: null,
     timeToDeliver: '',
     imgUrl: '',
-    owner: {
-      _id: "u101",
-      fullname: "Dudu Da",
-      imgUrl: "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/21760012/original/d4c0c142f91f012c9a8a9c9aeef3bac28036f15b/create-your-cartoon-style-flat-avatar-or-icon.jpg",
-      rate: 4
-    },
-    tags: [
-      "artisitic",
-      "proffesional",
-      "accessible"
-    ]
-  })
+  }
 }
 
 function _createGigs() {
   var gigs = JSON.parse(localStorage.getItem(KEY))
   if (!gigs || !gigs.length) {
     gigs = [
-      _createGig('I will do modern line art text or badge logo design', 50, ['logo-design/cartoon-comic.png', 'logo-design/cartoon-comic2.png'], 'logoDesign'),
-      _createGig('I will design 3 modern minimalist logo design in 24 hrs', 70, ['logo-design/cartoon-comic3.jpg', 'logo-design/cartoon-comic.png'], 'logoDesign'),
+      _createGig('I will do modern line art text or badge logo design', 50, ['logo-design/cartoon-comic.png', 'logo-design/cartoon-comic2.png'], 'logoDesign', 'guest123'),
+      _createGig('I will design 3 modern minimalist logo design in 24 hrs', 70, ['logo-design/cartoon-comic3.jpg', 'logo-design/cartoon-comic.png'], 'logoDesign', 'guest123'),
       _createGig('I will draw flowers for your commercial packaging', 30, ['logo-design/logo-design0.png', 'logo-design/logo-design1.png'], 'logoDesign'),
       _createGig('I will draw minimalist line art illustration', 40, ['illustration/illustration5.png', 'illustration/illustration3.jpg'], 'illustration'),
       _createGig('I will do amazing monster character head illustration', 50, ['illustration/illustration3.jpg', 'illustration/illustration4.png'], 'illustration'),
@@ -110,7 +104,7 @@ function _createGigs() {
   }
   return gigs
 }
-function _createGig(title, price, imgUrl, category) {
+function _createGig(title, price, imgUrl, category, id = "1hu2i") {
   return {
     _id: utilService.makeId(),
     title,
@@ -119,7 +113,7 @@ function _createGig(title, price, imgUrl, category) {
     imgUrl,
     category,
     owner: {
-      _id: "1hu2i",
+      _id: id,
       username: "logoflow",
       imgUrl: 'https://i.dlpng.com/static/png/7019966_preview.png',
       rate: 4,

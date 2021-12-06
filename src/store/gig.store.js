@@ -186,5 +186,9 @@ export const gigStore = {
             commit({ type: 'setFilter', filterBy })
             dispatch({ type: 'loadGigs' })
         },
+        getUserGigs({ commit, dispatch }, { filterBy }) {
+            commit({ type: 'setFilter', filterBy })
+            dispatch({ type: 'loadGigs' })
+        },
     },
 }

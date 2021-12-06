@@ -32,6 +32,8 @@
           active-class="active-link"
           >Join</router-link
         >
+
+        <router-link to="/user">User</router-link>
       </nav>
     </div>
   </header>
