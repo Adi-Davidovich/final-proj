@@ -98,6 +98,7 @@ export default {
         type: "updateUser",
         user: this.user,
       });
+      this.$router.push('/user')
     },
   },
 };
