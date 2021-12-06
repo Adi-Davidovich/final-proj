@@ -6,13 +6,7 @@
         fiverr<span class="logo-dot">.</span>
         <form class="search-container" @submit.prevent="setFilter">
           <span class="search-span"><i class="fas fa-search"></i></span>
-          <input
-            type="search"
-            class="search-input"
-            autocomplete="off"
-            v-model="filterBy.category"
-            :placeholder="getSearchTerm"
-          />
+          <input type="search" class="search-input" autocomplete="off" v-model="filterBy.txt" @change="setFilter" placeholder="Find Services" ref="input"/>
           <button class="homePage-search" type="submit">search</button>
         </form>
       </div>
@@ -72,6 +66,7 @@ export default {
   data() {
     return {
       filterBy: {
+        txt:'',
         price: 0,
         category: "",
         deliveyTime: "",
@@ -97,38 +92,30 @@ export default {
     },
   },
   created() {
-    if (!this.$store.state.filterBy) {
-      this.categoryShow = "Find Services";
-    } else {
-      this.categoryShow === this.$store.state.filterBy.category;
-    }
+    // if (!this.$store.state.filterBy) {
+    //   this.categoryShow = "Find Services";
+    // } else {
+    //   this.categoryShow === this.$store.state.filterBy.category;
+    // }
   },
-  watch: {
-    // "$store.state.filterBy": {
-    //   showChange() {
-    //     deep: true, this.filterCategory();
-    //   },
-    //   immediate: true,
-    // },
-  },
+  
   methods: {
     routToHome() {
       this.$router.push("/");
     },
-    filterCategory() {
-      if (!this.$store.state.filterBy) {
-        this.categoryShow = "Find Services";
-      } else {
-        this.categoryShow === this.$store.state.filterBy.category;
-      }
-    },
-    setFilter() {
-      this.$store
-        .dispatch({ type: "setFilter", filterBy: this.filterBy })
-        .then(() => {
-          this.$router.push("/explore");
-          // this.filterBy.category = "";
-        });
+    // filterCategory() {
+    //   if (!this.$store.state.filterBy) {
+    //     this.categoryShow = "Find Services";
+    //   } else {
+    //     this.categoryShow === this.$store.state.filterBy.category;
+    //   }
+    // },
+    async setFilter() {
+    const copyFilter = JSON.parse(JSON.stringify(this.filterBy));
+      console.log('copy :>> ', copyFilter);
+      await this.$store.dispatch({ type: "setFilter", filterBy:copyFilter });
+      this.$router.push("/explore");
+      this.$refs.input.value = null;
     },
   },
   components: {},

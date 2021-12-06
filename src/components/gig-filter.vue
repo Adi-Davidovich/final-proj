@@ -94,6 +94,7 @@ export default {
         },
       ],
       filterBy: {
+        txt:"",
         price: 0,
         category: "",
         deliveyTime: "",
@@ -112,27 +113,27 @@ export default {
         },
         {
           categoryName: "Illustration",
-          value: "illustration",
+          value: "Illustration",
           iconUrl: "illustration.png",
         },
         {
           categoryName: "Logo Design",
-          value: "logoDesign",
+          value: "Logo Design",
           iconUrl: "logo-design.png",
         },
         {
           categoryName: "Voice Over",
-          value: "voiceOver",
+          value: "Voice Over",
           iconUrl: "voice-over.png",
         },
         {
           categoryName: "Social Media Marketing",
-          value: "socialMediaMarketing",
+          value: "Social Media Marketing",
           iconUrl: "social-media.png",
         },
         {
           categoryName: "Video Explainer",
-          value: "videoExplainer",
+          value: "Video Explainer",
           iconUrl: "video-tutorial.png",
         },
       ],

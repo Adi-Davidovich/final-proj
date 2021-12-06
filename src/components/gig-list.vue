@@ -21,11 +21,11 @@ export default {
   computed: {
     categoryName() {
       let category=this.$store.getters.categoryName;
-      if(category==='illustration') return 'Illustration'
-      if(category==='logoDesign') return 'Logo Design'
-      if(category==='voiceOver') return 'Voice Over'
-      if(category==='videoExplainer') return 'Video Explainer'
-      if(category==='socialMediaMarketing') return 'Social Media Marketing'
+      if(category==='Illustration') return 'Illustration'
+      if(category==='Logo Design') return 'Logo Design'
+      if(category==='Voice Over') return 'Voice Over'
+      if(category==='Video Explainer') return 'Video Explainer'
+      if(category==='Social Media Marketing') return 'Social Media Marketing'
       else return
     },
   },
