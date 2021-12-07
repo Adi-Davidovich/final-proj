@@ -95,7 +95,7 @@ export default {
       ],
       filterBy: {
         txt:"",
-        price: 0,
+        price: 300,
         category: "",
         deliveyTime: "",
         sort: "",

@@ -11,21 +11,11 @@
         </form>
       </div>
       <nav class="main-nav">
-        <router-link to="/explore" class="link" active-class="active-link"
-          >Explore</router-link
-        >
-        <router-link to="/start_selling" class="link"
-          >Become a Seller</router-link
-        >
-        <router-link to="/login" class="link" active-class="active-link"
-          >Sign In</router-link
-        >
-        <router-link
-          to="/login"
-          class="link link-join"
-          active-class="active-link"
-          >Join</router-link
-        >
+        <router-link to="/explore" class="link" active-class="active-link">Explore</router-link>
+        <router-link to="/start_selling" class="link">Become a Seller</router-link>
+
+        <router-link to="/login" class="link" active-class="active-link">Sign In</router-link>
+        <router-link to="/login" class="link link-join" active-class="active-link">Join</router-link>
 
         <router-link to="/user">User</router-link>
       </nav>
