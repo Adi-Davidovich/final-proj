@@ -48,6 +48,7 @@ function remove(userId) {
 }
 
 async function update(user) {
+    console.log('user :>> ', user);
     // await storageService.put('user', user)
     user = await httpService.put(`user/${user._id}`, user)
     // Handle case in which admin updates other user's details
@@ -68,7 +69,7 @@ async function signup(userCred) {
     // const user = await storageService.post('user', userCred)
     const user = await httpService.post('auth/signup', userCred)
     socketService.emit('set-user-socket', user._id);
-    return _saveLocalUser(userCred)
+    return _saveLocalUser(user)
 }
 async function logout() {
     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)

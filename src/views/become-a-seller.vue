@@ -14,10 +14,10 @@
       </div>
       <div class="grid-personal-info">
         <p>Full Name:</p>
-        <div>
+        <!-- <div>
           <el-input placeholder="First Name" v-model="firstName"></el-input>
           <el-input placeholder="Last Name" v-model="lastName"></el-input>
-        </div>
+        </div> -->
       </div>
       <div class="grid-personal-info">
         <p>Profile Picture:</p>
@@ -68,7 +68,6 @@ export default {
     return {
       user: this.$store.getters.loggedinUser,
       sellerDetails: {
-        fullName: "",
         imgUrl: "",
         description: "",
         languges: [],
@@ -90,13 +89,10 @@ export default {
   },
 
   methods: {
-    becomeASeller() {
-      this.user.fullName = this.firstName + " " + this.lastName;
+  async becomeASeller() {
+      // this.user.fullName = this.firstName + " " + this.lastName;
       this.user = { ...this.user, ...this.sellerDetails, isSeller: true };
-      this.$store.dispatch({
-        type: "updateUser",
-        user: this.user,
-      });
+     await this.$store.dispatch({type: "updateUser", user: this.user,});
       this.$router.push("/user");
     },
   },
