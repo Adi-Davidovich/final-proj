@@ -171,6 +171,82 @@
             </ul>
           </div>
         </div>
+        <footer v-if="loggedInUser">
+          <button
+            @click="toggleAddReview = !toggleAddReview"
+            class="add-review"
+          >
+            {{ addReviewBtn }}
+          </button>
+          <section v-if="toggleAddReview" class="review-form">
+            <div class="title">
+              <h3>Rate & Review</h3>
+              <p>
+                Share with the community your experience when working with this
+                seller
+              </p>
+            </div>
+            <form @submit.prevent="addReview()">
+              <div class="questions">
+                <div class="rate-question">
+                  <div class="question">
+                    <h5>Communication With Seller</h5>
+                    <p>How responsive was the seller during the process?</p>
+                  </div>
+                  <div class="stars">
+                    <span
+                      v-for="num in 5"
+                      :key="num"
+                      class="fa fa-star"
+                      :class="{ fill: num <= reviewToAdd.communication }"
+                      @click="changeStarColor('communication', num)"
+                    ></span>
+                  </div>
+                </div>
+                <div class="rate-question">
+                  <div class="question">
+                    <h5>Service as Described</h5>
+                    <p>Did the result match the Gig's description?</p>
+                  </div>
+                  <div class="stars">
+                    <span
+                      v-for="num in 5"
+                      :key="num"
+                      class="fa fa-star"
+                      :class="{ fill: num <= reviewToAdd.service }"
+                      @click="changeStarColor('service', num)"
+                    ></span>
+                  </div>
+                </div>
+                <div class="rate-question">
+                  <div class="question">
+                    <h5>Buy Again or Recommend</h5>
+                    <p>Would you recommend buying this Gig?</p>
+                  </div>
+                  <div class="stars">
+                    <span
+                      v-for="num in 5"
+                      :key="num"
+                      class="fa fa-star"
+                      :class="{ fill: num <= reviewToAdd.recommend }"
+                      @click="changeStarColor('recommend', num)"
+                    ></span>
+                  </div>
+                </div>
+              </div>
+              <div class="text-area">
+                <h5>Tell Your Story (Optional)</h5>
+                <textarea
+                  placeholder="What was your goal in buying this Gig? How did the seller help you achieve it?"
+                  rows="4"
+                  cols="50"
+                  v-model="reviewToAdd.txt"
+                ></textarea>
+              </div>
+              <button>Add</button>
+            </form>
+          </section>
+        </footer>
         <div class="reviews-container">
           <ul class="review-list">
             <li class="review-item" v-for="(review, idx) in reviews" :key="idx">
@@ -191,7 +267,11 @@
                 </div>
                 <div class="reviewer-sub-details">
                   <div class="country">
-                    <img src="https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png" alt="flag" class="country-flag" />
+                    <img
+                      src="https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png"
+                      alt="flag"
+                      class="country-flag"
+                    />
                     <span class="country-name">
                       {{ review.country }}
                     </span>
@@ -207,25 +287,13 @@
           </ul>
         </div>
       </div>
-
-      <!-- <form v-if="loggedInUser" @submit.prevent="addReview()">
-      <h2>Add review!</h2>
-      <textarea
-        placeholder="Your Opinion Matters..."
-        rows="4"
-        cols="50"
-        v-model="reviewToEdit.txt"
-      ></textarea>
-      <button>Save</button>
-    </form> -->
-
-      <!-- <router-link to="/gig-app">Back</router-link> -->
     </section>
   </section>
 </template>
 
 <script>
 import { gigService } from "../services/gig.service.js";
+import { userService } from "../services/user.service copy.js";
 import orderPreview from "../components/order-preview.vue";
 import Avatar from "vue-avatar";
 
@@ -238,14 +306,19 @@ export default {
       scrolled: false,
       lastPosition: 0,
       gig: null,
-      reviewToEdit: {
+      toggleAddReview: false,
+      reviewToAdd: {
         txt: "",
-        aboutGigId: null,
+        communication: 0,
+        service: 0,
+        recommend: 0,
+        country: "United States",
       },
     };
   },
   created() {
     this.loadGig();
+    // this.$store.dispatch({type: 'loadUsers'})
     window.addEventListener("scroll", this.handleScroll);
   },
   computed: {
@@ -277,6 +350,9 @@ export default {
     loggedInUser() {
       return this.$store.getters.loggedinUser;
     },
+    addReviewBtn() {
+      return !this.toggleAddReview ? "Add Review" : "-";
+    },
   },
   watch: {
     "$route.params.gigId"(id) {
@@ -289,10 +365,6 @@ export default {
     async loadGig() {
       const id = this.$route.params.gigId;
       this.gig = await gigService.getById(id);
-
-      // this.reviewToEdit.aboutGigId = this.gig._id;
-      // console.log("this.reviewToEdit :>> ", this.reviewToEdit);
-      // this.$store.dispatch({ type: "loadReviews", id: this.gig._id });
     },
     progressBar(num) {
       const amount = +this.reviews.reduce((acc, review) => {
@@ -308,12 +380,40 @@ export default {
       }, 0);
       return amount;
     },
+    changeStarColor(key, num) {
+      this.reviewToAdd[key] = num;
+    },
     async addReview() {
+      const user = JSON.parse(
+        JSON.stringify(userService.getById(this.gig.owner._id))
+      );
+      const review = this.reviewToAdd;
+      review.username = this.loggedInUser.username;
+      review.reviewerId = this.loggedInUser._id;
+      review.rate =
+        (+review.communication + +review.service + +review.recommend) / 3;
+      console.log(review);
+      console.log(user);
+      user.reviews.push(review);
+      console.log(user);
+      const gig = JSON.parse(JSON.stringify(this.gig));
+      gig.owner.reviews.push(review);
+      console.log(gig);
       await this.$store.dispatch({
-        type: "addReview",
-        review: this.reviewToEdit,
+        type: "updateSeller",
+        user,
       });
-      this.reviewToEdit = { txt: "", aboutUserId: null };
+      // await this.$store.dispatch({
+      //   type: "updateGig",
+      //   gig,
+      // });
+      this.reviewToAdd = {
+        txt: "",
+        communication: 0,
+        service: 0,
+        recommend: 0,
+      };
+      this.toggleAddReview = false;
     },
     handleScroll() {
       if (
