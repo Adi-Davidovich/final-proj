@@ -403,10 +403,10 @@ export default {
         type: "updateSeller",
         user,
       });
-      // await this.$store.dispatch({
-      //   type: "updateGig",
-      //   gig,
-      // });
+      await this.$store.dispatch({
+        type: "updateGig",
+        gig,
+      });
       this.reviewToAdd = {
         txt: "",
         communication: 0,
