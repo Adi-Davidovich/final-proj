@@ -55,13 +55,6 @@
 </template>
 
 
-    //   title: '',
-    // description: '',
-    // category: '',
-    // price: null,
-    // timeToDeliver: '',
-    // imgUrl: '',
-
 <script>
 import { gigService } from "../services/gig.service.js";
 export default {
@@ -83,7 +76,6 @@ export default {
   },
   computed: {
     gigId() {
-      console.log(this.$route.params.gigId);
       return this.$route.params.gigId;
     },
   },
