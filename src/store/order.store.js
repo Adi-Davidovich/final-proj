@@ -15,11 +15,8 @@ export const orderStore = {
             console.log(orders);
             return orders
         },
-        categoryName(state) {
-            return state.filterBy.category
-        },
 
-        isLoading({ isLoading }) {
+        isLoading1({ isLoading }) {
             return isLoading
         },
         ordersToShow(state) {

@@ -73,7 +73,6 @@ export default {
         description: "",
         languges: [],
         reviwes: [],
-        gigs: [],
       },
 
       firstName: "",
@@ -92,12 +91,13 @@ export default {
 
   methods: {
     becomeASeller() {
-      this.sellerDetails.fullName = this.firstName + " " + this.lastName;
-      this.user.sellerDetails = this.sellerDetails;
+      this.user.fullName = this.firstName + " " + this.lastName;
+      this.user = { ...this.user, ...this.sellerDetails, isSeller: true };
       this.$store.dispatch({
         type: "updateUser",
         user: this.user,
       });
+      this.$router.push("/user");
     },
   },
 };

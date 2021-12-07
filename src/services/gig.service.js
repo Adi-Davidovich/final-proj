@@ -1,4 +1,5 @@
 import { storageService } from '../services/async-storage.service.js'
+import { userService } from '../services/user.service copy.js'
 
 import { httpService } from './http.service.js'
 
@@ -72,12 +73,17 @@ async function save(gig) {
 
 function getEmptyGig() {
   return {
+    _id: '',
     title: '',
-    description: '',
     category: '',
     price: null,
-    timeToDeliver: '',
-    imgUrl: '',
+    imgUrl: ['logo-design/cartoon-comic.png'],
+    package: {
+      description: '',
+      timeToDeliver: '',
+      revisions: 5,
+    }
+
   }
 }
 

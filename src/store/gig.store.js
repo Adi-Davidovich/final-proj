@@ -68,9 +68,10 @@ export const gigStore = {
         addGig(state, payload) {
             state.gigs.push(payload.gig)
         },
-        updateGig(state, payload) {
-            const idx = state.gigs.findIndex((gig) => gig._id === payload.gig._id)
-            state.gigs.splice(idx, 1, payload.gig)
+        updateGig(state, {savedGig}) {
+            console.log(savedGig.gig)
+            const idx = state.gigs.findIndex((gig) => gig._id === savedGig._id)
+            state.gigs.splice(idx, 1, savedGig.gig)
         },
         removeGig(state, payload) {
             const idx = state.gigs.findIndex((gig) => gig._id === payload.gigId)
