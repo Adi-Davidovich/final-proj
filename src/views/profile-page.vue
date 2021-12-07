@@ -1,5 +1,5 @@
 <template>
-  <section class="main-layout">
+  <section class="bgc-grey main-layout">
     <section class="profile-layout">
       <section class="page-container">
         <section class="left-side">
@@ -10,22 +10,43 @@
               :src="user.imgUrl"
             ></avatar>
             <h2>{{ user.username }}</h2>
-            <h2>Member since</h2>
+
+            <div class="details-bottom">
+              <div class="from-since flex">
+                <p><i class="fas fa-user"></i> Member since</p>
+                <b>{{ user.createdAt }} Nov 21</b>
+              </div>
+              <div class="from-since flex">
+                <p><i class="fas fa-map-marker-alt"></i> from</p>
+                <b>{{ user.country }} United States</b>
+              </div>
+            </div>
           </div>
         </section>
 
         <section class="right-side">
           <section v-if="sellerMode" class="seller-profile">
-            <div class="seller-header regular-btn">
-              <p>Avctive Gigs</p>
-              <router-link to="/gig/edit">Create New Gig</router-link>
+            <div class="seller-header">
+              <p>{{ gigsHeader }}</p>
+              <button class="regular-btn" @click="editPage">
+                Create New Gig
+              </button>
             </div>
             <ul class="gig-list-user">
-              <li v-for="(gig,index) in gigs" :key="index">
-                <gig-preview :gig="gig" />
-                <div class="gig-tools regular-btn">
-                  <button @click="editGig(gig._id)">Edit</button>
-                  <button @click="removeGig(gig._id)">Delete</button>
+              <li v-for="(gig, index) in gigs" :key="index">
+                <gig-preview
+                  @mouseover.native="hover = true"
+                  @mouseleave.native="hover = false"
+                  :gig="gig"
+                />
+
+                <div v-if="hover" class="gig-tools">
+                  <button class="regular-btn" @click="editGig(gig._id)">
+                    Edit
+                  </button>
+                  <button class="regular-btn" @click="removeGig(gig._id)">
+                    Delete
+                  </button>
                 </div>
               </li>
             </ul>
@@ -45,6 +66,7 @@ import GigPreview from "../components/gig-preview.vue";
 export default {
   data() {
     return {
+      hover: false,
       user: null,
       filterBy: {
         userId: "",
@@ -61,7 +83,12 @@ export default {
       return this.$store.getters.gigsToShow;
     },
     sellerMode() {
-      if (this.user.hasOwnProperty("sellerDetails")) return true;
+      return this.user.isSeller;
+    },
+
+    gigsHeader() {
+      if (this.gigs.length) return "Active Gigs";
+      else return "It seems that you don't have any active Gigs. Get selling!";
     },
   },
 
@@ -72,6 +99,15 @@ export default {
 
     editGig(gigId) {
       this.$router.push(`/gig/edit/${gigId}`);
+    },
+
+    editPage() {
+      this.$router.push(`/gig/edit`);
+    },
+
+    mouseOver(gig) {
+      let elGig = document.querySelector(gig);
+      elGig.classList.add("over");
     },
   },
 
