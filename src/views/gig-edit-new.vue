@@ -1,56 +1,70 @@
 <template>
-  <section v-if="gigToEdit" class="edit-gig-container">
-    <div class="gig-title grid-div">
-      <p>Gig Title:</p>
-      <el-input
-        type="textarea"
-        v-model="gigToEdit.title"
-        class="title"
-        placeholder="I will do something i'm really goo at"
-      ></el-input>
-    </div>
+  <section class="bgc-grey grid-narrow">
+    <section v-if="gigToEdit" class="edit-gig-container">
+      <div class="gig-title grid-div">
+        <p>Gig Title:</p>
+        <el-input
+          type="textarea"
+          v-model="gigToEdit.title"
+          class="title"
+          placeholder="I will do something i'm really goo at"
+        ></el-input>
+      </div>
 
-    <div class="gig-category grid-div">
-      <p>Category:</p>
-      <el-select v-model="gigToEdit.category" placeholder="Category">
-        <el-option
-          v-for="item in categories"
-          :key="item.label"
-          :label="item"
-          :value="item"
-        >
-        </el-option>
-      </el-select>
-    </div>
+      <div class="gig-category grid-div">
+        <p>Category:</p>
+        <el-select v-model="gigToEdit.category" placeholder="Category">
+          <el-option
+            v-for="item in categories"
+            :key="item.label"
+            :label="item"
+            :value="item"
+          >
+          </el-option>
+        </el-select>
+      </div>
 
-    <div class="grid-div">
-      <p>Description:</p>
-      <el-input
-        type="textarea"
-        v-model="gigToEdit.package.description"
-        placeholder="Describe you're gig"
-      ></el-input>
-    </div>
+      <div class="price grid-div">
+        <p>Price (US$):</p>
+        <el-input
+          type="number"
+          placeholder="Price"
+          v-model="gigToEdit.price"
+        ></el-input>
+      </div>
 
-    <div class="price grid-div">
-      <p>Price (US$):</p>
-      <el-input
-        type="number"
-        placeholder="Price"
-        v-model="gigToEdit.price"
-      ></el-input>
-    </div>
+      <div class="package">
+        <p class="package-title">What's in the package:</p>
+        <div class="day-to-deliver grid-div">
+          <p>Dellvery Time (Days):</p>
+          <el-input
+            type="number"
+            placeholder="Dellvery Time"
+            v-model="gigToEdit.package.timeToDeliver"
+          ></el-input>
+        </div>
+        <div class="description grid-div">
+          <p>Description:</p>
+          <el-input
+            type="textarea"
+            v-model="gigToEdit.package.description"
+            placeholder="Describe you're gig"
+          ></el-input>
+        </div>
 
-    <div class="day-to-deliver grid-div">
-      <p>Dellvery Time (Days):</p>
-      <el-input
-        type="number"
-        placeholder="Dellvery Time"
-        v-model="gigToEdit.package.timeToDeliver"
-      ></el-input>
-    </div>
-
-    <button @click="save">Create Gig</button>
+        <div class="revision grid-div">
+          <p>Revision:</p>
+          <el-input
+            type="number"
+            placeholder="Dellvery Time"
+            v-model="gigToEdit.package.revisions"
+          ></el-input>
+        </div>
+      </div>
+      <div class="btn-div">
+        <button @click="save">Create Gig</button>
+      </div>
+    </section>
   </section>
 </template>
 
