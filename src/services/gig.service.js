@@ -73,7 +73,6 @@ async function save(gig) {
 
 function getEmptyGig() {
   return {
-    _id: '',
     title: '',
     category: '',
     price: null,
