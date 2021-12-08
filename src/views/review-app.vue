@@ -4,8 +4,8 @@
       <li v-for="review in reviews" :key="review._id">
         <p>
           About
-          <router-link :to="`toy/${review.aboutToyId}`">
-            {{review.aboutToyId}}
+          <router-link :to="`Gig/${review.aboutGigId}`">
+            {{review.aboutGigId}}
           </router-link> 
         </p>
         <h3>{{review.txt}}</h3>

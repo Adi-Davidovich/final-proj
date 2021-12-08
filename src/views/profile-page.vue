@@ -40,7 +40,7 @@
                   :gig="gig"
                 />
 
-                <div v-if="hover" class="gig-tools">
+                <div class="gig-tools">
                   <button class="regular-btn" @click="editGig(gig._id)">
                     Edit
                   </button>
@@ -66,17 +66,12 @@ import GigPreview from "../components/gig-preview.vue";
 export default {
   data() {
     return {
-      hover: false,
       user: null,
-      filterBy: {
-        userId: "",
-      },
     };
   },
   created() {
     this.user = this.$store.getters.loggedinUser;
-    this.filterBy.userId = this.user._id;
-    this.$store.dispatch({ type: "getUserGigs", filterBy: this.filterBy });
+    this.$store.dispatch({ type: "getUserGigs" });
   },
   computed: {
     gigs() {
@@ -85,7 +80,6 @@ export default {
     sellerMode() {
       return this.user.isSeller;
     },
-
     gigsHeader() {
       if (this.gigs.length) return "Active Gigs";
       else return "It seems that you don't have any active Gigs. Get selling!";

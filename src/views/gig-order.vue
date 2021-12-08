@@ -16,7 +16,7 @@
               >
               </span>
               <span class="rate">{{ gig.owner.rate }}</span>
-              <span class="amount">({{ reviewsLength }} Reviews)</span>
+              <!-- <span class="amount">({{ reviewsLength }} Reviews)</span> -->
             </div>
           </div>
           <div class="price">${{ gig.price }}</div>
@@ -100,7 +100,7 @@ export default {
       return +(this.gig.price + this.serviceFee);
     },
     reviewsLength() {
-      return this.loggedInUser.reviews.length;
+      return this.loggedInUser.reviews;
     },
   },
   watch: {
@@ -122,16 +122,10 @@ export default {
       order.price = this.finalPrice;
       order.timeToDeliver = this.gig.package.timeToDeliver;
       order.imgUrl = this.img;
-      order.imgUrl = this.img;
       order.seller = {
         _id: this.gig.owner._id,
         fullname: this.gig.owner.username,
         imgUrl: this.gig.owner.imgUrl,
-      };
-      order.buyer = {
-        _id: this.loggedInUser._id,
-        fullname: this.loggedInUser.fullname,
-        imgUrl: this.loggedInUser.imgUrl,
       };
       order.gig = {
         _id: this.gig._id,
@@ -157,7 +151,7 @@ export default {
         // showMsg(`order added with id: ${savedOrder._id}`);
         // this.$router.push("/");
       } catch (err) {
-        showMsg(`unable to add order: ${savedOrder} `, "danger");
+        // showMsg(`unable to add order: ${savedOrder} `, "danger");
         console.log("Adding Error (checkout):", err);
       }
     },

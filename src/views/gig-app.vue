@@ -44,16 +44,16 @@ export default {
       this.$store.commit({ type: "setSort", copySort });
     },
 
-    removeToy(toyId) {
-      console.log("Removing...", toyId);
+    removegig(gigId) {
+      console.log("Removing...", gigId);
       this.$store
-        .dispatch({ type: "removeToy", toyId })
+        .dispatch({ type: "removegig", gigId })
         .then(() => {
-          // showMsg(`toy removed`)
-          console.log("toy removed");
+          // showMsg(`gig removed`)
+          console.log("gig removed");
         })
         .catch(() => {
-          // showMsg(`Failed to remove toy`, 'danger')
+          // showMsg(`Failed to remove gig`, 'danger')
         });
     },
     nextPage() {
