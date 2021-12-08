@@ -119,6 +119,9 @@ export const orderStore = {
                 throw err;
             }
         },
+        async getUserOrders(){
+
+        },
         // Optimistic
         // removeGigOptimistic({ commit }, { gigId: gigId }) {
         //     commit({ type: 'removeGig',  gigId })
