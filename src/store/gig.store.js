@@ -68,7 +68,7 @@ export const gigStore = {
         addGig(state, payload) {
             state.gigs.push(payload.gig)
         },
-        updateGig(state, {savedGig}) {
+        updateGig(state, { savedGig }) {
             console.log(savedGig.gig)
             const idx = state.gigs.findIndex((gig) => gig._id === savedGig._id)
             state.gigs.splice(idx, 1, savedGig.gig)
@@ -187,9 +187,12 @@ export const gigStore = {
             commit({ type: 'setFilter', filterBy })
             dispatch({ type: 'loadGigs' })
         },
-        getUserGigs({ commit, dispatch }, { filterBy }) {
-            commit({ type: 'setFilter', filterBy })
-            dispatch({ type: 'loadGigs' })
+        async getUserGigs({ commit, getters }) {
+            let userId = getters.loggedinUser._id
+            let filterBy = { userId }
+            let gigs = await gigService.query(filterBy)
+            console.log(gigs)
+            commit({ type: 'setGigs', gigs })
         },
     },
 }

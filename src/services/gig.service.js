@@ -43,6 +43,7 @@ async function query(filterBy) {
   // console.log(filterGigs)
   // return filterGigs
   // console.log('filterBy :>> ', filterBy);
+  console.log(filterBy)
     return await httpService.get('gig', filterBy)
 }
 

@@ -1,7 +1,8 @@
 .router-link-exact-active {
   color: green;
 }
-.vue-avatar--wrapper{
+
+.vue-avatar--wrapper {
   cursor: pointer;
 }
 /* 
@@ -11,7 +12,6 @@
 
 .active-link {
   color: whitesmoke;
-
 }
 
 .main-header {
@@ -39,14 +39,13 @@
         color: #62646a;
         text-decoration: none;
         font-family: macan-bold;
-        
-        
-        &:hover{
-          color: #1dbf73 ;
+
+        &:hover {
+          color: #1dbf73;
         }
       }
-      .link.router-link-exact-active{
-        color: #1dbf73 ;
+      .link.router-link-exact-active {
+        color: #1dbf73;
       }
       .link-join {
         background-color: transparent;
@@ -120,7 +119,7 @@
     justify-content: space-between;
     align-items: center;
   }
-  .logo{
+  .logo {
     cursor: pointer;
   }
 }
