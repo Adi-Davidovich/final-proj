@@ -1,5 +1,5 @@
 <template>
-  <section class="gig-details-wrapper main-layout">
+  <section class="gig-details-wrapper main-layout" >
     <a name="overview"></a>
     <nav
       @handleScroll="handleScroll"
@@ -15,7 +15,7 @@
     <section v-if="gig" class="gig-details">
       <order-preview class="purchase-container" :gig="gig" />
 
-      <div class="overview">
+      <div class="overview" >
         <h3 class="title">{{ gig.title }}</h3>
         <div class="owner-prev flex">
           <avatar
@@ -249,19 +249,18 @@
             </form>
           </section>
         </footer>
-        <div class="reviews-container">
+        <div class="reviews-container" >
           <ul class="review-list">
             <li class="review-item" v-for="(review, idx) in reviews" :key="idx">
               <div class="user-img">
                 <avatar
                   :size="30"
-                  :username="review.username"
-                  :src="review.username"
+                  :username="review.buyer.fullname"
                 ></avatar>
               </div>
-              <div class="review-content">
+              <div class="review-content" >
                 <div class="reviewer-details">
-                  <h4>{{ review.username }}</h4>
+                  <h4>{{ review.buyer.fullname }}</h4>
                   <div class="review-rating">
                     <i class="fa fa-star" />
                     {{ review.rate }}
@@ -374,7 +373,7 @@ export default {
     },
     async addReview() {
       const review = this.reviewToAdd;
-      this.reviewToAdd.aboutUser = this.gig.owner._id;
+      this.reviewToAdd.aboutUser = this.gig.owner._id
       // review.rate =+((+review.communication + +review.service + +review.recommend) / 3).toFixed(1);
       console.log(review);
       await this.$store.dispatch({ type: "addReview", review });
