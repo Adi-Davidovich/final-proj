@@ -382,28 +382,10 @@ export default {
       this.reviewToAdd[key] = num;
     },
     async addReview() {
-      const user = await userService.getById(this.gig.owner._id);
       const review = this.reviewToAdd;
-      review.username = this.loggedInUser.username;
-      review.reviewerId = this.loggedInUser._id;
-      review.rate =
-        +((+review.communication + +review.service + +review.recommend) / 3).toFixed(1);
-      
+      review.rate =+((+review.communication + +review.service + +review.recommend) / 3).toFixed(1);
       console.log(review);
-      console.log(user);
-      user.reviews.push(review);
-      console.log(user);
-      const gig = JSON.parse(JSON.stringify(this.gig));
-      gig.owner.reviews.push(review);
-      console.log(gig);
-      await this.$store.dispatch({
-        type: "updateSeller",
-        user,
-      });
-      await this.$store.dispatch({
-        type: "updateGig",
-        gig,
-      });
+      await this.$store.dispatch({type: "updateSeller", review });
       this.reviewToAdd = {
         txt: "",
         communication: 0,

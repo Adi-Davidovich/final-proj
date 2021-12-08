@@ -80,7 +80,6 @@ export default {
     sellerMode() {
       return this.user.isSeller;
     },
-
     gigsHeader() {
       if (this.gigs.length) return "Active Gigs";
       else return "It seems that you don't have any active Gigs. Get selling!";
