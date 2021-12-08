@@ -1,5 +1,5 @@
 <template>
-  <section class="checkout" v-if="user">
+  <section class="checkout" v-if="loggedInUser">
     <div v-if="gig" class="gig-details-summary">
       <div class="order-info">
         <header>
@@ -82,7 +82,6 @@ export default {
         "High Resolution",
         "Vector File",
       ],
-      user: this.$store.getters.loggedinUser
     };
   },
   created() {
