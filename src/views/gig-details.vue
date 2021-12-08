@@ -382,9 +382,7 @@ export default {
       this.reviewToAdd[key] = num;
     },
     async addReview() {
-      const user = JSON.parse(
-        JSON.stringify(userService.getById(this.gig.owner._id))
-      );
+      const user = await userService.getById(this.gig.owner._id);
       const review = this.reviewToAdd;
       review.username = this.loggedInUser.username;
       review.reviewerId = this.loggedInUser._id;
