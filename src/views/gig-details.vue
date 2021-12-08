@@ -383,14 +383,15 @@ export default {
     },
     async addReview() {
       const review = this.reviewToAdd;
-      review.rate =+((+review.communication + +review.service + +review.recommend) / 3).toFixed(1);
+      // review.rate =+((+review.communication + +review.service + +review.recommend) / 3).toFixed(1);
       console.log(review);
-      await this.$store.dispatch({type: "updateSeller", review });
+      await this.$store.dispatch({type: "addReview", review });
       this.reviewToAdd = {
         txt: "",
         communication: 0,
         service: 0,
         recommend: 0,
+        aboutUser:this.gig.owner._id
       };
       this.toggleAddReview = false;
     },
