@@ -2,9 +2,8 @@
   <section class="gig-details-wrapper main-layout">
     <a name="overview"></a>
     <nav
-      :class="{ 'headroom--unpinned': scrolled }"
       @handleScroll="handleScroll"
-      class="headroom gig-details-nav main-layout"
+      class="headroom gig-details-nav main-layout  full"
     >
       <ul class="container">
         <li><a class="nav-link" href="#overview">Overview</a></li>
@@ -34,8 +33,7 @@
               ><span
                 v-for="num in 5"
                 :key="num"
-                class="fa fa-star"
-                :class="num <= gig.owner.rate ? 'fill' : 'empty'"
+                :class="num <= gig.owner.rate ? 'fa fa-star fill' : 'far fa-star fill'"
               >
               </span>
               <span class="rate">{{ gig.owner.rate }}</span>
@@ -78,8 +76,7 @@
               <span
                 v-for="num in 5"
                 :key="num"
-                class="fa fa-star"
-                :class="num <= gig.owner.rate ? 'fill' : 'empty'"
+                :class="num <= gig.owner.rate ? 'fa fa-star fill' : 'far fa-star fill'"
               ></span>
               <span class="rate">{{ gig.owner.rate }}</span>
               <span class="amount">({{ reviewsLength }})</span>
@@ -119,8 +116,9 @@
             <span
               v-for="num in 5"
               :key="num"
-              class="fa fa-star"
-              :class="num <= gig.owner.rate ? 'fill' : 'empty'"
+              :class="
+                num <= gig.owner.rate ? 'fa fa-star fill' : 'far fa-star fill'
+              "
             ></span>
             <span class="rate">{{ gig.owner.rate }}</span>
           </div>
@@ -174,7 +172,7 @@
         <footer v-if="loggedInUser">
           <button
             @click="toggleAddReview = !toggleAddReview"
-            class="add-review"
+            class="add-review btn-actions"
           >
             {{ addReviewBtn }}
           </button>
@@ -183,14 +181,14 @@
               <h3>Rate & Review</h3>
               <p>
                 Share with the community your experience when working with this
-                seller
+                seller.
               </p>
             </div>
             <form @submit.prevent="addReview()">
               <div class="questions">
                 <div class="rate-question">
                   <div class="question">
-                    <h5>Communication With Seller</h5>
+                    <h4>Communication With Seller</h4>
                     <p>How responsive was the seller during the process?</p>
                   </div>
                   <div class="stars">
@@ -205,7 +203,7 @@
                 </div>
                 <div class="rate-question">
                   <div class="question">
-                    <h5>Service as Described</h5>
+                    <h4>Service as Described</h4>
                     <p>Did the result match the Gig's description?</p>
                   </div>
                   <div class="stars">
@@ -220,7 +218,7 @@
                 </div>
                 <div class="rate-question">
                   <div class="question">
-                    <h5>Buy Again or Recommend</h5>
+                    <h4>Buy Again or Recommend</h4>
                     <p>Would you recommend buying this Gig?</p>
                   </div>
                   <div class="stars">
@@ -235,15 +233,15 @@
                 </div>
               </div>
               <div class="text-area">
-                <h5>Tell Your Story (Optional)</h5>
+                <h4>Tell Your Story (Optional)</h4>
                 <textarea
                   placeholder="What was your goal in buying this Gig? How did the seller help you achieve it?"
-                  rows="4"
+                  rows="6"
                   cols="50"
                   v-model="reviewToAdd.txt"
                 ></textarea>
               </div>
-              <button>Add</button>
+              <button class="btn-add btn-purchase">Add</button>
             </form>
           </section>
         </footer>
@@ -351,7 +349,7 @@ export default {
       return this.$store.getters.loggedinUser;
     },
     addReviewBtn() {
-      return !this.toggleAddReview ? "Add Review" : "-";
+      return !this.toggleAddReview ? "Add Review" : "Close";
     },
   },
   watch: {
@@ -391,7 +389,8 @@ export default {
       review.username = this.loggedInUser.username;
       review.reviewerId = this.loggedInUser._id;
       review.rate =
-        (+review.communication + +review.service + +review.recommend) / 3;
+        +((+review.communication + +review.service + +review.recommend) / 3).toFixed(1);
+      
       console.log(review);
       console.log(user);
       user.reviews.push(review);

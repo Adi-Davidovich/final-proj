@@ -169,18 +169,18 @@ export default {
     if (interval === 2) {
       interval = 0;
     }
-    setInterval(function () {
-      // console.log("hi :>> ", interval);
-      var num = utilService.getRandomIntInclusive(0, 2);
-      self.mainImageSrc = self.images[num].image;
-      self.star = self.stars[num];
-      self.hero = self.heroText[num];
-      // console.log('star',self.stars[num])
-      // console.log('hero', self.heroText[num])
-      this.mainImageSrc = self.mainImageSrc;
-      // console.log("object :>> ", self.mainImageSrc);
-      // console.log("this.mainImageSrc :>> ", this.mainImageSrc);
-    }, 8000);
+    // setInterval(function () {
+    //   // console.log("hi :>> ", interval);
+    //   var num = utilService.getRandomIntInclusive(0, 2);
+    //   self.mainImageSrc = self.images[num].image;
+    //   self.star = self.stars[num];
+    //   self.hero = self.heroText[num];
+    //   // console.log('star',self.stars[num])
+    //   // console.log('hero', self.heroText[num])
+    //   this.mainImageSrc = self.mainImageSrc;
+    //   // console.log("object :>> ", self.mainImageSrc);
+    //   // console.log("this.mainImageSrc :>> ", this.mainImageSrc);
+    // }, 8000);
   },
   methods: {
     setCategory(category) {

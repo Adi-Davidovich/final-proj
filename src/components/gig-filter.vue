@@ -6,7 +6,7 @@
         <li
           v-for="category in categories"
           :key="category.id"
-          class="category-card flex"
+          :class="`category-card flex ${category.categoryName}`"
           @click="setCategory(category.value)"
         >
           <img
@@ -170,12 +170,3 @@ export default {
 };
 </script>
 
-<<<<<<< HEAD
-<style scoped>
-.el-select {
-  color: black;
-}
-</style>
-
-=======
->>>>>>> dc71685d80ee494832f713d8a0f5380fed478bbe
