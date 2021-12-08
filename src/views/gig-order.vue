@@ -15,7 +15,7 @@
               >
               </span>
               <span class="rate">{{ gig.owner.rate }}</span>
-              <span class="amount">({{ reviewsLength }} Reviews)</span>
+              <!-- <span class="amount">({{ reviewsLength }} Reviews)</span> -->
             </div>
           </div>
           <div class="price">${{ gig.price }}</div>
@@ -99,7 +99,7 @@ export default {
       return +(this.gig.price + this.serviceFee);
     },
     reviewsLength() {
-      return this.loggedInUser.reviews.length;
+      return this.loggedInUser.reviews;
     },
   },
   watch: {

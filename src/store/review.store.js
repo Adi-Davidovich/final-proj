@@ -21,9 +21,9 @@ export const reviewStore = {
         },
     },
     actions: {
-        async addReview(context, {review}) {
+        async addReview(context, { review }) {
             console.log('review :>> ', review);
-        
+
             try {
                 review = await reviewService.add(review)
                 context.commit({ type: 'addReview', review })
@@ -33,11 +33,13 @@ export const reviewStore = {
                 throw err
             }
         },
-        async loadReviews(context ,{filterBy}) {
+        async loadReviews(context, { id }) {
             try {
-                console.log('id :>> ', filterBy);
+                console.log('id :>> ', id);
+                let filterBy = {}
+                filterBy.id = id
                 const reviews = await reviewService.query(filterBy);
-                console.log('reviews-', reviews);
+                // console.log('reviews-', reviews);
                 context.commit({ type: 'setReviews', reviews })
 
 
@@ -49,7 +51,7 @@ export const reviewStore = {
                 socketService.off(SOCKET_EVENT_REVIEW_ABOUT_YOU)
                 socketService.on(SOCKET_EVENT_REVIEW_ABOUT_YOU, review => {
                     console.log('Review about me!', review);
-                    
+
                 })
 
             } catch (err) {

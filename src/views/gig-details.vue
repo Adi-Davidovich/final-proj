@@ -39,7 +39,7 @@
               >
               </span>
               <span class="rate">{{ gig.owner.rate }}</span>
-              <span class="amount">({{ reviewsLength }})</span>
+              <!-- <span class="amount">({{ reviewsLength }})</span> -->
             </a>
           </div>
           <span class="seperator">|</span>
@@ -83,7 +83,7 @@
                 "
               ></span>
               <span class="rate">{{ gig.owner.rate }}</span>
-              <span class="amount">({{ reviewsLength }})</span>
+              <!-- <span class="amount">({{ reviewsLength }})</span> -->
             </div>
           </div>
         </div>
@@ -115,7 +115,7 @@
       <div class="reviews-package">
         <a name="reviews"></a>
         <header>
-          <h3>{{ reviewsLength }} Reviews</h3>
+          <!-- <h3>{{ reviewsLength }} Reviews</h3> -->
           <div class="stars">
             <span
               v-for="num in 5"
@@ -301,7 +301,6 @@ import Avatar from "vue-avatar";
 
 export default {
   name: "gig-details",
-
   data() {
     return {
       limitPosition: 120,
@@ -320,32 +319,14 @@ export default {
     };
   },
   created() {
-    this.loadGig();
+    this.loadGig()
     // this.$store.dispatch({type: 'loadUsers'})
     window.addEventListener("scroll", this.handleScroll);
   },
   computed: {
     reviews() {
-      return [
-        {
-          txt: "I loved the Logo",
-          rate: 5,
-          username: "Josh",
-          country: "United States",
-        },
-        {
-          txt: "Good Job!",
-          rate: 5,
-          username: "Josh",
-          country: "United States",
-        },
-        {
-          txt: "Thank you",
-          rate: 2,
-          username: "Josh",
-          country: "United States",
-        },
-      ];
+      return this.$store.getters.reviews
+     
     },
     reviewsLength() {
       return this.reviews.length;
@@ -368,13 +349,18 @@ export default {
     async loadGig() {
       const id = this.$route.params.gigId;
       this.gig = await gigService.getById(id);
+      console.log('loadReviews :>> ', this.gig.owner._id);
+      var reviewerId = this.gig.owner._id
+      await this.$store.dispatch({type: "loadReviews", id: reviewerId,});
+      
     },
+   
     progressBar(num) {
-      const amount = +this.reviews.reduce((acc, review) => {
-        if (review.rate === num) acc++;
-        return acc;
-      }, 0);
-      return (amount / this.reviews.length) * 100;
+      // const amount = +this.reviews.reduce((acc, review) => {
+      //   if (review.rate === num) acc++;
+      //   return acc;
+      // }, 0);
+      // return (amount / this.reviews.length) * 100;
     },
     starNum(num) {
       const amount = +this.reviews.reduce((acc, review) => {
