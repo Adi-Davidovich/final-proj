@@ -43,6 +43,7 @@
 
     .grid-personal-info {
         display: grid;
+        align-items: center;
         grid-template-columns: 320fr 700fr;
         padding: 35px 0 96px;
         color: #404145;

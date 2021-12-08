@@ -1,18 +1,18 @@
 import { storageService } from './async-storage.service'
-// import { httpService } from './http.service'
+import { httpService } from './http.service'
 import { socketService, SOCKET_EVENT_USER_UPDATED } from './socket.service'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 var gWatchedUser = null;
 
-const user = {
-    _id: 'u101',
-    fullname: 'Puki Ben David',
-    imgUrl: "/img/img1.jpg",
-    username: "user1",
-    password: 1234,
-    details: "",
-    isSeller:false
-}
+// const user = {
+//     _id: 'u101',
+//     fullname: 'Puki Ben David',
+//     imgUrl: "/img/img1.jpg",
+//     username: "user1",
+//     password: 1234,
+//     details: "",
+//     isSeller:false
+// }
 
 
 export const userService = {
@@ -24,7 +24,7 @@ export const userService = {
     getById,
     remove,
     update,
-    changeScore
+    // changeScore
 }
 
 // Debug technique
@@ -32,57 +32,66 @@ window.userService = userService
 
 
 function getUsers() {
-    return storageService.query('user')
-    // return httpService.get(`user`)
+    // return storageService.query('user')
+    return httpService.get(`user`)
 }
 
 async function getById(userId) {
-    const user = await storageService.get('user', userId)
-    // const user = await httpService.get(`user/${userId}`)
+    // const user = await storageService.get('user', userId)
+    const user = await httpService.get(`user/${userId}`)
     gWatchedUser = user;
     return user;
 }
 function remove(userId) {
-    return storageService.remove('user', userId)
-    // return httpService.delete(`user/${userId}`)
+    // return storageService.remove('user', userId)
+    return httpService.delete(`user/${userId}`)
 }
 
 async function update(user) {
+    console.log('user :>> ', user);
     // await storageService.put('user', user)
-    // user = await httpService.put(`user/${user._id}`, user)
+    user = await httpService.put(`user/${user._id}`, user)
     // Handle case in which admin updates other user's details
     if (getLoggedinUser()._id === user._id) _saveLocalUser(user)
     return user;
 }
 
 async function login(userCred) {
-    const users = await storageService.query('user')
-    const user = users.find(user => user.username === userCred.username)
-    return _saveLocalUser(user)
-
-    // const user = await httpService.post('auth/login', userCred)
-    // socketService.emit('set-user-socket', user._id);
-    // if (user) return _saveLocalUser(user)
+    // const users = await storageService.query('user')
+    // const user = users.find(user => user.username === userCred.username)
+    // return _saveLocalUser(user)
+    console.log('login :>> ', userCred);
+    const user = await httpService.post('auth/login', userCred)
+    socketService.emit('set-user-socket', user._id);
+    if (user) return _saveLocalUser(user)
 }
 async function signup(userCred) {
     // const user = await storageService.post('user', userCred)
-    // const user = await httpService.post('auth/signup', userCred)
-    // socketService.emit('set-user-socket', user._id);
-    return _saveLocalUser(userCred)
+    const user = await httpService.post('auth/signup', userCred)
+    socketService.emit('set-user-socket', user._id);
+    return _saveLocalUser(user)
 }
 async function logout() {
     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
-    // socketService.emit('unset-user-socket');
-    // return await httpService.post('auth/logout')
+    socketService.emit('unset-user-socket');
+    return await httpService.post('auth/logout')
 }
 
-async function changeScore(by) {
-    const user = getLoggedinUser()
-    if (!user) throw new Error('Not loggedin')
-    user.score = user.score + by || by
-    await update(user)
-    return user.score
-}
+// async function changeScore(by) {
+//     const user = getLoggedinUser()
+//     if (!user) throw new Error('Not loggedin')
+//     user.score = user.score + by || by
+//     await update(user)
+//     return user.score
+// }
+
+
+// async function updateUserPref() {
+//     const user = getLoggedinUser()
+//     if (!user) throw new Error('Not loggedin')
+//     await update(user)
+//     return user.score
+// }
 
 
 function _saveLocalUser(user) {
@@ -95,18 +104,18 @@ function getLoggedinUser() {
 }
 
 
-(async () => {
-    if (sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER)) return
-    console.log('hi')
-    await userService.signup({
-        _id:'guest123',
-        imgUrl: "/img/img1.jpg",
-        username: "Puki Norma",
-        password: "1234",
-    })
-    // await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
-    // await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
-})();
+// (async () => {
+//     if (sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER)) return
+//     console.log('hi')
+//     await userService.signup({
+//         _id:'guest123',
+//         imgUrl: "/img/img1.jpg",
+//         username: "Puki Norma",
+//         password: "1234",
+//     })
+//     await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
+//     await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
+// })();
 
 
 
@@ -122,10 +131,10 @@ function getLoggedinUser() {
         const freshUsers = await storageService.query('user')
         const watchedUser = freshUsers.find(u => u._id === gWatchedUser._id)
         if (!watchedUser) return;
-        if (gWatchedUser.score !== watchedUser.score) {
-            console.log('Watched user score changed - localStorage updated from another browser')
+        // if (gWatchedUser.score !== watchedUser.score) {
+        //     console.log('Watched user score changed - localStorage updated from another browser')
             socketService.emit(SOCKET_EVENT_USER_UPDATED, watchedUser)
-        }
+        // }
         gWatchedUser = watchedUser
     })
 })();

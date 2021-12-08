@@ -1,7 +1,9 @@
 .router-link-exact-active {
   color: green;
 }
-
+.vue-avatar--wrapper{
+  cursor: pointer;
+}
 /* 
   .router-link-active {
       color: green
@@ -9,6 +11,7 @@
 
 .active-link {
   color: whitesmoke;
+
 }
 
 .main-header {
@@ -27,7 +30,8 @@
       display: flex;
       align-items: center;
       .link {
-        padding: 0 24px 0 0;
+        cursor: pointer;
+        margin: 0 24px 0 0;
         list-style: none;
         list-style-image: none;
         font-weight: 400;
@@ -53,6 +57,7 @@
         border-radius: 4px;
         font-weight: 600;
         line-height: 100%;
+        margin-right: 12px;
 
         text-align: center;
         cursor: pointer;

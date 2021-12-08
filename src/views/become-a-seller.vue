@@ -12,19 +12,10 @@
           public profile, so that potential buyers can get to know you better.
         </p>
       </div>
-      <div class="grid-personal-info">
-        <p>Full Name:</p>
-        <div>
-          <el-input placeholder="First Name" v-model="firstName"></el-input>
-          <el-input placeholder="Last Name" v-model="lastName"></el-input>
-        </div>
-      </div>
+
       <div class="grid-personal-info">
         <p>Profile Picture:</p>
-        <el-input
-          placeholder="Picture"
-          v-model="sellerDetails.imgUrl"
-        ></el-input>
+        <avatar-upload></avatar-upload>
       </div>
       <div class="description grid-personal-info">
         <p>Description:</p>
@@ -62,18 +53,17 @@
 
 <script>
 import { gigService } from "../services/gig.service.js";
+import avatarUpload from "../components/avatar-upload.vue";
 export default {
   name: "becomeASeller",
   data() {
     return {
       user: this.$store.getters.loggedinUser,
       sellerDetails: {
-        fullName: "",
         imgUrl: "",
         description: "",
         languges: [],
         reviwes: [],
-        gigs: [],
       },
 
       firstName: "",
@@ -91,14 +81,16 @@ export default {
   },
 
   methods: {
-    becomeASeller() {
-      this.sellerDetails.fullName = this.firstName + " " + this.lastName;
-      this.user.sellerDetails = this.sellerDetails;
-      this.$store.dispatch({
-        type: "updateUser",
-        user: this.user,
-      });
+    async becomeASeller() {
+      // this.user.fullName = this.firstName + " " + this.lastName;
+      this.user = { ...this.user, ...this.sellerDetails, isSeller: true };
+      await this.$store.dispatch({ type: "updateUser", user: this.user });
+      this.$router.push("/user");
     },
+  },
+
+  components: {
+    avatarUpload,
   },
 };
 </script>

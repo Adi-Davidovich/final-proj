@@ -1,7 +1,7 @@
 <template>
-  <section class="gig-preview">
+  <section v-if="gig" class="gig-preview">
     <el-carousel :autoplay="false" trigger="click" height="197px">
-      <el-carousel-item v-for="img in gig.imgUrl" :key="img">
+      <el-carousel-item  v-for="img in gig.imgUrl"  :key="img">
         <img
           :src="require(`@/assets/img/card-images/${img}`)"
           alt=""
@@ -22,7 +22,7 @@
         <h5>Level 2 seller</h5>
       </div>
     </div>
-    
+
     <p @click="gigDetails">{{ gig.title }}</p>
 
     <div class="owner-rating">
@@ -46,6 +46,8 @@ export default {
   props: ["gig"],
   data() {
     return {};
+  },
+  created() {
   },
 
   methods: {
