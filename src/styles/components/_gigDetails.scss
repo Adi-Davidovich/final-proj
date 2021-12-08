@@ -46,19 +46,27 @@
   .headroom--pinned {
     transform: translateY(0%);
   }
-  .headroom--unpinned {
-    transform: translateY(-100%);
-  }
 
   .gig-details {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    padding: 32px;
+    grid-template-columns: 1fr;
     margin-block-start: rem(40px);
+    @include for-normal-layout {
+      grid-template-columns: 2fr 1fr;
+      padding: 32px;
+    }
     .purchase-container {
-      margin-inline-start: rem(105px);
-      grid-column: 2;
-      grid-row: 1/5;
+      grid-column: 1;
+      grid-row: 2;
+      margin-block-end: rem(40px);
+      @include for-normal-layout {
+        grid-column: 2;
+        grid-row: 1/5;
+        margin-inline-start: rem(50px);
+      }
+      @include for-wide-layout {
+        margin-inline-start: rem(105px);
+      }
     }
     .overview {
       grid-column: 1;
@@ -89,22 +97,35 @@
           padding: 0 rem(5px);
           color: #c5c6c9;
         }
-        .owner-name-level {
+        .owner-content {
           display: flex;
-          align-items: center;
+          flex-direction: column;
           padding-inline-start: rem(12px);
-          h4 {
-            padding-inline-end: rem(5px);
-            font-family: macan-bold;
-            color: $clr5;
+          gap: rem(8px);
+          @media (min-width: 553px) {
+            flex-direction: row;
+            gap: 0;
           }
-          span {
-            font-size: 0.9rem;
+          .owner-name-level {
+            display: flex;
+            align-items: center;
+            h4 {
+              padding-inline-end: rem(5px);
+              font-family: macan-bold;
+              color: $clr5;
+            }
+            span {
+              font-size: 0.9rem;
+            }
           }
-        }
-        .orders {
-          color: #95979d;
-          font-size: 0.9rem;
+          .stars-orders {
+            display: flex;
+            align-items: center;
+            .orders {
+              color: #95979d;
+              font-size: 0.9rem;
+            }
+          }
         }
       }
       .el-carousel {
@@ -133,7 +154,11 @@
 
     .description {
       grid-column: 1;
-      grid-row: 2;
+      grid-row: 3;
+      @include for-normal-layout {
+        grid-column: 1;
+        grid-row: 2;
+      }
       p {
         white-space: pre-wrap;
         font-family: macan-regular;
@@ -159,16 +184,21 @@
         }
       }
       .table-info {
-        max-width: 710px;
+        width: 100%;
         border: 1px solid #cdcad1;
         border-radius: 5px;
         padding: rem(24px);
+        @include for-normal-layout {
+          max-width: 710px;
+        }
+
         .stats {
           display: grid;
-          grid-template-columns: 1fr 1fr;
           grid-template-rows: 1fr 1fr;
-          height: 175px;
           border-bottom: 1px solid #cdcad1;
+          @include for-narrow-layout {
+            grid-template-columns: 1fr 1fr;
+          }
           * > h4 {
             line-height: em(27px);
             &:nth-of-type(odd) {
@@ -187,6 +217,7 @@
             &:nth-of-type(2) {
               grid-column: 2;
               grid-row: 1;
+              margin-inline-start: rem(15px);
             }
             &:nth-of-type(3) {
               grid-column: 1;
@@ -195,6 +226,7 @@
             &:nth-of-type(4) {
               grid-column: 2;
               grid-row: 2;
+              margin-inline-start: rem(15px);
             }
           }
         }
@@ -208,8 +240,6 @@
     }
 
     .reviews-package {
-      grid-column: 1;
-      grid-row: 4;
       header {
         padding-block-end: rem(20px);
         display: flex;
@@ -224,10 +254,17 @@
         display: flex;
         flex-flow: row wrap;
         flex: 0 1 auto;
+        flex-direction: column;
+        @include for-narrow-layout {
+          flex-direction: row;
+        }
         .table-stars-container {
           padding-inline-end: 8px;
-          flex-basis: 50%;
-          max-width: 50%;
+          margin-block-end: 20px;
+          @include for-narrow-layout {
+            flex-basis: 50%;
+            max-width: 50%;
+          }
           tr {
             white-space: nowrap;
             padding-bottom: 4px;
@@ -291,8 +328,10 @@
         }
         .rating-breakdown {
           padding-inline-start: 8px;
-          flex-basis: 50%;
-          max-width: 50%;
+          @include for-narrow-layout {
+            flex-basis: 50%;
+            max-width: 50%;
+          }
           .title {
             padding-top: 1px;
             padding-bottom: 16px;
@@ -320,10 +359,13 @@
           }
         }
       }
-      .add-review {
-        width: 50%;
+      .add-review-btn {
+        width: 100%;
         padding: 8px 12px;
         margin-block-end: 30px;
+        @include for-normal-layout {
+          width: 50%;
+        }
       }
       .review-form {
         width: 100%;
@@ -363,64 +405,67 @@
           }
         }
         .btn-add {
-          width: 50%;
+          width: 100%;
           padding: 8px 12px;
           margin-block-end: 30px;
+          @include for-normal-layout {
+            width: 50%;
+          }
         }
       }
-      .reviews-container {
-        .review-list {
-          list-style: none;
-          .review-item {
-            position: relative;
-            border-top: 1px solid #cdcad1;
-            padding-block-start: rem(32px);
-            padding-block-end: rem(20px);
-            padding-inline-start: rem(44px);
-            .user-img {
-              position: absolute;
-              left: 0;
-              top: 32px;
+    }
+    .reviews-container {
+      .review-list {
+        list-style: none;
+        .review-item {
+          position: relative;
+          border-top: 1px solid #cdcad1;
+          padding-block-start: rem(32px);
+          padding-block-end: rem(20px);
+          padding-inline-start: rem(44px);
+          .user-img {
+            position: absolute;
+            left: 0;
+            top: 32px;
+          }
+          .review-content {
+            .reviewer-details {
+              display: flex;
+              align-items: center;
+              padding: 4px 0;
+              h4 {
+                margin-inline-end: 10px;
+              }
+              .review-rating {
+                color: #ffb33e;
+                font-weight: 700;
+              }
             }
-            .review-content {
-              .reviewer-details {
-                display: flex;
-                align-items: center;
-                padding: 4px 0;
-                h4 {
-                  margin-inline-end: 10px;
-                }
-                .review-rating {
-                  color: #ffb33e;
-                  font-weight: 700;
-                }
-              }
 
-              .reviewer-sub-details {
+            .reviewer-sub-details {
+              display: inline-flex;
+              .country {
                 display: inline-flex;
-                .country {
-                  display: inline-flex;
-                  align-items: center;
-                  .country-name {
-                    color: #62646a;
-                    font-size: 14px;
-                    padding-left: 8px;
-                  }
-                  .country-flag {
-                    width: 20px;
-                    height: 20px;
-                  }
+                align-items: center;
+                .country-name {
+                  color: #62646a;
+                  font-size: 14px;
+                  padding-left: 8px;
+                }
+                .country-flag {
+                  width: 20px;
+                  height: 20px;
                 }
               }
+            }
 
-              .review-description {
-                padding: 8px 0;
-                p {
-                  line-height: 22px;
-                  color: #404145;
-                  word-wrap: break-word;
-                  font-size: 14px;
-                }
+            .review-description {
+              padding: 8px 0;
+              p {
+                line-height: 22px;
+                color: #404145;
+                word-wrap: break-word;
+                font-size: 14px;
               }
             }
           }

@@ -1,13 +1,23 @@
 .gig-details-summary {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr;
   padding: 32px;
   margin-block-start: rem(40px);
+  min-height: 80vh;
+  @include for-normal-layout {
+    grid-template-columns: 2fr 1fr;
+  }
   .order-info {
     grid-column: 1;
-    margin-inline-end: rem(60px);
+    @include for-normal-layout {
+      margin-inline-end: rem(60px);
+    }
     header {
       display: flex;
+      flex-direction: column;
+      @include for-narrow-layout {
+        flex-direction: row;
+      }
       img {
         width: 180px;
         object-fit: contain;
@@ -16,7 +26,11 @@
       .gig-info {
         flex-grow: 1;
         padding-inline-end: rem(15px);
+        margin-block-start: rem(15px);
         max-width: 345px;
+        @include for-narrow-layout {
+          margin-block-start: 0;
+        }
         .title {
           color: $clr5;
           line-height: 20px;
@@ -37,6 +51,10 @@
         color: $clr5;
         line-height: 20px;
         font-family: macan-bold;
+        margin-block-start: rem(15px);
+        @include for-narrow-layout {
+          margin-block-start: 0;
+        }
       }
     }
     .package {
@@ -58,9 +76,14 @@
     }
   }
   .checkout-container {
-    grid-column: 2;
+    grid-column: 1;
     border: 1px solid #dadbdd;
     padding: 20px;
+    height: fit-content;
+    margin-block-start: rem(30px);
+    @include for-normal-layout {
+      grid-column: 2;
+    }
     .summary-item {
       display: flex;
       justify-content: space-between;
@@ -82,10 +105,10 @@
     }
     article {
       .total {
-          padding-block-start: rem(20px);
-          padding-block-end: rem(10px);
-          font-family: macan-bold;
-          border-top: 1px solid #dadbdd;;
+        padding-block-start: rem(20px);
+        padding-block-end: rem(10px);
+        font-family: macan-bold;
+        border-top: 1px solid #dadbdd;
       }
       .delivery {
         padding-block-end: rem(30px);

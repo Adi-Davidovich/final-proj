@@ -10,8 +10,9 @@
               <span
                 v-for="num in 5"
                 :key="num"
-                class="fa fa-star"
-                :class="num <= gig.owner.rate ? 'fill' : 'empty'"
+                :class="
+                  num <= gig.owner.rate ? 'fa fa-star fill' : 'far fa-star fill'
+                "
               >
               </span>
               <span class="rate">{{ gig.owner.rate }}</span>
@@ -86,7 +87,7 @@ export default {
   },
   created() {
     this.loadGig();
-    this.$store.dispatch({type: 'loadUsers'})
+    this.$store.dispatch({ type: "loadUsers" });
   },
   computed: {
     loggedInUser() {

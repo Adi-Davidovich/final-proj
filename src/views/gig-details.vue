@@ -3,7 +3,7 @@
     <a name="overview"></a>
     <nav
       @handleScroll="handleScroll"
-      class="headroom gig-details-nav main-layout  full"
+      class="headroom gig-details-nav main-layout full"
     >
       <ul class="container">
         <li><a class="nav-link" href="#overview">Overview</a></li>
@@ -23,25 +23,33 @@
             :username="gig.owner.username"
             :src="gig.owner.imgUrl"
           ></avatar>
-          <div class="owner-name-level">
-            <h4>{{ gig.owner.username }}</h4>
-            <span>Level 2 seller</span>
+          <div class="owner-content">
+            <div class="owner-name-level">
+              <h4>{{ gig.owner.username }}</h4>
+              <span>Level 2 seller</span>
+              <span class="seperator">|</span>
+            </div>
+            <div class="stars-orders">
+              <div class="stars">
+                <a href="#reviews"
+                  ><span
+                    v-for="num in 5"
+                    :key="num"
+                    :class="
+                      num <= gig.owner.rate
+                        ? 'fa fa-star fill'
+                        : 'far fa-star fill'
+                    "
+                  >
+                  </span>
+                  <span class="rate">{{ gig.owner.rate }}</span>
+                  <span class="amount">({{ reviewsLength }})</span>
+                </a>
+              </div>
+              <span class="seperator">|</span>
+              <div class="orders">5 Orders in Queue</div>
+            </div>
           </div>
-          <span class="seperator">|</span>
-          <div class="stars">
-            <a href="#reviews"
-              ><span
-                v-for="num in 5"
-                :key="num"
-                :class="num <= gig.owner.rate ? 'fa fa-star fill' : 'far fa-star fill'"
-              >
-              </span>
-              <span class="rate">{{ gig.owner.rate }}</span>
-              <span class="amount">({{ reviewsLength }})</span>
-            </a>
-          </div>
-          <span class="seperator">|</span>
-          <div class="orders">5 Orders in Queue</div>
         </div>
         <el-carousel :autoplay="false" trigger="click" height="430px">
           <el-carousel-item v-for="img in gig.imgUrl" :key="img">
@@ -76,7 +84,9 @@
               <span
                 v-for="num in 5"
                 :key="num"
-                :class="num <= gig.owner.rate ? 'fa fa-star fill' : 'far fa-star fill'"
+                :class="
+                  num <= gig.owner.rate ? 'fa fa-star fill' : 'far fa-star fill'
+                "
               ></span>
               <span class="rate">{{ gig.owner.rate }}</span>
               <span class="amount">({{ reviewsLength }})</span>
@@ -172,7 +182,7 @@
         <footer v-if="loggedInUser">
           <button
             @click="toggleAddReview = !toggleAddReview"
-            class="add-review btn-actions"
+            class="add-review-btn btn-actions"
           >
             {{ addReviewBtn }}
           </button>
@@ -245,45 +255,45 @@
             </form>
           </section>
         </footer>
-        <div class="reviews-container">
-          <ul class="review-list">
-            <li class="review-item" v-for="(review, idx) in reviews" :key="idx">
-              <div class="user-img">
-                <avatar
-                  :size="30"
-                  :username="review.username"
-                  :src="review.username"
-                ></avatar>
-              </div>
-              <div class="review-content">
-                <div class="reviewer-details">
-                  <h4>{{ review.username }}</h4>
-                  <div class="review-rating">
-                    <i class="fa fa-star" />
-                    {{ review.rate }}
-                  </div>
-                </div>
-                <div class="reviewer-sub-details">
-                  <div class="country">
-                    <img
-                      src="https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png"
-                      alt="flag"
-                      class="country-flag"
-                    />
-                    <span class="country-name">
-                      {{ review.country }}
-                    </span>
-                  </div>
-                </div>
-                <div class="review-description">
-                  <p>
-                    {{ review.txt }}
-                  </p>
+      </div>
+      <div class="reviews-container">
+        <ul class="review-list">
+          <li class="review-item" v-for="(review, idx) in reviews" :key="idx">
+            <div class="user-img">
+              <avatar
+                :size="30"
+                :username="review.username"
+                :src="review.username"
+              ></avatar>
+            </div>
+            <div class="review-content">
+              <div class="reviewer-details">
+                <h4>{{ review.username }}</h4>
+                <div class="review-rating">
+                  <i class="fa fa-star" />
+                  {{ review.rate }}
                 </div>
               </div>
-            </li>
-          </ul>
-        </div>
+              <div class="reviewer-sub-details">
+                <div class="country">
+                  <img
+                    src="https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png"
+                    alt="flag"
+                    class="country-flag"
+                  />
+                  <span class="country-name">
+                    {{ review.country }}
+                  </span>
+                </div>
+              </div>
+              <div class="review-description">
+                <p>
+                  {{ review.txt }}
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
   </section>
@@ -386,9 +396,11 @@ export default {
       const review = this.reviewToAdd;
       review.username = this.loggedInUser.username;
       review.reviewerId = this.loggedInUser._id;
-      review.rate =
-        +((+review.communication + +review.service + +review.recommend) / 3).toFixed(1);
-      
+      review.rate = +(
+        (+review.communication + +review.service + +review.recommend) /
+        3
+      ).toFixed(1);
+
       console.log(review);
       console.log(user);
       user.reviews.push(review);

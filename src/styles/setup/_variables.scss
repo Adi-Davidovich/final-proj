@@ -10,12 +10,13 @@ $clr6: #4a73e8;
 $clr7: #dadbdd;
 
 // LAYOUT
-$layoutPadding: 20px;
+$layoutPadding: 24px;
 
 // LAYOUT BREAKPOINTS
-$break-narrow: 800px;
-$break-normal: 1081.6px;
-$break-wide: 1340px;
+$break-narrow: 500px;
+$break-normal: 900px;
+$break-wide: 1140px;
+$break-layout: 1340px;
 
 $padded-break-narrow: $break-narrow + $layoutPadding * 2;
 $padded-break-normal: $break-normal + $layoutPadding * 2;

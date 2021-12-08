@@ -10,17 +10,11 @@
     grid-column: 1 / -1;
   }
 
-  // @include for-narrow-layout {
-  //   @include layoutGTC($break-narrow);
-  // }
 
   @include for-normal-layout {
-    @include layoutGTC($break-wide);
+    @include layoutGTC($break-layout);
   }
 
-  @include for-wide-layout {
-    @include layoutGTC($break-wide);
-  }
 }
 
 .card-grid {
