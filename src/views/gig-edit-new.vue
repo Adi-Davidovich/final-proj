@@ -33,6 +33,11 @@
         ></el-input>
       </div>
 
+      <div class="image-upload grid-div">
+        <p>Images:</p>
+        <img-upload></img-upload>
+      </div>
+
       <div class="package">
         <p class="package-title">What's in the package:</p>
         <div class="day-to-deliver grid-div">
@@ -71,6 +76,7 @@
 
 <script>
 import { gigService } from "../services/gig.service.js";
+import imgUpload from "../components/img-upload.vue";
 export default {
   data() {
     return {
@@ -128,6 +134,9 @@ export default {
         }
       }
     },
+  },
+  components: {
+    imgUpload,
   },
 };
 </script>

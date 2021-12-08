@@ -12,19 +12,10 @@
           public profile, so that potential buyers can get to know you better.
         </p>
       </div>
-      <div class="grid-personal-info">
-        <p>Full Name:</p>
-        <!-- <div>
-          <el-input placeholder="First Name" v-model="firstName"></el-input>
-          <el-input placeholder="Last Name" v-model="lastName"></el-input>
-        </div> -->
-      </div>
+
       <div class="grid-personal-info">
         <p>Profile Picture:</p>
-        <el-input
-          placeholder="Picture"
-          v-model="sellerDetails.imgUrl"
-        ></el-input>
+        <avatar-upload></avatar-upload>
       </div>
       <div class="description grid-personal-info">
         <p>Description:</p>
@@ -62,6 +53,7 @@
 
 <script>
 import { gigService } from "../services/gig.service.js";
+import avatarUpload from "../components/avatar-upload.vue";
 export default {
   name: "becomeASeller",
   data() {
@@ -89,12 +81,16 @@ export default {
   },
 
   methods: {
-  async becomeASeller() {
+    async becomeASeller() {
       // this.user.fullName = this.firstName + " " + this.lastName;
       this.user = { ...this.user, ...this.sellerDetails, isSeller: true };
-     await this.$store.dispatch({type: "updateUser", user: this.user,});
+      await this.$store.dispatch({ type: "updateUser", user: this.user });
       this.$router.push("/user");
     },
+  },
+
+  components: {
+    avatarUpload,
   },
 };
 </script>

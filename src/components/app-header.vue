@@ -1,26 +1,73 @@
 
 <template>
-  <header class="main-header main-layout">
-    <div class="header-container">
-      <div class="logo" @click="routToHome">
-        fiverr<span class="logo-dot">.</span>
-        <form class="search-container" @submit.prevent="setFilter">
-          <span class="search-span"><i class="fas fa-search"></i></span>
-          <input type="search" class="search-input" autocomplete="off" v-model="filterBy.txt" @change="setFilter" placeholder="Find Services" ref="input"/>
-          <button class="homePage-search" type="submit">search</button>
-        </form>
+  <section>
+    <header class="main-header main-layout">
+      <div class="header-container">
+        <div class="logo" @click="routToHome">
+          fiverr<span class="logo-dot">.</span>
+          <form class="search-container" @submit.prevent="setFilter">
+            <span class="search-span"><i class="fas fa-search"></i></span>
+            <input
+              type="search"
+              class="search-input"
+              autocomplete="off"
+              v-model="filterBy.txt"
+              @change="setFilter"
+              placeholder="Find Services"
+              ref="input"
+            />
+            <button class="homePage-search" type="submit">search</button>
+          </form>
+        </div>
+        <nav class="main-nav">
+          <router-link to="/explore" class="link" active-class="active-link"
+            >Explore</router-link
+          >
+          <router-link to="/start_selling" class="link"
+            >Become a Seller</router-link
+          >
+
+          <p
+            v-if="!user"
+            @click="openLogin"
+            class="link"
+            active-class="active-link"
+          >
+            Sign In
+          </p>
+          <p
+            v-if="!user"
+            @click="openSignup"
+            class="link link-join"
+            active-class="active-link"
+          >
+            Join
+          </p>
+          <p
+            v-if="user"
+            @click="doLogout"
+            class="link"
+            active-class="active-link"
+          >
+            Logout
+          </p>
+          <div @click="userProfile">
+            <avatar
+              v-if="user"
+              :size="35"
+              :username="user.username"
+              :src="user.imgUrl"
+            ></avatar>
+          </div>
+        </nav>
       </div>
-      <nav class="main-nav">
-        <router-link to="/explore" class="link" active-class="active-link">Explore</router-link>
-        <router-link to="/start_selling" class="link">Become a Seller</router-link>
-
-        <router-link to="/login" class="link" active-class="active-link">Sign In</router-link>
-        <router-link to="/login" class="link link-join" active-class="active-link">Join</router-link>
-
-        <router-link to="/user">User</router-link>
-      </nav>
-    </div>
-  </header>
+    </header>
+    <signup-form
+      :loginMode="loginMode"
+      @closeModal="closeModal"
+      v-if="signupMode || loginMode"
+    ></signup-form>
+  </section>
 
   <!-- <div class="main-header-sticky main-layout"> -->
   <!-- <div class="user-msg"></div> -->
@@ -50,13 +97,15 @@
 </template>
 
 <script>
+import Avatar from "vue-avatar";
+import signupForm from "./signup-login-form.vue";
 // import userMsg from '../components/user-msg.cmp.js'
 export default {
   name: "app-header",
   data() {
     return {
       filterBy: {
-        txt:'',
+        txt: "",
         price: 0,
         category: "",
         deliveyTime: "",
@@ -67,6 +116,8 @@ export default {
           languge: "",
         },
       },
+      signupMode: false,
+      loginMode: false,
     };
   },
   computed: {
@@ -88,7 +139,7 @@ export default {
     //   this.categoryShow === this.$store.state.filterBy.category;
     // }
   },
-  
+
   methods: {
     routToHome() {
       this.$router.push("/");
@@ -101,13 +152,44 @@ export default {
     //   }
     // },
     async setFilter() {
-    const copyFilter = JSON.parse(JSON.stringify(this.filterBy));
-      console.log('copy :>> ', copyFilter);
-      await this.$store.dispatch({ type: "setFilter", filterBy:copyFilter });
+      const copyFilter = JSON.parse(JSON.stringify(this.filterBy));
+      console.log("copy :>> ", copyFilter);
+      await this.$store.dispatch({ type: "setFilter", filterBy: copyFilter });
       this.$router.push("/explore");
       this.$refs.input.value = null;
     },
+
+    openLogin() {
+      this.loginMode = true;
+      let body = document.body;
+      body.classList.add("disable-scrolling");
+    },
+    openSignup() {
+      this.signupMode = true;
+      let body = document.body;
+      body.classList.add("disable-scrolling");
+    },
+
+    closeModal() {
+      this.signupMode = false;
+      this.loginMode = false;
+      let body = document.body;
+      body.classList.remove("disable-scrolling");
+    },
+
+    userProfile() {
+      console.log("Hi");
+      this.$router.push("/user");
+    },
+
+    async doLogout() {
+      await this.$store.dispatch({ type: "logout" });
+      this.$router.push("/");
+    },
   },
-  components: {},
+  components: {
+    signupForm,
+    Avatar,
+  },
 };
 </script>
