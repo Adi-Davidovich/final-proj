@@ -3,7 +3,7 @@
     <a name="overview"></a>
     <nav
       @handleScroll="handleScroll"
-      class="headroom gig-details-nav main-layout  full"
+      class="headroom gig-details-nav main-layout full"
     >
       <ul class="container">
         <li><a class="nav-link" href="#overview">Overview</a></li>
@@ -33,7 +33,9 @@
               ><span
                 v-for="num in 5"
                 :key="num"
-                :class="num <= gig.owner.rate ? 'fa fa-star fill' : 'far fa-star fill'"
+                :class="
+                  num <= gig.owner.rate ? 'fa fa-star fill' : 'far fa-star fill'
+                "
               >
               </span>
               <span class="rate">{{ gig.owner.rate }}</span>
@@ -76,7 +78,9 @@
               <span
                 v-for="num in 5"
                 :key="num"
-                :class="num <= gig.owner.rate ? 'fa fa-star fill' : 'far fa-star fill'"
+                :class="
+                  num <= gig.owner.rate ? 'fa fa-star fill' : 'far fa-star fill'
+                "
               ></span>
               <span class="rate">{{ gig.owner.rate }}</span>
               <span class="amount">({{ reviewsLength }})</span>
@@ -311,6 +315,7 @@ export default {
         service: 0,
         recommend: 0,
         country: "United States",
+        aboutUser: "",
       },
     };
   },
@@ -383,16 +388,10 @@ export default {
     },
     async addReview() {
       const review = this.reviewToAdd;
+      this.reviewToAdd.aboutUser = this.gig.owner._id;
       // review.rate =+((+review.communication + +review.service + +review.recommend) / 3).toFixed(1);
       console.log(review);
-      await this.$store.dispatch({type: "addReview", review });
-      this.reviewToAdd = {
-        txt: "",
-        communication: 0,
-        service: 0,
-        recommend: 0,
-        aboutUser:this.gig.owner._id
-      };
+      await this.$store.dispatch({ type: "addReview", review });
       this.toggleAddReview = false;
     },
     handleScroll() {
