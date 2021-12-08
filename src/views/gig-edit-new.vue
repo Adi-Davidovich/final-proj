@@ -119,7 +119,6 @@ export default {
         }
       } else {
         try {
-          this.gigToEdit.createdById = this.$store.getters.loggedinUser._id
           console.log(this.gigToEdit)
           const savedGig = await this.$store.dispatch({
             type: "addGig",

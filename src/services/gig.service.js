@@ -44,12 +44,12 @@ async function query(filterBy) {
   // return filterGigs
   // console.log('filterBy :>> ', filterBy);
   console.log(filterBy)
-    return await httpService.get('gig', filterBy)
+  return await httpService.get('gig', filterBy)
 }
 
 async function getById(id) {
   // return await storageService.get(KEY, id)
-    return await httpService.get(`gig/${id}`)
+  return await httpService.get(`gig/${id}`)
 }
 
 async function remove(id) {
@@ -64,11 +64,11 @@ async function save(gig) {
   // return savedGig
 
 
-  const savedGig = JSON.parse(JSON.stringify(gig))
+  const savedGig = gig
   if (savedGig._id) {
-      return await httpService.put(`gig/${savedGig._id}`, savedGig);
+    return await httpService.put(`gig/${savedGig._id}`, savedGig);
   } else {
-      return await httpService.post('gig', savedGig);
+    return await httpService.post('gig', savedGig);
   }
 }
 
