@@ -1,5 +1,5 @@
 <template>
-  <section class="checkout" v-if="loggedInUser">
+  <section class="checkout">
     <div v-if="gig" class="gig-details-summary">
       <div class="order-info">
         <header>

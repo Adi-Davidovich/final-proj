@@ -36,21 +36,20 @@ async function query(filterBy) {
 }
 
 async function getById(id) {
-  return await storageService.get(KEY, id)
-  //   return await httpService.get(`order/${id}`)
+  // return await storageService.get(KEY, id)
+    return await httpService.get(`order/${id}`)
 }
 
 async function remove(id) {
-  return await storageService.remove(KEY, id)
-  // return await httpService.delete(`order/${id}`)
+  // return await storageService.remove(KEY, id)
+  return await httpService.delete(`order/${id}`)
 }
 
 async function save(order) {
-  const savedOrder = JSON.parse(JSON.stringify(order))
-  if (savedOrder._id) {
-    return await httpService.put(`order/${savedOrder._id}`, savedOrder);
+  if (order._id) {
+    return await httpService.put(`order/${order._id}`, order);
   } else {
-    return await httpService.post('order', savedOrder);
+    return await httpService.post('order', order);
   }
 
 

@@ -1,26 +1,32 @@
-.hero-container {
-  // background-image: url("~@/assets/img/2.jpeg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 83vh;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  grid-column: span 3;
-  justify-content: start;
-  align-content: center;
+.main-content {
+  height: 680px;
   position: relative;
-  .below-hero{
-    position: absolute;
-    bottom: 32px;
-    // grid-column: 2;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    white-space: pre-line;
+  .hero-backgrounds {
+    > div {
+      display: flex;
+      justify-content: flex-end;
+      background-repeat: no-repeat;
+      background-size: auto 100%;
+      background-position: bottom right;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 1;
+      transition: opacity 0.9s;
+    }
+    > div .seller-name {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
 
-    p{
-      font-weight: bold;
-      color: #fff;
+      p {
+        color: #fff;
+        padding-bottom: 32px;
+        padding-right: 480px;
+      }
     }
   }
 }
@@ -80,6 +86,7 @@
   flex-flow: row wrap;
   background-color: #f1fdf7;
   margin-bottom: 5.938rem;
+  z-index: 30;
 
   .homePage-info {
     grid-column: 2;
@@ -156,60 +163,58 @@
       font-style: italic;
       font-family: display;
     }
-    .home-page-search-container {
-      position: absolute;
-      top: 70%;
+
+    form {
       display: flex;
-
-      flex-direction: row;
+      height: auto;
       position: relative;
-      width: 98%;
-      .search-span {
-        float: left;
-        height: 100%;
-        width: 100%;
-        width: 16px;
-        height: 16px;
+      color: #62646a;
+      .search-bar-icon {
         position: absolute;
-        top: 6px;
-        left: 7px;
-        color: #c5c6c9;
-        font-size: 16px;
+        z-index: 5;
+        top: 16px;
+        left: 16px;
+        display: inline-block;
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
       }
-      .search-input {
+      input {
+        font-size: 16px;
+        height: 48px;
+        flex: 1 1 auto;
+        padding: 7px 7px 7px 44px;
+        border-radius: 3px;
         border: 1px solid #c5c6c9;
+        border-color: #dadbdd;
+        box-shadow: none;
+        margin-bottom: 0;
+        border-radius: 4px 0 0 4px;
         border-right: 0;
-        border-radius: 3px 0 0 3px;
-        font-size: 16px;
-        padding-top: 8px;
-        padding: 8px 7px 7px 28px;
-        width: 100%;
-
-        resize: none;
-        transition: 0.15s ease-in-out;
-        transition-property: all;
-        transition-duration: 0.15s;
-        transition-timing-function: ease-in-out;
-        transition-delay: 0s;
+        outline: none;
       }
-
-      .homePage-search {
-        padding: 8px 16px;
-        display: block;
-        font-size: 14px;
-        font-weight: 700;
-        border-radius: 0 3px 3px 0;
-        flex-shrink: 0;
+      button {
+        font-size: 16px;
+        height: 48px;
+        padding: 12px 24px;
         text-shadow: none;
         background-color: #1dbf73;
         color: #fff;
         border: 1px solid transparent;
+        transition: 70ms cubic-bezier(0.75, 0, 0.25, 1);
         line-height: 100%;
         text-decoration: none;
         text-align: center;
         cursor: pointer;
+        border-radius: 0 4px 4px 0;
+
+        &:hover {
+          background-color: #19a463;
+        }
       }
     }
+
     .popular {
       display: flex;
       font-size: 14px;

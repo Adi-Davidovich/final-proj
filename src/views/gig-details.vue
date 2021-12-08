@@ -89,7 +89,7 @@
                 "
               ></span>
               <span class="rate">{{ gig.owner.rate }}</span>
-              <!-- <span class="amount">({{ reviewsLength }})</span> -->
+              <span class="amount">({{ reviewsLength }})</span>
             </div>
           </div>
         </div>
@@ -118,10 +118,10 @@
         </div>
       </div>
 
-      <div class="reviews-package">
+      <div v-if="reviews" class="reviews-package">
         <a name="reviews"></a>
         <header>
-          <!-- <h3>{{ reviewsLength }} Reviews</h3> -->
+          <h3>{{ reviewsLength }} Reviews</h3>
           <div class="stars">
             <span
               v-for="num in 5"
@@ -179,7 +179,7 @@
             </ul>
           </div>
         </div>
-        <footer v-if="loggedInUser">
+        <footer>
           <button
             @click="toggleAddReview = !toggleAddReview"
             class="add-review-btn btn-actions"
@@ -256,7 +256,7 @@
           </section>
         </footer>
       </div>
-      <div class="reviews-container">
+      <div v-if="reviews" class="reviews-container">
         <ul class="review-list">
           <li class="review-item" v-for="(review, idx) in reviews" :key="idx">
             <div class="user-img">
@@ -325,13 +325,11 @@ export default {
   },
   created() {
     this.loadGig()
-    // this.$store.dispatch({type: 'loadUsers'})
     window.addEventListener("scroll", this.handleScroll);
   },
   computed: {
     reviews() {
       return this.$store.getters.reviews
-     
     },
     reviewsLength() {
       return this.reviews.length;
@@ -354,22 +352,21 @@ export default {
     async loadGig() {
       const id = this.$route.params.gigId;
       this.gig = await gigService.getById(id);
+      console.log(this.gig);
       console.log('loadReviews :>> ', this.gig.owner._id);
-      var reviewerId = this.gig.owner._id
-      await this.$store.dispatch({type: "loadReviews", id: reviewerId,});
-      
+      const sellerId = this.gig.owner._id
+      await this.$store.dispatch({type: "loadReviews", id: sellerId,});
     },
-   
     progressBar(num) {
-      // const amount = +this.reviews.reduce((acc, review) => {
-      //   if (review.rate === num) acc++;
-      //   return acc;
-      // }, 0);
-      // return (amount / this.reviews.length) * 100;
+      const amount = +this.reviews.reduce((acc, review) => {
+        if (Math.round(review.rate) === num) acc++;
+        return acc;
+      }, 0);
+      return (amount / this.reviews.length) * 100;
     },
     starNum(num) {
       const amount = +this.reviews.reduce((acc, review) => {
-        if (review.rate === num) acc++;
+        if (Math.round(review.rate) === num) acc++;
         return acc;
       }, 0);
       return amount;
@@ -380,7 +377,7 @@ export default {
     async addReview() {
       const review = this.reviewToAdd;
       this.reviewToAdd.aboutUser = this.gig.owner._id
-      // review.rate =+((+review.communication + +review.service + +review.recommend) / 3).toFixed(1);
+      review.rate =+((+review.communication + +review.service + +review.recommend) / 3).toFixed(1);
       console.log(review);
       await this.$store.dispatch({ type: "addReview", review });
       this.toggleAddReview = false;
