@@ -99,7 +99,7 @@ export default {
       return +(this.gig.price + this.serviceFee);
     },
     reviewsLength() {
-      return this.loggedInUser.reviews.length;
+      // return this.loggedInUser.reviews.length;
     },
   },
   watch: {
