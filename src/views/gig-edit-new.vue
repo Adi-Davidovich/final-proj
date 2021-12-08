@@ -112,16 +112,15 @@ export default {
       if (this.gigToEdit._id) {
         try {
           console.log("GigToEdit");
-          await this.$store.dispatch({
-            type: "updateGig",
-            gig: this.gigToEdit,
-          });
+          await this.$store.dispatch({type: "updateGig",gig: this.gigToEdit,});
           this.$router.push("/user");
         } catch (err) {
           console.log("Editing Error (gig-edit):", err);
         }
       } else {
         try {
+          this.gigToEdit.createdById = this.$store.getters.loggedinUser._id
+          console.log(this.gigToEdit)
           const savedGig = await this.$store.dispatch({
             type: "addGig",
             gig: this.gigToEdit,
