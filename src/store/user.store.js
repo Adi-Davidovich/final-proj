@@ -74,7 +74,7 @@ export const userStore = {
             // TODO: loading
             try {
                 const users = await userService.getUsers();
-                commit({ type: 'setUsers', users })
+                // commit({ type: 'setUsers', users })
             } catch (err) {
                 console.log('userStore: Error in loadUsers', err)
                 throw err

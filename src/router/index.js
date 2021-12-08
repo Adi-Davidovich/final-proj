@@ -10,7 +10,6 @@ import userProfile from '../views/profile-page.vue'
 import dashboard from '../views/dashboard.vue'
 import chat from '../views/chat.vue'
 import reviewApp from '../views/review-app.vue'
-import loginSignup from '../views/login-signup.vue'
 import becomeASeller from '../views/become-a-seller.vue'
 
 
@@ -59,11 +58,7 @@ const routes = [
     name: 'chat',
     component: chat
   },
-  {
-    path: '/login',
-    name: 'loginSignup',
-    component: loginSignup
-  },
+  
 ]
 
 const router = new VueRouter({

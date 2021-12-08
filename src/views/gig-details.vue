@@ -1,5 +1,5 @@
 <template>
-  <section class="gig-details-wrapper main-layout">
+  <section class="gig-details-wrapper main-layout" >
     <a name="overview"></a>
     <nav
       @handleScroll="handleScroll"
@@ -15,7 +15,7 @@
     <section v-if="gig" class="gig-details">
       <order-preview class="purchase-container" :gig="gig" />
 
-      <div class="overview">
+      <div class="overview" >
         <h3 class="title">{{ gig.title }}</h3>
         <div class="owner-prev flex">
           <avatar
@@ -39,7 +39,7 @@
               >
               </span>
               <span class="rate">{{ gig.owner.rate }}</span>
-              <span class="amount">({{ reviewsLength }})</span>
+              <!-- <span class="amount">({{ reviewsLength }})</span> -->
             </a>
           </div>
           <span class="seperator">|</span>
@@ -83,7 +83,7 @@
                 "
               ></span>
               <span class="rate">{{ gig.owner.rate }}</span>
-              <span class="amount">({{ reviewsLength }})</span>
+              <!-- <span class="amount">({{ reviewsLength }})</span> -->
             </div>
           </div>
         </div>
@@ -115,7 +115,7 @@
       <div class="reviews-package">
         <a name="reviews"></a>
         <header>
-          <h3>{{ reviewsLength }} Reviews</h3>
+          <!-- <h3>{{ reviewsLength }} Reviews</h3> -->
           <div class="stars">
             <span
               v-for="num in 5"
@@ -249,19 +249,18 @@
             </form>
           </section>
         </footer>
-        <div class="reviews-container">
+        <div class="reviews-container" >
           <ul class="review-list">
             <li class="review-item" v-for="(review, idx) in reviews" :key="idx">
               <div class="user-img">
                 <avatar
                   :size="30"
-                  :username="review.username"
-                  :src="review.username"
+                  :username="review.buyer.fullname"
                 ></avatar>
               </div>
-              <div class="review-content">
+              <div class="review-content" >
                 <div class="reviewer-details">
-                  <h4>{{ review.username }}</h4>
+                  <h4>{{ review.buyer.fullname }}</h4>
                   <div class="review-rating">
                     <i class="fa fa-star" />
                     {{ review.rate }}
@@ -301,7 +300,6 @@ import Avatar from "vue-avatar";
 
 export default {
   name: "gig-details",
-
   data() {
     return {
       limitPosition: 120,
@@ -320,32 +318,14 @@ export default {
     };
   },
   created() {
-    this.loadGig();
+    this.loadGig()
     // this.$store.dispatch({type: 'loadUsers'})
     window.addEventListener("scroll", this.handleScroll);
   },
   computed: {
     reviews() {
-      return [
-        {
-          txt: "I loved the Logo",
-          rate: 5,
-          username: "Josh",
-          country: "United States",
-        },
-        {
-          txt: "Good Job!",
-          rate: 5,
-          username: "Josh",
-          country: "United States",
-        },
-        {
-          txt: "Thank you",
-          rate: 2,
-          username: "Josh",
-          country: "United States",
-        },
-      ];
+      return this.$store.getters.reviews
+     
     },
     reviewsLength() {
       return this.reviews.length;
@@ -368,13 +348,18 @@ export default {
     async loadGig() {
       const id = this.$route.params.gigId;
       this.gig = await gigService.getById(id);
+      console.log('loadReviews :>> ', this.gig.owner._id);
+      var reviewerId = this.gig.owner._id
+      await this.$store.dispatch({type: "loadReviews", id: reviewerId,});
+      
     },
+   
     progressBar(num) {
-      const amount = +this.reviews.reduce((acc, review) => {
-        if (review.rate === num) acc++;
-        return acc;
-      }, 0);
-      return (amount / this.reviews.length) * 100;
+      // const amount = +this.reviews.reduce((acc, review) => {
+      //   if (review.rate === num) acc++;
+      //   return acc;
+      // }, 0);
+      // return (amount / this.reviews.length) * 100;
     },
     starNum(num) {
       const amount = +this.reviews.reduce((acc, review) => {
@@ -388,7 +373,7 @@ export default {
     },
     async addReview() {
       const review = this.reviewToAdd;
-      this.reviewToAdd.aboutUser = this.gig.owner._id;
+      this.reviewToAdd.aboutUser = this.gig.owner._id
       // review.rate =+((+review.communication + +review.service + +review.recommend) / 3).toFixed(1);
       console.log(review);
       await this.$store.dispatch({ type: "addReview", review });

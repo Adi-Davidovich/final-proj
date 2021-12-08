@@ -72,6 +72,7 @@ export default {
   created() {
     this.user = this.$store.getters.loggedinUser;
     this.$store.dispatch({ type: "getUserGigs" });
+    this.$store.dispatch({ type: "getUserOrders" });
   },
   computed: {
     gigs() {
