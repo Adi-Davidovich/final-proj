@@ -119,8 +119,10 @@ export const orderStore = {
                 throw err;
             }
         },
-        async getUserOrders(){
-
+        async getUserOrders({ commit }){
+            let orders = await orderService.query()
+            console.log(orders)
+            commit({ type: 'setOrders', orders })
         },
         // Optimistic
         // removeGigOptimistic({ commit }, { gigId: gigId }) {

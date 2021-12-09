@@ -117,14 +117,13 @@ export default {
     },
     async purchase() {
       const order = JSON.parse(JSON.stringify(this.order));
-      console.log(this.loggedInUser);
       order.description = this.gig.title;
       order.price = this.finalPrice;
       order.timeToDeliver = this.gig.package.timeToDeliver;
       order.imgUrl = this.img;
       order.seller = {
         _id: this.gig.owner._id,
-        fullname: this.gig.owner.username,
+        username: this.gig.owner.username,
         imgUrl: this.gig.owner.imgUrl,
       };
       order.gig = {
@@ -136,7 +135,7 @@ export default {
           revisions: this.gig.package.revisions,
         },
       };
-      console.log(order);
+      console.log("Oreder log!!", order);
       try {
         const savedOrder = await this.$store.dispatch({
           type: "addOrder",

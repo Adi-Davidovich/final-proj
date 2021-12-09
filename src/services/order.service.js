@@ -16,28 +16,32 @@ export const orderService = {
 
 
 
-async function query(filterBy) {
-  let filteredOrders = await storageService.query(KEY)
-  if (!filteredOrders || !filteredOrders.length) return
-  if (filterBy.seller._id) {
-    filteredOrders = filteredOrders.filter(order => order.seller._id === filterBy.seller._id)
-  }
-  if (filterBy.buyer._id) {
-    filteredOrders = filteredOrders.filter(order => order.buyer._id <= filterBy.buyer._id)
-  }
-  if (filterBy.sort === 'price') {
-    filteredOrders = filteredOrders.sort(function (a, b) {
-      return a.price - b.price;
-    })
-  }
-  return filteredOrders
-  // console.log('filterBy :>> ', filterBy);
-  //   return await httpService.get('order', filterBy)
+async function query() {
+  // let filteredOrders = await storageService.query(KEY)
+  // if (!filteredOrders || !filteredOrders.length) return
+  // if (filterBy.seller._id) {
+  //   filteredOrders = filteredOrders.filter(order => order.seller._id === filterBy.seller._id)
+  // }
+  // if (filterBy.buyer._id) {
+  //   filteredOrders = filteredOrders.filter(order => order.buyer._id <= filterBy.buyer._id)
+  // }
+  // if (filterBy.sort === 'price') {
+  //   filteredOrders = filteredOrders.sort(function (a, b) {
+  //     return a.price - b.price;
+  //   })
+  // }
+  // return filteredOrders
+  // // console.log('filterBy :>> ', filterBy);
+  return await httpService.get('order')
 }
 
 async function getById(id) {
   // return await storageService.get(KEY, id)
+<<<<<<< HEAD
     return await httpService.get(`order/${id}`)
+=======
+  return await httpService.get(`order/${id}`)
+>>>>>>> 53c265c35545eee11f63349c7f851f4fca7ad1a3
 }
 
 async function remove(id) {
@@ -64,7 +68,6 @@ async function save(order) {
 
 function getEmptyOrder() {
   return Promise.resolve({
-    _id: '',
     createdAt: '',
     description: '',
     price: null,

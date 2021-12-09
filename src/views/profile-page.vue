@@ -56,6 +56,7 @@
         </section>
       </section>
     </section>
+    <pre>{{ orders }}</pre>
   </section>
 </template>
 
@@ -72,11 +73,14 @@ export default {
   created() {
     this.user = this.$store.getters.loggedinUser;
     this.$store.dispatch({ type: "getUserGigs" });
-    this.$store.dispatch({ type: "getUserOrders" });
+    this.getUserOrders();
   },
   computed: {
     gigs() {
       return this.$store.getters.gigsToShow;
+    },
+    orders() {
+      return this.$store.getters.ordersToShow;
     },
     sellerMode() {
       return this.user.isSeller;
@@ -88,6 +92,9 @@ export default {
   },
 
   methods: {
+    getUserOrders() {
+      this.$store.dispatch({ type: "getUserOrders"});
+    },
     removeGig(gigId) {
       this.$store.dispatch({ type: "removeGig", gigId });
     },
