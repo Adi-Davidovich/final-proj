@@ -120,8 +120,7 @@ export const orderStore = {
             }
         },
         async getUserOrders(){
-            let filterBy={}
-            let orders = await orderService.query(filterBy)
+            let orders = await orderService.query()
             console.log(orders)
             commit({ type: 'setOrders', orders })
         },

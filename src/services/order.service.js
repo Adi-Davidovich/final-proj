@@ -16,7 +16,7 @@ export const orderService = {
 
 
 
-async function query(filterBy) {
+async function query() {
   // let filteredOrders = await storageService.query(KEY)
   // if (!filteredOrders || !filteredOrders.length) return
   // if (filterBy.seller._id) {
@@ -32,7 +32,7 @@ async function query(filterBy) {
   // }
   // return filteredOrders
   // // console.log('filterBy :>> ', filterBy);
-  return await httpService.get('order', filterBy)
+  return await httpService.get('order')
 }
 
 async function getById(id) {

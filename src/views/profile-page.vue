@@ -73,6 +73,7 @@ export default {
   created() {
     this.user = this.$store.getters.loggedinUser;
     this.$store.dispatch({ type: "getUserGigs" });
+    this.getUserOrders();
   },
   computed: {
     gigs() {
@@ -92,12 +93,7 @@ export default {
 
   methods: {
     getUserOrders() {
-      if (user.isSeller) {
-        this.$store.dispatch({ type: "getUserOrders", sellerId: user._id });
-      }
-      if (user.isSeller) {
-        this.$store.dispatch({ type: "getUserOrders", buyerId: buyer._id });
-      }
+      this.$store.dispatch({ type: "getUserOrders"});
     },
     removeGig(gigId) {
       this.$store.dispatch({ type: "removeGig", gigId });
