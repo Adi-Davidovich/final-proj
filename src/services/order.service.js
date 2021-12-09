@@ -65,7 +65,6 @@ async function save(order) {
 
 function getEmptyOrder() {
   return Promise.resolve({
-    _id: '',
     createdAt: '',
     description: '',
     price: null,
