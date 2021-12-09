@@ -86,7 +86,7 @@ export default {
   },
   created() {
     this.loadGig();
-    this.$store.dispatch({type: 'loadUsers'})
+    this.$store.dispatch({ type: "loadUsers" });
   },
   computed: {
     loggedInUser() {
@@ -99,11 +99,7 @@ export default {
       return +(this.gig.price + this.serviceFee);
     },
     reviewsLength() {
-<<<<<<< HEAD
-      // return this.loggedInUser.reviews.length;
-=======
       return this.loggedInUser.reviews;
->>>>>>> 745bc49fc944c02a2dce770948fa793d5084e8cb
     },
   },
   watch: {
@@ -120,7 +116,6 @@ export default {
     },
     async purchase() {
       const order = JSON.parse(JSON.stringify(this.order));
-      console.log(this.loggedInUser);
       order.description = this.gig.title;
       order.price = this.finalPrice;
       order.timeToDeliver = this.gig.package.timeToDeliver;
@@ -139,7 +134,7 @@ export default {
           revisions: this.gig.package.revisions,
         },
       };
-      console.log(order);
+      console.log("Oreder log!!", order);
       try {
         const savedOrder = await this.$store.dispatch({
           type: "addOrder",

@@ -120,7 +120,10 @@ export const orderStore = {
             }
         },
         async getUserOrders(){
-
+            let filterBy={}
+            let orders = await orderService.query(filterBy)
+            console.log(orders)
+            commit({ type: 'setOrders', orders })
         },
         // Optimistic
         // removeGigOptimistic({ commit }, { gigId: gigId }) {
