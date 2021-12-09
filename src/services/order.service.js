@@ -37,11 +37,7 @@ async function query() {
 
 async function getById(id) {
   // return await storageService.get(KEY, id)
-<<<<<<< HEAD
-    return await httpService.get(`order/${id}`)
-=======
   return await httpService.get(`order/${id}`)
->>>>>>> 53c265c35545eee11f63349c7f851f4fca7ad1a3
 }
 
 async function remove(id) {
