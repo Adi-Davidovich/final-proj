@@ -88,6 +88,7 @@
                   :size="35"
                   :username="user.username"
                   :src="user.imgUrl"
+                  class="user"
                 ></avatar>
               </li>
             </ul>
