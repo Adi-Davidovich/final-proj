@@ -32,31 +32,73 @@
                 Create New Gig
               </button>
             </div>
-            <ul class="gig-list-user">
-              <li v-for="(gig, index) in gigs" :key="index">
-                <gig-preview
-                  @mouseover.native="hover = true"
-                  @mouseleave.native="hover = false"
-                  :gig="gig"
-                />
+            <div>
+              <ul class="gig-list-user">
+                <li v-for="(gig, index) in gigs" :key="index">
+                  <gig-preview
+                    @mouseover.native="hover = true"
+                    @mouseleave.native="hover = false"
+                    :gig="gig"
+                  />
 
-                <div class="gig-tools">
-                  <button class="regular-btn" @click="editGig(gig._id)">
-                    Edit
-                  </button>
-                  <button class="regular-btn" @click="removeGig(gig._id)">
-                    Delete
-                  </button>
-                </div>
-              </li>
-            </ul>
+                  <div class="gig-tools">
+                    <button class="regular-btn" @click="editGig(gig._id)">
+                      Edit
+                    </button>
+                    <button class="regular-btn" @click="removeGig(gig._id)">
+                      Delete
+                    </button>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
 
-          <section v-else class="user-profile"></section>
+          <section v-else class="user-profile">
+            <div class="user-header">
+              <p>My orders</p>
+            </div>
+
+            <div class="user-orders-list">
+              <ul>
+                <li
+                  class="user-order"
+                  v-for="(order, index) in orders"
+                  :key="index"
+                >
+                  <img
+                    :src="require(`@/assets/img/card-images/${order.imgUrl}`)"
+                    @click="gigDetails(order.gig._id)"
+                  />
+                  <div class="buyer-details price">
+                    <div class="avatar">
+                      <avatar
+                        :size="30"
+                        :username="order.seller.username"
+                        :src="user.imgUrl"
+                      ></avatar>
+                    </div>
+                    <p>{{ order.seller.username }}</p>
+                  </div>
+                  <div class="price">
+                    <p>Price:</p>
+                    <p>{{ order.price }}</p>
+                  </div>
+                  <div class="delivery-time price">
+                    <p>{{ order.timeToDeliver }}</p>
+                    <div class="status">
+                      <p>
+                        Status: <span>{{ order.status }}</span>
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
         </section>
       </section>
     </section>
-    <pre>{{ orders }}</pre>
   </section>
 </template>
 
@@ -93,7 +135,7 @@ export default {
 
   methods: {
     getUserOrders() {
-      this.$store.dispatch({ type: "getUserOrders"});
+      this.$store.dispatch({ type: "getUserOrders" });
     },
     removeGig(gigId) {
       this.$store.dispatch({ type: "removeGig", gigId });
@@ -111,6 +153,9 @@ export default {
       let elGig = document.querySelector(gig);
       elGig.classList.add("over");
     },
+    gigDetails(gigId){
+      this.$router.push('/gig/'+gigId)
+    }
   },
 
   components: {

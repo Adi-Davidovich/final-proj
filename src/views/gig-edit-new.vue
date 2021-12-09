@@ -58,7 +58,7 @@
         </div>
 
         <div class="revision grid-div">
-          <p>Revision:</p>
+          <p>Revisions:</p>
           <el-input
             type="number"
             placeholder="Dellvery Time"

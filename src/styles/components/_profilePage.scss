@@ -95,6 +95,7 @@
                             color: #95979d;
                             border-radius: 3px;
                             font-family: macan-light;
+                            margin-bottom: 5px;
                         }
                     }
 
@@ -189,6 +190,50 @@
                 .el-carousel__indicator {
                     border: none;
                     background-color: unset;
+                }
+            }
+
+            .user-profile {
+                .user-header {
+                    background-color: white;
+                    height: 75px;
+                    width: 735px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border: 1px solid #e4e5e7;
+                    padding: 20px;
+                }
+
+                .user-order {
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                    padding: 20px;
+                    padding-bottom: 1px solid #dadbdd;
+                    .buyer-details{
+                        p{
+                            padding-bottom: 6px;
+                        }
+                    }
+
+                    img {
+                        height: 100px;
+                        width: 200px;
+                        object-fit: cover;
+                    }
+                    .price {
+                        width: 120px;
+                        height: 100px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-evenly;
+                    }
+                    border: 1px solid #dadbdd;
+                    background-color: white;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 735px;
                 }
             }
         }

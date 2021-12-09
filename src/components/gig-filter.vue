@@ -42,7 +42,7 @@
             v-model="filterBy.price"
             @change="setFilter"
           ></el-slider>
-          <p>{{ priceRander }}</p>
+          <p>Up to {{ priceRander }}</p>
         </div>
       </div>
 
@@ -95,7 +95,7 @@ export default {
       ],
       filterBy: {
         txt:"",
-        price: 300,
+        price: 0,
         category: "",
         deliveyTime: "",
         sort: "",
