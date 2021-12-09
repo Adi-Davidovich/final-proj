@@ -65,10 +65,7 @@ async function save(order) {
 
 function getEmptyOrder() {
   return Promise.resolve({
-<<<<<<< HEAD
-=======
     createdAt: '',
->>>>>>> 4d1f39077486f2073dacf3995cd29e2003e95433
     description: '',
     price: null,
     timeToDeliver: '',
