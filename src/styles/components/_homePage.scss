@@ -1,156 +1,67 @@
 .main-content {
-  height: 680px;
+  height: 675px;
   position: relative;
-  .hero-backgrounds {
-    > div {
-      display: flex;
-      justify-content: flex-end;
-      background-repeat: no-repeat;
-      background-size: auto 100%;
-      background-position: bottom right;
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      z-index: 1;
-      transition: opacity 0.9s;
-    }
-    > div .seller-name {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
-
-      p {
-        color: #fff;
-        padding-bottom: 32px;
-        padding-right: 480px;
+  margin-block-end: 90px;
+  background-color: #023a15;
+  .hero-wrapper {
+    .hero-backgrounds {
+      display: none;
+      @include for-normal-layout {
+        display: block;
       }
-    }
-  }
-}
-
-.cards-container {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 5.938rem;
-  .card-filter {
-    position: relative;
-    width: 245px;
-    cursor: pointer;
-    // margin: 0 18px;
-    p {
-      position: absolute;
-      display: flex;
-      flex-wrap: wrap;
-      max-width: 94%;
-      color: #fff;
-      top: 0;
-      left: 0;
-      font-size: 14px;
-      line-height: 20px;
-      font-weight: 400;
-      padding: 16px;
-
-      .filterTitle {
-        font-size: 20px;
-        line-height: 140%;
-        font-weight: 700;
-      }
-    }
-  }
-}
-
-.homePage-title {
-  font-weight: 700;
-  height: 38.4px;
-  color: #404145;
-  font-size: 32px;
-  line-height: 120%;
-  margin-block-start: 0.83em;
-  margin-block-end: 0.83em;
-  margin: 0;
-  margin-bottom: 1.5rem;
-  font-family: macan-bold;
-}
-
-.homePage-info-container {
-  grid-column: span 3;
-  padding-top: 64px;
-  padding-bottom: 64px;
-  flex: 0 1 auto;
-  flex-flow: row wrap;
-  background-color: #f1fdf7;
-  margin-bottom: 5.938rem;
-  z-index: 30;
-
-  .homePage-info {
-    grid-column: 2;
-    padding-bottom: 0;
-    flex-basis: 46.66667%;
-    max-width: 46.66667%;
-    flex: 0 0 auto;
-    align-items: center;
-    flex-flow: row wrap;
-    padding-right: 7.29%;
-    li {
-      padding-bottom: 24px;
-      list-style: none;
-      list-style-image: none;
-      h6 {
+      > div {
         display: flex;
-        padding-bottom: 8px;
-        align-items: flex-start;
-        font-size: 18px;
-        line-height: 140%;
-        font-weight: 700;
-        color: #404145;
-        margin-block-start: 2.33em;
-        margin-block-end: 2.33em;
-        margin: 0;
-        span {
-          fill: rgb(122, 125, 133);
-          margin-right: 10px;
-          min-width: 24px;
+        justify-content: flex-end;
+        background-repeat: no-repeat;
+        background-size: auto 70%;
+        background-position: bottom right;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        transition: opacity 0.9s;
+        // CHANGE
+        @include for-wide-layout {
+          background-size: auto 100%;
         }
       }
-      p {
-        font-size: 18px;
-        font-stretch: 100%;
-        font-weight: 400;
-        line-height: 26px;
-        text-align: left;
+      > div .seller-name {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+
+        p {
+          color: #fff;
+          padding-bottom: 32px;
+          padding-right: 300px;
+          text-shadow: 0px 0px 12px rgba(120, 120, 120, 0.7);
+
+          // CHANGE
+          @include for-wide-layout {
+            padding-right: 480px;
+          }
+        }
       }
     }
-    h2 {
-      padding-bottom: 24px;
-      font-size: 32px;
-      line-height: 120%;
-      font-weight: 700;
-      color: #404145;
-      font-family: macan-bold;
-    }
   }
-  .homePage-img {
-    // width: 100%;
-    display: flex;
-    align-items: center;
-    padding-left: 5%;
-    position: relative;
-  }
+
   .hero-title {
     display: flex;
     flex-direction: column;
     align-self: flex-start;
-    position: absolute;
-    top: 21%;
-    width: 626px;
-    margin: 0;
-    padding: 0;
+    position: relative;
+    margin-top: 25%;
+    z-index: 100;
+    @include for-normal-layout {
+      width: 636px;
+      position: absolute;
+      top: 21%;
+      padding-inline-end: 0;
+      margin: 0;
+    }
     p {
       color: #fff;
       font-size: 48px;
@@ -218,19 +129,20 @@
     .popular {
       display: flex;
       font-size: 14px;
-      line-height: 27px;
       font-weight: 600;
       color: #fff;
       padding-top: 24px;
+      align-items: center;
       ul {
         display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
         width: 100%;
         margin-left: 12px;
         list-style: none;
         list-style-image: none;
         li {
           cursor: pointer;
-          display: flex;
           margin-right: 12px;
           white-space: nowrap;
           background-color: transparent;
@@ -244,7 +156,150 @@
           transition-duration: 0.2s;
           transition-timing-function: ease-in-out;
           transition-delay: 0s;
+
+          &:hover {
+            background-color: #fff;
+            color: $clr5;
+          }
         }
+      }
+    }
+  }
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 5.938rem;
+
+  // CHANGE
+  @media screen and (max-width: 550px) {
+    padding-block-start: 1rem;
+    justify-content: center;
+  }
+  .card-filter {
+    position: relative;
+    width: 245px;
+    cursor: pointer;
+    // margin: 0 18px;
+    p {
+      position: absolute;
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 94%;
+      color: #fff;
+      top: 0;
+      left: 0;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 400;
+      padding: 16px;
+
+      .filter-title {
+        font-size: 20px;
+        line-height: 140%;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.home-page-title {
+  font-weight: 700;
+  height: 38.4px;
+  color: #404145;
+  font-size: 32px;
+  line-height: 120%;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin: 0;
+  margin-bottom: 1.5rem;
+  font-family: macan-bold;
+}
+
+.home-page-info-container {
+  padding-top: 64px;
+  padding-bottom: 64px;
+  padding-inline: 32px;
+  flex: 0 1 auto;
+  flex-flow: row wrap;
+  background-color: #f1fdf7;
+  margin-bottom: 5.938rem;
+  .main-info {
+    .content {
+      flex-flow: row wrap;
+      flex: 0 1 auto;
+      flex-direction: column;
+      align-items: center;
+      @include for-normal-layout {
+        flex-direction: row;
+      }
+    }
+    .home-page-info {
+      padding: 0 8px 48px;
+      flex: 0 0 auto;
+      align-items: center;
+      flex-flow: row wrap;
+      width: 100%;
+      @include for-normal-layout {
+        padding-bottom: 0;
+        padding-right: 7.29%;
+        flex-basis: 46.66667%;
+        max-width: 46.66667%;
+      }
+      li {
+        padding-bottom: 24px;
+        list-style: none;
+        list-style-image: none;
+        h6 {
+          display: flex;
+          padding-bottom: 8px;
+          align-items: flex-start;
+          font-size: 18px;
+          line-height: 140%;
+          font-weight: 700;
+          color: #404145;
+          margin-block-start: 2.33em;
+          margin-block-end: 2.33em;
+          margin: 0;
+          span {
+            fill: rgb(122, 125, 133);
+            margin-right: 10px;
+            min-width: 24px;
+          }
+        }
+        p {
+          font-size: 18px;
+          font-stretch: 100%;
+          font-weight: 400;
+          line-height: 26px;
+          text-align: left;
+        }
+      }
+      h2 {
+        padding-bottom: 24px;
+        font-size: 32px;
+        line-height: 120%;
+        font-weight: 700;
+        color: #404145;
+        font-family: macan-bold;
+      }
+    }
+    .home-page-img {
+      position: relative;
+      img {
+        width: 100%;
+        object-fit: contain;
+        padding-inline: 8px;
+      }
+      @include for-normal-layout {
+        flex-basis: 53.33333%;
+        min-width: 50px;
+        max-width: 53.33333%;
       }
     }
   }

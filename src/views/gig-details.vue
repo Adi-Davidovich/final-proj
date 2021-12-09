@@ -1,5 +1,5 @@
 <template>
-  <section class="gig-details-wrapper main-layout" >
+  <section class="gig-details-wrapper main-layout">
     <a name="overview"></a>
     <nav
       @handleScroll="handleScroll"
@@ -15,7 +15,7 @@
     <section v-if="gig" class="gig-details">
       <order-preview class="purchase-container" :gig="gig" />
 
-      <div class="overview" >
+      <div class="overview">
         <h3 class="title">{{ gig.title }}</h3>
         <div class="owner-prev flex">
           <avatar
@@ -260,10 +260,7 @@
         <ul class="review-list">
           <li class="review-item" v-for="(review, idx) in reviews" :key="idx">
             <div class="user-img">
-              <avatar
-                :size="30"
-                :username="review.buyer.fullname"
-              ></avatar>
+              <avatar :size="30" :username="review.buyer.fullname"></avatar>
             </div>
             <div class="review-content">
               <div class="reviewer-details">
@@ -324,12 +321,12 @@ export default {
     };
   },
   created() {
-    this.loadGig()
+    this.loadGig();
     window.addEventListener("scroll", this.handleScroll);
   },
   computed: {
     reviews() {
-      return this.$store.getters.reviews
+      return this.$store.getters.reviews;
     },
     reviewsLength() {
       return this.reviews.length;
@@ -353,9 +350,9 @@ export default {
       const id = this.$route.params.gigId;
       this.gig = await gigService.getById(id);
       console.log(this.gig);
-      console.log('loadReviews :>> ', this.gig.owner._id);
-      const sellerId = this.gig.owner._id
-      await this.$store.dispatch({type: "loadReviews", id: sellerId,});
+      console.log("loadReviews :>> ", this.gig.owner._id);
+      const sellerId = this.gig.owner._id;
+      await this.$store.dispatch({ type: "loadReviews", id: sellerId });
     },
     progressBar(num) {
       const amount = +this.reviews.reduce((acc, review) => {
@@ -376,8 +373,11 @@ export default {
     },
     async addReview() {
       const review = this.reviewToAdd;
-      this.reviewToAdd.aboutUser = this.gig.owner._id
-      review.rate =+((+review.communication + +review.service + +review.recommend) / 3).toFixed(1);
+      this.reviewToAdd.aboutUser = this.gig.owner._id;
+      review.rate = +(
+        (+review.communication + +review.service + +review.recommend) /
+        3
+      ).toFixed(1);
       console.log(review);
       await this.$store.dispatch({ type: "addReview", review });
       this.toggleAddReview = false;

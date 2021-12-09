@@ -4,9 +4,9 @@
       <h6>Select Category</h6>
       <ul class="grid">
         <li
-          v-for="category in categories"
+          v-for="(category) in categories"
           :key="category.id"
-          :class="`category-card flex ${category.categoryName}`"
+          :class="`category-card ${category.class} flex ${category.categoryName} ${category.value === filterBy.category ? 'active' : ''}`"
           @click="setCategory(category.value)"
         >
           <img
@@ -94,7 +94,7 @@ export default {
         },
       ],
       filterBy: {
-        txt:"",
+        txt: "",
         price: 300,
         category: "",
         deliveyTime: "",
@@ -107,31 +107,37 @@ export default {
       },
       categories: [
         {
+          class: "all",
           categoryName: "All",
           value: "",
           iconUrl: "grid.png",
         },
         {
+          class: "illustration",
           categoryName: "Illustration",
           value: "Illustration",
           iconUrl: "illustration.png",
         },
         {
+          class: "logo-design",
           categoryName: "Logo Design",
           value: "Logo Design",
           iconUrl: "logo-design.png",
         },
         {
+          class: "voice-over",
           categoryName: "Voice Over",
           value: "Voice Over",
           iconUrl: "voice-over.png",
         },
         {
+          class: "social-media",
           categoryName: "Social Media Marketing",
           value: "Social Media Marketing",
           iconUrl: "social-media.png",
         },
         {
+          class: "video-explainer",
           categoryName: "Video Explainer",
           value: "Video Explainer",
           iconUrl: "video-tutorial.png",

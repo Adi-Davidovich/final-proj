@@ -19,8 +19,13 @@
     .container {
       list-style: none;
       display: flex;
+      height: 100%;
       li {
         padding-inline-end: rem(25px);
+        height: 100%;
+        // &:hover {
+        //   box-shadow: inset 0px -6px 0px $clr1;
+        // }
         a {
           text-decoration: none;
           font-size: 14px;
@@ -80,10 +85,14 @@
         font-family: macan-bold;
       }
       .owner-prev {
-        flex-wrap: wrap;
+        // flex-wrap: wrap;
         padding-block-end: rem(25px);
         align-content: center;
         align-items: center;
+
+        .vue-avatar--wrapper {
+          flex: 0 0 auto;
+        }
         .stars a {
           text-decoration: none;
           &:visited {

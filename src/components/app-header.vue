@@ -1,65 +1,98 @@
-
 <template>
   <section>
-    <header class="main-header main-layout">
-      <div class="header-container">
-        <div class="logo" @click="routToHome">
-          fiverr<span class="logo-dot">.</span>
-          <form class="search-container" @submit.prevent="setFilter">
-            <span class="search-span"><i class="fas fa-search"></i></span>
-            <input
-              type="search"
-              class="search-input"
-              autocomplete="off"
-              v-model="filterBy.txt"
-              @change="setFilter"
-              placeholder="Find Services"
-              ref="input"
-            />
-            <button class="homePage-search" type="submit">search</button>
-          </form>
-        </div>
-        <nav class="main-nav">
-          <router-link to="/explore" class="link" active-class="active-link"
-            >Explore</router-link
-          >
-          <router-link to="/start_selling" class="link"
-            >Become a Seller</router-link
-          >
-
-          <p
-            v-if="!user"
-            @click="openLogin"
-            class="link"
-            active-class="active-link"
-          >
-            Sign In
-          </p>
-          <p
-            v-if="!user"
-            @click="openSignup"
-            class="link link-join"
-            active-class="active-link"
-          >
-            Join
-          </p>
-          <p
-            v-if="user"
-            @click="doLogout"
-            class="link"
-            active-class="active-link"
-          >
-            Logout
-          </p>
-          <div @click="userProfile">
-            <avatar
-              v-if="user"
-              :size="35"
-              :username="user.username"
-              :src="user.imgUrl"
-            ></avatar>
+    <header
+      class="navbar main-layout"
+      :class="{
+        'header-transparent': isHeaderTransparent && isRouteHomePage,
+        'sticky': isRouteHomePage
+      }"
+    >
+      <div class="header-wrapper">
+        <div class="header-row">
+          <div class="logo" @click="routToHome">
+            Higher<span class="logo-dot">.</span>
           </div>
-        </nav>
+          <div
+            class="header-search"
+            :class="{
+              show: isHeaderSearchVisible,
+            }"
+          >
+            <div class="search-bar-package search_bar-package">
+              <form @submit.prevent="setFilter">
+                <span class="search-bar-icon" style="width: 16px; height: 16px">
+                  <i class="fas fa-search"></i>
+                </span>
+                <input
+                  type="search"
+                  autocomplete="off"
+                  placeholder="Find Services"
+                  v-model="filterBy.txt"
+                  @change="setFilter"
+                />
+                <button class="search-button" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+          <nav class="navbar">
+            <ul>
+              <li class="display-from-md">
+                <router-link
+                  to="/explore"
+                  class="nav-link"
+                  active-class="active-link"
+                  >Explore</router-link
+                >
+              </li>
+              <li class="display-from-md">
+                <router-link
+                  to="/start_selling"
+                  class="nav-link"
+                  active-class="active-link"
+                  >Become a Seller</router-link
+                >
+              </li>
+              <li v-if="!user" class="display-from-sm">
+                <a
+                  @click="openLogin"
+                  href="#"
+                  rel="nofollow"
+                  class="nav-link"
+                  active-class="active-link"
+                  >Sign In</a
+                >
+              </li>
+              <li v-if="!user">
+                <a
+                  @click="openSignup"
+                  class="join-button"
+                  active-class="active-link"
+                  rel="nofollow"
+                  href="#"
+                  >Join</a
+                >
+              </li>
+              <li v-if="user">
+                <a
+                  @click="doLogout"
+                  class="nav-link"
+                  active-class="active-link"
+                  rel="nofollow"
+                  href="#"
+                  >Logout</a
+                >
+              </li>
+              <li v-if="user" @click="userProfile">
+                <avatar
+                  v-if="user"
+                  :size="35"
+                  :username="user.username"
+                  :src="user.imgUrl"
+                ></avatar>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </header>
     <signup-form
@@ -69,31 +102,13 @@
     ></signup-form>
   </section>
 
-  <!-- <div class="main-header-sticky main-layout"> -->
-  <!-- <div class="user-msg"></div> -->
-  <!-- <div class="header">
-      <header class="logged-out-homepage-header header-transparent">
-        > -->
-
-  <!-- <div class="fiver-header-search-animated">
-              <div class="search-bar-package search_bar-package">
-                <form class=""><button>Search</button></form>
-              </div>
-              </div> -->
-  <!-- <nav>
-          <router-link v-if="user" :to="'/user/' + user._id">Hi {{ user.fullname }}</router-link>
-          <router-link to="/explore">Explore</router-link> | -->
   <!-- <router-link to="/dashboard">Dashboard</router-link> |
                 <router-link to="/review">Reviews</router-link>|
-                <router-link to="/chat">Chat</router-link>| -->
+  <router-link to="/chat">Chat</router-link>|-->
   <!-- <router-link to="/start_selling">Become a Seller</router-link>|
-          <router-link to="/login">Sign In</router-link> -->
+  <router-link to="/login">Sign In</router-link>-->
   <!-- <router-link to="/about">About</router-link> -->
-  <!-- <button>Join</button>
-        </nav>
-      </header>
-    </div>
-  </div> -->
+  <!-- <button>Join</button> -->
 </template>
 
 <script>
@@ -116,8 +131,11 @@ export default {
           languge: "",
         },
       },
+      isHeaderTransparent: true,
+      isHeaderSearchVisible: false,
       signupMode: false,
       loginMode: false,
+      isRouteHomePage : true
     };
   },
   computed: {
@@ -138,11 +156,30 @@ export default {
     // } else {
     //   this.categoryShow === this.$store.state.filterBy.category;
     // }
+    window.addEventListener("scroll", this.handleScroll);
+    this.isRouteHomePage = this.$route.path === "/";
   },
-
+  watch: {
+    $route({path}) {
+      this.isRouteHomePage = path === "/";
+    }
+  },
   methods: {
     routToHome() {
       this.$router.push("/");
+    },
+    handleScroll() {
+      const sticky = 50;
+      if (window.pageYOffset >= sticky) {
+        this.isHeaderTransparent = false;
+      } else {
+        this.isHeaderTransparent = true;
+      }
+      if (window.pageYOffset >= sticky + 100) {
+        this.isHeaderSearchVisible = true;
+      } else {
+        this.isHeaderSearchVisible = false;
+      }
     },
     // filterCategory() {
     //   if (!this.$store.state.filterBy) {
@@ -154,7 +191,10 @@ export default {
     async setFilter() {
       const copyFilter = JSON.parse(JSON.stringify(this.filterBy));
       console.log("copy :>> ", copyFilter);
-      await this.$store.dispatch({ type: "setFilter", filterBy: copyFilter });
+      await this.$store.dispatch({
+        type: "setFilter",
+        filterBy: copyFilter,
+      });
       this.$router.push("/explore");
       this.$refs.input.value = null;
     },
