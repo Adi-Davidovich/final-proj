@@ -122,7 +122,7 @@ export default {
       order.imgUrl = this.img;
       order.seller = {
         _id: this.gig.owner._id,
-        fullname: this.gig.owner.username,
+        username: this.gig.owner.username,
         imgUrl: this.gig.owner.imgUrl,
       };
       order.gig = {
