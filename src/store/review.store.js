@@ -39,7 +39,7 @@ export const reviewStore = {
                 let filterBy = {}
                 filterBy.id = id
                 const reviews = await reviewService.query(filterBy);
-                // console.log('reviews-', reviews);
+                console.log('reviews-', reviews);
                 context.commit({ type: 'setReviews', reviews })
 
 

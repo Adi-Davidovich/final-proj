@@ -1,5 +1,5 @@
 <template>
-  <section class="checkout" v-if="loggedInUser">
+  <section class="checkout">
     <div v-if="gig" class="gig-details-summary">
       <div class="order-info">
         <header>
@@ -10,8 +10,9 @@
               <span
                 v-for="num in 5"
                 :key="num"
-                class="fa fa-star"
-                :class="num <= gig.owner.rate ? 'fill' : 'empty'"
+                :class="
+                  num <= gig.owner.rate ? 'fa fa-star fill' : 'far fa-star fill'
+                "
               >
               </span>
               <span class="rate">{{ gig.owner.rate }}</span>

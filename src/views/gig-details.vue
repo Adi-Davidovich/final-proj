@@ -1,5 +1,5 @@
 <template>
-  <section class="gig-details-wrapper main-layout" >
+  <section class="gig-details-wrapper main-layout">
     <a name="overview"></a>
     <nav
       @handleScroll="handleScroll"
@@ -15,7 +15,7 @@
     <section v-if="gig" class="gig-details">
       <order-preview class="purchase-container" :gig="gig" />
 
-      <div class="overview" >
+      <div class="overview">
         <h3 class="title">{{ gig.title }}</h3>
         <div class="owner-prev flex">
           <avatar
@@ -23,27 +23,33 @@
             :username="gig.owner.username"
             :src="gig.owner.imgUrl"
           ></avatar>
-          <div class="owner-name-level">
-            <h4>{{ gig.owner.username }}</h4>
-            <span>Level 2 seller</span>
+          <div class="owner-content">
+            <div class="owner-name-level">
+              <h4>{{ gig.owner.username }}</h4>
+              <span>Level 2 seller</span>
+              <span class="seperator">|</span>
+            </div>
+            <div class="stars-orders">
+              <div class="stars">
+                <a href="#reviews"
+                  ><span
+                    v-for="num in 5"
+                    :key="num"
+                    :class="
+                      num <= gig.owner.rate
+                        ? 'fa fa-star fill'
+                        : 'far fa-star fill'
+                    "
+                  >
+                  </span>
+                  <span class="rate">{{ gig.owner.rate }}</span>
+                  <span class="amount">({{ reviewsLength }})</span>
+                </a>
+              </div>
+              <span class="seperator">|</span>
+              <div class="orders">5 Orders in Queue</div>
+            </div>
           </div>
-          <span class="seperator">|</span>
-          <div class="stars">
-            <a href="#reviews"
-              ><span
-                v-for="num in 5"
-                :key="num"
-                :class="
-                  num <= gig.owner.rate ? 'fa fa-star fill' : 'far fa-star fill'
-                "
-              >
-              </span>
-              <span class="rate">{{ gig.owner.rate }}</span>
-              <!-- <span class="amount">({{ reviewsLength }})</span> -->
-            </a>
-          </div>
-          <span class="seperator">|</span>
-          <div class="orders">5 Orders in Queue</div>
         </div>
         <el-carousel :autoplay="false" trigger="click" height="430px">
           <el-carousel-item v-for="img in gig.imgUrl" :key="img">
@@ -83,7 +89,7 @@
                 "
               ></span>
               <span class="rate">{{ gig.owner.rate }}</span>
-              <!-- <span class="amount">({{ reviewsLength }})</span> -->
+              <span class="amount">({{ reviewsLength }})</span>
             </div>
           </div>
         </div>
@@ -112,10 +118,10 @@
         </div>
       </div>
 
-      <div class="reviews-package">
+      <div v-if="reviews" class="reviews-package">
         <a name="reviews"></a>
         <header>
-          <!-- <h3>{{ reviewsLength }} Reviews</h3> -->
+          <h3>{{ reviewsLength }} Reviews</h3>
           <div class="stars">
             <span
               v-for="num in 5"
@@ -173,10 +179,10 @@
             </ul>
           </div>
         </div>
-        <footer v-if="loggedInUser">
+        <footer>
           <button
             @click="toggleAddReview = !toggleAddReview"
-            class="add-review btn-actions"
+            class="add-review-btn btn-actions"
           >
             {{ addReviewBtn }}
           </button>
@@ -249,44 +255,41 @@
             </form>
           </section>
         </footer>
-        <div class="reviews-container" >
-          <ul class="review-list">
-            <li class="review-item" v-for="(review, idx) in reviews" :key="idx">
-              <div class="user-img">
-                <avatar
-                  :size="30"
-                  :username="review.buyer.fullname"
-                ></avatar>
-              </div>
-              <div class="review-content" >
-                <div class="reviewer-details">
-                  <h4>{{ review.buyer.fullname }}</h4>
-                  <div class="review-rating">
-                    <i class="fa fa-star" />
-                    {{ review.rate }}
-                  </div>
-                </div>
-                <div class="reviewer-sub-details">
-                  <div class="country">
-                    <img
-                      src="https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png"
-                      alt="flag"
-                      class="country-flag"
-                    />
-                    <span class="country-name">
-                      {{ review.country }}
-                    </span>
-                  </div>
-                </div>
-                <div class="review-description">
-                  <p>
-                    {{ review.txt }}
-                  </p>
+      </div>
+      <div v-if="reviews" class="reviews-container">
+        <ul class="review-list">
+          <li class="review-item" v-for="(review, idx) in reviews" :key="idx">
+            <div class="user-img">
+              <avatar :size="30" :username="review.buyer.fullname"></avatar>
+            </div>
+            <div class="review-content">
+              <div class="reviewer-details">
+                <h4>{{ review.buyer.fullname }}</h4>
+                <div class="review-rating">
+                  <i class="fa fa-star" />
+                  {{ review.rate }}
                 </div>
               </div>
-            </li>
-          </ul>
-        </div>
+              <div class="reviewer-sub-details">
+                <div class="country">
+                  <img
+                    src="https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png"
+                    alt="flag"
+                    class="country-flag"
+                  />
+                  <span class="country-name">
+                    {{ review.country }}
+                  </span>
+                </div>
+              </div>
+              <div class="review-description">
+                <p>
+                  {{ review.txt }}
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
   </section>
@@ -318,14 +321,12 @@ export default {
     };
   },
   created() {
-    this.loadGig()
-    // this.$store.dispatch({type: 'loadUsers'})
+    this.loadGig();
     window.addEventListener("scroll", this.handleScroll);
   },
   computed: {
     reviews() {
-      return this.$store.getters.reviews
-     
+      return this.$store.getters.reviews;
     },
     reviewsLength() {
       return this.reviews.length;
@@ -348,22 +349,21 @@ export default {
     async loadGig() {
       const id = this.$route.params.gigId;
       this.gig = await gigService.getById(id);
-      console.log('loadReviews :>> ', this.gig.owner._id);
-      var reviewerId = this.gig.owner._id
-      await this.$store.dispatch({type: "loadReviews", id: reviewerId,});
-      
+      console.log(this.gig);
+      console.log("loadReviews :>> ", this.gig.owner._id);
+      const sellerId = this.gig.owner._id;
+      await this.$store.dispatch({ type: "loadReviews", id: sellerId });
     },
-   
     progressBar(num) {
-      // const amount = +this.reviews.reduce((acc, review) => {
-      //   if (review.rate === num) acc++;
-      //   return acc;
-      // }, 0);
-      // return (amount / this.reviews.length) * 100;
+      const amount = +this.reviews.reduce((acc, review) => {
+        if (Math.round(review.rate) === num) acc++;
+        return acc;
+      }, 0);
+      return (amount / this.reviews.length) * 100;
     },
     starNum(num) {
       const amount = +this.reviews.reduce((acc, review) => {
-        if (review.rate === num) acc++;
+        if (Math.round(review.rate) === num) acc++;
         return acc;
       }, 0);
       return amount;
@@ -373,8 +373,11 @@ export default {
     },
     async addReview() {
       const review = this.reviewToAdd;
-      this.reviewToAdd.aboutUser = this.gig.owner._id
-      // review.rate =+((+review.communication + +review.service + +review.recommend) / 3).toFixed(1);
+      this.reviewToAdd.aboutUser = this.gig.owner._id;
+      review.rate = +(
+        (+review.communication + +review.service + +review.recommend) /
+        3
+      ).toFixed(1);
       console.log(review);
       await this.$store.dispatch({ type: "addReview", review });
       this.toggleAddReview = false;

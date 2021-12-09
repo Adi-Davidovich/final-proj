@@ -27,7 +27,7 @@
       </div>
 
       <div class="grid-personal-info">
-        <p>Languges:</p>
+        <p>Languages:</p>
         <el-select
           v-model="sellerDetails.languges"
           multiple

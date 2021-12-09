@@ -1,10 +1,11 @@
 .purchase-container {
   border: 1px solid #dadbdd;
   height: fit-content;
-  position: sticky;
-  top: rem(120px);
+  @include for-normal-layout {
+    position: sticky;
+    top: rem(120px);
+  }
   .order-info {
-    min-width: 415px;
     padding: rem(20px) rem(24px) rem(24px);
     header {
       padding-block-end: rem(10px);
@@ -25,8 +26,7 @@
         }
       }
       p {
-        min-height: 63px;
-        margin-top: rem(10px);
+        margin: rem(10px) 0;
         font-size: 14px;
         line-height: 140%;
         word-break: break-word;
@@ -34,7 +34,7 @@
     }
     article {
       .additional-info {
-        margin-block-end: rem(8px);
+        margin-block-end: rem(10px);
         display: flex;
         .delivery-wrapper {
           display: flex;

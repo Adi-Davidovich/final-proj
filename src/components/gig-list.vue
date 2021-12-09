@@ -1,8 +1,8 @@
 <template>
   <div class="explore-container">
     <p class="services-counter">
-      {{ gigs.length }} services available <template v-if="categoryName">in</template>
       <span v-if="categoryName"> {{ categoryName }}</span>
+      {{ gigs.length }} services available
     </p>
     <ul class="gig-list grid">
       <li v-for="gig in gigs" :key="gig._id">
