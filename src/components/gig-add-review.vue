@@ -63,7 +63,7 @@
           v-model="reviewToAdd.txt"
         ></textarea>
       </div>
-      <button class="btn-add btn-purchase">Add</button>
+      <button class="btn-add btn-purchase">Add</button> <span class="worning" v-if="!isReviewAddedCorrectly">Please add your rating</span>
     </form>
   </section>
 </template>
@@ -82,6 +82,7 @@ export default {
         country: "United States",
         aboutUser: "",
       },
+      isReviewAddedCorrectly: true
     };
   },
   methods: {
@@ -90,6 +91,10 @@ export default {
     },
     async addReview() {
       const review = this.reviewToAdd;
+      if (review.communication === 0 || review.service === 0 || review.recommend === 0){
+        this.isReviewAddedCorrectly = false
+        return
+      }
       this.reviewToAdd.aboutUser = this.gig.owner._id;
       review.rate = +(
         (+review.communication + +review.service + +review.recommend) /
@@ -98,6 +103,7 @@ export default {
       console.log(review);
       await this.$store.dispatch({ type: "addReview", review });
       this.toggleAddReview = false;
+      this.isReviewAddedCorrectly = true
     },
   },
 };

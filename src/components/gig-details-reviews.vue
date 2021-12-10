@@ -37,8 +37,13 @@
 </template>
 
 <script>
-export default {
+import Avatar from "vue-avatar";
+
+export default {  
   name: "gig-details-reviews",
   props: ["reviews"],
+   components: {
+    Avatar,
+  },
 };
 </script>

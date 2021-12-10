@@ -95,16 +95,18 @@
 
         li {
           padding: 0 10px;
-
-		  .user {
-			  cursor: pointer;
-		  }
+          &:last-child {
+            padding: 0 0 0 10px;
+          }
+          .user {
+            cursor: pointer;
+          }
           .nav-link {
             white-space: nowrap;
             font-weight: 600;
             text-decoration: none;
             color: #62646a;
-
+            transition: color .2s;
             &.active-link {
               color: #1dbf73;
             }
