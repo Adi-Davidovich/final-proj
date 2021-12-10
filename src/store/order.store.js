@@ -35,9 +35,10 @@ export const orderStore = {
         addOrder(state, payload) {
             state.orders.push(payload.order)
         },
-        updateOrder(state, payload) {
-            const idx = state.orders.findIndex((order) => order._id === payload.order._id)
-            state.orders.splice(idx, 1, payload.order)
+        updateOrder(state, {savedOrder}) {
+            console.log(savedOrder)
+            const idx = state.orders.findIndex((order) => order._id === savedOrder._id)
+            state.orders.splice(idx, 1, savedOrder)
         },
         removeOrder(state, payload) {
             const idx = state.orders.findIndex((order) => order._id === payload.orderId)

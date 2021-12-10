@@ -13,6 +13,7 @@ import reviewApp from '../views/review-app.vue'
 import becomeASeller from '../views/become-a-seller.vue'
 import sellerOrders from '../components/seller-orders.vue'
 import profile from '../components/profile.vue'
+import sellerDashboard from '../components/seller-dashboard.vue'
 
 Vue.use(VueRouter)
 
@@ -40,6 +41,10 @@ const routes = [
       {
         path: '/user',
         component: profile
+      },
+      {
+        path: '/user/dashboard',
+        component: sellerDashboard
       }
     ]
 

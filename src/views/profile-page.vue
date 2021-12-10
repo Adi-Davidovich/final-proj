@@ -58,13 +58,7 @@ export default {
     getUserOrders() {
       this.$store.dispatch({ type: "getUserOrders" });
     },
-    removeGig(gigId) {
-      this.$store.dispatch({ type: "removeGig", gigId });
-    },
 
-    editGig(gigId) {
-      this.$router.push(`/gig/edit/${gigId}`);
-    },
 
     editPage() {
       this.$router.push(`/gig/edit`);

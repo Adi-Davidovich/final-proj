@@ -52,7 +52,6 @@ export default {
   methods: {
     orderReady(order) {
       this.$store.dispatch({ type: "updateOrder", order });
-      console.log(order);
     },
   },
   components: {

@@ -14,7 +14,20 @@
 import GigPreview from "../components/gig-preview.vue";
 
 export default {
-  props: ["gigs"],
+  computed: {
+    gigs() {
+      return this.$store.getters.gigsToShow;
+    },
+  },
+  methods: {
+    removeGig(gigId) {
+      this.$store.dispatch({ type: "removeGig", gigId });
+    },
+
+    editGig(gigId) {
+      this.$router.push(`/gig/edit/${gigId}`);
+    },
+  },
 
   components: {
     GigPreview,
