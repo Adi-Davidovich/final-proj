@@ -41,6 +41,7 @@
 import Avatar from "vue-avatar";
 
 export default {
+  name: "seller-orders",
   props: ["orders"],
   data() {
     return {};

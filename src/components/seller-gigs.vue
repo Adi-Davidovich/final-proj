@@ -14,6 +14,7 @@
 import GigPreview from "../components/gig-preview.vue";
 
 export default {
+  name: "seller-gigs",
   props: ["gigs"],
 
   components: {
