@@ -201,7 +201,7 @@ export default {
 
     setInterval(() => {
       this.heroIdx = (this.heroIdx + 1) % this.heroes.length;
-    }, 3000);
+    }, 5000);
   },
   methods: {
     setCategory(category) {

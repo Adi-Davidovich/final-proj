@@ -5,6 +5,27 @@
     background-color: black;
 }
 .profile-layout {
+    .profile-header {
+        grid-column: 2;
+        background-color: white;
+        height: 75px;
+        border: 1px solid #e4e5e7;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 20%;
+            p {
+                cursor: pointer;
+            }
+        }
+    }
+
     .regular-btn {
         height: 25px;
         border-radius: 3px;
@@ -16,8 +37,10 @@
     }
     display: grid;
     grid-template-columns: 1fr 1240px 1fr;
+    grid-template-rows: auto auto;
     margin-top: 50px;
     .page-container {
+        grid-row: 2;
         margin-bottom: 20px;
         grid-column: 2;
         display: flex;
@@ -85,21 +108,30 @@
                     border: 1px solid #e4e5e7;
                     transition: 0.15s;
                     .gig-tools {
-                        width: 40%;
+                        width: 20%;
                         margin: auto;
                         display: flex;
                         justify-content: space-between;
-                        button {
-                            background-color: white;
-                            border: 1px solid #95979d;
-                            color: #95979d;
-                            border-radius: 3px;
-                            font-family: macan-light;
-                            margin-bottom: 5px;
+                        .fa-trash-alt {
+                            font-size: 25px;
+                            cursor: pointer;
+                            transition: 0.2s;
+                            &:hover {
+                                color: rgb(185, 60, 60);
+                            }
+                        }
+                        .fa-edit {
+                            font-size: 25px;
+                            cursor: pointer;
+                            transition: 0.3s;
+                            margin-bottom: 10px;
+                            &:hover {
+                                color: #1dbf73;
+                            }
                         }
                     }
 
-                    &:hover {
+                    .title:hover {
                         color: #1dbf73;
                     }
 
@@ -210,8 +242,8 @@
                     margin-bottom: 20px;
                     padding: 20px;
                     padding-bottom: 1px solid #dadbdd;
-                    .buyer-details{
-                        p{
+                    .buyer-details {
+                        p {
                             padding-bottom: 6px;
                         }
                     }

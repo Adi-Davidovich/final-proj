@@ -12,7 +12,6 @@ export const orderStore = {
     },
     getters: {
         orders({ orders }) {
-            console.log(orders);
             return orders
         },
 
@@ -119,11 +118,12 @@ export const orderStore = {
                 throw err;
             }
         },
-        async getUserOrders({ commit }){
+        async getUserOrders({ commit }) {
             let orders = await orderService.query()
             console.log(orders)
             commit({ type: 'setOrders', orders })
         },
+
         // Optimistic
         // removeGigOptimistic({ commit }, { gigId: gigId }) {
         //     commit({ type: 'removeGig',  gigId })

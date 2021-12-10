@@ -4,7 +4,7 @@
       class="navbar main-layout"
       :class="{
         'header-transparent': isHeaderTransparent && isRouteHomePage,
-        'sticky': isRouteHomePage
+        sticky: isRouteHomePage,
       }"
     >
       <div class="header-wrapper">
@@ -88,6 +88,7 @@
                   :size="35"
                   :username="user.username"
                   :src="user.imgUrl"
+                  style="cursor: pointer"
                 ></avatar>
               </li>
             </ul>
@@ -135,7 +136,7 @@ export default {
       isHeaderSearchVisible: false,
       signupMode: false,
       loginMode: false,
-      isRouteHomePage : true
+      isRouteHomePage: true,
     };
   },
   computed: {
@@ -160,9 +161,9 @@ export default {
     this.isRouteHomePage = this.$route.path === "/";
   },
   watch: {
-    $route({path}) {
+    $route({ path }) {
       this.isRouteHomePage = path === "/";
-    }
+    },
   },
   methods: {
     routToHome() {

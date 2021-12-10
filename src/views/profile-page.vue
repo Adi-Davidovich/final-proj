@@ -1,7 +1,27 @@
 <template>
   <section class="bgc-grey main-layout">
     <section class="profile-layout">
-      <section class="page-container">
+      <header v-if="user.isSeller" class="profile-header">
+        <div class="tabs">
+          <router-link to="/user">Profile</router-link>
+          |
+          <router-link to="/user/orders">Manage Orders</router-link>
+        </div>
+        <div class="total">
+          <div class="balance">
+            Balance: <span>{{ sumBalance }}$</span>
+          </div>
+        </div>
+      </header>
+          <router-view></router-view>
+
+      <seller-dashboard
+        v-if="manageSaleTab"
+        class="page-container manage-sales"
+        :orders="orders"
+      >
+      </seller-dashboard>
+      <section v-else class="page-container my-profile">
         <section class="left-side">
           <div class="details">
             <avatar
@@ -27,73 +47,18 @@
         <section class="right-side">
           <section v-if="sellerMode" class="seller-profile">
             <div class="seller-header">
-              <p>{{ gigsHeader }}</p>
+              <p>Active Gigs</p>
               <button class="regular-btn" @click="editPage">
                 Create New Gig
               </button>
             </div>
-            <div>
-              <ul class="gig-list-user">
-                <li v-for="(gig, index) in gigs" :key="index">
-                  <gig-preview
-                    @mouseover.native="hover = true"
-                    @mouseleave.native="hover = false"
-                    :gig="gig"
-                  />
-
-                  <div class="gig-tools">
-                    <button class="regular-btn" @click="editGig(gig._id)">
-                      Edit
-                    </button>
-                    <button class="regular-btn" @click="removeGig(gig._id)">
-                      Delete
-                    </button>
-                  </div>
-                </li>
-              </ul>
-            </div>
+            <seller-gigs class="user-gig-list" :gigs="gigs"></seller-gigs>
+            <div></div>
           </section>
 
           <section v-else class="user-profile">
             <div class="user-header">
               <p>My orders</p>
-            </div>
-
-            <div class="user-orders-list">
-              <ul>
-                <li
-                  class="user-order"
-                  v-for="(order, index) in orders"
-                  :key="index"
-                >
-                  <img
-                    :src="require(`@/assets/img/card-images/${order.imgUrl}`)"
-                    @click="gigDetails(order.gig._id)"
-                  />
-                  <div class="buyer-details price">
-                    <div class="avatar">
-                      <avatar
-                        :size="30"
-                        :username="order.seller.username"
-                        :src="user.imgUrl"
-                      ></avatar>
-                    </div>
-                    <p>{{ order.seller.username }}</p>
-                  </div>
-                  <div class="price">
-                    <p>Price:</p>
-                    <p>{{ order.price }}</p>
-                  </div>
-                  <div class="delivery-time price">
-                    <p>{{ order.timeToDeliver }}</p>
-                    <div class="status">
-                      <p>
-                        Status: <span>{{ order.status }}</span>
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
             </div>
           </section>
         </section>
@@ -104,7 +69,7 @@
 
 <script>
 import Avatar from "vue-avatar";
-import GigPreview from "../components/gig-preview.vue";
+import sellerGigs from "../components/seller-gigs.vue";
 
 export default {
   data() {
@@ -131,6 +96,9 @@ export default {
       if (this.gigs.length) return "Active Gigs";
       else return "It seems that you don't have any active Gigs. Get selling!";
     },
+    sumBalance() {
+      return this.orders.reduce((a, b) => a + b.price, 0);
+    },
   },
 
   methods: {
@@ -153,14 +121,21 @@ export default {
       let elGig = document.querySelector(gig);
       elGig.classList.add("over");
     },
-    gigDetails(gigId){
-      this.$router.push('/gig/'+gigId)
-    }
+    gigDetails(gigId) {
+      this.$router.push("/gig/" + gigId);
+    },
+
+    openManageSaleTab() {
+      this.manageSaleTab = true;
+    },
+    openActiveGigs() {
+      this.manageSaleTab = false;
+    },
   },
 
   components: {
     Avatar,
-    GigPreview,
+    sellerGigs,
   },
 };
 </script>
