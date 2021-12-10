@@ -89,6 +89,6 @@ function getEmptyOrder() {
         revisions: null,
       }
     },
-    status: 'pending'
+    status: 'Pending'
   })
 }
