@@ -27,6 +27,17 @@ export const orderStore = {
             //     gigs = gigs.slice(startIdx, startIdx + state.pageSize)
             // }
         },
+        showPercent({ orders }) {
+            let ordersPending = orders.reduce((acc, order) => {
+                if (acc[order.status]) acc[order.status]++;
+                else acc[order.status] = 1;
+                return acc;
+            }, {});
+            var precent = Math.floor((ordersPending.Complete / orders.length)*100)
+                console.log('ordersPending :>> ', ordersPending);
+                console.log('precent :>> ', precent);
+            return precent
+        }
     },
     mutations: {
         setLoading(state, { isLoading }) {

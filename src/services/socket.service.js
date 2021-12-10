@@ -32,11 +32,11 @@ function createSocketService() {
     },
     emit(eventName, data) {
       socket.emit(eventName, data)
-      this.$message({
-        showClose: true,
-        message: data,
-        type: "success",
-      });
+      // this.$message({
+      //   showClose: true,
+      //   message: data,
+      //   type: "success",
+      // });
     },
     terminate() {
       socket = null

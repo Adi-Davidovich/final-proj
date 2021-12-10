@@ -19,12 +19,15 @@
           <router-view></router-view>
 
     </section>
+      <progress-bar></progress-bar>
+    
   </section>
 </template>
 
 <script>
 import Avatar from "vue-avatar";
 import sellerGigs from "../components/seller-gigs.vue";
+import ProgressBar from '../components/progress-bar.vue';
 
 export default {
   data() {
@@ -79,6 +82,7 @@ export default {
   components: {
     Avatar,
     sellerGigs,
+    ProgressBar,
   },
 };
 </script>
