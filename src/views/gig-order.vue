@@ -128,6 +128,7 @@ export default {
       };
       order.gig = {
         _id: this.gig._id,
+        title: this.gig.title,
         category: this.gig.category,
         price: this.gig.price,
         package: {

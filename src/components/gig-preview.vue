@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <p @click="gigDetails">{{ gig.title }}</p>
+    <p class="title" @click="gigDetails">{{ gig.title }}</p>
 
     <div class="owner-rating">
       <i class="fas fa-star"></i>{{ gig.owner.rate }}

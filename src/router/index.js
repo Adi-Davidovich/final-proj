@@ -11,7 +11,7 @@ import dashboard from '../views/dashboard.vue'
 import chat from '../views/chat.vue'
 import reviewApp from '../views/review-app.vue'
 import becomeASeller from '../views/become-a-seller.vue'
-
+import sellerOrders from '../components/seller-orders.vue'
 
 Vue.use(VueRouter)
 
@@ -31,6 +31,14 @@ const routes = [
   {
     path: '/user',
     component: userProfile,
+    children: [
+      {
+        path: '/user/orders',
+        component: sellerOrders
+      }
+    ]
+
+
   },
   {
     path: '/gig/edit/:gigId?',
@@ -58,12 +66,12 @@ const routes = [
     name: 'chat',
     component: chat
   },
-  
+
 ]
 
 const router = new VueRouter({
   routes,
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     return { x: 0, y: 0 }
   }
 })
