@@ -39,13 +39,13 @@ const routes = [
         component: sellerOrders
       },
       {
+        path: '/user/dashboard',
+        component: sellerDashboard
+      },
+      {
         path: '/user',
         component: profile
       },
-      {
-        path: '/user/dashboard',
-        component: sellerDashboard
-      }
     ]
 
 
@@ -62,10 +62,10 @@ const routes = [
     path: '/checkout/:gigId',
     component: gigOrder,
   },
-  {
-    path: '/dashboard',
-    component: dashboard,
-  },
+  // {
+  //   path: '/dashboard',
+  //   component: ,
+  // },
   {
     path: '/review',
     name: 'review',

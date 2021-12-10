@@ -4,12 +4,14 @@
     <section class="profile-layout">
       <header v-if="user.isSeller" class="profile-header">
         <div class="tabs">
-          <router-link to="/user">Profile</router-link>
+          <router-link active-class="active-link1" class="nav-link" to="/user">Profile</router-link>
           |
-          <router-link to="/user/orders">Manage Orders</router-link>
+          <router-link active-class="active-link" class="nav-link" to="/user/orders">Manage Orders</router-link>
+          |
+          <router-link active-class="active-link" class="nav-link" to="/user/dashboard">My Dashboard</router-link>
         </div>
         <div class="total">
-          <div class="balance">
+          <div v-if="orders" class="balance">
             Balance: <span>{{ sumBalance }}$</span>
           </div>
         </div>
@@ -32,8 +34,6 @@ export default {
   },
   created() {
     this.user = this.$store.getters.loggedinUser;
-    this.$store.dispatch({ type: "getUserGigs" });
-    this.getUserOrders();
   },
   computed: {
     gigs() {
@@ -50,15 +50,11 @@ export default {
       else return "It seems that you don't have any active Gigs. Get selling!";
     },
     sumBalance() {
-      return this.orders.reduce((a, b) => a + b.price, 0);
+      return this.orders.reduce((a, b) => a + b.price, 0).toFixed(2);
     },
   },
 
   methods: {
-    getUserOrders() {
-      this.$store.dispatch({ type: "getUserOrders" });
-    },
-
 
     editPage() {
       this.$router.push(`/gig/edit`);
