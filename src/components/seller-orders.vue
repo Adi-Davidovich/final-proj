@@ -1,7 +1,7 @@
 
 <template>
-  <section>
-    <table v-if="orders" class="dashboard-table">
+  <section class="page-container">
+    <table class="dashboard-table">
       <tr>
         <th></th>
         <th>BUYER</th>
@@ -45,6 +45,11 @@ export default {
   props: ["orders"],
   data() {
     return {};
+  },
+  computed: {
+    orders() {
+      return this.$store.getters.orders;
+    },
   },
   methods: {
     orderReady(order) {

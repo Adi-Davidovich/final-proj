@@ -12,6 +12,7 @@ import chat from '../views/chat.vue'
 import reviewApp from '../views/review-app.vue'
 import becomeASeller from '../views/become-a-seller.vue'
 import sellerOrders from '../components/seller-orders.vue'
+import profile from '../components/profile.vue'
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,10 @@ const routes = [
       {
         path: '/user/orders',
         component: sellerOrders
+      },
+      {
+        path: '/user',
+        component: profile
       }
     ]
 
