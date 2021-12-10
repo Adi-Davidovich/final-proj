@@ -52,17 +52,7 @@ import Avatar from "vue-avatar";
 
 export default {
   name: "gig-details-overview",
-  props: ["gig", "reviews"],
-  data() {
-    return {};
-  },
-  computed: {
-    reviewsLength() {
-      return this.reviews.length;
-    },
-  },
-  created() {},
-  methods: {},
+  props: ["gig", "reviewsLength"],
   components: {
     Avatar,
   },

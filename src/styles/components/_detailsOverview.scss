@@ -20,12 +20,8 @@
           }
           .stars a {
             text-decoration: none;
-            &:visited {
-              color: initial;
-            }
-            .amount:visited {
-              color: $clr5;
-            }
+            color: $clr5;
+
           }
           .seperator {
             padding: 0 rem(5px);

@@ -1,0 +1,21 @@
+.reviews-package {
+  header {
+    padding-block-end: rem(20px);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    h3 {
+      padding: 0;
+    }
+  }
+
+  .add-review-btn {
+    width: 100%;
+    padding: 8px 12px;
+    margin-block-end: 30px;
+    @include for-normal-layout {
+      width: 50%;
+    }
+  }
+
+}
