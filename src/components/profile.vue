@@ -1,21 +1,42 @@
-
 <template>
-  <section class="bgc-grey main-layout">
-    <section class="profile-layout">
-      <header v-if="user.isSeller" class="profile-header">
-        <div class="tabs">
-          <router-link to="/user">Profile</router-link>
-          |
-          <router-link to="/user/orders">Manage Orders</router-link>
-        </div>
-        <div class="total">
-          <div class="balance">
-            Balance: <span>{{ sumBalance }}$</span>
+  <section class="page-container my-profile">
+    <section class="left-side">
+      <div class="details">
+        <avatar
+          :size="150"
+          :username="user.username"
+          :src="user.imgUrl"
+        ></avatar>
+        <h2>{{ user.username }}</h2>
+
+        <div class="details-bottom">
+          <div class="from-since flex">
+            <p><i class="fas fa-user"></i> Member since</p>
+            <b>{{ user.createdAt }} Nov 21</b>
+          </div>
+          <div class="from-since flex">
+            <p><i class="fas fa-map-marker-alt"></i> from</p>
+            <b>{{ user.country }} United States</b>
           </div>
         </div>
-      </header>
-          <router-view></router-view>
+      </div>
+    </section>
 
+    <section class="right-side">
+      <section v-if="sellerMode" class="seller-profile">
+        <div class="seller-header">
+          <p>Active Gigs</p>
+          <button class="regular-btn" @click="editPage">Create New Gig</button>
+        </div>
+        <seller-gigs class="user-gig-list" :gigs="gigs"></seller-gigs>
+        <div></div>
+      </section>
+
+      <section v-else class="user-profile">
+        <div class="user-header">
+          <p>My orders</p>
+        </div>
+      </section>
     </section>
   </section>
 </template>
