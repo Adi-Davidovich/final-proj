@@ -48,6 +48,11 @@
             >
               <div class="seller-name">
                 <p>
+                  <span
+                    v-for="num in 5"
+                    :key="num"
+                    class="fa fa-star stars"
+                  ></span><br>
                   {{ hero.name }}, <b>{{ hero.subTitle }}</b>
                 </p>
               </div>
@@ -196,6 +201,13 @@ export default {
         backgroundColor: "#fa679b",
         name: "Veronica",
         subTitle: "Illustraitor",
+      },
+      {
+        id: 5,
+        image: require(`../assets/img/7.jpg`),
+        backgroundColor: "#293a28",
+        name: "Samuel",
+        subTitle: "Social Media Manager",
       },
     ];
 

@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <p class="title" @click="gigDetails">{{ gig.title }}</p>
+    <p :title="gig.title" class="title" @click="gigDetails">{{ gig.title }}</p>
 
     <div class="owner-rating">
       <i class="fas fa-star"></i>{{ gig.owner.rate }}
@@ -33,7 +33,7 @@
         <i class="fas fa-heart"></i>
       </el-tooltip>
       <h6>
-        starting at<span> US${{ gig.price }}</span>
+        starting at<span> ${{ gig.price }}</span>
       </h6>
     </div>
   </section>

@@ -3,7 +3,7 @@
     <div class="explore-hero main-layout">
       <div class="title">
 
-      <h1>A whole world of <span>freelance</span> talent at your fingertips</h1>
+      <h1>A whole world of <span>freelance</span><br> talent at your fingertips</h1>
       </div>
     </div>
     <gig-filter @setFilter="setFilter"></gig-filter>

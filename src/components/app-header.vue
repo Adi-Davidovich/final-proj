@@ -15,7 +15,7 @@
           <div
             class="header-search"
             :class="{
-              show: isHeaderSearchVisible,
+              show: isRouteHomePage? isHeaderSearchVisible : true,
             }"
           >
             <div class="search-bar-package search_bar-package">
