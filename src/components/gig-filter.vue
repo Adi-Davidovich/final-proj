@@ -30,6 +30,7 @@
             :key="item.value"
             :label="item.label"
             :value="item.value"
+             @change="setFilter"
           >
           </el-option>
         </el-select>
