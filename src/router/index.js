@@ -72,7 +72,7 @@ const routes = [
     component: reviewApp
   },
   {
-    path: '/chat',
+    path: '/chat/:gigId',
     name: 'chat',
     component: chat
   },
