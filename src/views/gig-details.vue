@@ -75,7 +75,6 @@ export default {
   },
   computed: {
     reviews() {
-      console.log(this.$store.getters.reviews);
       return this.$store.getters.reviews;
     },
     reviewsLength() {

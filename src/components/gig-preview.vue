@@ -1,16 +1,17 @@
 <template>
-  <section v-if="gig" class="gig-preview">
-    <el-carousel :autoplay="false" trigger="click" height="197px">
-      <el-carousel-item  v-for="img in gig.imgUrl"  :key="img">
-        <img
-          :src="require(`@/assets/img/card-images/${img}`)"
-          alt=""
-          class="gig-img"
-          @click="gigDetails"
-        />
-      </el-carousel-item>
-    </el-carousel>
-
+  <section v-if="gig && reviews" class="gig-preview">
+      <el-carousel :autoplay="false" trigger="click" height="197px">
+        <el-carousel-item v-for="img in gig.imgUrl" :key="img">
+          <div class="img-container">
+            <img
+              :src="require(`@/assets/img/card-images/${img}`)"
+              alt=""
+              class="gig-img"
+              @click="gigDetails"
+            />
+          </div>
+        </el-carousel-item>
+      </el-carousel>
     <div class="owner-prev flex">
       <avatar
         :size="24"
@@ -26,15 +27,17 @@
     <p :title="gig.title" class="title" @click="gigDetails">{{ gig.title }}</p>
 
     <div class="owner-rating">
-      <i class="fas fa-star"></i>{{ gig.owner.rate }}
+      <i class="fas fa-star"></i><span>{{ gig.owner.rate }}</span
+      ><span>({{ reviewsLength }})</span>
     </div>
     <div class="gig-footer flex">
       <el-tooltip content="Add to favorite" placement="top">
         <i class="fas fa-heart"></i>
       </el-tooltip>
-      <h6>
-        starting at<span> ${{ gig.price }}</span>
-      </h6>
+      <div class="price">
+        <h6>starting at</h6>
+        <span> ${{ gig.price }}</span>
+      </div>
     </div>
   </section>
 </template>
@@ -48,11 +51,25 @@ export default {
     return {};
   },
   created() {
+    this.loadReviews();
   },
-
+  computed: {
+    reviews() {
+      return this.$store.getters.reviews;
+    },
+    reviewsLength() {
+      return this.reviews.length;
+    },
+  },
   methods: {
     gigDetails() {
       this.$router.push("/gig/" + this.gig._id);
+    },
+    async loadReviews() {
+      await this.$store.dispatch({
+        type: "loadReviews",
+        id: this.gig.owner._id,
+      });
     },
   },
 

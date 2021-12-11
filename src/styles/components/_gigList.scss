@@ -5,19 +5,20 @@
     grid-gap: 32px;
     list-style-type: none;
     padding: 0;
-    @include for-narrow-layout {
+    @media (min-width: 600px) {
       grid-template-columns: repeat(2, 1fr);
     }
     @include for-normal-layout {
       grid-template-columns: repeat(3, 1fr);
     }
-    @include for-wide-layout {
+    @media (min-width: 1165px) {
       grid-template-columns: repeat(4, 1fr);
     }
 
-    li {
+    .gig-preview  {
       border: 1px solid #e4e5e7;
       transition: 0.15s;
+      min-width: 245px;
 
       &:hover {
         color: #1dbf73;
@@ -31,31 +32,53 @@
       }
       h5 {
         font-size: 0.875rem;
-        font-family: macan-light;
+        font-family: macan-regular;
         color: #7a7d85;
         line-height: 1.5;
+        font-weight: normal;
       }
 
       p {
         overflow: hidden;
+        word-wrap: break-word;
+        word-break: break-word;
         max-height: 45px;
-        font-family: macan-light;
+        font-family: macan-regular;
         font-size: 1rem;
         font-weight: 400;
         padding: 0 12px 5px;
         margin-top: 5px;
         height: 43px;
         line-height: 1.375;
+        color: $clr4;
         cursor: pointer;
         transition-timing-function: ease-in-out;
+        &:hover {
+          color: $clr1;
+        }
       }
-
-      .gig-img {
-        height: 195px;
-        max-width: 326px;
-        object-fit: cover;
-        cursor: pointer;
-      }
+      
+        .img-container {
+          height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          height: 100%;
+          width: 100%;
+          max-width: 100%;
+          // min-width: 140px;
+          object-fit: cover;
+          cursor: pointer;
+        }
+    }
+      // .gig-img {
+      //   height: 195px;
+      //   // max-width: 326px;
+      //   object-fit: cover;
+      //   cursor: pointer;
+      // }
 
       .owner-prev {
         align-items: center;
@@ -69,17 +92,22 @@
         padding: 10px 12px;
         font-family: macan-regular;
         font-weight: 700;
+        font-size: 14px;
         color: rgb(255, 190, 91);
         fill: rgb(255, 190, 91);
         .fa-star {
           margin-right: 5px;
+        }
+        span:last-child {
+          color: #b5b6ba;
+          font-weight: 400;
+          margin-left: 2px;
         }
       }
 
       .gig-footer {
         padding: 10px 12px;
         border-top: 1px solid #efeff0;
-        height: 60px;
         .fa-heart {
           transition: 0.15s;
           color: rgb(181, 182, 186);
@@ -92,17 +120,26 @@
         justify-content: space-between;
         align-items: center;
 
-        h6 {
+        .price {
+          display: flex;
+          align-items: center;
           font-family: macan-regular;
-          font-size: 0.625rem;
-          color: #7a7d85;
-          text-transform: uppercase;
+          margin-top: 1px;
+          h6 {
+            padding: 2px 0 0;
+            font-size: rem(10.5px);
+            font-weight: 700;
+            line-height: 20px;
+            color: #7a7d85;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
           span {
             font-size: 1.125rem;
-            font-family: macan-regular;
             color: #404145;
             font-weight: 400;
             line-height: 1.1;
+            margin-inline-start: rem(6px);
           }
         }
       }
