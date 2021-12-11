@@ -27,6 +27,17 @@ export const orderStore = {
             //     gigs = gigs.slice(startIdx, startIdx + state.pageSize)
             // }
         },
+        showPercent({ orders }) {
+            let ordersPending = orders.reduce((acc, order) => {
+                if (acc[order.status]) acc[order.status]++;
+                else acc[order.status] = 1;
+                return acc;
+            }, {});
+            var precent = Math.floor((ordersPending.Complete / orders.length)*100)
+                console.log('ordersPending :>> ', ordersPending);
+                console.log('precent :>> ', precent);
+            return precent
+        }
     },
     mutations: {
         setLoading(state, { isLoading }) {
@@ -35,9 +46,9 @@ export const orderStore = {
         addOrder(state, payload) {
             state.orders.push(payload.order)
         },
-        updateOrder(state, payload) {
-            const idx = state.orders.findIndex((order) => order._id === payload.order._id)
-            state.orders.splice(idx, 1, payload.order)
+        updateOrder(state, { savedOrder }) {
+            const idx = state.orders.findIndex((order) => order._id === savedOrder._id)
+            state.orders.splice(idx, 1, savedOrder)
         },
         removeOrder(state, payload) {
             const idx = state.orders.findIndex((order) => order._id === payload.orderId)
@@ -101,6 +112,7 @@ export const orderStore = {
         async updateOrder({ commit }, { order }) {
             try {
                 const savedOrder = await orderService.save(order);
+                console.log('Saved oeder', savedOrder)
                 commit({ type: 'updateOrder', savedOrder })
                 return savedOrder;
             } catch (err) {

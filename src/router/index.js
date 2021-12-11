@@ -13,6 +13,7 @@ import reviewApp from '../views/review-app.vue'
 import becomeASeller from '../views/become-a-seller.vue'
 import sellerOrders from '../components/seller-orders.vue'
 import profile from '../components/profile.vue'
+import sellerDashboard from '../components/seller-dashboard.vue'
 
 Vue.use(VueRouter)
 
@@ -38,9 +39,13 @@ const routes = [
         component: sellerOrders
       },
       {
+        path: '/user/dashboard',
+        component: sellerDashboard
+      },
+      {
         path: '/user',
         component: profile
-      }
+      },
     ]
   },
   {
@@ -55,17 +60,17 @@ const routes = [
     path: '/checkout/:gigId',
     component: gigOrder,
   },
-  {
-    path: '/dashboard',
-    component: dashboard,
-  },
+  // {
+  //   path: '/dashboard',
+  //   component: ,
+  // },
   {
     path: '/review',
     name: 'review',
     component: reviewApp
   },
   {
-    path: '/chat',
+    path: '/chat/:gigId',
     name: 'chat',
     component: chat
   },

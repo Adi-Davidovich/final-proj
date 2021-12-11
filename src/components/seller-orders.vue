@@ -1,7 +1,7 @@
 
 <template>
   <section class="page-container">
-    <table class="dashboard-table">
+    <table class="orders-table">
       <tr>
         <th></th>
         <th>BUYER</th>
@@ -24,7 +24,7 @@
         <td>{{ order.gig.package.description }}</td>
         <td>{{ order.timeToDeliver }}</td>
         <td>{{ order.price }}$</td>
-        <td>{{ order.status }}</td>
+        <td :class="order.status==='Complete'?'complete':'pending'">{{ order.status }}</td>
         <td class="actions">
           <el-tooltip content="Mark as complete" placement="top">
             <i @click="orderReady(order)" class="fas fa-check-circle"></i>
@@ -54,7 +54,6 @@ export default {
   methods: {
     orderReady(order) {
       this.$store.dispatch({ type: "updateOrder", order });
-      console.log(order);
     },
   },
   components: {

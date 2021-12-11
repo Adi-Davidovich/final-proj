@@ -1,37 +1,45 @@
 <script>
-// import { Bar } from "vue-chartjs";
-// import { utilService } from "../services/util.service.js";
+import { Pie } from "vue-chartjs";
+
 export default {
-  name: "data-chart",
-  // props: ["info"],
-  // extends: Bar,
-  // data() {
-  //   return {};
-  // },
-  // options: {
-  //   responsive: true,
-  //   maintainAspectRatio: false,
-  // },
-  // mounted() {
-  //   // Overwriting base render method with actual data.
-  //   this.renderChart({
-  //     labels: Object.keys(this.info) || [],
-  //     datasets: [
-  //       {
-  //         label: "lables:",
-  //         backgroundColor: [
-  //           utilService.getRandomColor(),
-  //           utilService.getRandomColor(),
-  //           utilService.getRandomColor(),
-  //           utilService.getRandomColor(),
-  //         ],
-  //         data: Object.values(this.info) || [],
-  //       },
-  //     ],
-  //   });
-  // },
+  props: ["info"],
+  extends: Pie,
+  data() {
+    return {
+      chartData: {
+        labels: Object.keys(this.info),
+        datasets: [
+          {
+            borderWidth: 1,
+            borderColor: [
+              "rgba(255,99,132,1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+            ],
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.2)",
+              "rgba(54, 162, 235, 0.2)",
+              "rgba(255, 206, 86, 0.2)",
+              "rgba(75, 192, 192, 0.2)",
+            ],
+            data: Object.values(this.info),
+          },
+        ],
+      },
+      options: {
+        legend: {
+          display: true,
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+      },
+    };
+  },
+
+  mounted() {
+    console.log("Hi", Object.values(this.info));
+    this.renderChart(this.chartData, this.options);
+  },
 };
 </script>
-
-<style>
-</style>

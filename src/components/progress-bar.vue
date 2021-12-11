@@ -1,6 +1,6 @@
 
 <template>
-<div v-if="Toys" class="container progress-bar">
+<div v-if="orders" class="container progress-bar">
     <div class="percent">{{percent}}%</div>
     <div class="loading-bar">
          <div class="percentage" v-bind:style="{'width': percentage + '%'}"></div>
@@ -23,8 +23,8 @@ export default {
         }, 1000);
     },
     computed: {
-        Toys() {
-            return this.$store.getters.ToysToShow
+        orders() {
+            return this.$store.getters.orders
         },
         percent(){
             this.percentage = this.$store.getters.showPercent
