@@ -1,5 +1,5 @@
 <template>
-  <ul class="gig-list-user">
+  <ul class="gig-list-user gig-list">
     <li v-for="(gig, index) in gigs" :key="index">
       <gig-preview :gig="gig" />
       <div class="gig-tools">
