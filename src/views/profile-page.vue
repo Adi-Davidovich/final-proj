@@ -4,30 +4,46 @@
     <section class="profile-layout">
       <header v-if="user.isSeller" class="profile-header">
         <div class="tabs">
-          <router-link active-class="active-link1" class="nav-link" to="/user">Profile</router-link>
+          <router-link active-class="active-link1" class="nav-link" to="/user"
+            >Profile</router-link
+          >
           |
-          <router-link active-class="active-link" class="nav-link" to="/user/orders">Manage Orders</router-link>
+          <router-link
+            active-class="active-link"
+            class="nav-link"
+            to="/user/orders"
+            >Manage Orders</router-link
+          >
           |
-          <router-link active-class="active-link" class="nav-link" to="/user/dashboard">My Dashboard</router-link>
+          <router-link
+            active-class="active-link"
+            class="nav-link"
+            to="/user/dashboard"
+            >My Dashboard</router-link
+          >
         </div>
         <div class="total">
           <div v-if="orders" class="balance">
+<<<<<<< HEAD
+            <progress-bar></progress-bar>
+            <div>
+              Balance: <span>{{ sumBalance }}$</span>
+            </div>
+=======
             Balance: <span>${{ sumBalance }}</span>
+>>>>>>> a6f42a872c4fdbc5378285d2444eaea86c4619d8
           </div>
         </div>
       </header>
-          <router-view></router-view>
-
+      <router-view></router-view>
     </section>
-      <progress-bar></progress-bar>
-    
   </section>
 </template>
 
 <script>
 import Avatar from "vue-avatar";
 import sellerGigs from "../components/seller-gigs.vue";
-import ProgressBar from '../components/progress-bar.vue';
+import ProgressBar from "../components/progress-bar.vue";
 
 export default {
   data() {
@@ -59,7 +75,6 @@ export default {
   },
 
   methods: {
-
     editPage() {
       this.$router.push(`/gig/edit`);
     },

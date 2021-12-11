@@ -1,4 +1,10 @@
 .filter-explore {
+  .el-slider__bar{
+    background-color: #62646a;
+  }
+  .el-slider__button{
+    border: solid 2px #62646a;
+  }
   h6 {
     margin-bottom: rem(30px);
     margin-top: 16px;
