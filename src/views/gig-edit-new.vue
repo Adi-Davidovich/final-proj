@@ -1,5 +1,5 @@
 <template>
-  <section class="bgc-grey grid-narrow">
+  <section class="bgc-grey grid-narrow main-layout">
     <section v-if="gigToEdit" class="edit-gig-container">
       <div class="gig-title grid-div">
         <p>Gig Title:</p>
