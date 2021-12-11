@@ -9,10 +9,12 @@
   border-bottom: none;
   width: 100%;
   transition: background-color 0.5s ease;
+  border-bottom: 1px solid #dadbdd;
 
   &.header-transparent {
     background-color: transparent;
     color: #fff;
+    border-bottom: none;
     * {
       background-color: transparent;
       color: #fff !important;
