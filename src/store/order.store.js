@@ -1,4 +1,5 @@
 import { orderService } from "../services/order.service.js";
+import { socketService } from "../services/socket.service.js";
 // import { showMsg } from "../js/services/event-bus.service.js";
 // import { userService } from "../js/services/user.service.js";
 export const orderStore = {
@@ -101,6 +102,10 @@ export const orderStore = {
         // },
         async addOrder({ commit }, { order }) {
             try {
+                socketService.emit('add-order', 'im ordering')
+                socketService.on('add-order-client', (msg) => {
+                    console.log('msg :>> ', msg);
+                })
                 const savedOrder = await orderService.save(order);
                 commit({ type: 'addOrder', savedOrder })
                 return savedOrder;
