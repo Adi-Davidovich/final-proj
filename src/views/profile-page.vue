@@ -24,14 +24,10 @@
         </div>
         <div class="total">
           <div v-if="orders" class="balance">
-<<<<<<< HEAD
             <progress-bar></progress-bar>
             <div>
               Balance: <span>{{ sumBalance }}$</span>
             </div>
-=======
-            Balance: <span>${{ sumBalance }}</span>
->>>>>>> a6f42a872c4fdbc5378285d2444eaea86c4619d8
           </div>
         </div>
       </header>
