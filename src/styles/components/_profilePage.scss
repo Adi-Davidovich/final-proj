@@ -16,16 +16,7 @@
         color: #1dbf73;
         font-family: macan-regular;
     }
-    .complete {
-        background: #1dbf73;
-        font-family: macan-bold;
-        color: white;
-    }
-    .pending{
-        background-color: rgb(221, 164, 100);
-        font-family: macan-bold;
-        color: white;
-    }
+
     .profile-header {
         white-space: nowrap;
         text-decoration: none;
@@ -106,19 +97,6 @@
         }
 
         .right-side {
-            .seller-profile {
-                .seller-header {
-                    background-color: white;
-                    height: 75px;
-                    width: 735px;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    border: 1px solid #e4e5e7;
-                    padding: 20px;
-                }
-            }
-
             .gig-list-user {
                 margin-top: 20px;
                 display: grid;
@@ -162,48 +140,53 @@
                     background-color: unset;
                 }
             }
-
-            .user-profile {
-                .user-header {
-                    background-color: white;
-                    height: 75px;
-                    width: 735px;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    border: 1px solid #e4e5e7;
-                    padding: 20px;
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px;
+                background-color: white;
+                border: 1px solid #e4e5e7;
+            }
+            ul {
+                border: 1px solid #e4e5e7;
+            }
+            .user-order {
+                width: 700px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px;
+                border-bottom: 1px solid #e4e5e7;
+                background-color: white;
+                font-size: 0.875rem;
+                img {
+                    height: 70px;
+                    width: 140px;
+                    object-fit: cover;
                 }
-
-                .user-order {
-                    margin-top: 20px;
-                    margin-bottom: 20px;
-                    padding: 20px;
-                    padding-bottom: 1px solid #dadbdd;
-                    .buyer-details {
-                        p {
-                            padding-bottom: 6px;
-                        }
-                    }
-
-                    img {
-                        height: 100px;
-                        width: 200px;
-                        object-fit: cover;
-                    }
-                    .price {
-                        width: 120px;
-                        height: 100px;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-evenly;
-                    }
-                    border: 1px solid #dadbdd;
-                    background-color: white;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    width: 735px;
+                .order-description {
+                    width: 30%;
+                }
+                .complete {
+                    background: #1dbf73;
+                    font-family: macan-bold;
+                    color: white;
+                    padding-top: 20px;
+                    padding-bottom: 20px;
+                    width: 100px;
+                    text-align: center;
+                    border-radius: 5px;
+                }
+                .pending {
+                    border-radius: 5px;
+                    background-color: rgb(221, 164, 100);
+                    font-family: macan-bold;
+                    color: white;
+                    padding-top: 20px;
+                    padding-bottom: 20px;
+                    width: 100px;
+                    text-align: center;
                 }
             }
         }

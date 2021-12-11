@@ -23,27 +23,52 @@
     </section>
 
     <section class="right-side">
-      <section v-if="sellerMode" class="seller-profile">
-        <div class="seller-header">
-          <p>Active Gigs</p>
-          <button class="regular-btn" @click="editPage">Create New Gig</button>
-        </div>
-        <seller-gigs class="user-gig-list" :gigs="gigs"></seller-gigs>
-        <div></div>
-      </section>
-
-      <section v-else class="user-profile">
-        <div class="user-header">
-          <p>My orders</p>
-        </div>
-      </section>
+      <header>
+        <p>{{ rightHeaderTitle }}</p>
+        <button v-if="user.isSeller" class="regular-btn" @click="editPage">
+          Create New Gig
+        </button>
+      </header>
+      <seller-gigs
+        v-if="user.isSeller"
+        class="user-gig-list"
+        :gigs="gigs"
+      ></seller-gigs>
+      <ul v-else>
+        <li class="user-order" v-for="(order, index) in orders" :key="index">
+          <img
+            :src="require(`@/assets/img/card-images/${order.imgUrl}`)"
+            alt=""
+          />
+          <div class="order-description">
+            <p>{{ order.gig.package.description }}</p>
+          </div>
+          <div class="buyer-details">
+            <avatar
+              :size="30"
+              :username="order.seller.username"
+              :src="order.seller.imgUrl"
+            ></avatar>
+            <p>{{ order.seller.username }}</p>
+          </div>
+          <div class="price">
+            <p>Price:</p>
+            <p>${{ order.price }}</p>
+          </div>
+          <div class="status">
+            <p :class="order.status === 'Complete' ? 'complete' : 'pending'">
+              {{ order.status }}
+            </p>
+          </div>
+        </li>
+      </ul>
     </section>
   </section>
 </template>
 
 <script>
 import Avatar from "vue-avatar";
-import sellerGigs from "../components/seller-gigs.vue";
+import sellerGigs from "./seller-gigs.vue";
 
 export default {
   data() {
@@ -72,6 +97,10 @@ export default {
     },
     sumBalance() {
       return this.orders.reduce((a, b) => a + b.price, 0);
+    },
+    rightHeaderTitle() {
+      if (this.user.isSeller) return "My Active Gigs";
+      if (!this.user.isSeller) return "My Orders";
     },
   },
 
