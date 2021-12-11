@@ -15,10 +15,7 @@
           <span class="rate">{{ gig.owner.rate }}</span>
         </div>
       </header>
-      <gig-reviews-breakdown
-        class="reviews-breakdown"
-        :reviews="reviews"
-      />
+      <gig-reviews-breakdown class="reviews-breakdown" :reviews="reviews" />
       <footer>
         <button
           @click="toggleAddReview = !toggleAddReview"
@@ -26,7 +23,11 @@
         >
           {{ addReviewBtn }}
         </button>
-        <gig-add-review v-if="toggleAddReview"/>
+        <gig-add-review
+          v-if="toggleAddReview"
+          @toggleReview = "toggleReview"
+          :gig="gig" 
+        />
       </footer>
     </div>
   </section>
@@ -53,10 +54,15 @@ export default {
       return this.reviews.length;
     },
   },
+  methods: {
+    toggleReview() {
+      this.toggleAddReview = false;
+    },
+  },
   components: {
     Avatar,
     gigReviewsBreakdown,
-    gigAddReview
+    gigAddReview,
   },
 };
 </script>
