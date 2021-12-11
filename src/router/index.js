@@ -12,7 +12,7 @@ import chat from '../views/chat.vue'
 import reviewApp from '../views/review-app.vue'
 import becomeASeller from '../views/become-a-seller.vue'
 import sellerOrders from '../components/seller-orders.vue'
-import profile from '../components/profile.vue'
+import profileTab from '../components/profile-tab.vue'
 import sellerDashboard from '../components/seller-dashboard.vue'
 
 Vue.use(VueRouter)
@@ -35,7 +35,7 @@ const routes = [
     component: userProfile,
     children: [
       {
-        path: '/user/orders',
+        path: 'orders',
         component: sellerOrders
       },
       {
@@ -44,11 +44,9 @@ const routes = [
       },
       {
         path: '/user',
-        component: profile
+        component: profileTab
       },
     ]
-
-
   },
   {
     path: '/gig/edit/:gigId?',

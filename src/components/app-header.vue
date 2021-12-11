@@ -1,21 +1,29 @@
 <template>
   <section>
+    <div v-if="isNavbarOpen" class="main-screen" @click="closeMenu"></div>
     <header
-      class="navbar main-layout"
+      class="main-navbar main-layout"
       :class="{
-        'header-transparent': isHeaderTransparent && isRouteHomePage,
+        'header-transparent':
+          isHeaderTransparent && isRouteHomePage && windowWidth >= 850,
         sticky: isRouteHomePage,
       }"
     >
       <div class="header-wrapper">
         <div class="header-row">
-          <div class="logo" @click="routToHome">
-            Higher<span class="logo-dot">.</span>
+          <div class="title flex">
+            <button class="bars" @click="openMenu">
+              <i class="fa fa-bars fa-lg"></i>
+            </button>
+
+            <div class="logo" @click="routToHome">
+              Higher<span class="logo-dot">.</span>
+            </div>
           </div>
           <div
             class="header-search"
             :class="{
-              show: isHeaderSearchVisible,
+              show: isRouteHomePage ? isHeaderSearchVisible : true,
             }"
           >
             <div class="search-bar-package search_bar-package">
@@ -34,9 +42,9 @@
               </form>
             </div>
           </div>
-          <nav class="navbar">
+          <nav v-if="isNavbarOpen || windowWidth >= 850" class="navbar">
             <ul>
-              <li class="display-from-md">
+              <li @click="isNavbarOpen = false" class="display-from-md">
                 <router-link
                   to="/explore"
                   class="nav-link"
@@ -44,7 +52,7 @@
                   >Explore</router-link
                 >
               </li>
-              <li class="display-from-md">
+              <li @click="isNavbarOpen = false" class="display-from-md">
                 <router-link
                   to="/start_selling"
                   class="nav-link"
@@ -137,6 +145,8 @@ export default {
       signupMode: false,
       loginMode: false,
       isRouteHomePage: true,
+      isNavbarOpen: false,
+      windowWidth: window.innerWidth,
     };
   },
   computed: {
@@ -150,6 +160,11 @@ export default {
     getSearchTerm() {
       return this.$store.getters.categoryName;
     },
+  },
+  mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
   },
   created() {
     // if (!this.$store.state.filterBy) {
@@ -168,6 +183,7 @@ export default {
   methods: {
     routToHome() {
       this.$router.push("/");
+      this.isNavbarOpen = false;
     },
     handleScroll() {
       const sticky = 50;
@@ -181,6 +197,14 @@ export default {
       } else {
         this.isHeaderSearchVisible = false;
       }
+    },
+    openMenu() {
+      this.isNavbarOpen = true;
+      document.body.classList.add("menu-open");
+    },
+    closeMenu() {
+      this.isNavbarOpen = false;
+      document.body.classList.remove("menu-open");
     },
     // filterCategory() {
     //   if (!this.$store.state.filterBy) {
@@ -203,11 +227,13 @@ export default {
     openLogin() {
       this.loginMode = true;
       let body = document.body;
+      this.isNavbarOpen = false;
       body.classList.add("disable-scrolling");
     },
     openSignup() {
       this.signupMode = true;
       let body = document.body;
+      this.isNavbarOpen = false;
       body.classList.add("disable-scrolling");
     },
 
@@ -220,11 +246,13 @@ export default {
 
     userProfile() {
       console.log("Hi");
+      this.isNavbarOpen = false;
       this.$router.push("/user");
     },
 
     async doLogout() {
       await this.$store.dispatch({ type: "logout" });
+      this.isNavbarOpen = false;
       this.$router.push("/");
     },
   },

@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     percent(num) {
-      return `${((num / this.orders.length) * 100).toFixed(2)} %`;
+      return `${((num / this.orders.length) * 100).toFixed()}%`;
     },
   },
   components: {

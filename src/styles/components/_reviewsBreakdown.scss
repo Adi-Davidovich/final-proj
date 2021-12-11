@@ -1,0 +1,110 @@
+.breakdown-container {
+    padding-block-end: rem(35px);
+    display: flex;
+    flex-flow: row wrap;
+    flex: 0 1 auto;
+    flex-direction: column;
+    @include for-narrow-layout {
+      flex-direction: row;
+    }
+    .table-stars-container {
+      padding-inline-end: 8px;
+      margin-block-end: 20px;
+      @include for-narrow-layout {
+        flex-basis: 50%;
+        max-width: 50%;
+      }
+      tr {
+        white-space: nowrap;
+        padding-bottom: 4px;
+        td {
+          vertical-align: top;
+        }
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        .star-filter {
+          button {
+            padding: rem(6px);
+            border: none;
+            text-align: left;
+            color: #4a73e8;
+            font-family: macan-bold;
+            font-size: 16px;
+            background-color: transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 70ms;
+          }
+          &:hover {
+            background-color: #f0f4ff;
+          }
+        }
+        .progress-bar-container {
+          position: relative;
+          width: 100%;
+          padding: 10px 10px 0 6px;
+          margin: auto;
+          .star-progress-bar {
+            display: flex;
+            align-items: center;
+            .grey {
+              position: relative;
+              height: 8px;
+              background: #e4e5e7;
+              flex-grow: 1;
+              border-radius: 999px;
+              .progress {
+                background-color: #ffb33e;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                z-index: 1;
+                border-radius: 999px;
+              }
+            }
+          }
+        }
+        .star-num {
+          padding-block-start: rem(4px);
+          color: #4a73e8;
+          font-family: macan-regular;
+          min-width: rem(20px);
+        }
+      }
+    }
+    .rating-breakdown {
+      padding-inline-start: 8px;
+      @include for-narrow-layout {
+        flex-basis: 50%;
+        max-width: 50%;
+      }
+      .title {
+        padding-top: 1px;
+        padding-bottom: 16px;
+        color: $clr5;
+        font-family: macan-bold;
+        line-height: 140%;
+        font-size: 16px;
+      }
+      ul li {
+        display: flex;
+        justify-content: space-between;
+        color: #95979d;
+        padding-bottom: 8px;
+        font-family: macan-regular;
+        line-height: 140%;
+        span {
+          color: #62646a;
+          white-space: nowrap;
+          margin-left: 12px;
+          span {
+            margin-left: 5px;
+            color: #ffb33e;
+          }
+        }
+      }
+    }
+  }

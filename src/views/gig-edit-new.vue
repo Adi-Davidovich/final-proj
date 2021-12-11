@@ -25,7 +25,7 @@
       </div>
 
       <div class="price grid-div">
-        <p>Price (US$):</p>
+        <p>Price ($):</p>
         <el-input
           type="number"
           placeholder="Price"
