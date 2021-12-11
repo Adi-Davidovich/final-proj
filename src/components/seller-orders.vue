@@ -23,7 +23,7 @@
         </td>
         <td>{{ order.gig.package.description }}</td>
         <td>{{ order.timeToDeliver }}</td>
-        <td>{{ order.price }}$</td>
+        <td>${{ order.price }}</td>
         <td :class="order.status==='Complete'?'complete':'pending'">{{ order.status }}</td>
         <td class="actions">
           <el-tooltip content="Mark as complete" placement="top">

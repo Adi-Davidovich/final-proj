@@ -12,7 +12,7 @@
         </div>
         <div class="total">
           <div v-if="orders" class="balance">
-            Balance: <span>{{ sumBalance }}$</span>
+            Balance: <span>${{ sumBalance }}</span>
           </div>
         </div>
       </header>
