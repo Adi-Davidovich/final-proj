@@ -6,7 +6,7 @@
         <li
           v-for="(category) in categories"
           :key="category.id"
-          :class="`category-card ${category.class} flex ${category.categoryName} ${category.value === filterBy.category ? 'active' : ''}`"
+          :class="`category-card ${category.class} flex ${category.categoryName} ${category.value === (filterBy.category || categoryName) ? 'active' : ''}`"
           @click="setCategory(category.value)"
         >
           <img
@@ -172,6 +172,15 @@ export default {
     priceRander() {
       if (this.filterBy.price === 0) return "Any";
       else return `${this.filterBy.price}$`;
+    },
+   categoryName() {
+      let category=this.$store.getters.categoryName;
+      if(category==='Illustration') return 'Illustration'
+      if(category==='Logo Design') return 'Logo Design'
+      if(category==='Voice Over') return 'Voice Over'
+      if(category==='Video Explainer') return 'Video Explainer'
+      if(category==='Social Media Marketing') return 'Social Media Marketing'
+      else return
     },
   },
 };

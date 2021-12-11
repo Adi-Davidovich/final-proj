@@ -19,7 +19,6 @@ export const gigStore = {
         categoryName(state) {
             return state.filterBy.category
         },
-
         isLoading({ isLoading }) {
             return isLoading
         },

@@ -35,7 +35,7 @@ const routes = [
     component: userProfile,
     children: [
       {
-        path: '/user/orders',
+        path: 'orders',
         component: sellerOrders
       },
       {
@@ -47,8 +47,6 @@ const routes = [
         component: profileTab
       },
     ]
-
-
   },
   {
     path: '/gig/edit/:gigId?',
