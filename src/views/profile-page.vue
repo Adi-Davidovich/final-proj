@@ -37,6 +37,7 @@ export default {
   },
   created() {
     this.user = this.$store.getters.loggedinUser;
+    console.log(this.orders);
   },
   computed: {
     gigs() {
