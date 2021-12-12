@@ -12,14 +12,11 @@
         <th>ACTIONS</th>
       </tr>
       <tr v-for="(order, index) in orders" :key="index">
-        <td>
-          <el-tooltip content="Mark as important" placement="top">
-            <i class="fas fa-star"></i>
-          </el-tooltip>
+        <td class="image">
+          <avatar :size="30" :username="order.buyer.username" class="avatar"></avatar>
         </td>
-        <td class="buyer">
-          <avatar :size="30" :username="order.buyer.username"></avatar>
-          <p>{{ order.buyer.username }}</p>
+        <td>
+          {{ order.buyer.username }}
         </td>
         <td>{{ order.gig.package.description }}</td>
         <td>{{ order.timeToDeliver }}</td>
