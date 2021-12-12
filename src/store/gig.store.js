@@ -123,6 +123,10 @@ export const gigStore = {
                 commit({ type: 'setLoading', isLoading: false });
             }
         },
+        setFilter({ commit, dispatch }, { filterBy }) {
+            commit({ type: 'setFilter', filterBy })
+            dispatch({ type: 'loadGigs' })
+        },
         // loadEdit({ commit }) {
         //     commit({ type: 'setLoading', isLoading: true })
         //     gigService
@@ -181,10 +185,6 @@ export const gigStore = {
             commit({ type: 'setCurrGig', gig })
             return gig
 
-        },
-        setFilter({ commit, dispatch }, { filterBy }) {
-            commit({ type: 'setFilter', filterBy })
-            dispatch({ type: 'loadGigs' })
         },
         async getUserGigs({ commit, getters }) {
             let userId = getters.loggedinUser._id

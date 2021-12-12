@@ -4,9 +4,13 @@
       <h6>Select Category</h6>
       <ul class="grid">
         <li
-          v-for="(category) in categories"
+          v-for="category in categories"
           :key="category.id"
-          :class="`category-card ${category.class} flex ${category.categoryName} ${category.value === (filterBy.category || categoryName) ? 'active' : ''}`"
+          :class="`category-card ${category.class} flex ${
+            category.categoryName
+          } ${
+            category.value === filterBy.category || categoryName ? 'active' : ''
+          }`"
           @click="setCategory(category.value)"
         >
           <img
@@ -30,7 +34,7 @@
             :key="item.value"
             :label="item.label"
             :value="item.value"
-             @change="setFilter"
+            @change="setFilter"
           >
           </el-option>
         </el-select>
@@ -94,18 +98,6 @@ export default {
           value: "price",
         },
       ],
-      filterBy: {
-        txt: "",
-        price: 300,
-        category: "",
-        deliveyTime: "",
-        sort: "",
-        sellerDetails: {
-          level: "",
-          rating: "",
-          languge: "",
-        },
-      },
       categories: [
         {
           class: "all",
@@ -144,6 +136,18 @@ export default {
           iconUrl: "video-tutorial.png",
         },
       ],
+      filterBy: {
+        txt: "",
+        price: 300,
+        category: "",
+        deliveyTime: "",
+        sort: "",
+        sellerDetails: {
+          level: "",
+          rating: "",
+          languge: "",
+        },
+      },
     };
   },
 
@@ -173,14 +177,15 @@ export default {
       if (this.filterBy.price === 0) return "Any";
       else return `${this.filterBy.price}$`;
     },
-   categoryName() {
-      let category=this.$store.getters.categoryName;
-      if(category==='Illustration') return 'Illustration'
-      if(category==='Logo Design') return 'Logo Design'
-      if(category==='Voice Over') return 'Voice Over'
-      if(category==='Video Explainer') return 'Video Explainer'
-      if(category==='Social Media Marketing') return 'Social Media Marketing'
-      else return
+    categoryName() {
+      let category = this.$store.getters.categoryName;
+      if (category === "Illustration") return "Illustration";
+      if (category === "Logo Design") return "Logo Design";
+      if (category === "Voice Over") return "Voice Over";
+      if (category === "Video Explainer") return "Video Explainer";
+      if (category === "Social Media Marketing")
+        return "Social Media Marketing";
+      else return;
     },
   },
 };

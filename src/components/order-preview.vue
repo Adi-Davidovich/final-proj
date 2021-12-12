@@ -12,7 +12,7 @@
         <div class="additional-info">
           <div class="delivery-wrapper">
             <div class="icon"><i class="far fa-clock"></i></div>
-            <div class="delivery">{{ gig.package.timeToDeliver }} Delivery</div>
+            <div class="delivery">{{ gig.package.timeToDeliver }} Days Delivery</div>
           </div>
           <div class="revisions-wrapper">
             <div class="icon"><i class="fas fa-sync-alt"></i></div>

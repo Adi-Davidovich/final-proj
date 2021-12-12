@@ -28,7 +28,7 @@
 
     <div class="owner-rating">
       <i class="fas fa-star"></i><span>{{ gig.owner.rate }}</span
-      ><span>({{ reviewsLength }})</span>
+      ><span>(1K+)</span>
     </div>
     <div class="gig-footer flex">
       <el-tooltip content="Add to favorite" placement="top">
