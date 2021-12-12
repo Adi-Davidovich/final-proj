@@ -9,7 +9,9 @@
           :class="`category-card ${category.class} flex ${
             category.categoryName
           } ${
-            category.value === filterBy.category || categoryName ? 'active' : ''
+            category.value === (filterBy.category || categoryName)
+              ? 'active'
+              : ''
           }`"
           @click="setCategory(category.value)"
         >
@@ -23,21 +25,22 @@
 
     <div class="select-filters">
       <div class="filter-left">
+        <div class="delivery-time">
+        <p>Delivery Time:</p>
         <el-select
           v-model="filterBy.deliveyTime"
-          multiple
-          :multiple-limit="1"
-          placeholder="Delivery Time"
+          placeholder="Any"
+          @change="setFilter"
         >
           <el-option
             v-for="item in deliveyTimeLabels"
             :key="item.value"
             :label="item.label"
             :value="item.value"
-            @change="setFilter"
           >
           </el-option>
         </el-select>
+        </div>
         <div class="price-slider">
           <p>Budget:</p>
           <el-slider
@@ -47,7 +50,7 @@
             v-model="filterBy.price"
             @change="setFilter"
           ></el-slider>
-          <p>Up to {{ priceRander }}</p>
+          <p>{{ priceRander }}</p>
         </div>
       </div>
 
@@ -62,7 +65,7 @@
               >Price</el-dropdown-item
             >
             <el-dropdown-item @click.native="sortBy('deliveryTime')"
-              >delivey Time</el-dropdown-item
+              >Delivey Time</el-dropdown-item
             >
             <el-dropdown-item @click.native="sortBy('newest')"
               >Newest Arrivals</el-dropdown-item
@@ -80,22 +83,20 @@ export default {
     return {
       deliveyTimeLabels: [
         {
+          label: "Any",
+          value: "",
+        },
+        {
           label: "Express 24H",
-          value: 1,
+          value: 2,
         },
         {
           label: "Up to 3 days",
-          value: 3,
+          value: 4,
         },
         {
           label: "Up to 7 days",
-          value: 7,
-        },
-      ],
-      sortLabels: [
-        {
-          label: "Price",
-          value: "price",
+          value: 8,
         },
       ],
       categories: [
@@ -174,8 +175,8 @@ export default {
     },
 
     priceRander() {
-      if (this.filterBy.price === 0) return "Any";
-      else return `${this.filterBy.price}$`;
+      if (this.filterBy.price === 300) return "Any";
+      else return `Up to ${this.filterBy.price}$`;
     },
     categoryName() {
       let category = this.$store.getters.categoryName;

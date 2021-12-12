@@ -81,7 +81,7 @@ export default {
   data() {
     return {
       gigToEdit: null,
-
+      imgUrls: [],
       categories: [
         "Illustration",
         "Logo Design",
@@ -100,6 +100,9 @@ export default {
     },
   },
   methods: {
+    saveImg(imgUrl) {
+      this.imgUrls.push(imgUrl);
+    },
     async loadGig() {
       if (this.gigId) {
         const gig = await gigService.getById(this.gigId);
@@ -112,14 +115,17 @@ export default {
       if (this.gigToEdit._id) {
         try {
           console.log("GigToEdit");
-          await this.$store.dispatch({type: "updateGig",gig: this.gigToEdit,});
+          await this.$store.dispatch({
+            type: "updateGig",
+            gig: this.gigToEdit,
+          });
           this.$router.push("/user");
         } catch (err) {
           console.log("Editing Error (gig-edit):", err);
         }
       } else {
         try {
-          console.log(this.gigToEdit)
+          console.log(this.gigToEdit);
           const savedGig = await this.$store.dispatch({
             type: "addGig",
             gig: this.gigToEdit,

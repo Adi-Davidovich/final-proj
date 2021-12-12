@@ -1,9 +1,16 @@
 .filter-explore {
+  .delivery-time{
+    p{
+      padding-right: 10px;
+    }
+    display: flex;
+    align-items: center;
+  }
   .el-slider__bar{
-    background-color: #62646a;
+    background-color: #c2c3c7;
   }
   .el-slider__button{
-    border: solid 2px #62646a;
+    border: solid 2px #c2c3c7;
   }
   h6 {
     margin-bottom: rem(30px);
