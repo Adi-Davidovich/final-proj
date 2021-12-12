@@ -102,10 +102,6 @@ export const orderStore = {
         // },
         async addOrder({ commit }, { order }) {
             try {
-                socketService.emit('add-order', 'im ordering')
-                socketService.on('add-order-client', (msg) => {
-                    console.log('msg :>> ', msg);
-                })
                 const savedOrder = await orderService.save(order);
                 commit({ type: 'addOrder', savedOrder })
                 return savedOrder;

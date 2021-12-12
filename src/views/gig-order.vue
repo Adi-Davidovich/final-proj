@@ -138,16 +138,12 @@ export default {
       };
       console.log("Oreder log!!", order);
       try {
-        const savedOrder = await this.$store.dispatch({
-          type: "addOrder",
-          order,
-        });
-        console.log(savedOrder);
-        this.$message({
-          showClose: true,
-          message: "Thank you for your Order!",
-          type: "success",
-        });
+        const savedOrder = await this.$store.dispatch({type: "addOrder",order,});
+        socketService.emit("add-order", `${this.loggedInUser.fullname} is ordering`);
+        console.log('this :>> ', this);
+        
+        this.$message({showClose: true, message: "Thank you for your Order!",type: "success",});
+
         // showMsg(`order added with id: ${savedOrder._id}`);
         // this.$router.push("/");
       } catch (err) {
