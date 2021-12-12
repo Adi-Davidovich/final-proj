@@ -20,10 +20,19 @@
             >My Dashboard</router-link
           >
         </div>
+<<<<<<< HEAD
         <div v-if="orders" class="total">
           <progress-bar></progress-bar>
           <div>
             Balance: <span>${{ sumBalance }}</span>
+=======
+        <div class="total">
+          <div v-if="orders" class="balance">
+            <progress-bar></progress-bar>
+            <div>
+              Balance: <span>${{ sumBalance }}</span>
+            </div>
+>>>>>>> bc3e1edfda17560b414c5c80d025659ad9c14245
           </div>
         </div>
       </header>

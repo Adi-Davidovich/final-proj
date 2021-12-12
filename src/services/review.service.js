@@ -1,6 +1,5 @@
 import { httpService } from './http.service'
 import { storageService } from './async-storage.service'
-// import {userService} from './user.service'
 import { socketService, SOCKET_EVENT_REVIEW_ADDED } from './socket.service'
 
 export const reviewService = {
@@ -15,25 +14,15 @@ export const reviewService = {
 // return axios.get('api/Gig/?', {params: {id: 1223, balanse:13}})
 
 function query(filterBy) {
-    console.log('filterBy :>> ', filterBy);
     if (!filterBy) filterBy = '';
     return httpService.get(`review`, filterBy)
-    // return storageService.query('review')
 }
 
 function remove(reviewId) {
     return httpService.delete(`review/${reviewId}`)
-    // return storageService.delete('review', reviewId)
-
 }
 async function add(review) {
-    console.log('service :>> ', review);
     const addedReview = await httpService.post(`review`, review)
-
-    // review.byUser = userService.getLoggedinUser()
-    // review.aboutUser = await userService.getById(review.aboutUserId)
-    // const addedReview = storageService.post('review', review)
-
     return addedReview
 }
 

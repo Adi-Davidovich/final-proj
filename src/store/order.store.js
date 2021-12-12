@@ -34,6 +34,7 @@ export const orderStore = {
                 else acc[order.status] = 1;
                 return acc;
             }, {});
+            if (!ordersPending.Complete) return 0
             var precent = Math.floor((ordersPending.Complete / orders.length)*100)
                 console.log('ordersPending :>> ', ordersPending);
                 console.log('precent :>> ', precent);
@@ -102,10 +103,6 @@ export const orderStore = {
         // },
         async addOrder({ commit }, { order }) {
             try {
-                socketService.emit('add-order', 'im ordering')
-                socketService.on('add-order-client', (msg) => {
-                    console.log('msg :>> ', msg);
-                })
                 const savedOrder = await orderService.save(order);
                 commit({ type: 'addOrder', savedOrder })
                 return savedOrder;

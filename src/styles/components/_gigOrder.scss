@@ -19,9 +19,12 @@
         flex-direction: row;
       }
       img {
-        width: 180px;
+        width: 100%;
         object-fit: contain;
         padding-inline-end: 15px;
+        @include for-narrow-layout {
+          width: 180px;
+        }
       }
       .gig-info {
         flex-grow: 1;

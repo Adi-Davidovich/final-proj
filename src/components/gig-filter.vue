@@ -99,18 +99,6 @@ export default {
           value: 8,
         },
       ],
-      filterBy: {
-        txt: "",
-        price: 300,
-        category: "",
-        deliveyTime: "",
-        sort: "",
-        sellerDetails: {
-          level: "",
-          rating: "",
-          languge: "",
-        },
-      },
       categories: [
         {
           class: "all",
@@ -149,6 +137,18 @@ export default {
           iconUrl: "video-tutorial.png",
         },
       ],
+      filterBy: {
+        txt: "",
+        price: 300,
+        category: "",
+        deliveyTime: "",
+        sort: "",
+        sellerDetails: {
+          level: "",
+          rating: "",
+          languge: "",
+        },
+      },
     };
   },
 
