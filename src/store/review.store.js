@@ -13,7 +13,6 @@ export const reviewStore = {
             state.reviews = reviews;
         },
         addReview(state, { review }) {
-            console.log('review :>> ', review);
             state.reviews.push(review)
         },
         removeReview(state, { reviewId }) {
@@ -35,11 +34,9 @@ export const reviewStore = {
         },
         async loadReviews(context, { id }) {
             try {
-                console.log('id :>> ', id);
                 let filterBy = {}
                 filterBy.id = id
                 const reviews = await reviewService.query(filterBy);
-                console.log('reviews-', reviews);
                 context.commit({ type: 'setReviews', reviews })
 
 

@@ -166,7 +166,7 @@ export default {
     return {
       filterBy: {
         txt: "",
-        price: 0,
+        price: 1000,
         category: "",
         deliveyTime: "",
         sort: "",

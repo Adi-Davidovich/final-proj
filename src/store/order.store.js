@@ -34,6 +34,7 @@ export const orderStore = {
                 else acc[order.status] = 1;
                 return acc;
             }, {});
+            if (!ordersPending.Complete) return 0
             var precent = Math.floor((ordersPending.Complete / orders.length)*100)
                 console.log('ordersPending :>> ', ordersPending);
                 console.log('precent :>> ', precent);

@@ -53,7 +53,7 @@
           </div>
           <div class="delivery summary-item">
             <p>Delivery Time</p>
-            <p>{{ gig.package.timeToDeliver }}</p>
+            <p>{{ gig.package.timeToDeliver }} Days</p>
           </div>
         </article>
         <footer>

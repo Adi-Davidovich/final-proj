@@ -4,9 +4,15 @@
       <h6>Select Category</h6>
       <ul class="grid">
         <li
-          v-for="(category) in categories"
+          v-for="category in categories"
           :key="category.id"
-          :class="`category-card ${category.class} flex ${category.categoryName} ${category.value === (filterBy.category || categoryName) ? 'active' : ''}`"
+          :class="`category-card ${category.class} flex ${
+            category.categoryName
+          } ${
+            category.value === (filterBy.category || categoryName)
+              ? 'active'
+              : ''
+          }`"
           @click="setCategory(category.value)"
         >
           <img
@@ -19,21 +25,22 @@
 
     <div class="select-filters">
       <div class="filter-left">
+        <div class="delivery-time">
+        <p>Delivery Time:</p>
         <el-select
           v-model="filterBy.deliveyTime"
-          multiple
-          :multiple-limit="1"
-          placeholder="Delivery Time"
+          placeholder="Any"
+          @change="setFilter"
         >
           <el-option
             v-for="item in deliveyTimeLabels"
             :key="item.value"
             :label="item.label"
             :value="item.value"
-             @change="setFilter"
           >
           </el-option>
         </el-select>
+        </div>
         <div class="price-slider">
           <p>Budget:</p>
           <el-slider
@@ -43,7 +50,7 @@
             v-model="filterBy.price"
             @change="setFilter"
           ></el-slider>
-          <p>Up to {{ priceRander }}</p>
+          <p>{{ priceRander }}</p>
         </div>
       </div>
 
@@ -58,7 +65,7 @@
               >Price</el-dropdown-item
             >
             <el-dropdown-item @click.native="sortBy('deliveryTime')"
-              >delivey Time</el-dropdown-item
+              >Delivey Time</el-dropdown-item
             >
             <el-dropdown-item @click.native="sortBy('newest')"
               >Newest Arrivals</el-dropdown-item
@@ -76,36 +83,22 @@ export default {
     return {
       deliveyTimeLabels: [
         {
+          label: "Any",
+          value: "",
+        },
+        {
           label: "Express 24H",
-          value: 1,
+          value: 2,
         },
         {
           label: "Up to 3 days",
-          value: 3,
+          value: 4,
         },
         {
           label: "Up to 7 days",
-          value: 7,
+          value: 8,
         },
       ],
-      sortLabels: [
-        {
-          label: "Price",
-          value: "price",
-        },
-      ],
-      filterBy: {
-        txt: "",
-        price: 300,
-        category: "",
-        deliveyTime: "",
-        sort: "",
-        sellerDetails: {
-          level: "",
-          rating: "",
-          languge: "",
-        },
-      },
       categories: [
         {
           class: "all",
@@ -144,6 +137,18 @@ export default {
           iconUrl: "video-tutorial.png",
         },
       ],
+      filterBy: {
+        txt: "",
+        price: 300,
+        category: "",
+        deliveyTime: "",
+        sort: "",
+        sellerDetails: {
+          level: "",
+          rating: "",
+          languge: "",
+        },
+      },
     };
   },
 
@@ -170,17 +175,18 @@ export default {
     },
 
     priceRander() {
-      if (this.filterBy.price === 0) return "Any";
-      else return `${this.filterBy.price}$`;
+      if (this.filterBy.price === 300) return "Any";
+      else return `Up to ${this.filterBy.price}$`;
     },
-   categoryName() {
-      let category=this.$store.getters.categoryName;
-      if(category==='Illustration') return 'Illustration'
-      if(category==='Logo Design') return 'Logo Design'
-      if(category==='Voice Over') return 'Voice Over'
-      if(category==='Video Explainer') return 'Video Explainer'
-      if(category==='Social Media Marketing') return 'Social Media Marketing'
-      else return
+    categoryName() {
+      let category = this.$store.getters.categoryName;
+      if (category === "Illustration") return "Illustration";
+      if (category === "Logo Design") return "Logo Design";
+      if (category === "Voice Over") return "Voice Over";
+      if (category === "Video Explainer") return "Video Explainer";
+      if (category === "Social Media Marketing")
+        return "Social Media Marketing";
+      else return;
     },
   },
 };

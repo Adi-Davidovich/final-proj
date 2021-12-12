@@ -37,9 +37,9 @@ export default {
     this.$store.dispatch({ type: "loadGigs" });
   },
   methods: {
-    setFilter(filterBy) {
+    async setFilter(filterBy) {
       const copyFilter = JSON.parse(JSON.stringify(filterBy));
-      this.$store.dispatch({ type: "setFilter", filterBy: copyFilter });
+      await this.$store.dispatch({ type: "setFilter", filterBy: copyFilter });
       this.$store.dispatch({ type: "loadGigs" });
     },
     setSort(sortBy) {
