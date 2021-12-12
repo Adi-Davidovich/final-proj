@@ -160,10 +160,6 @@ export default {
       else return this.messageSocket.length;
     },
     user() {
-      console.log(
-        "this.$store.getters.loggedinUser :>> ",
-        this.$store.getters.loggedinUser
-      );
       return this.$store.getters.loggedinUser;
     },
     getSearchTerm() {
@@ -184,11 +180,16 @@ export default {
     window.addEventListener("scroll", this.handleScroll);
     this.isRouteHomePage = this.$route.path === "/";
     socketService.on("add-order-client", (msg) => {
-      Message.success({ showClose: true, message: msg, type: "success" });
+      console.log('add-order-client')
+      Message.success({
+        showClose: true,
+        message:msg,
+        type: "success",
+      });
       this.messageSocket.push(msg);
     });
     socketService.on("add-review-client", (msg) => {
-      console.log('review  front:>> ', msg);
+      console.log('add-review-client ', msg);
       Message.success({
         showClose: true,
         message:msg,

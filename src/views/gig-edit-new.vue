@@ -77,6 +77,8 @@
 <script>
 import { gigService } from "../services/gig.service.js";
 import imgUpload from "../components/img-upload.vue";
+import imgList from '../components/img-list.vue';
+
 export default {
   data() {
     return {
@@ -89,6 +91,8 @@ export default {
         "Social Media Marketing",
         "Video Explainer",
       ],
+      imgUrls: [],
+      userAvatar: null,
     };
   },
   created() {
@@ -102,6 +106,9 @@ export default {
   methods: {
     saveImg(imgUrl) {
       this.imgUrls.push(imgUrl);
+    },
+    setAvatar(imgUrl) {
+      this.userAvatar = imgUrl;
     },
     async loadGig() {
       if (this.gigId) {
@@ -140,6 +147,8 @@ export default {
     },
   },
   components: {
+    imgUpload,
+    imgList,
     imgUpload,
   },
 };

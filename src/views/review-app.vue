@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     async addReview() {
-      socketService.emit("add-review",  'someone wrote a review');
+    
       await this.$store.dispatch({type: 'addReview', review: this.reviewToEdit})
       this.reviewToEdit = {txt: '', aboutUserId: null}
     }
