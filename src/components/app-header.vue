@@ -92,13 +92,13 @@
               </li>
               <li v-if="user" @click="userProfile">
                 <el-badge :value="showSocketMessages" class="item">
-                <avatar
-                  v-if="user"
-                  :size="35"
-                  :username="user.username"
-                  :src="user.imgUrl"
-                  style="cursor: pointer"
-                ></avatar>
+                  <avatar
+                    v-if="user"
+                    :size="35"
+                    :username="user.username"
+                    :src="user.imgUrl"
+                    style="cursor: pointer"
+                  ></avatar>
                 </el-badge>
               </li>
             </ul>
@@ -125,8 +125,8 @@
 <script>
 import Avatar from "vue-avatar";
 import signupForm from "./signup-login-form.vue";
-import UserMsg from './user-msg.vue';
-import { Message } from 'element-ui'
+import UserMsg from "./user-msg.vue";
+import { Message } from "element-ui";
 
 export default {
   name: "app-header",
@@ -155,9 +155,9 @@ export default {
     };
   },
   computed: {
-    showSocketMessages(){
-      if (!this.messageSocket.length) return null
-      else return this.messageSocket.length
+    showSocketMessages() {
+      if (!this.messageSocket.length) return null;
+      else return this.messageSocket.length;
     },
     user() {
       console.log(
@@ -183,10 +183,18 @@ export default {
     // }
     window.addEventListener("scroll", this.handleScroll);
     this.isRouteHomePage = this.$route.path === "/";
-    socketService.on('add-order-client', (msg) => {   
-      Message.success({showClose: true, message: msg ,type: "success",})
-      this.messageSocket.push(msg)
-    })
+    socketService.on("add-order-client", (msg) => {
+      Message.success({ showClose: true, message: msg, type: "success" });
+      this.messageSocket.push(msg);
+    });
+    socketService.on("add-review-client", (msg) => {
+      console.log('review  front:>> ', msg);
+      Message.success({
+        showClose: true,
+        message:msg,
+        type: "success",
+      });
+    });
   },
   watch: {
     $route({ path }) {
@@ -194,7 +202,6 @@ export default {
     },
   },
   methods: {
-    
     routToHome() {
       this.$router.push("/");
       this.isNavbarOpen = false;
@@ -261,7 +268,7 @@ export default {
     userProfile() {
       console.log("Hi");
       this.isNavbarOpen = false;
-      this.messageSocket= [];
+      this.messageSocket = [];
       this.$router.push("/user");
     },
 
