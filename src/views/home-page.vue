@@ -154,6 +154,8 @@
 
 <script>
 import appHeader from "../components/app-header.vue";
+import {socketService} from '../services/socket.service.js'
+
 
 export default {
   name: "home-page",
@@ -173,6 +175,7 @@ export default {
     };
   },
   created() {
+    
     this.heroes = [
       {
         id: 1,

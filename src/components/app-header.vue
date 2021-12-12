@@ -91,6 +91,7 @@
                 >
               </li>
               <li v-if="user" @click="userProfile">
+                <el-badge :value="showSocketMessages" class="item">
                 <avatar
                   v-if="user"
                   :size="35"
@@ -98,6 +99,7 @@
                   :src="user.imgUrl"
                   style="cursor: pointer"
                 ></avatar>
+                </el-badge>
               </li>
             </ul>
           </nav>
@@ -123,7 +125,9 @@
 <script>
 import Avatar from "vue-avatar";
 import signupForm from "./signup-login-form.vue";
-// import userMsg from '../components/user-msg.cmp.js'
+import UserMsg from './user-msg.vue';
+import { Message } from 'element-ui'
+
 export default {
   name: "app-header",
   data() {
@@ -140,6 +144,7 @@ export default {
           languge: "",
         },
       },
+      messageSocket: [],
       isHeaderTransparent: true,
       isHeaderSearchVisible: false,
       signupMode: false,
@@ -150,6 +155,10 @@ export default {
     };
   },
   computed: {
+    showSocketMessages(){
+      if (!this.messageSocket.length) return null
+      else return this.messageSocket.length
+    },
     user() {
       console.log(
         "this.$store.getters.loggedinUser :>> ",
@@ -174,6 +183,10 @@ export default {
     // }
     window.addEventListener("scroll", this.handleScroll);
     this.isRouteHomePage = this.$route.path === "/";
+    socketService.on('add-order-client', (msg) => {   
+      Message.success({showClose: true, message: msg ,type: "success",})
+      this.messageSocket.push(msg)
+    })
   },
   watch: {
     $route({ path }) {
@@ -181,6 +194,7 @@ export default {
     },
   },
   methods: {
+    
     routToHome() {
       this.$router.push("/");
       this.isNavbarOpen = false;
@@ -247,6 +261,7 @@ export default {
     userProfile() {
       console.log("Hi");
       this.isNavbarOpen = false;
+      this.messageSocket= [];
       this.$router.push("/user");
     },
 
@@ -259,6 +274,7 @@ export default {
   components: {
     signupForm,
     Avatar,
+    UserMsg,
   },
 };
 </script>

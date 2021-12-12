@@ -62,6 +62,15 @@ export default {
   methods: {
     async addReview() {
       await this.$store.dispatch({type: 'addReview', review: this.reviewToEdit})
+      socketService.emit("add-review", `${this.loggedInUser.fullname} wrote a review`);
+        socketService.on("add-review-client", (review) => {
+          console.log('review !!!!:>> ', review);
+          this.$message({
+          showClose: true,
+          message: review.txt,
+          type: "success",
+        }); 
+        });
       this.reviewToEdit = {txt: '', aboutUserId: null}
     }
   }
