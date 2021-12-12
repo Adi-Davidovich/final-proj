@@ -2,23 +2,23 @@
   <section class="page-container seller-dashboard">
     <div class="dashboard-left">
       <div class="orders-overview">
-        <div class="total-orders">
+        <div class="total-orders details-flex">
           <p>Total orders:</p>
           <h3>{{ orders.length }}</h3>
         </div>
-        <div class="pending-orders">
+        <div class="pending-orders details-flex">
           <p>Pending:</p>
           <h3>
             {{ pendingOrders }} <span>({{ percent(pendingOrders) }})</span>
           </h3>
         </div>
-        <div class="completed-orders">
+        <div class="completed-orders details-flex">
           <p>Completed:</p>
           <h3>
             {{ completedOrders }}<span>({{ percent(completedOrders) }})</span>
           </h3>
         </div>
-        <div class="top-sales">
+        <div class="top-sales details-flex">
           <p>Top Selling Category:</p>
           <h3>{{ topSeller }}<span></span></h3>
         </div>

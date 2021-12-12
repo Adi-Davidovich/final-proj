@@ -45,7 +45,7 @@ export const orderStore = {
             state.isLoading = isLoading
         },
         addOrder(state, payload) {
-            state.orders.push(payload.order)
+            state.orders.unshift(payload.order)
         },
         updateOrder(state, { savedOrder }) {
             const idx = state.orders.findIndex((order) => order._id === savedOrder._id)

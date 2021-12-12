@@ -4,17 +4,15 @@
     <section class="profile-layout">
       <header v-if="user.isSeller" class="profile-header">
         <div class="tabs">
-          <router-link active-class="active-link1" class="nav-link" to="/user"
-            >Profile</router-link
-          >
-          |
+          <router-link class="nav-link" to="/user">Profile</router-link>
+
           <router-link
             active-class="active-link"
             class="nav-link"
             to="/user/orders"
             >Manage Orders</router-link
           >
-          |
+
           <router-link
             active-class="active-link"
             class="nav-link"
@@ -22,12 +20,10 @@
             >My Dashboard</router-link
           >
         </div>
-        <div class="total">
-          <div v-if="orders" class="balance">
-            <progress-bar></progress-bar>
-            <div>
-              Balance: <span>{{ sumBalance }}$</span>
-            </div>
+        <div v-if="orders" class="total">
+          <progress-bar></progress-bar>
+          <div>
+            Balance: <span>${{ sumBalance }}</span>
           </div>
         </div>
       </header>

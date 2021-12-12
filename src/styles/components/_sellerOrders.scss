@@ -1,4 +1,5 @@
 .orders-table {
+
     .complete {
         background: #1dbf73;
         font-family: macan-bold;
@@ -13,6 +14,13 @@
     margin-top: 20px;
     border-collapse: collapse;
     width: 100%;
+    *td{
+        width: fit-content;
+        
+    }
+    .gig-description{
+        width: 40%;
+    }
     td {
         font-family: macan-light;
         font-size: 0.875rem;

@@ -6,6 +6,7 @@
         <th></th>
         <th>BUYER</th>
         <th>GIG</th>
+        <th>DATE</th>
         <th>DUE ON</th>
         <th>TOTAL</th>
         <th>STATUS</th>
@@ -21,10 +22,13 @@
           <avatar :size="30" :username="order.buyer.username"></avatar>
           <p>{{ order.buyer.username }}</p>
         </td>
-        <td>{{ order.gig.package.description }}</td>
+        <td class="gig-description">{{ order.gig.package.description }}</td>
+        <td>{{ orderDate(order) }}</td>
         <td>{{ order.timeToDeliver }}</td>
         <td>${{ order.price }}</td>
-        <td :class="order.status==='Complete'?'complete':'pending'">{{ order.status }}</td>
+        <td :class="order.status === 'Complete' ? 'complete' : 'pending'">
+          {{ order.status }}
+        </td>
         <td class="actions">
           <el-tooltip content="Mark as complete" placement="top">
             <i @click="orderReady(order)" class="fas fa-check-circle"></i>
@@ -42,7 +46,6 @@ import Avatar from "vue-avatar";
 
 export default {
   name: "seller-orders",
-  props: ["orders"],
   data() {
     return {};
   },
@@ -54,6 +57,9 @@ export default {
   methods: {
     orderReady(order) {
       this.$store.dispatch({ type: "updateOrder", order });
+    },
+    orderDate(order) {
+      return new Date(order.createdAt).toDateString();
     },
   },
   components: {
