@@ -141,7 +141,9 @@
     justify-content: flex-end;
     margin-inline-start: 1rem;
     background-color: transparent;
-
+    a {
+      cursor: pointer;
+    }
     @media (max-width: 850px) {
       position: fixed;
       margin: 0;

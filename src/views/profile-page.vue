@@ -4,7 +4,12 @@
     <section class="profile-layout">
       <header v-if="user.isSeller" class="profile-header">
         <div class="tabs">
-          <router-link class="nav-link" to="/user">Profile</router-link>
+          <router-link
+            active-class="active-link"
+            class="nav-link green"
+            to="/user" exact-path
+            >Profile</router-link
+          >
 
           <router-link
             active-class="active-link"
@@ -85,7 +90,15 @@ export default {
     openActiveGigs() {
       this.manageSaleTab = false;
     },
+    tabChange() {
+      console.log("HIHIHI");
+      this.click = false;
+    },
+    profileTab() {
+      this.click = true;
+    },
   },
+  watch: {},
 
   components: {
     Avatar,

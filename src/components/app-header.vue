@@ -47,6 +47,7 @@
               <li @click="isNavbarOpen = false" class="display-from-md">
                 <router-link
                   to="/explore"
+                  @click.native="goExplore"
                   class="nav-link"
                   active-class="active-link"
                   >Explore</router-link
@@ -160,10 +161,6 @@ export default {
       else return this.messageSocket.length;
     },
     user() {
-      console.log(
-        "this.$store.getters.loggedinUser :>> ",
-        this.$store.getters.loggedinUser
-      );
       return this.$store.getters.loggedinUser;
     },
     getSearchTerm() {
@@ -184,11 +181,16 @@ export default {
     window.addEventListener("scroll", this.handleScroll);
     this.isRouteHomePage = this.$route.path === "/";
     socketService.on("add-order-client", (msg) => {
-      Message.success({ showClose: true, message: msg, type: "success" });
+      console.log('add-order-client')
+      Message.success({
+        showClose: true,
+        message:msg,
+        type: "success",
+      });
       this.messageSocket.push(msg);
     });
     socketService.on("add-review-client", (msg) => {
-      console.log('review  front:>> ', msg);
+      console.log('add-review-client ', msg);
       Message.success({
         showClose: true,
         message:msg,
@@ -202,6 +204,12 @@ export default {
     },
   },
   methods: {
+    goExplore() {
+      this.$store.dispatch({
+        type: "setFilter",
+        filterBy: { category: "" },
+      });
+    },
     routToHome() {
       this.$router.push("/");
       this.isNavbarOpen = false;
