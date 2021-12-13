@@ -22,13 +22,13 @@
     flex-direction: row;
     justify-content: flex-start;
     height: 60px;
+    gap: 5px;
 }
 
 .thumbnail-image {
     display: flex;
     align-items: center;
     cursor: pointer;
-    padding: 5px;
     height: inherit;
 }
 
