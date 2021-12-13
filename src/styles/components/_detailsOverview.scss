@@ -1,6 +1,9 @@
 .details-overview {
     .overview {
-        
+      margin-block-end: rem(44px);
+      @include for-normal-layout {
+        margin-block-end: rem(64px);
+      }
         .title {
           height: fit-content;
           padding-block-end: rem(25px);
@@ -58,16 +61,16 @@
             }
           }
         }
-        .el-carousel {
-          margin-block-end: rem(64px);
-          border: 1px solid #cdcad1;
-        }
-        .el-carousel__button {
-          background-color: #cdcad1;
-        }
-        .el-carousel__indicator {
-          border: none;
-        }
+        // .el-carousel {
+        //   margin-block-end: rem(64px);
+        //   border: 1px solid #cdcad1;
+        // }
+        // .el-carousel__button {
+        //   background-color: #cdcad1;
+        // }
+        // .el-carousel__indicator {
+        //   border: none;
+        // }
         .img-container-details {
           height: 100%;
           display: flex;

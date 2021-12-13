@@ -5,13 +5,19 @@
       <header>
         <h3>{{ reviewsLength }} Reviews</h3>
         <div class="stars">
-          <span
+           <span
+                  v-for="num in 5"
+                  :key="num"
+                  :class="'fa fa-star fill'"
+                >
+          <!-- <span
             v-for="num in 5"
             :key="num"
             :class="
               num <= gig.owner.rate ? 'fa fa-star fill' : 'far fa-star fill'
             "
-          ></span>
+          > -->
+          </span>
           <span class="rate">{{ gig.owner.rate }}</span>
         </div>
       </header>

@@ -1,7 +1,7 @@
 
 <template>
 <div v-if="orders" class="container progress-bar">
-    <div class="percent">Complete: {{percent}}% </div>
+    <div class="percent">Orders Completed: {{percent}}% </div>
     <div class="loading-bar">
          <div class="percentage" v-bind:style="{'width': percentage + '%'}"></div>
      </div>
