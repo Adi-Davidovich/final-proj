@@ -52,7 +52,8 @@
                     v-for="num in 5"
                     :key="num"
                     class="fa fa-star stars"
-                  ></span><br>
+                  ></span
+                  ><br />
                   {{ hero.name }}, <b>{{ hero.subTitle }}</b>
                 </p>
               </div>
@@ -64,35 +65,28 @@
 
     <h2 class="home-page-title">Popular professional services</h2>
     <div class="cards-container">
-      <div class="card-filter" @click="setCategory('Logo Design')">
-        <p>Build your brand <span class="filter-title"> Logo Design</span></p>
-        <img src="../assets/img/logo-design.jpg" />
-      </div>
-
-      <div class="card-filter" @click="setCategory('Illustration')">
-        <p>Color your dreams <span class="filter-title">Illustration</span></p>
-        <img src="../assets/img/illustration.jpg" />
-      </div>
-
-      <div class="card-filter" @click="setCategory('Voice Over')">
-        <p>Share your message <span class="filter-title">Voice Over</span></p>
-        <img src="../assets/img/voiceover.jpg" />
-      </div>
-
-      <div class="card-filter" @click="setCategory('Video Explainer')">
+      <div
+        v-for="category in categories"
+        :key="category.name"
+        class="card-filter"
+        @click="setCategory(category.name)"
+      >
         <p>
-          Engage your audience <span class="filter-title">Video Explainer</span>
+          {{ category.title }}
+          <span class="filter-title">{{ category.subTitle }}</span>
         </p>
-        <img src="../assets/img/animated-explainer.jpg" />
-      </div>
-
-      <div class="card-filter" @click="setCategory('Social Media Marketing')">
-        <p>
-          Reach more customers <span class="filter-title">Social Media</span>
-        </p>
-        <img src="../assets/img/social.jpg" />
+        <img :src="require(`@/assets/img/${category.name}.jpg`)" />
       </div>
     </div>
+
+    <div>
+    <VueSlickCarousel :arrows="true" :dots="true">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+    </VueSlickCarousel>
+  </div>
 
     <div class="home-page-info-container full">
       <div class="main-info main-layout">
@@ -154,14 +148,10 @@
 
 <script>
 import appHeader from "../components/app-header.vue";
-import {socketService} from '../services/socket.service.js'
-
+ import VueSlickCarousel from 'vue-slick-carousel'
 
 export default {
   name: "home-page",
-  components: {
-    appHeader,
-  },
   data() {
     return {
       filterBy: {
@@ -172,48 +162,79 @@ export default {
         sort: "",
       },
       heroIdx: 0,
+      heroes: [
+        {
+          id: 1,
+          image: require(`../assets/img/4.jpg`),
+          backgroundColor: "#88b3e0",
+          name: "Gabrielle",
+          subTitle: "Video Explainer",
+        },
+        {
+          id: 2,
+          image: require(`../assets/img/5.jpg`),
+          backgroundColor: "#eea5ae",
+          name: "Andrea",
+          subTitle: "Fashion Designer",
+        },
+        {
+          id: 3,
+          image: require(`../assets/img/6.jpg`),
+          backgroundColor: "#708284",
+          name: "Zach",
+          subTitle: "Graphic Designer",
+        },
+        {
+          id: 4,
+          image: require(`../assets/img/2.jpg`),
+          backgroundColor: "#fa679b",
+          name: "Veronica",
+          subTitle: "Illustraitor",
+        },
+        {
+          id: 5,
+          image: require(`../assets/img/7.jpg`),
+          backgroundColor: "#293a28",
+          name: "Samuel",
+          subTitle: "Social Media Manager",
+        },
+      ],
+      activeImage: 0,
+      categories: [
+        {
+          name: "Logo Design",
+          img: "../assets/img/logo-design.jpg",
+          title: "Build your brand",
+          subTitle: "Logo Design",
+        },
+        {
+          name: "Illustration",
+          img: "../assets/img/illustration.jpg",
+          title: "Color your dreams",
+          subTitle: "Illustration",
+        },
+        {
+          name: "Voice Over",
+          img: "../assets/img/voiceover.jpg",
+          title: "Share your message",
+          subTitle: "Voice Over",
+        },
+        {
+          name: "Video Explainer",
+          img: "../assets/img/animated-explainer.jpg",
+          title: "Engage your audience",
+          subTitle: "Video Explainer",
+        },
+        {
+          name: "Social Media Marketing",
+          img: "../assets/img/social.jpg",
+          title: "Reach more customers",
+          subTitle: "Social Media",
+        },
+      ],
     };
   },
   created() {
-    
-    this.heroes = [
-      {
-        id: 1,
-        image: require(`../assets/img/4.jpg`),
-        backgroundColor: "#88b3e0",
-        name: "Gabrielle",
-        subTitle: "Video Explainer",
-      },
-      {
-        id: 2,
-        image: require(`../assets/img/5.jpg`),
-        backgroundColor: "#eea5ae",
-        name: "Andrea",
-        subTitle: "Fashion Designer",
-      },
-      {
-        id: 3,
-        image: require(`../assets/img/6.jpg`),
-        backgroundColor: "#708284",
-        name: "Zach",
-        subTitle: "Graphic Designer",
-      },
-      {
-        id: 4,
-        image: require(`../assets/img/2.jpg`),
-        backgroundColor: "#fa679b",
-        name: "Veronica",
-        subTitle: "Illustraitor",
-      },
-      {
-        id: 5,
-        image: require(`../assets/img/7.jpg`),
-        backgroundColor: "#293a28",
-        name: "Samuel",
-        subTitle: "Social Media Manager",
-      },
-    ];
-
     setInterval(() => {
       this.heroIdx = (this.heroIdx + 1) % this.heroes.length;
     }, 5000);
@@ -227,6 +248,27 @@ export default {
       this.$store.dispatch({ type: "loadGigs" });
       this.$router.push("/explore");
     },
+    nextImage() {
+      var active = this.activeImage + 1;
+      if (active >= this.images.length) {
+        active = 0;
+      }
+      this.activateImage(active);
+    },
+    prevImage() {
+      var active = this.activeImage - 1;
+      if (active < 0) {
+        active = this.images.length - 1;
+      }
+      this.activateImage(active);
+    },
+    activateImage(imageIndex) {
+      this.activeImage = imageIndex;
+    },
+  },
+  components: {
+    appHeader,
+    VueSlickCarousel
   },
 };
 </script>

@@ -3,21 +3,15 @@
     <h1>Merchandise Data:</h1>
     <div class="data-container">
       <data-chart :info="info" class="data-chart" />
-      <toy-chart :info="info" class="toy-chart" />
     </div>
   </section>
 </template>
 
 <script>
 import dataChart from "../components/data-chart.vue";
-import toyChart from "../components/toy-chart.vue";
 export default {
   data() {
     return {};
-  },
-  components: {
-    dataChart,
-    toyChart,
   },
   created() {
     this.$store.dispatch({ type: "loadToys" });
@@ -51,6 +45,9 @@ export default {
     info() {
       console.log("MEMEME", this.info);
     },
+  },
+  components: {
+    dataChart,
   },
 };
 </script>

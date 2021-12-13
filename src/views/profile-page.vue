@@ -7,7 +7,8 @@
           <router-link
             active-class="active-link"
             class="nav-link green"
-            to="/user" exact-path
+            to="/user"
+            exact-path
             >Profile</router-link
           >
 
@@ -67,7 +68,8 @@ export default {
       else return "It seems that you don't have any active Gigs. Get selling!";
     },
     sumBalance() {
-      return this.orders.reduce((a, b) => a + b.price, 0).toFixed(2);
+      const num = this.orders.reduce((a, b) => a + b.price, 0).toFixed(2);
+      return num.toLocaleString();
     },
   },
 
