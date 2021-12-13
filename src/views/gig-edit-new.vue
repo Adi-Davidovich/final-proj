@@ -128,7 +128,7 @@ export default {
     async save() {
       if (this.gigToEdit._id) {
         try {
-          console.log("GigToEdit");
+          console.log("GigToEdit",this.gigToEdit);
           await this.$store.dispatch({
             type: "updateGig",
             gig: this.gigToEdit,

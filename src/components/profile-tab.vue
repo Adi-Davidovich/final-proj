@@ -7,7 +7,7 @@
         <avatar
           :size="150"
           :username="user.username"
-          :src="user.imgUrl"
+          :src="require(`@/assets/img/demo-data-img/${user.imgUrl}`)"
         ></avatar>
         <h2>{{ user.username }}</h2>
         </div>
@@ -50,7 +50,7 @@
             <avatar
               :size="30"
               :username="order.seller.username"
-              :src="order.seller.imgUrl"
+              :src="require(`@/assets/img/demo-data-img/${order.seller.imgUrl}`)"
             ></avatar>
             <p>{{ order.seller.username }}</p>
           </div>

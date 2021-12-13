@@ -3,7 +3,11 @@
     <ul class="review-list">
       <li class="review-item" v-for="(review, idx) in reviews" :key="idx">
         <div class="user-img">
-          <avatar :size="30" :username="review.buyer.fullname"></avatar>
+          <avatar
+            :size="30"
+            :username="review.buyer.fullname"
+            :src="require(`@/assets/img/demo-data-img/${review.buyer.imgUrl}`)"
+          ></avatar>
         </div>
         <div class="review-content">
           <div class="reviewer-details">
@@ -39,10 +43,10 @@
 <script>
 import Avatar from "vue-avatar";
 
-export default {  
+export default {
   name: "gig-details-reviews",
   props: ["reviews"],
-   components: {
+  components: {
     Avatar,
   },
 };
