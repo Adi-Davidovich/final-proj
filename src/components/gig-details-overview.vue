@@ -44,7 +44,7 @@
       <!-- <el-carousel :autoplay="false" trigger="click" height="430px">
         <el-carousel-item v-for="img in gig.imgUrl" :key="img">
           <div class="img-container-details">
-            <img :src="require(`@/assets/img/card-images/${img}`)" alt="" />
+            <img :src="require(`@/assets/img/demo-data-img/${img}`)" alt="" />
           </div>
         </el-carousel-item>
       </el-carousel> -->
