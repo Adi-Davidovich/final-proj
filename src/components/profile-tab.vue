@@ -1,5 +1,5 @@
 <template>
-  <section class="page-container my-profile">
+  <section class="page-container my-profile" v-if="user">
     <section class="left-side">
       <div class="details">
         <div class="details-top">
