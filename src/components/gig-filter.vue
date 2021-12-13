@@ -9,7 +9,7 @@
           :class="`category-card ${category.class} flex ${
             category.categoryName
           } ${
-            category.value === (filterBy.category || categoryName)
+            category.value === (filterBy.category || categoryName || '')
               ? 'active'
               : ''
           }`"

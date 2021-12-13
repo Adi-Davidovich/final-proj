@@ -59,7 +59,7 @@ export const orderStore = {
         setOrders(state, { orders }) {
             state.orders = orders
         },
-        setFilter(state, { filterBy }) {
+        setFilterOrder(state, { filterBy }) {
             state.filterBy = filterBy
         },
         setSort(state, { copySort }) {
@@ -149,8 +149,8 @@ export const orderStore = {
         //             throw err
         //         })
         // },
-        setFilter({ commit, dispatch }, { filterBy }) {
-            commit({ type: 'setFilter', filterBy })
+        setFilterOrder({ commit, dispatch }, { filterBy }) {
+            commit({ type: 'setFilterOrder', filterBy })
             dispatch({ type: 'loadOrders' })
         },
     },
