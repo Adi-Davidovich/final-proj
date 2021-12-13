@@ -13,7 +13,7 @@ export const reviewStore = {
             state.reviews = reviews;
         },
         addReview(state, { review }) {
-            state.reviews.push(review)
+            state.reviews.unshift(review)
         },
         removeReview(state, { reviewId }) {
             state.reviews = state.reviews.filter(review => review._id !== reviewId)
