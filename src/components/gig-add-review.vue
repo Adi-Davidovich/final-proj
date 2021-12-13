@@ -56,12 +56,17 @@
       </div>
       <div class="text-area">
         <h4>Tell Your Story (Optional)</h4>
-        <textarea
+        <!-- <textarea
           placeholder="What was your goal in buying this Gig? How did the seller help you achieve it?"
           rows="6"
           cols="50"
           v-model="reviewToAdd.txt"
-        ></textarea>
+        ></textarea> -->
+        <el-input
+            type="textarea"
+            v-model="reviewToAdd.txt"
+            placeholder="What was your goal in buying this Gig? How did the seller help you achieve it?"
+          ></el-input>
       </div>
       <button class="btn-add btn-purchase">Add</button>
       <span class="worning" v-if="!isReviewAddedCorrectly"

@@ -10,7 +10,14 @@
           placeholder="I will do something i'm really goo at"
         ></el-input>
       </div>
-
+      <div class="description grid-div">
+          <p>Gig Description:</p>
+          <el-input
+            type="textarea"
+            v-model="gigToEdit.description"
+            placeholder="Describe youre gig"
+          ></el-input>
+        </div>
       <div class="gig-category grid-div">
         <p>Category:</p>
         <el-select v-model="gigToEdit.category" placeholder="Category">
@@ -49,11 +56,11 @@
           ></el-input>
         </div>
         <div class="description grid-div">
-          <p>Description:</p>
+          <p>Package Description:</p>
           <el-input
             type="textarea"
             v-model="gigToEdit.package.description"
-            placeholder="Describe you're gig"
+            placeholder="Describe your package gig"
           ></el-input>
         </div>
 

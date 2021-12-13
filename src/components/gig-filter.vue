@@ -9,7 +9,7 @@
           :class="`category-card ${category.class} flex ${
             category.categoryName
           } ${
-            category.value === (filterBy.category || categoryName || '')
+            category.value === (filterBy.category || '')
               ? 'active'
               : ''
           }`"
@@ -26,20 +26,20 @@
     <div class="select-filters">
       <div class="filter-left">
         <div class="delivery-time">
-        <p>Delivery Time:</p>
-        <el-select
-          v-model="filterBy.deliveyTime"
-          placeholder="Any"
-          @change="setFilter"
-        >
-          <el-option
-            v-for="item in deliveyTimeLabels"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+          <p>Delivery Time:</p>
+          <el-select
+            v-model="filterBy.deliveyTime"
+            placeholder="Any"
+            @change="setFilter"
           >
-          </el-option>
-        </el-select>
+            <el-option
+              v-for="item in deliveyTimeLabels"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
         </div>
         <div class="price-slider">
           <p>Budget:</p>
@@ -151,7 +151,9 @@ export default {
       },
     };
   },
-
+  created() {
+    this.filterBy.category = this.$store.getters.categoryName;
+  },
   methods: {
     setFilter() {
       this.$emit("setFilter", this.filterBy);
