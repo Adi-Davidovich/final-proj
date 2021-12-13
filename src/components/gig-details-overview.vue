@@ -20,12 +20,17 @@
                 ><span
                   v-for="num in 5"
                   :key="num"
+                  :class="'fa fa-star fill'"
+                >
+                <!-- <span
+                  v-for="num in 5"
+                  :key="num"
                   :class="
                     num <= gig.owner.rate
                       ? 'fa fa-star fill'
                       : 'far fa-star fill'
                   "
-                >
+                > -->
                 </span>
                 <span class="rate">{{ gig.owner.rate }}</span>
                 <span class="amount">({{ reviewsLength }})</span>
@@ -36,25 +41,30 @@
           </div>
         </div>
       </div>
-      <el-carousel :autoplay="false" trigger="click" height="430px">
-          <el-carousel-item v-for="img in gig.imgUrl" :key="img">
-            <div class="img-container-details">
-              <img :src="require(`@/assets/img/card-images/${img}`)" alt="" />
-            </div>
-          </el-carousel-item>
-        </el-carousel>
+      <!-- <el-carousel :autoplay="false" trigger="click" height="430px">
+        <el-carousel-item v-for="img in gig.imgUrl" :key="img">
+          <div class="img-container-details">
+            <img :src="require(`@/assets/img/card-images/${img}`)" alt="" />
+          </div>
+        </el-carousel-item>
+      </el-carousel> -->
+
+       <carousel  :images="gig.imgUrl"/>
+
     </div>
   </section>
 </template>
 
 <script>
 import Avatar from "vue-avatar";
+import carousel from "./carousel.vue"
 
 export default {
   name: "gig-details-overview",
   props: ["gig", "reviewsLength"],
   components: {
     Avatar,
+    carousel
   },
 };
 </script>

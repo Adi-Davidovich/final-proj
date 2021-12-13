@@ -47,6 +47,7 @@
               <li @click="isNavbarOpen = false" class="display-from-md">
                 <router-link
                   to="/explore"
+                  @click.native="goExplore"
                   class="nav-link"
                   active-class="active-link"
                   >Explore</router-link
@@ -203,6 +204,12 @@ export default {
     },
   },
   methods: {
+    goExplore() {
+      this.$store.dispatch({
+        type: "setFilter",
+        filterBy: { category: "" },
+      });
+    },
     routToHome() {
       this.$router.push("/");
       this.isNavbarOpen = false;
