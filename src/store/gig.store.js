@@ -112,6 +112,7 @@ export const gigStore = {
     actions: {
         async loadGigs({ commit, state }) {
             const filterBy = state.filterBy ? state.filterBy : ''
+            console.log(filterBy)
             commit({ type: 'setLoading', isLoading: true })
             try {
                 const gigs = await gigService.query(filterBy);
@@ -124,6 +125,7 @@ export const gigStore = {
             }
         },
         setFilter({ commit, dispatch }, { filterBy }) {
+            console.log(filterBy)
             commit({ type: 'setFilter', filterBy })
             dispatch({ type: 'loadGigs' })
         }, 
