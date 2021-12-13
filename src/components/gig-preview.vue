@@ -4,7 +4,7 @@
         <el-carousel-item v-for="img in gig.imgUrl" :key="img">
           <div class="img-container">
             <img
-              :src="require(`@/assets/img/card-images/${img}`)"
+              :src="require(`@/assets/img/demo-data-img/${img}`)"
               alt=""
               class="gig-img"
               @click="gigDetails"
