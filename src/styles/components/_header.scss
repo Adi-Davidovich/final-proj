@@ -171,7 +171,6 @@
         align-items: start;
         justify-content: flex-end;
       }
-
       li {
         padding: 0 rem(10px);
         &:last-child {
@@ -199,7 +198,9 @@
             color: #1dbf73;
           }
         }
-
+        .explore {
+          color: #1dbf73;
+        }
         .join-button {
           padding: 7px 20px;
           font-weight: 700;

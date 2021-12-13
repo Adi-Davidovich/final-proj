@@ -33,6 +33,7 @@ function getEmptyGig() {
   return {
     title: '',
     category: '',
+    description: '',
     price: null,
     imgUrl: ['logo-design/cartoon-comic.png'],
     package: {
