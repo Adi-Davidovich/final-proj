@@ -3,7 +3,7 @@
     <div v-if="gig" class="gig-details-summary">
       <div class="order-info">
         <header>
-          <img :src="require(`@/assets/img/card-images/${img}`)" alt="" />
+          <img :src="require(`@/assets/img/demo-data-img/${img}`)" alt="" />
           <div class="gig-info">
             <div class="title">{{ gig.title }}</div>
             <div class="stars">

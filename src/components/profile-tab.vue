@@ -40,7 +40,7 @@
       <ul v-else>
         <li class="user-order" v-for="(order, index) in orders" :key="index">
           <img
-            :src="require(`@/assets/img/card-images/${order.imgUrl}`)"
+            :src="require(`@/assets/img/demo-data-img/${order.imgUrl}`)"
             alt=""
           />
           <div class="order-description">
