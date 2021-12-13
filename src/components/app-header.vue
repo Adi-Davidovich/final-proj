@@ -96,7 +96,7 @@
                     v-if="user"
                     :size="35"
                     :username="user.username"
-                    :src="user.imgUrl"
+                    :src="require(`@/assets/img/demo-data-img/${user.imgUrl}`)"
                     style="cursor: pointer"
                   ></avatar>
                 </el-badge>
