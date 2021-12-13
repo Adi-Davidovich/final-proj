@@ -96,7 +96,11 @@
                     v-if="user"
                     :size="35"
                     :username="user.username"
-                    :src="require(`@/assets/img/demo-data-img/${user.imgUrl}`)"
+                    :src="
+                      user.imgUrl
+                        ? require(`@/assets/img/demo-data-img/${user.imgUrl}`)
+                        : ''
+                    "
                     style="cursor: pointer"
                   ></avatar>
                 </el-badge>
@@ -180,19 +184,19 @@ export default {
     window.addEventListener("scroll", this.handleScroll);
     this.isRouteHomePage = this.$route.path === "/";
     socketService.on("add-order-client", (msg) => {
-      console.log('add-order-client')
+      console.log("add-order-client");
       Message.success({
         showClose: true,
-        message:msg,
+        message: msg,
         type: "success",
       });
       this.messageSocket.push(msg);
     });
     socketService.on("add-review-client", (msg) => {
-      console.log('add-review-client ', msg);
+      console.log("add-review-client ", msg);
       Message.success({
         showClose: true,
-        message:msg,
+        message: msg,
         type: "success",
       });
     });

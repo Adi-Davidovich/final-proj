@@ -3,13 +3,16 @@
     <section class="left-side">
       <div class="details">
         <div class="details-top">
-
-        <avatar
-          :size="150"
-          :username="user.username"
-          :src="require(`@/assets/img/demo-data-img/${user.imgUrl}`)"
-        ></avatar>
-        <h2>{{ user.username }}</h2>
+          <avatar
+            :size="150"
+            :username="user.username"
+            :src="
+              user.imgUrl
+                ? require(`@/assets/img/demo-data-img/${user.imgUrl}`)
+                : ''
+            "
+          ></avatar>
+          <h2>{{ user.username }}</h2>
         </div>
 
         <div class="details-bottom">
@@ -50,7 +53,11 @@
             <avatar
               :size="30"
               :username="order.seller.username"
-              :src="require(`@/assets/img/demo-data-img/${order.seller.imgUrl}`)"
+              :src="
+                order.seller.imgUrl
+                  ? require(`@/assets/img/demo-data-img/${order.seller.imgUrl}`)
+                  : ''
+              "
             ></avatar>
             <p>{{ order.seller.username }}</p>
           </div>

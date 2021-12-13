@@ -71,6 +71,7 @@ export default {
         fullname: "",
         username: "",
         password: "",
+        imgUrl:'avatars/boy2.jpg'
       },
     };
   },

@@ -15,7 +15,11 @@
       <avatar
         :size="24"
         :username="gig.owner.username"
-        :src="require(`@/assets/img/demo-data-img/${gig.owner.imgUrl}`)"
+        :src="
+          gig.owner.imgUrl
+            ? require(`@/assets/img/demo-data-img/${gig.owner.imgUrl}`)
+            : ''
+        "
       ></avatar>
       <div class="owner-name-level">
         <h4>{{ gig.owner.username }}</h4>
