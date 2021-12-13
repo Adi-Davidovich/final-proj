@@ -21,16 +21,15 @@
         </td>
         <td class="gig-description">{{ order.gig.package.description }}</td>
         <td>{{ orderDate(order) }}</td>
-        <td>{{ order.timeToDeliver }}</td>
+        <td>{{ order.timeToDeliver }} Days</td>
         <td>${{ order.price }}</td>
         <td :class="order.status === 'Complete' ? 'complete' : 'pending'">
           {{ order.status }}
         </td>
-        <td class="actions">
+        <td>
           <el-tooltip content="Mark as complete" placement="top">
-            <i @click="orderReady(order)" class="fas fa-check-circle"></i>
+            <i @click="orderReady(order)" class="fas fa-check-circle fa-lg"></i>
           </el-tooltip>
-          <i slot="reference" class="far fa-trash-alt"></i>
         </td>
       </tr>
     </table>

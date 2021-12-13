@@ -126,7 +126,7 @@ export const gigStore = {
         setFilter({ commit, dispatch }, { filterBy }) {
             commit({ type: 'setFilter', filterBy })
             dispatch({ type: 'loadGigs' })
-        },
+        }, 
         // loadEdit({ commit }) {
         //     commit({ type: 'setLoading', isLoading: true })
         //     gigService
@@ -168,17 +168,6 @@ export const gigStore = {
                 throw err;
             }
         },
-        // Optimistic
-        // removeGigOptimistic({ commit }, { gigId: gigId }) {
-        //     commit({ type: 'removeGig',  gigId })
-        //     return gigService
-        //         .remove(gigId)
-        //         .then(() => { })
-        //         .catch((err) => {
-        //             commit({ type: 'undoRemoveGig' })
-        //             throw err
-        //         })
-        // },
         async setCurrGig({ commit }, { gigId }) {
             const gig = await gigService.getById(gigId)
             console.log(gig)

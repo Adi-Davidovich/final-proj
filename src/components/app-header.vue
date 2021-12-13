@@ -188,6 +188,14 @@ export default {
       Message.success({ showClose: true, message: msg, type: "success" });
       this.messageSocket.push(msg);
     });
+    socketService.on("add-review-client", (msg) => {
+      console.log('review  front:>> ', msg);
+      Message.success({
+        showClose: true,
+        message:msg,
+        type: "success",
+      });
+    });
   },
   watch: {
     $route({ path }) {

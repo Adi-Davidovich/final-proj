@@ -40,13 +40,12 @@
   display: flex;
   justify-content: space-between;
   padding-top: 1px;
-  padding-right: 5px;
+  margin-inline-end: 20px;
   align-items: center;
   text-align: right;
   font-size: 1rem;
   text-align: right;
   color: #62646a;
-  width: 250px;
 }
 
 @keyframes animate-stripes {

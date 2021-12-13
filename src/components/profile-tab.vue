@@ -2,12 +2,15 @@
   <section class="page-container my-profile">
     <section class="left-side">
       <div class="details">
+        <div class="details-top">
+
         <avatar
           :size="150"
           :username="user.username"
           :src="user.imgUrl"
         ></avatar>
         <h2>{{ user.username }}</h2>
+        </div>
 
         <div class="details-bottom">
           <div class="from-since flex">
