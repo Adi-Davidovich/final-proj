@@ -37,9 +37,12 @@
       p {
         cursor: pointer;
       }
+      .active-profile {
+        color: #1dbf73;
+      }
     }
-    .total{
-      span{
+    .total {
+      span {
         font-family: macan-regular;
       }
       display: flex;
@@ -106,7 +109,6 @@
     }
 
     .right-side {
-
       .gig-list-user {
         margin-top: 20px;
         display: grid;
