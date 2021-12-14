@@ -7,12 +7,8 @@
           <div class="gig-info">
             <div class="title">{{ gig.title }}</div>
             <div class="stars">
-               <span
-                  v-for="num in 5"
-                  :key="num"
-                  :class="'fa fa-star fill'"
-                >
-              <!-- <span
+              <span v-for="num in 5" :key="num" :class="'fa fa-star fill'">
+                <!-- <span
                 v-for="num in 5"
                 :key="num"
                 :class="
@@ -30,17 +26,15 @@
           <div class="text">Order Details</div>
           <p>{{ gig.package.description }}</p>
           <div class="fetures">
-          <ul>
-            <li v-for="(option, idx) in options" :key="idx">
+            <ul v-for="(option, idx) in options" :key="idx">
               <template v-if="option.category === gig.category">
-              <div v-for="(include,index) in option.included" :key="index" >
-              <i class="fas fa-check"></i>
-              <span >{{include}}</span>
-              </div>
+                <li v-for="(include, index) in option.included" :key="index">
+                  <i class="fas fa-check"></i>
+                  <span>{{ include }}</span>
+                </li>
               </template>
-            </li>
-          </ul>
-        </div>
+            </ul>
+          </div>
         </section>
       </div>
       <div class="checkout-container">
@@ -85,7 +79,7 @@ export default {
       order: null,
       serviceFee: 2.28,
       gig: null,
-            options: [
+      options: [
         {
           category: "Logo Design",
           included: [
@@ -93,7 +87,7 @@ export default {
             "Source File",
             "Logo Transparency",
             "High Resolution",
-            "Vector File"
+            "Vector File",
           ],
         },
         {
@@ -103,15 +97,12 @@ export default {
             "Color",
             "Source File",
             "High Resolution",
-            "Background/Scene"
+            "Background/Scene",
           ],
         },
         {
           category: "Voice Over",
-          included: [
-            "HQ Audio File (WAV format)",
-            "Number of words: 150"
-          ],
+          included: ["HQ Audio File (WAV format)", "Number of words: 150"],
         },
         {
           category: "Video Explainer",
@@ -189,11 +180,21 @@ export default {
       };
       console.log("Oreder log!!", order);
       try {
-        const savedOrder = await this.$store.dispatch({type: "addOrder",order,});
-        socketService.emit("add-order", `${this.loggedInUser.fullname} is ordering`);
-        console.log('this :>> ', this);
-        
-        this.$message({showClose: true, message: "Thank you for your Order!",type: "success",});
+        const savedOrder = await this.$store.dispatch({
+          type: "addOrder",
+          order,
+        });
+        socketService.emit(
+          "add-order",
+          `${this.loggedInUser.fullname} is ordering`
+        );
+        console.log("this :>> ", this);
+
+        this.$message({
+          showClose: true,
+          message: "Thank you for your Order!",
+          type: "success",
+        });
 
         // showMsg(`order added with id: ${savedOrder._id}`);
         // this.$router.push("/");
