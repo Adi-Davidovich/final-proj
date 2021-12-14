@@ -185,7 +185,7 @@ export default {
         });
         socketService.emit(
           "add-order",
-          `${this.loggedInUser.fullname} is ordering`
+          `You Have a New Order!`
         );
         this.$message({
           showClose: true,

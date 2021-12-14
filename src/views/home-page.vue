@@ -283,6 +283,7 @@ export default {
   },
   components: {
     appHeader,
+
   },
 };
 </script>
