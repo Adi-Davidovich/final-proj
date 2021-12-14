@@ -1,7 +1,5 @@
 import { orderService } from "../services/order.service.js";
-import { socketService } from "../services/socket.service.js";
-// import { showMsg } from "../js/services/event-bus.service.js";
-// import { userService } from "../js/services/user.service.js";
+
 export const orderStore = {
     state: {
         isLoading: false,
@@ -22,11 +20,6 @@ export const orderStore = {
         ordersToShow(state) {
             var orders = JSON.parse(JSON.stringify(state.orders))
             return orders
-            // // Paging
-            // if (typeof state.pageIdx === 'number' && state.pageIdx !== -1) {
-            //     const startIdx = state.pageIdx * state.pageSize
-            //     gigs = gigs.slice(startIdx, startIdx + state.pageSize)
-            // }
         },
         showPercent({ orders }) {
             let ordersPending = orders.reduce((acc, order) => {
@@ -36,8 +29,6 @@ export const orderStore = {
             }, {});
             if (!ordersPending.Complete) return 0
             var precent = Math.floor((ordersPending.Complete / orders.length)*100)
-                console.log('ordersPending :>> ', ordersPending);
-                console.log('precent :>> ', precent);
             return precent
         }
     },
@@ -90,17 +81,6 @@ export const orderStore = {
                 commit({ type: 'setLoading', isLoading: false });
             }
         },
-        // loadEdit({ commit }) {
-        //     commit({ type: 'setLoading', isLoading: true })
-        //     gigService
-        //         .query()
-        //         .then((gigs) => {
-        //             commit({ type: 'setGigs', gigs })
-        //         })
-        //         .finally(() => {
-        //             commit({ type: 'setLoading', isLoading: false })
-        //         })
-        // },
         async addOrder({ commit }, { order }) {
             try {
                 const savedOrder = await orderService.save(order);
@@ -114,7 +94,6 @@ export const orderStore = {
         async updateOrder({ commit }, { order }) {
             try {
                 const savedOrder = await orderService.save(order);
-                console.log('Saved oeder', savedOrder)
                 commit({ type: 'updateOrder', savedOrder })
                 return savedOrder;
             } catch (err) {
@@ -134,21 +113,8 @@ export const orderStore = {
         },
         async getUserOrders({ commit }) {
             let orders = await orderService.query()
-            console.log(orders)
             commit({ type: 'setOrders', orders })
         },
-
-        // Optimistic
-        // removeGigOptimistic({ commit }, { gigId: gigId }) {
-        //     commit({ type: 'removeGig',  gigId })
-        //     return gigService
-        //         .remove(gigId)
-        //         .then(() => { })
-        //         .catch((err) => {
-        //             commit({ type: 'undoRemoveGig' })
-        //             throw err
-        //         })
-        // },
         setFilterOrder({ commit, dispatch }, { filterBy }) {
             commit({ type: 'setFilterOrder', filterBy })
             dispatch({ type: 'loadOrders' })

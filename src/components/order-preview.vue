@@ -22,15 +22,13 @@
           </div>
         </div>
         <div class="fetures">
-          <ul>
-            <li v-for="(option, idx) in options" :key="idx">
-              <template v-if="option.category === gig.category">
-              <div v-for="(include,index) in option.included" :key="index" >
-              <i class="fas fa-check"></i>
-              <span >{{include}}</span>
-              </div>
-              </template>
-            </li>
+          <ul v-for="(option, idx) in options" :key="idx">
+            <template v-if="option.category === gig.category">
+              <li v-for="(include, index) in option.included" :key="index">
+                <i class="fas fa-check"></i>
+                <span>{{ include }}</span>
+              </li>
+            </template>
           </ul>
         </div>
       </article>
@@ -57,7 +55,7 @@ export default {
             "Source File",
             "Logo Transparency",
             "High Resolution",
-            "Vector File"
+            "Vector File",
           ],
         },
         {
@@ -67,15 +65,12 @@ export default {
             "Color",
             "Source File",
             "High Resolution",
-            "Background/Scene"
+            "Background/Scene",
           ],
         },
         {
           category: "Voice Over",
-          included: [
-            "HQ Audio File (WAV format)",
-            "Number of words: 150"
-          ],
+          included: ["HQ Audio File (WAV format)", "Number of words: 150"],
         },
         {
           category: "Video Explainer",
@@ -103,7 +98,7 @@ export default {
   methods: {
     orderCheckout() {
       this.$router.push("/checkout/" + this.gig._id);
-    }
+    },
   },
 };
 </script>

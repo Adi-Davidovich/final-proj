@@ -1,6 +1,5 @@
 import { gigService } from "../services/gig.service.js";
-// import { showMsg } from "../js/services/event-bus.service.js";
-// import { userService } from "../js/services/user.service.js";
+
 export const gigStore = {
     state: {
         isLoading: false,
@@ -13,7 +12,6 @@ export const gigStore = {
     },
     getters: {
         gigs({ gigs }) {
-            console.log(gigs);
             return gigs
         },
         categoryName(state) {
@@ -28,36 +26,6 @@ export const gigStore = {
         gigsToShow(state) {
             var gigs = JSON.parse(JSON.stringify(state.gigs))
             return gigs
-            // let filteredGigs = []
-
-            // const regex = new RegExp(state.filterBy.name, 'i')
-
-            // // filter by name
-            // filteredGigs = gigs.filter((gig) => regex.test(gig.name))
-
-            // // filter by inStock
-            // if (state.filterBy.inStock) {
-            //     filteredGigs = filteredGigs.filter((gig) => JSON.parse(gig.inStock) === JSON.parse(state.filterBy.inStock))
-            // }
-
-            // // filter by lables
-            // if (state.filterBy.lable) {
-            //     filteredGigs = filteredGigs.filter((gig) => gig.labels.includes(state.filterBy.lable))
-            // }
-
-            // Sorting
-            // if (state.sortBy) {
-            //     if (state.sortBy === 'time') gigs = gigs.sort((t1, t2) => t1.createdAt - t2.createdAt)
-            //     else if (state.sortBy === 'price') gigs = gigs.sort((t1, t2) => t1.price - t2.price)
-            //     else if (state.sortBy === 'name') gigs = gigs.sort((t1, t2) => t1.name.toLowerCase() > t2.name.toLowerCase() ? 1 : -1)
-            // }
-
-            // // Paging
-            // if (typeof state.pageIdx === 'number' && state.pageIdx !== -1) {
-            //     const startIdx = state.pageIdx * state.pageSize
-            //     gigs = gigs.slice(startIdx, startIdx + state.pageSize)
-            // }
-
         },
     },
     mutations: {
@@ -68,7 +36,6 @@ export const gigStore = {
             state.gigs.push(payload.gig)
         },
         updateGig(state, { savedGig }) {
-            console.log(savedGig.gig)
             const idx = state.gigs.findIndex((gig) => gig._id === savedGig._id)
             state.gigs.splice(idx, 1, savedGig.gig)
         },
@@ -76,17 +43,10 @@ export const gigStore = {
             const idx = state.gigs.findIndex((gig) => gig._id === payload.gigId)
             state.gigs.splice(idx, 1)
         },
-        // undoRemoveGigs(state) {
-        //     if (state.lastRemovedGig) {
-        //         state.gigs.unshift(state.lastRemovedGigs)
-        //         state.lastRemovedGig = null
-        //     }
-        // },
         setGigs(state, { gigs }) {
             state.gigs = gigs
         },
         setFilter(state, { filterBy }) {
-            console.log('filterBy :>> ', filterBy);
             state.filterBy = filterBy
         },
         setSort(state, { copySort }) {
@@ -112,7 +72,6 @@ export const gigStore = {
     actions: {
         async loadGigs({ commit, state }) {
             const filterBy = state.filterBy ? state.filterBy : ''
-            console.log(filterBy)
             commit({ type: 'setLoading', isLoading: true })
             try {
                 const gigs = await gigService.query(filterBy);
@@ -125,21 +84,9 @@ export const gigStore = {
             }
         },
         setFilter({ commit, dispatch }, { filterBy }) {
-            console.log(filterBy)
             commit({ type: 'setFilter', filterBy })
             dispatch({ type: 'loadGigs' })
-        }, 
-        // loadEdit({ commit }) {
-        //     commit({ type: 'setLoading', isLoading: true })
-        //     gigService
-        //         .query()
-        //         .then((gigs) => {
-        //             commit({ type: 'setGigs', gigs })
-        //         })
-        //         .finally(() => {
-        //             commit({ type: 'setLoading', isLoading: false })
-        //         })
-        // },
+        },
         async addGig({ commit }, { gig }) {
             try {
                 const savedGig = await gigService.save(gig);
@@ -152,7 +99,6 @@ export const gigStore = {
         },
         async updateGig({ commit }, { gig }) {
             try {
-                console.log(gig)
                 const savedGig = await gigService.save(gig);
                 commit({ type: 'updateGig', savedGig })
                 return savedGig;
@@ -173,7 +119,6 @@ export const gigStore = {
         },
         async setCurrGig({ commit }, { gigId }) {
             const gig = await gigService.getById(gigId)
-            console.log(gig)
             commit({ type: 'setCurrGig', gig })
             return gig
 
@@ -182,7 +127,6 @@ export const gigStore = {
             let userId = getters.loggedinUser._id
             let filterBy = { userId }
             let gigs = await gigService.query(filterBy)
-            console.log(gigs)
             commit({ type: 'setGigs', gigs })
         },
     },

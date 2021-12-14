@@ -55,7 +55,7 @@
             v-model.number="gigToEdit.package.timeToDeliver"
           ></el-input>
         </div>
-        <div class="description grid-div">
+        <div class="grid-div">
           <p>Package Description:</p>
           <el-input
             type="textarea"
@@ -139,12 +139,10 @@ export default {
         }
       } else {
         try {
-          console.log(this.gigToEdit);
           const savedGig = await this.$store.dispatch({
             type: "addGig",
             gig: this.gigToEdit,
           });
-          console.log(savedGig);
           this.gigToEdit = gigService.getEmptyGig();
           this.$router.push("/user");
         } catch (err) {

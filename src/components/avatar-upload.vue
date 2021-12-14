@@ -23,7 +23,6 @@ export default {
   methods: {
     handleAvatarSuccess(res, file) {
       this.imageUrl = URL.createObjectURL(file.raw);
-      console.log(this.imageUrl)
     },
     beforeAvatarUpload(file) {
       const isJPG = file.type === "image/jpeg";

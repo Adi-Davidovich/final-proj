@@ -1,10 +1,11 @@
 .filter-explore {
   .delivery-time {
+    display: flex;
+    align-items: center;
+    margin-inline-end: 10px;
     p {
       padding-right: 10px;
     }
-    display: flex;
-    align-items: center;
   }
   .el-slider__bar {
     background-color: #c2c3c7;
@@ -135,12 +136,29 @@
     margin-top: 40px;
     margin-bottom: 40px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 
+    @include for-narrow-layout {
+      flex-direction: row;
+      align-items: center;
+
+    }
     .filter-left {
       display: flex;
       justify-content: space-between;
+      .budget {
+        margin-inline-end: 10px;
+        
+        .price-wrapper {
+          display: flex;
+        }
+      }
+      .el-input__inner {
+        max-width: 150px;
+        // margin-inline-end: 10px;
+      }
       .el-select {
         font-size: 1rem;
       }
@@ -150,22 +168,23 @@
       
         .price-slider {
           margin-left: 10px;
-          display: flex !important;
           align-items: center;
           justify-content: space-between;
           width: 100%;
-          .el-slider {
-            width: 70%;
-            margin-right: 10px;
-            margin-left: 10px;
-          }
         }
+        
       
     }
 
     .filter-right {
       display: flex;
       text-align: left;
+      margin-top: 20px;
+      @include for-narrow-layout {
+        margin-top: 0;
+        flex-direction: row;
+        align-items: center;
+      }
       p {
         margin-right: 5px;
         font-family: macan-light;

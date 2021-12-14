@@ -37,26 +37,15 @@
             </el-option>
           </el-select>
         </div>
-        <!-- <div class="price-slider">
-          <p>Budget:</p>
-          <button @click="openBudget = true">Budget</button>
-          <div v-if="openBudget" class="budget">
-            <el-slider
-              :step="5"
-              :max="300"
-              :show-tooltip="false"
-              v-model="filterBy.price"
-              @change="setFilter"
-            ></el-slider>
-            <p>{{ priceRander }}</p>
-            ">
-          </div>
-        </div> -->
-        <el-popover placement="bottom" width="180" v-model="visible">
-          <div style="text-align: right; margin: 0">
-            <div class="price-slider">
+        <div class="budget">
+
+        <el-popover placement="bottom-start" width="180" v-model="visible">
+
+          <div style="text-align: right; margin: 0; display:flex; justify-content: space-between; align-items: center">
+            <!-- <div class="price-slider"> -->
 
             <el-slider
+            style="width: 50%;"
               :step="5"
               :max="300"
               :show-tooltip="false"
@@ -64,10 +53,11 @@
               @change="setFilter"
             ></el-slider>
             <p>{{ priceRander }}</p>
-            </div>
+            <!-- </div> -->
           </div>
-          <el-button slot="reference">Budget</el-button>
+          <el-button plain slot="reference">Budget</el-button>
         </el-popover>
+        </div>
       </div>
 
       <div class="filter-right">
@@ -177,7 +167,6 @@ export default {
     },
     setCategory(category) {
       this.filterBy.category = category;
-      console.log(this.filterBy)
       this.setFilter();
     },
 

@@ -21,8 +21,6 @@ export const reviewStore = {
     },
     actions: {
         async addReview(context, { review }) {
-            console.log('review :>> ', review);
-
             try {
                 review = await reviewService.add(review)
                 context.commit({ type: 'addReview', review })

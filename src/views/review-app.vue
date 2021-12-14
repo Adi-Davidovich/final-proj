@@ -44,11 +44,9 @@ export default {
   },
   computed: {
     reviews() {
-      console.log('this.reviews :>> ', this.$store.getters.reviews);
       return this.$store.getters.reviews;
     },
     users() {
-      console.log('this.reviews :>> ', this.$store.getters.users);
       return this.$store.getters.users
     },
     loggedInUser() {
@@ -66,7 +64,5 @@ export default {
       this.reviewToEdit = {txt: '', aboutUserId: null}
     }
   }
-
-  
 }
 </script>

@@ -14,7 +14,6 @@ export const userService = {
     getById,
     remove,
     update,
-    // changeScore
 }
 
 // Debug technique
@@ -35,7 +34,6 @@ function remove(userId) {
 }
 
 async function update(user) {
-    console.log('user :>> ', user);
     user = await httpService.put(`user/${user._id}`, user)
     // Handle case in which admin updates other user's details
     if (getLoggedinUser()._id === user._id) _saveLocalUser(user)
@@ -43,7 +41,6 @@ async function update(user) {
 }
 
 async function login(userCred) {
-    console.log('login :>> ', userCred);
     const user = await httpService.post('auth/login', userCred)
     socketService.emit('set-user-socket', user._id);
     if (user) return _saveLocalUser(user)
@@ -59,23 +56,6 @@ async function logout() {
     return await httpService.post('auth/logout')
 }
 
-// async function changeScore(by) {
-//     const user = getLoggedinUser()
-//     if (!user) throw new Error('Not loggedin')
-//     user.score = user.score + by || by
-//     await update(user)
-//     return user.score
-// }
-
-
-// async function updateUserPref() {
-//     const user = getLoggedinUser()
-//     if (!user) throw new Error('Not loggedin')
-//     await update(user)
-//     return user.score
-// }
-
-
 function _saveLocalUser(user) {
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
@@ -84,21 +64,6 @@ function _saveLocalUser(user) {
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null')
 }
-
-
-// (async () => {
-//     if (sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER)) return
-//     console.log('hi')
-//     await userService.signup({
-//         _id:'guest123',
-//         imgUrl: "/img/img1.jpg",
-//         username: "Puki Norma",
-//         password: "1234",
-//     })
-//     await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
-//     await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
-// })();
-
 
 
 // This IIFE functions for Dev purposes 

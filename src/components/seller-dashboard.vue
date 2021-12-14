@@ -45,7 +45,6 @@ export default {
         else acc[order.gig.category] = 1;
         return acc;
       }, {});
-      console.log("res", res);
       return res;
     },
 

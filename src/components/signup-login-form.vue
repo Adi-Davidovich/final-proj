@@ -125,7 +125,6 @@ export default {
           this.$emit("closeModal");
           this.$router.push("/");
         } catch (err) {
-          console.log(err);
           this.msg = "Failed to signUp";
         }
       }
