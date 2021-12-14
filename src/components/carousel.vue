@@ -7,7 +7,7 @@
             <div class="card-carousel">
               <div class="card-img">
                 <img
-                  :src="require(`@/assets/img/card-images/${currentImage}`)"
+                  :src="require(`@/assets/img/demo-data-img/${currentImage}`)"
                 />
                 <div class="actions">
                   <span @click="prevImage" class="prev">
@@ -28,7 +28,7 @@
                   ]"
                   @click="activateImage(index)"
                 >
-                  <img :src="require(`@/assets/img/card-images/${image}`)" />
+                  <img :src="require(`@/assets/img/demo-data-img/${image}`)" />
                 </div>
               </div>
             </div>

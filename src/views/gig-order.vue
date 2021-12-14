@@ -3,7 +3,7 @@
     <div v-if="gig" class="gig-details-summary">
       <div class="order-info">
         <header>
-          <img :src="require(`@/assets/img/card-images/${img}`)" alt="" />
+          <img :src="require(`@/assets/img/demo-data-img/${img}`)" alt="" />
           <div class="gig-info">
             <div class="title">{{ gig.title }}</div>
             <div class="stars">
@@ -30,13 +30,17 @@
           <div class="text">Order Details</div>
           <p>{{ gig.package.description }}</p>
           <div class="fetures">
-            <ul>
-              <li v-for="(option, idx) in options" :key="idx">
-                <i class="fas fa-check"></i>
-                <span>{{ option }}</span>
-              </li>
-            </ul>
-          </div>
+          <ul>
+            <li v-for="(option, idx) in options" :key="idx">
+              <template v-if="option.category === gig.category">
+              <div v-for="(include,index) in option.included" :key="index" >
+              <i class="fas fa-check"></i>
+              <span >{{include}}</span>
+              </div>
+              </template>
+            </li>
+          </ul>
+        </div>
         </section>
       </div>
       <div class="checkout-container">
@@ -81,12 +85,54 @@ export default {
       order: null,
       serviceFee: 2.28,
       gig: null,
-      options: [
-        "3 Initial Concepts Included",
-        "Source File",
-        "Logo Transparency",
-        "High Resolution",
-        "Vector File",
+            options: [
+        {
+          category: "Logo Design",
+          included: [
+            "3 Initial Concepts Included",
+            "Source File",
+            "Logo Transparency",
+            "High Resolution",
+            "Vector File"
+          ],
+        },
+        {
+          category: "Illustration",
+          included: [
+            "Commercial Use",
+            "Color",
+            "Source File",
+            "High Resolution",
+            "Background/Scene"
+          ],
+        },
+        {
+          category: "Voice Over",
+          included: [
+            "HQ Audio File (WAV format)",
+            "Number of words: 150"
+          ],
+        },
+        {
+          category: "Video Explainer",
+          included: [
+            "Characters included",
+            "Illustrated Background included",
+            "Music/Sound Design included",
+            "Voice Over Recording",
+            "Storyboard",
+          ],
+        },
+        {
+          category: "Social Media Marketing",
+          included: [
+            "Engagement with Followers",
+            "14 Days",
+            "Page/Channel Evaluation",
+            "Schedule Posts",
+            "Action Plan",
+          ],
+        },
       ],
     };
   },

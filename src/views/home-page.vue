@@ -79,14 +79,7 @@
       </div>
     </div>
 
-    <div>
-    <VueSlickCarousel :arrows="true" :dots="true">
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-    </VueSlickCarousel>
-  </div>
+      
 
     <div class="home-page-info-container full">
       <div class="main-info main-layout">
@@ -148,7 +141,8 @@
 
 <script>
 import appHeader from "../components/app-header.vue";
- import VueSlickCarousel from 'vue-slick-carousel'
+import VueSlickCarousel from "vue-slick-carousel";
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 export default {
   name: "home-page",
@@ -160,6 +154,15 @@ export default {
         category: "",
         deliveyTime: "",
         sort: "",
+      },
+      settings: {
+        dots: true,
+        infinite: true,
+        initialSlide: 2,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        swipeToSlide: true,
       },
       heroIdx: 0,
       heroes: [
@@ -268,7 +271,7 @@ export default {
   },
   components: {
     appHeader,
-    VueSlickCarousel
+    VueSlickCarousel,
   },
 };
 </script>

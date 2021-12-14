@@ -8,11 +8,7 @@
           :key="category.id"
           :class="`category-card ${category.class} flex ${
             category.categoryName
-          } ${
-            category.value === (filterBy.category || '')
-              ? 'active'
-              : ''
-          }`"
+          } ${category.value === (filterBy.category || '') ? 'active' : ''}`"
           @click="setCategory(category.value)"
         >
           <img
@@ -41,17 +37,37 @@
             </el-option>
           </el-select>
         </div>
-        <div class="price-slider">
+        <!-- <div class="price-slider">
           <p>Budget:</p>
-          <el-slider
-            :step="5"
-            :max="300"
-            :show-tooltip="false"
-            v-model="filterBy.price"
-            @change="setFilter"
-          ></el-slider>
-          <p>{{ priceRander }}</p>
-        </div>
+          <button @click="openBudget = true">Budget</button>
+          <div v-if="openBudget" class="budget">
+            <el-slider
+              :step="5"
+              :max="300"
+              :show-tooltip="false"
+              v-model="filterBy.price"
+              @change="setFilter"
+            ></el-slider>
+            <p>{{ priceRander }}</p>
+            ">
+          </div>
+        </div> -->
+        <el-popover placement="bottom" width="180" v-model="visible">
+          <div style="text-align: right; margin: 0">
+            <div class="price-slider">
+
+            <el-slider
+              :step="5"
+              :max="300"
+              :show-tooltip="false"
+              v-model="filterBy.price"
+              @change="setFilter"
+            ></el-slider>
+            <p>{{ priceRander }}</p>
+            </div>
+          </div>
+          <el-button slot="reference">Budget</el-button>
+        </el-popover>
       </div>
 
       <div class="filter-right">
@@ -81,6 +97,7 @@
 export default {
   data() {
     return {
+      visible: false,
       deliveyTimeLabels: [
         {
           label: "Any",

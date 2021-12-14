@@ -1,15 +1,15 @@
 .filter-explore {
-  .delivery-time{
-    p{
+  .delivery-time {
+    p {
       padding-right: 10px;
     }
     display: flex;
     align-items: center;
   }
-  .el-slider__bar{
+  .el-slider__bar {
     background-color: #c2c3c7;
   }
-  .el-slider__button{
+  .el-slider__button {
     border: solid 2px #c2c3c7;
   }
   h6 {
@@ -147,18 +147,20 @@
       .second-select {
         margin-left: 10px;
       }
-
-      .price-slider {
-        margin-left: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .el-slider {
-          width: 50px;
-          margin-right: 10px;
+      
+        .price-slider {
           margin-left: 10px;
+          display: flex !important;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          .el-slider {
+            width: 70%;
+            margin-right: 10px;
+            margin-left: 10px;
+          }
         }
-      }
+      
     }
 
     .filter-right {

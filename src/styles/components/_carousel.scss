@@ -34,12 +34,13 @@
 
 .thumbnail-image > img {
     height: inherit;
+    opacity: 0.6;
     transition: all 250ms;
 }
 
 .thumbnail-image:hover > img, 
 .thumbnail-image.active > img {
-    opacity: 0.6;
+    opacity: 1;
 }
 
 .card-img {
