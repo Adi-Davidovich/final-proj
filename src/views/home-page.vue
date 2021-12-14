@@ -141,8 +141,7 @@
 
 <script>
 import appHeader from "../components/app-header.vue";
-import VueSlickCarousel from "vue-slick-carousel";
-import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+
 
 export default {
   name: "home-page",
@@ -271,7 +270,6 @@ export default {
   },
   components: {
     appHeader,
-    VueSlickCarousel,
   },
 };
 </script>
