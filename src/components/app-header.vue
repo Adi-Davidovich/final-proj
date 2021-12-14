@@ -91,7 +91,10 @@
                 >
               </li>
               <li v-if="user" @click="userProfile">
-                <el-badge :value="showSocketMessages" class="item">
+                <el-badge
+                  :value="showSocketMessages"
+                  class="item"
+                >
                   <avatar
                     v-if="user"
                     :size="35"
