@@ -65,21 +65,35 @@
 
     <h2 class="home-page-title">Popular professional services</h2>
     <div class="cards-container">
-      <div
-        v-for="category in categories"
-        :key="category.name"
-        class="card-filter"
-        @click="setCategory(category.name)"
-      >
+      <div class="card-filter" @click="setCategory('Logo Design')">
+        <p>Build your brand <span class="filter-title"> Logo Design</span></p>
+        <img src="../assets/img/logo-design.jpg" />
+      </div>
+
+      <div class="card-filter" @click="setCategory('Illustration')">
+        <p>Color your dreams <span class="filter-title">Illustration</span></p>
+        <img src="../assets/img/illustration.jpg" />
+      </div>
+
+      <div class="card-filter" @click="setCategory('Voice Over')">
+        <p>Share your message <span class="filter-title">Voice Over</span></p>
+        <img src="../assets/img/voiceover.jpg" />
+      </div>
+
+      <div class="card-filter" @click="setCategory('Video Explainer')">
         <p>
-          {{ category.title }}
-          <span class="filter-title">{{ category.subTitle }}</span>
+          Engage your audience <span class="filter-title">Video Explainer</span>
         </p>
-        <img :src="require(`@/assets/img/${category.name}.jpg`)" />
+        <img src="../assets/img/animated-explainer.jpg" />
+      </div>
+
+      <div class="card-filter" @click="setCategory('Social Media Marketing')">
+        <p>
+          Reach more customers <span class="filter-title">Social Media</span>
+        </p>
+        <img src="../assets/img/social.jpg" />
       </div>
     </div>
-
-      
 
     <div class="home-page-info-container full">
       <div class="main-info main-layout">
