@@ -6,7 +6,11 @@
           <avatar
             :size="30"
             :username="review.buyer.fullname"
-            :src="require(`@/assets/img/demo-data-img/${review.buyer.imgUrl}`)"
+            :src="
+              review.buyer.imgUrl
+                ? require(`@/assets/img/demo-data-img/${review.buyer.imgUrl}`)
+                : ''
+            "
           ></avatar>
         </div>
         <div class="review-content">

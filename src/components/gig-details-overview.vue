@@ -6,7 +6,11 @@
         <avatar
           :size="30"
           :username="gig.owner.username"
-          :src="require(`@/assets/img/demo-data-img/${gig.owner.imgUrl}`)"
+          :src="
+            gig.owner.imgUrl
+              ? require(`@/assets/img/demo-data-img/${gig.owner.imgUrl}`)
+              : ''
+          "
         ></avatar>
         <div class="owner-content">
           <div class="owner-name-level">
@@ -17,12 +21,8 @@
           <div class="stars-orders">
             <div class="stars">
               <a href="#reviews"
-                ><span
-                  v-for="num in 5"
-                  :key="num"
-                  :class="'fa fa-star fill'"
-                >
-                <!-- <span
+                ><span v-for="num in 5" :key="num" :class="'fa fa-star fill'">
+                  <!-- <span
                   v-for="num in 5"
                   :key="num"
                   :class="
@@ -41,21 +41,30 @@
           </div>
         </div>
       </div>
-       <carousel  :images="gig.imgUrl"/>
+      <carousel :images="gig.imgUrl" />
+      <!-- <el-carousel :autoplay="false" trigger="click" height="430px">
+        <el-carousel-item v-for="img in gig.imgUrl" :key="img">
+          <div class="img-container-details">
+            <img :src="require(`@/assets/img/demo-data-img/${img}`)" alt="" />
+          </div>
+        </el-carousel-item>
+      </el-carousel> -->
+
+      <carousel :images="gig.imgUrl" />
     </div>
   </section>
 </template>
 
 <script>
 import Avatar from "vue-avatar";
-import carousel from "./carousel.vue"
+import carousel from "./carousel.vue";
 
 export default {
   name: "gig-details-overview",
   props: ["gig", "reviewsLength"],
   components: {
     Avatar,
-    carousel
+    carousel,
   },
 };
 </script>
