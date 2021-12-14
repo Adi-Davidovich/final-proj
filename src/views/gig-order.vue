@@ -196,8 +196,11 @@ export default {
           type: "success",
         });
 
-        // showMsg(`order added with id: ${savedOrder._id}`);
-        // this.$router.push("/");
+        setTimeout(() => {
+          this.$router.push("/gig/" + this.gig._id);
+        }, 2000);
+
+
       } catch (err) {
         // showMsg(`unable to add order: ${savedOrder} `, "danger");
         console.log("Adding Error (checkout):", err);
