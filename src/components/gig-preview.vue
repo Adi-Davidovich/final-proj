@@ -1,22 +1,21 @@
 <template>
   <section v-if="gig && reviews" class="gig-preview">
-      <el-carousel :autoplay="false" trigger="click" height="197px">
-        <el-carousel-item v-for="img in gig.imgUrl" :key="img">
-          <div class="img-container">
-            <img
-              :src="require(`@/assets/img/demo-data-img/${img}`)"
-              alt=""
-              class="gig-img"
-              @click="gigDetails"
-            />
-          </div>
-        </el-carousel-item>
-      </el-carousel>
+    <el-carousel :autoplay="false" trigger="click" height="197px">
+      <el-carousel-item v-for="img in gig.imgUrl" :key="img">
+        <div class="img-container">
+          <img
+            :src="require(`@/assets/img/demo-data-img/${img}`)"
+            class="gig-img"
+            @click="gigDetails"
+          />
+        </div>
+      </el-carousel-item>
+    </el-carousel>
     <div class="owner-prev flex">
       <avatar
         :size="24"
         :username="gig.owner.username"
-        :src="gig.owner.imgUrl"
+        :src="require(`@/assets/img/demo-data-img/${gig.owner.imgUrl}`)"
       ></avatar>
       <div class="owner-name-level">
         <h4>{{ gig.owner.username }}</h4>

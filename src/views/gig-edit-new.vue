@@ -36,7 +36,7 @@
         <el-input
           type="number"
           placeholder="Price"
-          v-model="gigToEdit.price"
+          v-model.number="gigToEdit.price"
         ></el-input>
       </div>
 
@@ -52,7 +52,7 @@
           <el-input
             type="number"
             placeholder="Dellvery Time"
-            v-model="gigToEdit.package.timeToDeliver"
+            v-model.number="gigToEdit.package.timeToDeliver"
           ></el-input>
         </div>
         <div class="description grid-div">
@@ -69,7 +69,7 @@
           <el-input
             type="number"
             placeholder="Dellvery Time"
-            v-model="gigToEdit.package.revisions"
+            v-model.number="gigToEdit.package.revisions"
           ></el-input>
         </div>
       </div>
@@ -128,7 +128,7 @@ export default {
     async save() {
       if (this.gigToEdit._id) {
         try {
-          console.log("GigToEdit");
+          console.log("GigToEdit",this.gigToEdit);
           await this.$store.dispatch({
             type: "updateGig",
             gig: this.gigToEdit,

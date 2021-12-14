@@ -6,7 +6,7 @@
         <avatar
           :size="30"
           :username="gig.owner.username"
-          :src="gig.owner.imgUrl"
+          :src="require(`@/assets/img/demo-data-img/${gig.owner.imgUrl}`)"
         ></avatar>
         <div class="owner-content">
           <div class="owner-name-level">

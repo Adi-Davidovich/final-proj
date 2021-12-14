@@ -35,6 +35,7 @@ export default {
   },
   created() {
     this.$store.dispatch({ type: "loadGigs" });
+    console.log(this.gigs)
   },
   methods: {
     async setFilter(filterBy) {

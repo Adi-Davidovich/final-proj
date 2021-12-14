@@ -22,6 +22,7 @@ async function remove(id) {
 
 async function save(gig) {
   const savedGig = gig
+  console.log(gig)
   if (savedGig._id) {
     return await httpService.put(`gig/${savedGig._id}`, savedGig);
   } else {
@@ -35,7 +36,7 @@ function getEmptyGig() {
     category: '',
     description: '',
     price: null,
-    imgUrl: ['logo-design/cartoon-comic.png'],
+    imgUrl: [],
     package: {
       description: '',
       timeToDeliver: '',

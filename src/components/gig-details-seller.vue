@@ -7,7 +7,7 @@
             <avatar
               :size="100"
               :username="gig.owner.username"
-              :src="gig.owner.imgUrl"
+              :src="require(`@/assets/img/demo-data-img/${gig.owner.imgUrl}`)"
             ></avatar>
             <div class="seller-name flex">
               <h4 class="owner-name-level">{{ gig.owner.username }}</h4>
