@@ -55,7 +55,7 @@
             v-model.number="gigToEdit.package.timeToDeliver"
           ></el-input>
         </div>
-        <div class="description grid-div">
+        <div class="grid-div">
           <p>Package Description:</p>
           <el-input
             type="textarea"
