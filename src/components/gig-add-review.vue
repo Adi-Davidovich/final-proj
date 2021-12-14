@@ -112,7 +112,6 @@ export default {
         (+review.communication + +review.service + +review.recommend) /
         3
       ).toFixed(1);
-      console.log(review);
       await this.$store.dispatch({ type: "addReview", review });
       socketService.emit("add-review",  'There is a review about you');
       this.isReviewAddedCorrectly = true;

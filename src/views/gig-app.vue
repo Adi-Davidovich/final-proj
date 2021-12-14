@@ -35,7 +35,6 @@ export default {
   },
   created() {
     this.$store.dispatch({ type: "loadGigs" });
-    console.log(this.gigs)
   },
   methods: {
     async setFilter(filterBy) {
@@ -49,12 +48,10 @@ export default {
     },
 
     removegig(gigId) {
-      console.log("Removing...", gigId);
       this.$store
         .dispatch({ type: "removegig", gigId })
         .then(() => {
           // showMsg(`gig removed`)
-          console.log("gig removed");
         })
         .catch(() => {
           // showMsg(`Failed to remove gig`, 'danger')

@@ -38,7 +38,6 @@ export default {
   },
 
   mounted() {
-    console.log("Hi", Object.values(this.info));
     this.renderChart(this.chartData, this.options);
   },
 };

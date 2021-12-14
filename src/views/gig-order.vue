@@ -178,7 +178,6 @@ export default {
           revisions: this.gig.package.revisions,
         },
       };
-      console.log("Oreder log!!", order);
       try {
         const savedOrder = await this.$store.dispatch({
           type: "addOrder",
@@ -188,8 +187,6 @@ export default {
           "add-order",
           `${this.loggedInUser.fullname} is ordering`
         );
-        console.log("this :>> ", this);
-
         this.$message({
           showClose: true,
           message: "Thank you for your Order!",

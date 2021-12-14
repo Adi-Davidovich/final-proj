@@ -41,7 +41,6 @@ export default {
   },
   watch: {
     "$route.params.gigId"(id) {
-      console.log("Changed to", id);
       this.loadGig();
     },
     immediate: true,
@@ -51,7 +50,6 @@ export default {
       const id = this.$route.params.gigId;
       this.gig = await gigService.getById(id);
       this.topic = this.gig._id;
-      console.log("gig", this.gig);
     },
     async loadUser(){
       if (this.$store.getters.loggedinUser.fullname) return this.$store.getters.loggedinUser.fullname
@@ -61,7 +59,6 @@ export default {
       this.msgs.push(msg);
     },
     sendMsg() {
-      console.log("Sending", this.msg);
       socketService.emit("chat newMsg", this.msg);
       this.$message({
           showClose: true,

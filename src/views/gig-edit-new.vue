@@ -139,12 +139,10 @@ export default {
         }
       } else {
         try {
-          console.log(this.gigToEdit);
           const savedGig = await this.$store.dispatch({
             type: "addGig",
             gig: this.gigToEdit,
           });
-          console.log(savedGig);
           this.gigToEdit = gigService.getEmptyGig();
           this.$router.push("/user");
         } catch (err) {

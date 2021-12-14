@@ -167,7 +167,6 @@ export default {
     },
     setCategory(category) {
       this.filterBy.category = category;
-      console.log(this.filterBy)
       this.setFilter();
     },
 

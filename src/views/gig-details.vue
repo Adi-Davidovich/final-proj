@@ -87,7 +87,6 @@ export default {
   },
   watch: {
     "$route.params.gigId"(id) {
-      console.log("Changed to", id);
       this.loadGig();
     },
     immediate: true,
@@ -96,8 +95,6 @@ export default {
     async loadGig() {
       const id = this.$route.params.gigId;
       this.gig = await gigService.getById(id);
-      console.log(this.gig);
-      console.log("loadReviews :>> ", this.gig.owner._id);
       const sellerId = this.gig.owner._id;
       await this.$store.dispatch({ type: "loadReviews", id: sellerId });
     },
