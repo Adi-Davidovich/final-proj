@@ -14,7 +14,16 @@
       </tr>
       <tr v-for="(order, index) in orders" :key="index">
         <td class="image">
-          <avatar :size="30" :username="order.buyer.username" class="avatar" :src="require(`@/assets/img/demo-data-img/${order.buyer.imgUrl}`)"></avatar>
+          <avatar
+            :size="30"
+            :username="order.buyer.username"
+            class="avatar"
+            :src="
+              order.buyer.imgUrl
+                ? require(`@/assets/img/demo-data-img/${order.buyer.imgUrl}`)
+                : ''
+            "
+          ></avatar>
         </td>
         <td>
           {{ order.buyer.username }}
